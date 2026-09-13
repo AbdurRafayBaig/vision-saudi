@@ -1,0 +1,237 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    /* ═══════════════════════════════════════════
+       VISION SAUDI — Executive Modern Design System
+       Dark & Light Mode (Inspired by Morningside & SAMM.sa)
+       ═══════════════════════════════════════════ */
+
+    /* Dark Mode Defaults */
+    --bg-main: #0A0D0C;
+    --bg-card: #101413;
+    --bg-glass: rgba(16, 20, 19, 0.75);
+
+    /* Saudi Brand Neon & Emerald Greens */
+    --saudi-neon: #10E784;
+    --saudi-green: #10B981;
+    --saudi-green-hover: #34D399;
+    --saudi-green-deep: #059669;
+
+    /* Text Colors - Dark Mode */
+    --text-primary: #FFFFFF;
+    --text-secondary: #94A3B8;
+    --text-muted: #64748B;
+
+    /* Borders */
+    --border-main: rgba(255, 255, 255, 0.12);
+    --border-hover: #10E784;
+
+    /* Spacing & Motion */
+    --space-section: clamp(5rem, 10vw, 8rem);
+    --space-section-lg: clamp(6rem, 12vw, 10rem);
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* ═══════════════════════════════════════════
+     LIGHT MODE OVERRIDES (SAMM.SA Inspired)
+     ═══════════════════════════════════════════ */
+  html.light {
+    --bg-main: #F8FAFC;
+    --bg-card: #FFFFFF;
+    --bg-glass: rgba(255, 255, 255, 0.85);
+
+    --text-primary: #0F172A;
+    --text-secondary: #334155;
+    --text-muted: #64748B;
+
+    --border-main: rgba(15, 23, 42, 0.12);
+    --border-hover: #059669;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: var(--font-sans), Inter, system-ui, -apple-system, sans-serif;
+    font-style: normal;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  ::selection {
+    background-color: var(--saudi-neon);
+    color: #0A0D0C;
+  }
+
+  /* Refined Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg-main);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #475569;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--saudi-neon);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   SIMPLE PROFESSIONAL TYPOGRAPHY (No Italics / No Serif)
+   ═══════════════════════════════════════════ */
+
+.font-display {
+  font-family: var(--font-display), var(--font-sans), Inter, system-ui, sans-serif;
+  font-style: normal !important;
+  letter-spacing: -0.025em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-style: normal !important;
+}
+
+/* ═══════════════════════════════════════════
+   LEFT-TO-RIGHT LIGHT-TO-DARK TEXT GRADIENTS
+   (Left is bright/light, fading darker to right)
+   ═══════════════════════════════════════════ */
+
+/* Headline Gradient: Bright Left → Slate Right (Dark Mode) */
+.dark .heading-gradient-light-to-dark,
+.heading-gradient-light-to-dark {
+  background: linear-gradient(90deg, #FFFFFF 0%, #E2E8F0 50%, #94A3B8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Headline Gradient for Light Mode (Deep Slate Left → Smooth Muted Right) */
+.light .heading-gradient-light-to-dark {
+  background: linear-gradient(90deg, #0F172A 0%, #334155 50%, #64748B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Green Accent Gradient: White Left → Electric Green Right */
+.green-gradient-text {
+  background: linear-gradient(90deg, #FFFFFF 0%, #10E784 50%, #059669 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.light .green-gradient-text {
+  background: linear-gradient(90deg, #0F172A 0%, #10B981 50%, #047857 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Gold Gradient Replaced with High-Impact Emerald Neon */
+.gold-gradient-text {
+  background: linear-gradient(90deg, #FFFFFF 0%, #10E784 60%, #10B981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.light .gold-gradient-text {
+  background: linear-gradient(90deg, #0F172A 0%, #10B981 60%, #047857 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ═══════════════════════════════════════════
+   GREEN BOX HOVER SYSTEM (EVERY BOX HOVER TURNS GREEN)
+   ═══════════════════════════════════════════ */
+
+.hover-green-box {
+  transition: all 0.3s ease;
+}
+.hover-green-box:hover {
+  border-color: #10E784 !important;
+  box-shadow: 0 0 25px rgba(16, 231, 132, 0.25) !important;
+}
+
+.light .hover-green-box:hover {
+  border-color: #10B981 !important;
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.25) !important;
+}
+
+/* ═══════════════════════════════════════════
+   FLUORESCENT GREEN BUTTONS & GLASS CARDS
+   ═══════════════════════════════════════════ */
+
+.btn-neon-green {
+  background: linear-gradient(135deg, #10E784 0%, #00C86F 100%);
+  color: #0A0D0C !important;
+  font-weight: 700;
+  box-shadow: 0 0 25px rgba(16, 231, 132, 0.35);
+  transition: all 0.3s ease;
+}
+.btn-neon-green:hover {
+  background: linear-gradient(135deg, #34D399 0%, #10E784 100%);
+  box-shadow: 0 0 35px rgba(16, 231, 132, 0.55);
+  transform: translateY(-1px);
+}
+
+.glass-card-dark {
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-main);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.glass-card-dark:hover {
+  border-color: rgba(16, 231, 132, 0.6);
+  box-shadow: 0 0 30px rgba(16, 231, 132, 0.2);
+}
+
+.light .glass-card-dark {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+.light .glass-card-dark:hover {
+  border-color: #10B981;
+  box-shadow: 0 10px 35px rgba(16, 185, 129, 0.2);
+}
+
+/* ═══════════════════════════════════════════
+   INFINITE MARQUEE TICKER ANIMATIONS
+   ═══════════════════════════════════════════ */
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee-reverse 35s linear infinite;
+}
+
+.animate-marquee-reverse:hover {
+  animation-play-state: paused;
+}
+

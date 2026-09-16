@@ -57,7 +57,7 @@ export default function BusinessSetupPage() {
         category="MARKET ENTRY & FORMATION"
         title="Enter the Kingdom with clarity."
         subtitle="From MISA foreign investment licensing and Commercial Registration (CR) to corporate banking and operational portal activation — we handle the full establishment process so your Saudi entity is operational, not just registered."
-        imageSrc="/images/service-business.png"
+        imageSrc="/images/businessSetup.png"
         imageAlt="Saudi Corporate Formation & MISA License"
         primaryCtaLabel="Start Company Establishment"
         onPrimaryCtaClick={() => setModalOpen(true)}

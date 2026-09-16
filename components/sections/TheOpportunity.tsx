@@ -25,12 +25,7 @@ export default function TheOpportunity() {
             viewport={{ once: true, margin: "-100px" }}
             className="lg:col-span-6"
           >
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#10E784]/15 dark:bg-[#10E784]/10 border border-[#10E784]/40 dark:border-[#10E784]/30 text-[#047857] dark:text-[#10E784] text-xs font-mono font-semibold tracking-widest uppercase mb-6 shadow-[0_0_20px_rgba(16,231,132,0.15)]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#10E784]" />
-              <span>THE SAUDI MARKET MOMENT</span>
-            </div>
-
-            <h2 className="font-display text-3xl sm:text-5xl lg:text-6xl font-bold leading-[1.08] tracking-tight mb-6 heading-gradient-light-to-dark">
+            <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-bold leading-[1.08] tracking-tight mb-6 heading-gradient-light-to-dark">
               A market opening at <br />
               <span className="green-gradient-text">extraordinary speed.</span>
             </h2>
@@ -75,8 +70,8 @@ export default function TheOpportunity() {
           >
             <div className="relative aspect-[4/5] sm:aspect-[16/10] lg:aspect-[4/5] overflow-hidden rounded-3xl border border-slate-200 dark:border-white/10 shadow-xl dark:shadow-2xl group hover:border-[#10E784] hover:shadow-[#10E784]/20 transition-all duration-500">
               <Image
-                src="/images/service-business.png"
-                alt="Modern Saudi executive business environment"
+                src="/images/businessSetup.png"
+                alt="Modern Saudi executive business architecture"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-700"
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -93,7 +88,7 @@ export default function TheOpportunity() {
                       <div className="text-[11px] text-slate-500 dark:text-[#94A3B8]">Riyadh Olaya Headquarters · MISA Licensed</div>
                     </div>
                   </div>
-                  <span className="text-[10px] font-mono text-[#059669] dark:text-[#10E784] px-3 py-1 bg-[#10E784]/15 rounded-full border border-[#10E784]/30 font-bold">KSA 2030</span>
+                  <span className="text-xs font-mono text-[#059669] dark:text-[#10E784] font-bold">KSA 2030</span>
                 </div>
               </div>
             </div>

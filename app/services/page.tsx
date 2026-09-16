@@ -17,47 +17,16 @@ export default function ServicesPage() {
     <div className="bg-slate-50 dark:bg-[#0A0D0C] text-slate-900 dark:text-white overflow-x-hidden min-h-screen transition-colors duration-300">
       {/* Hero Section */}
       <PageHero
-        type="type-b"
+        type="type-a"
         category="PUBLIC PILLARS & ECOSYSTEM"
         title="Public Pillars & Ecosystem Capabilities."
         subtitle="From initial MISA licensing and company establishment to post-formation GRO services, enterprise technology, commercial property sourcing, and Premium Residency."
-        imageSrc="/images/service-business.png"
+        imageSrc="/images/businessServices.png"
         imageAlt="Saudi Business Ecosystem & Operations"
         primaryCtaLabel="Make the First Move"
         onPrimaryCtaClick={() => setModalOpen(true)}
         secondaryCtaLabel="Explore Pillars"
         secondaryCtaHref="#pillars"
-        customVisual={
-          <div className="bg-white dark:bg-white/[0.03] text-slate-900 dark:text-white p-8 sm:p-10 rounded-3xl border border-slate-200 dark:border-white/10 shadow-2xl space-y-6 backdrop-blur-2xl relative group hover-green-box transition-all duration-500">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#10E784] to-transparent opacity-80" />
-            <div className="flex items-center justify-between border-b border-slate-200 dark:border-white/10 pb-4">
-              <span className="text-xs font-mono text-slate-500 dark:text-[#D8CCB8] uppercase tracking-wider">ECOSYSTEM SPECTRUM</span>
-              <span className="text-xs font-bold text-[#10E784] px-3.5 py-1 bg-[#10E784]/15 border border-[#10E784]/30 rounded-full font-mono">4 PUBLIC PILLARS</span>
-            </div>
-            
-            <div className="space-y-3">
-              {[
-                { num: "01", title: "Business Setup & Market Entry", stage: "STAGE / ESTABLISH" },
-                { num: "02", title: "Corporate Services & GRO", stage: "STAGE / OPERATE" },
-                { num: "03", title: "Technology & Digital Infrastructure", stage: "STAGE / ACTIVATE" },
-                { num: "04", title: "Real Estate & Premium Residency", stage: "STAGE / INVEST" },
-              ].map((item, idx) => (
-                <div key={idx} className="p-4 bg-slate-50 dark:bg-white/[0.03] border-l-4 border-[#10E784] rounded-2xl flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <span className="font-mono font-bold text-[#10E784] text-sm">{item.num}</span>
-                    <span className="text-xs font-semibold text-slate-900 dark:text-white">{item.title}</span>
-                  </div>
-                  <span className="text-[10px] font-mono text-slate-500 dark:text-[#D8CCB8]">{item.stage}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="pt-2 text-xs text-slate-500 dark:text-[#B9B3A8] font-light flex items-center justify-between">
-              <span>Full Kingdom Scope</span>
-              <span className="text-[#10E784] font-bold">Riyadh · Jeddah · KSA</span>
-            </div>
-          </div>
-        }
       />
 
       {/* Pillars List Section */}
@@ -116,8 +85,8 @@ export default function ServicesPage() {
                     <div className="space-y-4 mb-8">
                       {service.processSteps.map((step) => (
                         <div key={step.step} className="flex items-start gap-3.5 text-xs">
-                          <span className="font-mono font-bold text-[#10E784] bg-[#10E784]/15 px-2.5 py-0.5 rounded-full border border-[#10E784]/30 shrink-0">
-                            {step.step}
+                          <span className="font-mono font-bold text-[#059669] dark:text-[#10E784] shrink-0">
+                            {step.step}.
                           </span>
                           <div>
                             <div className="text-slate-900 dark:text-white font-bold text-sm">{step.name}</div>

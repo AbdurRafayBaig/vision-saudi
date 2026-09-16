@@ -169,13 +169,13 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
               href={`https://wa.me/966500000000?text=Hello%20Vision%20Saudi%20Advisory,%20I%20have%20submitted%20a%20confidential%20inquiry%20regarding%20${encodeURIComponent(formData.serviceIntent)}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#25D366] text-black font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-lg"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#25D366] text-black font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-md transition-all"
             >
-              <MessageSquare className="h-4 w-4" />
+              <MessageSquare className="h-4 w-4 shrink-0" />
               <span>Instant WhatsApp Connect</span>
             </a>
 
-            <Button variant="outline" shape="pill" size="md" onClick={resetAndClose}>
+            <Button variant="outline" size="md" onClick={resetAndClose}>
               Close Window
             </Button>
           </div>
@@ -254,9 +254,8 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
                 </div>
 
                 <div className="flex justify-end pt-2">
-                  <Button variant="emerald" shape="pill" size="md" onClick={() => setStep(2)}>
-                    <span>Proceed to Profiler</span>
-                    <ArrowRight className="h-4 w-4 ml-1" />
+                  <Button variant="emerald" size="md" showArrow onClick={() => setStep(2)}>
+                    Proceed to Profiler
                   </Button>
                 </div>
               </motion.div>
@@ -358,9 +357,8 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
                     <ArrowLeft className="h-3.5 w-3.5" />
                     <span>Back to Strategic Direction</span>
                   </button>
-                  <Button variant="emerald" shape="pill" size="md" onClick={() => setStep(3)}>
-                    <span>Proceed to Contact</span>
-                    <ArrowRight className="h-4 w-4 ml-1" />
+                  <Button variant="emerald" size="md" showArrow onClick={() => setStep(3)}>
+                    Proceed to Contact
                   </Button>
                 </div>
               </motion.div>
@@ -435,7 +433,6 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
                     </button>
                     <Button
                       variant="emerald"
-                      shape="pill"
                       size="lg"
                       type="submit"
                       disabled={isSubmitting}

@@ -31,7 +31,7 @@ export default function Footer() {
                     <ShieldCheck className="h-4 w-4 text-[#10E784]" />
                     <span className="font-mono text-slate-900 dark:text-white font-bold">ATTRIBUTED TRACK RECORD</span>
                   </div>
-                  <span className="text-[10px] font-mono text-[#10E784] px-2.5 py-0.5 bg-[#10E784]/10 border border-[#10E784]/30 rounded-full font-bold">16+ YEARS KSA</span>
+                  <span className="text-xs font-mono text-[#059669] dark:text-[#10E784] font-bold">16+ YEARS KSA</span>
                 </div>
                 <p className="text-xs text-slate-500 dark:text-[#A39B8B] leading-relaxed font-light">
                   Historical enterprise project implementations attributed directly through strategic technology partner SLNEE.

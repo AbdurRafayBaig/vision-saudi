@@ -43,19 +43,19 @@ export function PageHero({
   // Shared HD Background Image component
   const BackgroundHDImage = () => (
     <div className="absolute inset-0 pointer-events-none z-0">
-      <div className="absolute -top-[20%] -left-[10%] w-[50vw] h-[50vw] rounded-full bg-[#10E784]/15 blur-[140px]" />
-      <div className="absolute -bottom-[20%] -right-[10%] w-[50vw] h-[50vw] rounded-full bg-[#00C86F]/10 blur-[150px]" />
+      <div className="absolute -top-[20%] -left-[10%] w-[50vw] h-[50vw] rounded-full bg-[#10E784]/20 blur-[140px]" />
+      <div className="absolute -bottom-[20%] -right-[10%] w-[50vw] h-[50vw] rounded-full bg-[#00C86F]/15 blur-[150px]" />
       {imageSrc && (
         <Image
           src={imageSrc}
           alt={imageAlt}
           fill
           priority
-          className="object-cover object-center opacity-30 dark:opacity-55 scale-105 transition-opacity duration-700"
+          className="object-cover object-center opacity-85 dark:opacity-90 transition-opacity duration-700"
           sizes="100vw"
         />
       )}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-50/90 via-slate-50/75 to-slate-50 dark:from-[#0A0D0C]/80 dark:via-[#0A0D0C]/65 dark:to-[#0A0D0C] transition-colors duration-300" />
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-50/60 via-slate-50/30 to-slate-50 dark:from-[#0A0D0C]/55 dark:via-[#0A0D0C]/30 dark:to-[#0A0D0C] transition-colors duration-300" />
     </div>
   );
 
@@ -73,12 +73,7 @@ export function PageHero({
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-3xl"
           >
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#10E784]/15 border border-[#10E784]/30 text-[#059669] dark:text-[#10E784] text-xs font-semibold tracking-widest uppercase mb-6 shadow-[0_0_20px_rgba(16,231,132,0.2)]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#10E784]" />
-              <span className="font-mono">VISION SAUDI / {category}</span>
-            </div>
-
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-7xl font-bold leading-[1.08] tracking-tight mb-6 heading-gradient-light-to-dark">
+            <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.08] tracking-tight mb-6 heading-gradient-light-to-dark">
               {title}
             </h1>
 
@@ -94,13 +89,12 @@ export function PageHero({
                   showArrow
                   onClick={onPrimaryCtaClick}
                   href={primaryCtaHref}
-                  className="btn-neon-green"
                 >
                   {primaryCtaLabel}
                 </Button>
               )}
               {secondaryCtaLabel && secondaryCtaHref && (
-                <Button variant="ivory" size="lg" href={secondaryCtaHref} className="border border-slate-300 dark:border-white/20 bg-white dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-900 dark:text-white backdrop-blur-md">
+                <Button variant="ivory" size="lg" href={secondaryCtaHref}>
                   {secondaryCtaLabel}
                 </Button>
               )}
@@ -126,12 +120,7 @@ export function PageHero({
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="lg:col-span-7"
             >
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#10E784]/15 border border-[#10E784]/30 text-[#059669] dark:text-[#10E784] text-xs font-semibold tracking-widest uppercase mb-6 shadow-[0_0_20px_rgba(16,231,132,0.2)]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#10E784]" />
-                <span className="font-mono">VISION SAUDI / {category}</span>
-              </div>
-
-              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight mb-6 heading-gradient-light-to-dark">
+              <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight mb-6 heading-gradient-light-to-dark">
                 {title}
               </h1>
 
@@ -147,13 +136,12 @@ export function PageHero({
                     showArrow
                     onClick={onPrimaryCtaClick}
                     href={primaryCtaHref}
-                    className="btn-neon-green"
                   >
                     {primaryCtaLabel}
                   </Button>
                 )}
                 {secondaryCtaLabel && secondaryCtaHref && (
-                  <Button variant="ivory" size="lg" href={secondaryCtaHref} className="border border-slate-300 dark:border-white/20 bg-white dark:bg-white/5 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-900 dark:text-white backdrop-blur-md">
+                  <Button variant="ivory" size="lg" href={secondaryCtaHref}>
                     {secondaryCtaLabel}
                   </Button>
                 )}
@@ -202,12 +190,7 @@ export function PageHero({
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className={customVisual ? "lg:col-span-7" : "lg:col-span-12 max-w-4xl"}
             >
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#10E784]/15 border border-[#10E784]/30 text-[#059669] dark:text-[#10E784] text-xs font-semibold tracking-widest uppercase mb-6 shadow-[0_0_20px_rgba(16,231,132,0.2)]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#10E784]" />
-                <span className="font-mono">VISION SAUDI / {category}</span>
-              </div>
-
-              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.12] tracking-tight mb-6 heading-gradient-light-to-dark">
+              <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.12] tracking-tight mb-6 heading-gradient-light-to-dark">
                 {title}
               </h1>
 
@@ -215,7 +198,7 @@ export function PageHero({
                 {subtitle}
               </p>
 
-              <div className="flex flex-wrap items-center gap-6">
+              <div className="flex flex-wrap items-center gap-4 sm:gap-6">
                 {primaryCtaLabel && (
                   <Button
                     variant="primary"
@@ -223,14 +206,13 @@ export function PageHero({
                     showArrow
                     onClick={onPrimaryCtaClick}
                     href={primaryCtaHref}
-                    className="btn-neon-green px-8 py-4 rounded-full"
                   >
                     {primaryCtaLabel}
                   </Button>
                 )}
 
                 {proofText && (
-                  <div className="inline-flex items-center gap-3 px-5 py-3.5 bg-white dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-xs text-slate-700 dark:text-[#94A3B8] rounded-full backdrop-blur-md shadow-sm">
+                  <div className="inline-flex items-center gap-2.5 px-4 py-2.5 bg-white dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 text-xs text-slate-700 dark:text-[#94A3B8] rounded-xl backdrop-blur-md shadow-sm">
                     <ShieldCheck className="h-4 w-4 text-[#059669] dark:text-[#10E784] shrink-0" />
                     <span>{proofText}</span>
                   </div>
@@ -266,12 +248,7 @@ export function PageHero({
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-3xl"
         >
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#10E784]/15 border border-[#10E784]/30 text-[#059669] dark:text-[#10E784] text-xs font-semibold tracking-widest uppercase mb-5 shadow-[0_0_20px_rgba(16,231,132,0.2)]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#10E784]" />
-            <span className="font-mono">VISION SAUDI / {category}</span>
-          </div>
-
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.12] tracking-tight mb-6 heading-gradient-light-to-dark">
+          <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.12] tracking-tight mb-6 heading-gradient-light-to-dark">
             {title}
           </h1>
 

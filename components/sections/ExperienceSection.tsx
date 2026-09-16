@@ -27,12 +27,7 @@ export default function ExperienceSection() {
             viewport={{ once: true, margin: "-100px" }}
             className="lg:col-span-6"
           >
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#10E784]/10 border border-[#10E784]/30 text-[#10E784] text-xs font-mono font-semibold tracking-widest uppercase mb-6 shadow-[0_0_20px_rgba(16,231,132,0.15)]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#10E784]" />
-              <span>KINGDOM TRACK RECORD</span>
-            </div>
-
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.12] tracking-tight mb-6">
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.12] tracking-tight mb-6">
               <span className="heading-gradient-light-to-dark block">We know the Kingdom</span>
               <span className="green-gradient-text block font-sans">because we work inside it.</span>
             </h2>
@@ -46,12 +41,10 @@ export default function ExperienceSection() {
             </div>
 
             <div className="flex flex-wrap items-center gap-4">
-              <Link href="/experience">
-                <Button variant="primary" shape="pill" size="md">
-                  View Full Track Record
-                </Button>
-              </Link>
-              <Button variant="outline" shape="pill" size="md" onClick={() => setContactModalOpen(true)}>
+              <Button variant="primary" size="md" href="/experience">
+                View Full Track Record
+              </Button>
+              <Button variant="outline" size="md" onClick={() => setContactModalOpen(true)}>
                 Schedule Consultation
               </Button>
             </div>
@@ -70,7 +63,7 @@ export default function ExperienceSection() {
                 <Building2 className="h-5 w-5" />
                 <span>EXPERIENCE IN KSA</span>
               </div>
-              <div className="green-gradient-text font-display text-5xl lg:text-6xl font-bold mb-2">
+              <div className="green-gradient-text font-display text-4xl lg:text-5xl font-bold mb-2">
                 16+ Years
               </div>
               <div className="text-sm font-bold text-slate-900 dark:text-white mb-1">

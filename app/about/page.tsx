@@ -45,37 +45,11 @@ export default function AboutPage() {
         category="POSITIONING & CREDIBILITY"
         title="Built for the Kingdom's next chapter."
         subtitle="Vision Saudi connects global enterprise, investors, and founders to the wider Saudi ecosystem. We help businesses establish, operate, invest, and scale in Saudi Arabia."
-        imageSrc="/images/about-vision.png"
+        imageSrc="/images/corporateBusinessServices.png"
         imageAlt="Saudi Vision 2030 Skyward Architecture"
         primaryCtaLabel="Make the First Move"
         onPrimaryCtaClick={() => setModalOpen(true)}
         proofText="Selected project experience explicitly attributed to SLNEE"
-        customVisual={
-          <div className="bg-white dark:bg-white/[0.03] text-slate-900 dark:text-white p-8 sm:p-10 rounded-3xl border border-slate-200 dark:border-white/10 shadow-2xl space-y-6 backdrop-blur-2xl relative group hover-green-box transition-all duration-500">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#10E784] to-transparent opacity-80" />
-            <div className="flex items-center justify-between border-b border-slate-200 dark:border-white/10 pb-4">
-              <span className="text-xs font-mono text-slate-500 dark:text-[#D8CCB8] uppercase tracking-wider">BRAND POSITIONING</span>
-              <span className="text-xs font-bold text-[#10E784] px-3.5 py-1 bg-[#10E784]/15 border border-[#10E784]/30 rounded-full font-mono">SAUDI AUTHENTICITY</span>
-            </div>
-
-            <div className="space-y-3">
-              <div className="p-4 bg-slate-50 dark:bg-white/[0.03] border-l-4 border-[#10E784] rounded-2xl">
-                <div className="text-xs font-bold text-slate-900 dark:text-white mb-0.5">Deep Local Perspective</div>
-                <div className="text-[11px] text-slate-600 dark:text-[#B9B3A8]">Operating inside KSA institutions & markets</div>
-              </div>
-
-              <div className="p-4 bg-slate-50 dark:bg-white/[0.03] border-l-4 border-[#10E784] rounded-2xl">
-                <div className="text-xs font-bold text-slate-900 dark:text-white mb-0.5">Full Ecosystem Integration</div>
-                <div className="text-[11px] text-slate-600 dark:text-[#B9B3A8]">Establish · Operate · Invest · Scale</div>
-              </div>
-            </div>
-
-            <div className="pt-2 text-xs text-slate-500 dark:text-[#B9B3A8] font-light flex items-center justify-between border-t border-slate-200 dark:border-white/10">
-              <span>Headquarters: Olaya, Riyadh</span>
-              <ShieldCheck className="h-4 w-4 text-[#10E784]" />
-            </div>
-          </div>
-        }
       />
 
       {/* Brand Narrative Section 01 */}
@@ -83,7 +57,7 @@ export default function AboutPage() {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             <div className="lg:col-span-6">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#10E784]/10 border border-[#10E784]/30 text-[#10E784] text-xs font-mono tracking-wider uppercase mb-4">
+              <div className="inline-flex items-center gap-2 text-[#059669] dark:text-[#10E784] text-xs font-mono font-bold tracking-wider uppercase mb-4">
                 <span>LOCAL PERSPECTIVE</span>
               </div>
               <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.12] tracking-tight mb-6">

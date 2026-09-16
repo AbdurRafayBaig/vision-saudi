@@ -23,13 +23,10 @@ export default function WhyAatiqSection() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#10E784]/10 border border-[#10E784]/30 text-[#10E784] text-xs font-mono font-semibold tracking-widest uppercase mb-4">
-              <span>WHY VISION SAUDI</span>
-            </div>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.12] tracking-tight mb-4">
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.12] tracking-tight mb-4">
               <span className="heading-gradient-light-to-dark block">Most firms get you established.</span>
             </h2>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.12] tracking-tight mb-8">
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.12] tracking-tight mb-8">
               <span className="green-gradient-text block font-sans">Vision Saudi helps you build a position.</span>
             </h2>
             <p className="text-slate-600 dark:text-[#B9B3A8] text-base leading-relaxed max-w-md font-light">

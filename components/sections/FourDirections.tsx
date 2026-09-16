@@ -45,7 +45,7 @@ export default function FourDirections() {
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <span className="text-xs font-bold text-[#059669] dark:text-[#10E784] uppercase tracking-wider px-3.5 py-1 bg-[#10E784]/15 border border-[#10E784]/30 rounded-full font-mono">
+                    <span className="text-xs font-bold text-[#059669] dark:text-[#10E784] uppercase tracking-wider font-mono">
                       STAGE / {service.journeyStage}
                     </span>
                     <span className="text-2xl font-display text-slate-300 dark:text-white/30 font-bold group-hover:text-[#059669] dark:group-hover:text-[#10E784] transition-colors">

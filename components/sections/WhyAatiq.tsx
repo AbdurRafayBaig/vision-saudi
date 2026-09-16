@@ -18,12 +18,7 @@ export default function WhyAatiq() {
 
       <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl mb-16">
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#10E784]/15 border border-[#10E784]/30 text-[#059669] dark:text-[#10E784] text-xs font-mono font-semibold tracking-widest uppercase mb-4 shadow-[0_0_20px_rgba(16,231,132,0.15)]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#10E784]" />
-            <span>PLATFORM ADVANTAGE</span>
-          </div>
-
-          <h2 className="font-display text-3xl sm:text-5xl text-slate-900 dark:text-white font-bold tracking-tight mb-4">
+          <h2 className="font-display text-2xl sm:text-4xl text-slate-900 dark:text-white font-bold tracking-tight mb-4">
             One Kingdom. <span className="green-gradient-text">One Unified Ecosystem.</span>
           </h2>
           <p className="text-slate-600 dark:text-[#D8CCB8] text-base leading-relaxed font-light">
@@ -99,10 +94,8 @@ export default function WhyAatiq() {
         <div className="mt-12 text-center">
           <Button
             variant="primary"
-            shape="pill"
             size="lg"
             onClick={() => setContactModalOpen(true)}
-            className="shadow-[0_0_30px_rgba(212,175,55,0.3)]"
           >
             Start Your Saudi Journey With Vision Saudi
           </Button>

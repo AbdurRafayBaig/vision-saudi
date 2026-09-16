@@ -167,15 +167,16 @@ h1, h2, h3, h4, h5, h6 {
    ═══════════════════════════════════════════ */
 
 .btn-neon-green {
-  background: linear-gradient(135deg, #10E784 0%, #00C86F 100%);
+  background: linear-gradient(90deg, #34D399 0%, #10E784 40%, #059669 100%);
   color: #0A0D0C !important;
   font-weight: 700;
-  box-shadow: 0 0 25px rgba(16, 231, 132, 0.35);
-  transition: all 0.3s ease;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 16px rgba(16, 231, 132, 0.25);
+  transition: all 0.25s ease;
 }
 .btn-neon-green:hover {
-  background: linear-gradient(135deg, #34D399 0%, #10E784 100%);
-  box-shadow: 0 0 35px rgba(16, 231, 132, 0.55);
+  background: linear-gradient(90deg, #6EE7B7 0%, #34D399 40%, #10E784 100%);
+  box-shadow: 0 6px 20px rgba(16, 231, 132, 0.35);
   transform: translateY(-1px);
 }
 

@@ -69,6 +69,8 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
+      data-scroll-behavior="smooth"
       className={`${fontSans.variable} ${fontDisplay.variable} dark h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-slate-50 dark:bg-[#0A0D0C] text-slate-900 dark:text-white transition-colors duration-400">

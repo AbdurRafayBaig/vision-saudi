@@ -13,7 +13,7 @@ const services = [
     subtitle: "Market entry, formation & activation",
     description:
       "From MISA licensing and Commercial Registration to corporate bank accounts and Qiwa activation — we handle the full establishment process so your Saudi entity is operational, not just registered.",
-    image: "/images/service-business.png",
+    image: "/images/businessSetup.png",
     href: "/services/business-setup",
   },
   {
@@ -22,7 +22,7 @@ const services = [
     subtitle: "Ongoing operations & compliance",
     description:
       "Government relations, Saudization compliance, ZATCA e-invoicing, payroll administration, and regulatory renewals. The infrastructure that keeps your Saudi entity in good standing.",
-    image: "/images/service-business.png",
+    image: "/images/corporateBusinessServices.png",
     href: "/services/corporate-services",
   },
   {
@@ -31,7 +31,7 @@ const services = [
     subtitle: "Investment & property opportunities",
     description:
       "Strategic real estate advisory across Riyadh, Jeddah, Makkah and Madinah — from Grade-A commercial headquarters to high-yield residential investment portfolios.",
-    image: "/images/service-realestate.png",
+    image: "/images/businessServices.png",
     href: "/services/real-estate",
   },
   {
@@ -40,7 +40,7 @@ const services = [
     subtitle: "Residency pathways for investors & talent",
     description:
       "Navigate Saudi Premium Residency through Investor, Entrepreneur, Special Talent, and Real Estate Owner pathways. Strategic evaluation and application support.",
-    image: "/images/service-realestate.png",
+    image: "/images/aboutHeritagePage.png",
     href: "/services/premium-residency",
   },
 ];
@@ -57,11 +57,7 @@ export default function ServiceNavigator() {
       <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="mb-16">
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#10E784]/10 border border-[#10E784]/30 text-[#10E784] text-xs font-mono font-semibold tracking-widest uppercase mb-4 shadow-[0_0_20px_rgba(16,231,132,0.15)]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#10E784]" />
-            <span>PUBLIC PILLARS & SERVICES</span>
-          </div>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-6xl font-bold leading-[1.12] tracking-tight">
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-5xl font-bold leading-[1.12] tracking-tight">
             <span className="heading-gradient-light-to-dark block">Four directions into</span>
             <span className="green-gradient-text block font-sans">the Saudi market.</span>
           </h2>

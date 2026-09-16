@@ -21,12 +21,7 @@ export default function TechInfrastructure() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: Technology Overview */}
           <div className="lg:col-span-6">
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#10E784]/15 border border-[#10E784]/30 text-[#059669] dark:text-[#10E784] text-xs font-mono font-semibold tracking-widest uppercase mb-4 shadow-[0_0_20px_rgba(16,231,132,0.15)]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#10E784]" />
-              <span>DIGITAL INFRASTRUCTURE</span>
-            </div>
-
-            <h2 className="font-display text-3xl sm:text-5xl text-slate-900 dark:text-white font-bold tracking-tight mb-6">
+            <h2 className="font-display text-2xl sm:text-4xl text-slate-900 dark:text-white font-bold tracking-tight mb-6">
               Technology Behind Business. <br />
               <span className="green-gradient-text">Infrastructure Built For KSA.</span>
             </h2>
@@ -51,12 +46,14 @@ export default function TechInfrastructure() {
             </div>
 
             <div className="flex flex-wrap items-center gap-4">
-              <Link href="/services/technology-infrastructure">
-                <Button variant="primary" shape="pill" size="md">
-                  <span>Explore Technology Solutions</span>
-                  <ArrowRight className="h-4 w-4 ml-1" />
-                </Button>
-              </Link>
+              <Button
+                variant="primary"
+                size="md"
+                showArrow
+                href="/services/technology-infrastructure"
+              >
+                Explore Technology Solutions
+              </Button>
             </div>
           </div>
 
@@ -84,7 +81,7 @@ export default function TechInfrastructure() {
                     <div className="text-xs text-slate-500 dark:text-[#B9B3A8] font-light">ZATCA & WPS Compliant</div>
                   </div>
                 </div>
-                <span className="text-[10px] font-mono text-[#059669] dark:text-[#10E784] font-bold px-3 py-1 bg-[#10E784]/15 rounded-full border border-[#10E784]/30">
+                <span className="text-xs font-mono text-[#059669] dark:text-[#10E784] font-bold">
                   ACTIVE
                 </span>
               </div>
@@ -99,7 +96,7 @@ export default function TechInfrastructure() {
                     <div className="text-xs text-slate-500 dark:text-[#B9B3A8] font-light">Saudi Cloud Sovereign Hosting</div>
                   </div>
                 </div>
-                <span className="text-[10px] font-mono text-[#059669] dark:text-[#10E784] font-bold px-3 py-1 bg-[#10E784]/15 rounded-full border border-[#10E784]/30">
+                <span className="text-xs font-mono text-[#059669] dark:text-[#10E784] font-bold">
                   INTEGRATED
                 </span>
               </div>
@@ -114,7 +111,7 @@ export default function TechInfrastructure() {
                     <div className="text-xs text-slate-500 dark:text-[#B9B3A8] font-light">In-Kingdom Infrastructure</div>
                   </div>
                 </div>
-                <span className="text-[10px] font-mono text-[#059669] dark:text-[#10E784] font-bold px-3 py-1 bg-[#10E784]/15 rounded-full border border-[#10E784]/30">
+                <span className="text-xs font-mono text-[#059669] dark:text-[#10E784] font-bold">
                   SECURE
                 </span>
               </div>

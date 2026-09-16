@@ -48,7 +48,7 @@ export function NextStepCTA({
             viewport={{ once: true, margin: "-100px" }}
             className="max-w-3xl"
           >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#10E784]/10 border border-[#10E784]/30 text-[#10E784] text-xs font-mono font-semibold tracking-widest uppercase mb-4">
+            <div className="inline-flex items-center gap-2 text-[#059669] dark:text-[#10E784] text-xs font-mono font-semibold tracking-widest uppercase mb-4">
               <span>VISION SAUDI / {eyebrow}</span>
             </div>
 

@@ -26,12 +26,12 @@ export default async function ArticlePage({
       </div>
 
       <div className="max-w-4xl mx-auto px-6 lg:px-8 relative z-10">
-        <Link href="/insights" className="inline-block mb-8">
-          <Button variant="outline" shape="pill" size="sm" className="text-xs font-bold uppercase tracking-wider">
-            <ArrowLeft className="h-4 w-4 mr-2" />
+        <div className="mb-8">
+          <Button variant="outline" size="sm" href="/insights" className="text-xs font-bold uppercase tracking-wider">
+            <ArrowLeft className="h-4 w-4 shrink-0 mr-1" />
             <span>Back to Insights</span>
           </Button>
-        </Link>
+        </div>
 
         <div className="flex items-center gap-3 mb-6">
           <span className="text-xs font-mono font-bold text-[#059669] dark:text-[#10E784] uppercase tracking-widest px-4 py-1.5 bg-[#10E784]/15 border border-[#10E784]/30 rounded-full shadow-[0_0_15px_rgba(16,231,132,0.15)]">

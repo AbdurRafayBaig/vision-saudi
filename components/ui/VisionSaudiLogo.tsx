@@ -14,16 +14,10 @@ interface VisionSaudiLogoProps {
 }
 
 const sizeClasses = {
-  sm: "h-7", // ~28px
-  md: "h-9", // ~36px
-  lg: "h-11", // ~44px
-  xl: "h-14", // ~56px
-};
-
-const logoSrcMap = {
-  white: "/images/vision-saudi-logo-white.png",
-  gold: "/images/vision-saudi-logo-gold.png",
-  dark: "/images/vision-saudi-logo-dark.png",
+  sm: "h-10", // ~40px
+  md: "h-13 sm:h-16", // ~52-64px (High-Visibility Navbar Logo)
+  lg: "h-16 sm:h-20", // ~64-80px (High-Visibility Footer Logo)
+  xl: "h-22 sm:h-24", // ~88-96px
 };
 
 export const VisionSaudiLogo: React.FC<VisionSaudiLogoProps> = ({
@@ -35,12 +29,10 @@ export const VisionSaudiLogo: React.FC<VisionSaudiLogoProps> = ({
 }) => {
   const { theme } = useTheme();
 
-  let effectiveVariant = variant;
-  if (variant === "auto") {
-    effectiveVariant = theme === "light" ? "dark" : "white";
-  }
-
-  const logoSrc = logoSrcMap[effectiveVariant as keyof typeof logoSrcMap] || logoSrcMap.white;
+  const isLight = variant === "dark" || (variant === "auto" && theme === "light");
+  const logoSrc = isLight 
+    ? "/images/logo_hdr_light.png" 
+    : "/images/logo_hdr_dark.png";
   const sizeClass = sizeClasses[size];
 
   const content = (
@@ -49,11 +41,11 @@ export const VisionSaudiLogo: React.FC<VisionSaudiLogoProps> = ({
         <img
           src={logoSrc}
           alt="Vision Saudi"
-          className={`${sizeClass} w-auto object-contain transition-all duration-300 group-hover:brightness-110 group-hover:scale-[1.02]`}
+          className={`${sizeClass} w-auto object-contain transition-all duration-300 group-hover:scale-[1.03] filter drop-shadow-[0_2px_12px_rgba(16,231,132,0.25)] dark:drop-shadow-[0_2px_15px_rgba(0,0,0,0.8)]`}
         />
       </div>
       {showSubtext && (
-        <span className="text-[10px] font-mono text-[#10E784] tracking-[0.2em] mt-1 opacity-90 pl-0.5">
+        <span className="text-[10px] font-mono text-[#059669] dark:text-[#10E784] tracking-[0.2em] mt-1 opacity-90 pl-0.5 font-bold">
           KINGDOM OF SAUDI ARABIA
         </span>
       )}

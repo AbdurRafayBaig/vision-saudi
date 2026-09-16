@@ -61,7 +61,7 @@ export default function PremiumResidencyPage() {
         category="RESIDENCY & ADVISORY"
         title="A life in the Kingdom, by design."
         subtitle="Navigate Saudi Premium Residency through official Investor, Entrepreneur, Special Talent, Real Estate Owner, and Limited Duration pathways. Strategic evaluation and end-to-end application support."
-        imageSrc="/images/service-residency.png"
+        imageSrc="/images/businessSetup.png"
         imageAlt="Saudi Arabia Modern City & Lifestyle"
         primaryCtaLabel="Check Residency Eligibility"
         onPrimaryCtaClick={() => setModalOpen(true)}
@@ -91,7 +91,7 @@ export default function PremiumResidencyPage() {
             <div className="lg:col-span-6">
               <div className="relative aspect-[4/3] sm:aspect-[16/10] overflow-hidden rounded-3xl border border-slate-200 dark:border-white/15 shadow-xl dark:shadow-2xl backdrop-blur-xl">
                 <Image
-                  src="/images/service-residency.png"
+                  src="/images/businessSetup.png"
                   alt="Saudi Lifestyle & Premium Living"
                   fill
                   className="object-cover"

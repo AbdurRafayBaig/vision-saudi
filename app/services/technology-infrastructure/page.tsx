@@ -56,7 +56,7 @@ export default function TechnologyPage() {
         category="ENTERPRISE SYSTEMS & DIGITAL"
         title="Infrastructure behind growth."
         subtitle="Technology built for Saudi Arabia's regulatory and enterprise environment — from ERP systems and ZATCA integration to automated workflows, cloud hosting, and custom digital platforms."
-        imageSrc="/images/service-technology.png"
+        imageSrc="/images/servicePartnersPic.png"
         imageAlt="Saudi Enterprise Digital Architecture & Systems"
         primaryCtaLabel="Request Tech Consultation"
         onPrimaryCtaClick={() => setModalOpen(true)}

@@ -12,15 +12,15 @@ export const Badge: React.FC<BadgeProps> = ({
   className = "",
 }) => {
   const styles = {
-    emerald: "bg-[#10E784]/15 text-[#059669] dark:text-[#10E784] border border-[#10E784]/30 font-mono font-bold",
-    gold: "bg-[#10E784]/15 text-[#059669] dark:text-[#10E784] border border-[#10E784]/40 font-mono font-bold",
-    slate: "bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-[#D8CCB8] border border-slate-200 dark:border-white/10 font-mono font-medium",
-    outline: "bg-transparent text-[#059669] dark:text-[#10E784] border border-[#10E784]/40 font-mono font-medium",
+    emerald: "text-[#059669] dark:text-[#10E784] font-mono font-bold",
+    gold: "text-[#059669] dark:text-[#10E784] font-mono font-bold",
+    slate: "text-slate-700 dark:text-[#D8CCB8] font-mono font-medium",
+    outline: "text-[#059669] dark:text-[#10E784] font-mono font-medium",
   };
 
   return (
     <span
-      className={`inline-flex items-center px-3.5 py-1 text-[11px] font-mono uppercase tracking-wider rounded-full ${styles[variant]} ${className}`}
+      className={`inline-flex items-center text-xs font-mono uppercase tracking-wider ${styles[variant]} ${className}`}
     >
       {children}
     </span>

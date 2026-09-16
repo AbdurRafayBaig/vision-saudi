@@ -28,7 +28,7 @@ export default function CorporateServicesPage() {
         "Muqeem Exit/Re-Entry Visa Authorizations",
         "Commercial Registration (CR) Annual Renewals",
       ],
-      image: "/images/service-business.png",
+      image: "/images/businessServices.png",
     },
     {
       title: "Tax, ZATCA & Financial Compliance",
@@ -41,7 +41,7 @@ export default function CorporateServicesPage() {
         "Zakat & Corporate Income Tax Coordination",
         "Audited Financial Statement Submissions",
       ],
-      image: "/images/service-technology.png",
+      image: "/images/servicePartnersPic.png",
     },
     {
       title: "Saudization & HR Infrastructure",
@@ -54,7 +54,7 @@ export default function CorporateServicesPage() {
         "Standardized Labor Law Employment Contracts",
         "Payroll Wages Protection System (WPS)",
       ],
-      image: "/images/service-experience.png",
+      image: "/images/successPartnersPiic.png",
     },
     {
       title: "Corporate Governance & Office Sourcing",
@@ -67,7 +67,7 @@ export default function CorporateServicesPage() {
         "Corporate Secretarial & MoA Amendments",
         "Annual MISA License Renewals & Audits",
       ],
-      image: "/images/service-realestate.png",
+      image: "/images/aboutHeritagePage.png",
     },
   ];
 
@@ -79,7 +79,7 @@ export default function CorporateServicesPage() {
         category="GRO & COMPLIANCE INFRASTRUCTURE"
         title="Operate with accuracy in the Kingdom."
         subtitle="Your Commercial Registration opens the door. Our corporate services provide the ongoing operational infrastructure — GRO, Saudization compliance, ZATCA e-invoicing, payroll, and government renewals."
-        imageSrc="/images/hero-riyadh.png"
+        imageSrc="/images/corporateBusinessServices.png"
         imageAlt="Saudi Corporate Services & GRO Operations"
         primaryCtaLabel="Retain Corporate Support"
         onPrimaryCtaClick={() => setModalOpen(true)}

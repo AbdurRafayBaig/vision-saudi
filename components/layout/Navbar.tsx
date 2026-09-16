@@ -18,12 +18,11 @@ const navLinks = [
       { name: "Business Setup & Market Entry", href: "/services/business-setup" },
       { name: "Corporate Services & GRO", href: "/services/corporate-services" },
       { name: "Technology & Digital", href: "/services/technology-infrastructure" },
+      { name: "Commercial Real Estate", href: "/services/real-estate" },
+      { name: "Premium Residency & Visas", href: "/services/premium-residency" },
     ],
   },
   { name: "Real Estate", href: "/services/real-estate" },
-  { name: "Residency", href: "/services/premium-residency" },
-  { name: "Experience", href: "/experience" },
-  { name: "Insights", href: "/insights" },
   { name: "About", href: "/about" },
 ];
 
@@ -60,8 +59,8 @@ export default function Navbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
           isScrolled
-            ? "bg-white/95 dark:bg-[#0A0D0C]/90 backdrop-blur-xl border-b border-slate-200 dark:border-white/10 py-3 shadow-md dark:shadow-2xl text-slate-900 dark:text-white"
-            : "bg-white/90 dark:bg-gradient-to-b dark:from-[#0A0D0C]/95 dark:via-[#0A0D0C]/60 dark:to-transparent border-b border-slate-200/50 dark:border-transparent py-4 text-slate-900 dark:text-white"
+            ? "bg-white/90 dark:bg-[#0A0D0C]/90 backdrop-blur-xl border-b border-slate-200 dark:border-white/10 py-3 shadow-lg dark:shadow-2xl text-slate-900 dark:text-white"
+            : "bg-white/40 dark:bg-[#0A0D0C]/35 backdrop-blur-md border-b border-slate-900/5 dark:border-white/10 py-4 text-slate-900 dark:text-white"
         }`}
       >
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
@@ -134,12 +133,13 @@ export default function Navbar() {
           {/* Professional Executive CTA & Theme Toggle */}
           <div className="hidden lg:flex items-center gap-3 shrink-0">
             <ThemeToggle />
-            <button
+            <Button
+              variant="emerald"
+              size="sm"
               onClick={() => setContactModalOpen(true)}
-              className="whitespace-nowrap inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-gradient-to-r from-[#10E784] to-[#00C86F] hover:from-[#34D399] hover:to-[#10E784] text-[#0A0D0C] text-xs font-bold tracking-wider uppercase shadow-lg shadow-[#10E784]/25 hover:shadow-[#10E784]/45 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer"
             >
               Make the First Move
-            </button>
+            </Button>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -201,13 +201,13 @@ export default function Navbar() {
 
         <div className="px-6 py-6 border-t border-white/10 bg-[#101312]">
           <Button
-            variant="primary"
-            size="lg"
+            variant="emerald"
+            size="md"
             onClick={() => {
               setMobileMenuOpen(false);
               setContactModalOpen(true);
             }}
-            className="w-full bg-[#2D7A5F] hover:bg-[#3A9474] text-white"
+            className="w-full"
           >
             Make the First Move
           </Button>

@@ -134,10 +134,10 @@ export default function InsightsPage() {
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-5 py-2.5 text-xs font-mono font-semibold uppercase tracking-wider rounded-full transition-all duration-300 ${
+                  className={`px-4 py-2 text-xs font-mono font-semibold uppercase tracking-wider rounded-xl transition-all duration-200 ${
                     selectedCategory === cat
-                      ? "bg-[#10E784] text-slate-950 shadow-lg font-bold"
-                      : "bg-white dark:bg-white/[0.04] text-slate-600 dark:text-[#B9B3A8] border border-slate-200 dark:border-white/10 hover:border-[#10E784]/50"
+                      ? "bg-[#10E784] text-slate-950 shadow-md font-bold"
+                      : "bg-white dark:bg-white/[0.04] text-slate-600 dark:text-[#B9B3A8] border border-slate-200 dark:border-white/10 hover:border-[#10E784]/50 hover:text-slate-900 dark:hover:text-white"
                   }`}
                 >
                   {cat}

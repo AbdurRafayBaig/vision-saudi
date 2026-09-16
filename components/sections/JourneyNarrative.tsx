@@ -56,10 +56,7 @@ export default function JourneyNarrative() {
           viewport={{ once: true, margin: "-100px" }}
           className="max-w-2xl mb-20"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#10E784]/10 border border-[#10E784]/30 text-[#10E784] text-xs font-mono font-semibold tracking-widest uppercase mb-4">
-            <span>THE JOURNEY</span>
-          </div>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.12] tracking-tight mb-6">
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.12] tracking-tight mb-6">
             <span className="heading-gradient-light-to-dark block">Most firms help you start.</span>
             <span className="green-gradient-text block font-sans">We stay for what comes next.</span>
           </h2>

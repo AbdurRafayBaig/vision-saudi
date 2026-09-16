@@ -81,7 +81,7 @@ export default function ContactPage() {
                   <p className="text-slate-600 dark:text-[#D8CCB8] text-base max-w-md mb-8 leading-relaxed font-light">
                     Thank you. A Vision Saudi senior strategist will review your submitted requirements and respond within 24 hours.
                   </p>
-                  <Button variant="primary" shape="pill" onClick={() => setIsSubmitted(false)}>
+                  <Button variant="primary" onClick={() => setIsSubmitted(false)}>
                     Submit Another Inquiry
                   </Button>
                 </div>
@@ -172,10 +172,9 @@ export default function ContactPage() {
 
                   <Button
                     variant="primary"
-                    shape="pill"
                     size="lg"
                     type="submit"
-                    className="w-full shadow-[0_0_30px_rgba(16,231,132,0.3)] font-bold tracking-wider"
+                    className="w-full font-bold tracking-wider shadow-md shadow-[#10E784]/20"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? "PROCESSING INQUIRY..." : "SUBMIT CONFIDENTIAL INQUIRY"}

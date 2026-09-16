@@ -28,7 +28,7 @@ export default function ExperiencePage() {
         category="ATTRIBUTED TRACK RECORD"
         title="Experience behind Vision Saudi."
         subtitle="Vision Saudi stands on a foundation of 16+ years of operating experience in Saudi Arabia. Enterprise digital platforms and government-grade technology projects delivered through strategic partner SLNEE."
-        imageSrc="/images/service-experience.png"
+        imageSrc="/images/successPartnersPiic.png"
         imageAlt="Saudi Enterprise & Public Project Operations"
         primaryCtaLabel="Discuss Your Engagement"
         onPrimaryCtaClick={() => setModalOpen(true)}
@@ -124,10 +124,10 @@ export default function ExperiencePage() {
                 <button
                   key={sec}
                   onClick={() => setFilterSector(sec)}
-                  className={`px-5 py-2.5 text-xs font-mono font-semibold uppercase tracking-wider rounded-full transition-all duration-300 ${
+                  className={`px-4 py-2 text-xs font-mono font-semibold uppercase tracking-wider rounded-xl transition-all duration-200 ${
                     filterSector === sec
-                      ? "bg-[#10E784] text-slate-950 shadow-lg font-bold"
-                      : "bg-slate-100 dark:bg-white/[0.04] text-slate-600 dark:text-[#B9B3A8] border border-slate-200 dark:border-white/10 hover:border-[#10E784]/50"
+                      ? "bg-[#10E784] text-slate-950 shadow-md font-bold"
+                      : "bg-slate-100 dark:bg-white/[0.04] text-slate-600 dark:text-[#B9B3A8] border border-slate-200 dark:border-white/10 hover:border-[#10E784]/50 hover:text-slate-900 dark:hover:text-white"
                   }`}
                 >
                   {sec}

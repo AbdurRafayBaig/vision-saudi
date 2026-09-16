@@ -6,7 +6,6 @@ import ServiceNavigator from "@/components/sections/ServiceNavigator";
 import JourneyNarrative from "@/components/sections/JourneyNarrative";
 import EcosystemSection from "@/components/sections/EcosystemSection";
 import RealEstateSection from "@/components/sections/RealEstateSection";
-import ExperienceSection from "@/components/sections/ExperienceSection";
 import WhyAatiqSection from "@/components/sections/WhyAatiqSection";
 import FinalCTA from "@/components/sections/FinalCTA";
 
@@ -21,7 +20,6 @@ export default function HomePage() {
       <JourneyNarrative />
       <EcosystemSection />
       <RealEstateSection />
-      <ExperienceSection />
       <WhyAatiqSection />
       <FinalCTA />
     </main>

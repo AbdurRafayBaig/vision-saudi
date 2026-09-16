@@ -59,12 +59,7 @@ export default function EcosystemSection() {
           viewport={{ once: true, margin: "-100px" }}
           className="max-w-3xl mb-16"
         >
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#10E784]/10 border border-[#10E784]/30 text-[#10E784] text-xs font-mono font-semibold tracking-widest uppercase mb-4 shadow-[0_0_20px_rgba(16,231,132,0.15)]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#10E784]" />
-            <span>THE SAUDI ECOSYSTEM</span>
-          </div>
-
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.12] tracking-tight mb-6">
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.12] tracking-tight mb-6">
             <span className="heading-gradient-light-to-dark block">Your CR opens the door.</span>
             <span className="green-gradient-text block font-sans">We take you further.</span>
           </h2>
@@ -128,13 +123,14 @@ export default function EcosystemSection() {
                           </p>
                           <Button
                             variant="outline"
-                            shape="pill"
                             size="sm"
                             onClick={() => setContactModalOpen(true)}
                             className="shrink-0 text-xs font-bold tracking-wider"
                           >
-                            <span>INQUIRE CAPABILITY</span>
-                            <ArrowUpRight className="h-3.5 w-3.5 ml-1" />
+                            <span className="inline-flex items-center gap-1.5">
+                              <span>INQUIRE CAPABILITY</span>
+                              <ArrowUpRight className="h-3.5 w-3.5 shrink-0" />
+                            </span>
                           </Button>
                         </div>
                       </div>
@@ -150,7 +146,6 @@ export default function EcosystemSection() {
         <div className="mt-12 text-center">
           <Button
             variant="primary"
-            shape="pill"
             size="lg"
             onClick={() => setContactModalOpen(true)}
           >

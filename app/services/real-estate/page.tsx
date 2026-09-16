@@ -24,7 +24,7 @@ export default function RealEstatePage() {
       subtitle: "Riyadh & Jeddah Prime Locations",
       description:
         "Strategic acquisition and leasing of Grade-A office space in KAFD (King Abdullah Financial District), Olaya, and prime business corridors across Riyadh and Jeddah.",
-      image: "/images/service-realestate.png",
+      image: "/images/successPartnersPiic.png",
       specs: ["Grade-A Commercial Space", "MISA & Ministry Compliant Leases", "KAFD & Olaya Districts", "Full Fit-Out Coordination"],
     },
     {
@@ -33,7 +33,7 @@ export default function RealEstatePage() {
       subtitle: "Executive Housing & Luxury Residential",
       description:
         "Sourcing and managing premium residential assets tailored for corporate executive compounds, high-net-worth investors, and residency qualification pathways.",
-      image: "/images/service-residency.png",
+      image: "/images/businessSetup.png",
       specs: ["Executive Compounds", "Premium Residency Eligible", "High Rental Yield Portfolios", "Property Management Support"],
     },
     {
@@ -42,7 +42,7 @@ export default function RealEstatePage() {
       subtitle: "Strategic Tourism & Cultural Assets",
       description:
         "Advisory across Saudi Arabia's expanding tourism and hospitality sector, evaluating strategic boutique hotel assets, commercial retail centers, and leisure developments.",
-      image: "/images/service-experience.png",
+      image: "/images/corporateBusinessServices.png",
       specs: ["Boutique Hotel Sourcing", "Retail & Commercial Hubs", "Vision 2030 Tourism Corridors", "Operator Partnership Advisory"],
     },
     {
@@ -72,7 +72,7 @@ export default function RealEstatePage() {
         category="INVESTMENT & PROPERTY ADVISORY"
         title="Where capital meets place."
         subtitle="Strategic real estate advisory across Riyadh, Jeddah, Makkah, and Madinah — from Grade-A commercial headquarters to high-yield residential investment portfolios."
-        imageSrc="/images/service-realestate.png"
+        imageSrc="/images/businessSetup.png"
         imageAlt="Saudi Arabia Luxury Real Estate & Skyline"
         primaryCtaLabel="Inquire for Real Estate Advisory"
         onPrimaryCtaClick={() => setModalOpen(true)}

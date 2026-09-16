@@ -102,10 +102,10 @@ export default function ExperienceShowcase() {
         <div className="text-center">
           <Link
             href="/experience"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#10E784]/10 hover:bg-[#10E784] border border-[#10E784]/40 text-[#059669] dark:text-[#10E784] hover:text-slate-900 dark:hover:text-[#0A0D0C] text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-xl"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#10E784]/10 hover:bg-[#10E784] border border-[#10E784]/40 text-[#059669] dark:text-[#10E784] hover:text-slate-900 dark:hover:text-[#0A0D0C] text-xs font-bold uppercase tracking-wider transition-all duration-300 shadow-md group"
           >
             <span>View Complete Attributed Track Record</span>
-            <ArrowUpRight className="h-4 w-4" />
+            <ArrowUpRight className="h-4 w-4 shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </Link>
         </div>
       </div>

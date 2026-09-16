@@ -18,7 +18,7 @@ export default function SuccessPartnersSection() {
       <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative z-10">
         <div className="max-w-3xl mb-16">
           <SectionMarker number="09" title="Partnership Ecosystem" />
-          <h2 className="font-display text-3xl sm:text-5xl text-slate-900 dark:text-white font-bold tracking-tight mb-4">
+          <h2 className="font-display text-2xl sm:text-4xl text-slate-900 dark:text-white font-bold tracking-tight mb-4">
             Don't Just Enter The Market. <br />
             <span className="text-[#059669] dark:text-[#10E784]">Become Part Of It.</span>
           </h2>
@@ -31,11 +31,6 @@ export default function SuccessPartnersSection() {
           {/* Service Partners Card */}
           <div className="bg-white dark:bg-white/[0.03] backdrop-blur-xl border border-slate-200 dark:border-white/10 rounded-3xl p-8 sm:p-10 flex flex-col justify-between hover:border-[#10E784] hover:-translate-y-1 transition-all duration-300 group shadow-2xl">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#059669] dark:text-[#10E784] bg-[#10E784]/15 px-3.5 py-1 border border-[#10E784]/30 mb-6 rounded-full font-bold">
-                <Globe className="h-3.5 w-3.5 text-[#059669] dark:text-[#10E784]" />
-                <span>FOR INTERNATIONAL SPECIALISTS</span>
-              </div>
-
               <h3 className="font-display text-2xl sm:text-3xl text-slate-900 dark:text-white font-bold mb-4 group-hover:text-[#059669] dark:group-hover:text-[#10E784] transition-colors">
                 Service Partner Programme
               </h3>
@@ -72,11 +67,6 @@ export default function SuccessPartnersSection() {
           {/* Success Partners Card */}
           <div className="bg-white dark:bg-[#101312] text-slate-900 dark:text-white border border-slate-200 dark:border-white/15 p-8 sm:p-10 rounded-3xl shadow-2xl flex flex-col justify-between backdrop-blur-2xl hover:border-[#10E784] transition-all duration-300">
             <div>
-              <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#059669] dark:text-[#10E784] bg-[#10E784]/15 px-3.5 py-1 border border-[#10E784]/30 mb-6 rounded-full font-bold">
-                <Network className="h-3.5 w-3.5 text-[#059669] dark:text-[#10E784]" />
-                <span>FOR ECOSYSTEM MEMBER BUSINESSES</span>
-              </div>
-
               <h3 className="font-display text-2xl sm:text-3xl text-slate-900 dark:text-white font-bold mb-4">
                 Success Partner Network
               </h3>

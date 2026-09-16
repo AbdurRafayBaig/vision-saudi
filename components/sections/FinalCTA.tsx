@@ -27,12 +27,7 @@ export default function FinalCTA() {
           {/* Subtle inner neon green shimmer line */}
           <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#10E784] to-transparent opacity-80" />
 
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#10E784]/10 border border-[#10E784]/30 text-[#10E784] text-xs font-mono font-semibold tracking-widest uppercase mb-6 shadow-[0_0_20px_rgba(16,231,132,0.15)]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#10E784]" />
-            <span>THE NEXT STEP IN SAUDI ARABIA</span>
-          </div>
-
-          <h2 className="font-display text-4xl sm:text-6xl font-bold tracking-tight mb-8 leading-[1.12]">
+          <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight mb-8 leading-[1.12]">
             <span className="heading-gradient-light-to-dark block">Ready to build your position</span>
             <span className="green-gradient-text block font-sans">in the Kingdom?</span>
           </h2>
@@ -46,7 +41,7 @@ export default function FinalCTA() {
               variant="primary"
               size="lg"
               onClick={() => setModalOpen(true)}
-              className="bg-[#10E784] hover:bg-[#0be07b] text-slate-950 font-bold shadow-xl shadow-[#10E784]/20 px-8 py-4 rounded-full"
+              className="font-bold shadow-md shadow-[#10E784]/20"
             >
               Make the First Move
             </Button>
@@ -54,7 +49,7 @@ export default function FinalCTA() {
               variant="ivory"
               size="lg"
               onClick={() => setModalOpen(true)}
-              className="border border-slate-300 dark:border-white/20 bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-900 dark:text-white backdrop-blur-md px-8 py-4 rounded-full font-bold"
+              className="font-bold"
             >
               Schedule Senior Strategy Call
             </Button>

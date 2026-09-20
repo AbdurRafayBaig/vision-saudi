@@ -34,7 +34,7 @@ export function ConsentFields({ consent, onConsentChange, website, onWebsiteChan
           required
           checked={consent}
           onChange={(e) => onConsentChange(e.target.checked)}
-          className="mt-0.5 h-4 w-4 shrink-0 accent-[#10E784] cursor-pointer"
+          className="mt-0.5 h-5 w-5 shrink-0 accent-[#10E784] cursor-pointer"
         />
         <span>
           I agree that Vision Saudi may process my details to respond to this inquiry, as described in the{" "}

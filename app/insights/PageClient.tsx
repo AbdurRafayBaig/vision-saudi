@@ -45,12 +45,12 @@ export default function InsightsPage() {
 
             <div className="space-y-3">
               <div className="p-4 bg-white/[0.03] border-l-4 border-[#10E784] rounded-2xl">
-                <span className="text-[10px] text-[#10E784] uppercase font-bold block mb-1">LEAD ANALYSIS</span>
+                <span className="text-xs text-[#10E784] uppercase font-bold block mb-1">LEAD ANALYSIS</span>
                 <div className="text-xs font-bold text-white leading-snug">ISIC 4 Foreign Ownership & MISA License Regulations</div>
               </div>
 
               <div className="p-4 bg-white/[0.03] border-l-4 border-[#10E784] rounded-2xl">
-                <span className="text-[10px] text-[#10E784] uppercase font-bold block mb-1">REAL ESTATE BRIEF</span>
+                <span className="text-xs text-[#10E784] uppercase font-bold block mb-1">REAL ESTATE BRIEF</span>
                 <div className="text-xs font-bold text-white leading-snug">Riyadh Commercial Office Yields & REGA Rules</div>
               </div>
             </div>
@@ -90,7 +90,7 @@ export default function InsightsPage() {
 
                   <Link
                     href={`/insights/${featuredArticle.slug}`}
-                    className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#10E784] hover:gap-3 transition-all duration-300"
+                    className="inline-flex items-center gap-2 py-3 -my-3 text-xs font-bold uppercase tracking-wider text-[#10E784] hover:gap-3 transition-all duration-300"
                   >
                     <span>Read Strategic Analysis</span>
                     <ArrowRight className="h-4 w-4" />
@@ -134,7 +134,7 @@ export default function InsightsPage() {
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 text-xs font-mono font-semibold uppercase tracking-wider rounded-xl transition-all duration-200 ${
+                  className={`px-4 min-h-[44px] text-xs font-mono font-semibold uppercase tracking-wider rounded-xl transition-all duration-200 ${
                     selectedCategory === cat
                       ? "bg-[#10E784] text-slate-950 shadow-md font-bold"
                       : "bg-white/[0.04] text-[#B9B3A8] border border-white/10 hover:border-[#10E784]/50 hover:text-white"

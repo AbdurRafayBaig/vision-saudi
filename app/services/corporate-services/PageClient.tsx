@@ -74,7 +74,7 @@ export default function CorporateServicesPage() {
     <div className="bg-[#0A0D0C] text-white transition-colors duration-400 overflow-x-hidden min-h-screen">
       {/* Hero Section — Type B Editorial Split */}
       <PageHero
-        type="type-b"
+        type="type-a"
         category="GRO & COMPLIANCE INFRASTRUCTURE"
         title="Operate with accuracy in the Kingdom."
         subtitle="Your Commercial Registration opens the door. Our corporate services provide the ongoing operational infrastructure — GRO, Saudization compliance, ZATCA e-invoicing, payroll, and government renewals."
@@ -84,46 +84,7 @@ export default function CorporateServicesPage() {
         onPrimaryCtaClick={() => setModalOpen(true)}
         secondaryCtaLabel="Explore Capabilities"
         secondaryCtaHref="#capabilities"
-        customVisual={
-          <div className="bg-[#101312] text-white p-8 sm:p-10 rounded-3xl border border-white/15 shadow-2xl space-y-6 backdrop-blur-2xl">
-            <div className="flex items-center justify-between border-b border-white/10 pb-4">
-              <span className="text-xs text-[#10E784] uppercase tracking-wider font-bold">GRO & COMPLIANCE PANEL</span>
-              <span className="text-xs font-bold text-[#10E784] px-3 py-1 bg-[#10E784]/15 border border-[#10E784]/30 rounded-full font-mono">ACTIVE MONITORING</span>
-            </div>
-
-            <div className="space-y-3">
-              <div className="p-3.5 bg-white/[0.03] border border-white/10 rounded-2xl flex items-center justify-between">
-                <div>
-                  <div className="text-xs font-bold text-white">Saudization Ratio (Nitaqat)</div>
-                  <div className="text-[11px] text-[#A39B8B]">Ministry of Human Resources</div>
-                </div>
-                <span className="text-xs font-bold text-[#10E784] px-2.5 py-0.5 bg-[#10E784]/15 border border-[#10E784]/30 rounded-full font-mono">HIGH GREEN</span>
-              </div>
-
-              <div className="p-3.5 bg-white/[0.03] border border-white/10 rounded-2xl flex items-center justify-between">
-                <div>
-                  <div className="text-xs font-bold text-white">ZATCA Phase 2 FATOORA</div>
-                  <div className="text-[11px] text-[#A39B8B]">Tax & E-Invoicing Clearance</div>
-                </div>
-                <span className="text-xs font-bold text-[#10E784] px-2.5 py-0.5 bg-[#10E784]/15 border border-[#10E784]/30 rounded-full font-mono">COMPLIANT</span>
-              </div>
-
-              <div className="p-3.5 bg-white/[0.03] border border-white/10 rounded-2xl flex items-center justify-between">
-                <div>
-                  <div className="text-xs font-bold text-white">Wages Protection (WPS)</div>
-                  <div className="text-[11px] text-[#A39B8B]">Monthly GOSI Payroll Filing</div>
-                </div>
-                <span className="text-xs font-bold text-[#10E784] px-2.5 py-0.5 bg-[#10E784]/15 border border-[#10E784]/30 rounded-full font-mono">SUBMITTED</span>
-              </div>
-            </div>
-
-            <div className="pt-2 text-xs text-[#A39B8B] font-light flex items-center justify-between border-t border-white/10">
-              <span>Annual CR & MISA Renewal Service</span>
-              <ShieldCheck className="h-4 w-4 text-[#10E784]" />
-            </div>
-          </div>
-        }
-      />
+        />
 
       {/* Continuity Journey: ESTABLISH → ACTIVATE → OPERATE */}
       <section className="py-16 bg-[#0A0D0C] border-b border-white/10 relative overflow-hidden transition-colors duration-400">

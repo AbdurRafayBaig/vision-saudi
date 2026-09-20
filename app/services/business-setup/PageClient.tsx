@@ -7,7 +7,7 @@ import { NextStepCTA } from "@/components/ui/NextStepCTA";
 import { MASTER_SERVICES } from "@/data/services";
 import { AccordionItem } from "@/components/ui/Accordion";
 import { ContactFormModal } from "@/components/forms/ContactFormModal";
-import { CheckCircle2, ShieldCheck, ArrowRight } from "lucide-react";
+import { CheckCircle2, ArrowRight } from "lucide-react";
 
 export default function BusinessSetupPage() {
   const service = MASTER_SERVICES.find((s) => s.slug === "business-setup")!;
@@ -50,7 +50,7 @@ export default function BusinessSetupPage() {
     <div className="bg-[#0A0D0C] text-white transition-colors duration-400 overflow-x-hidden min-h-screen">
       {/* Hero Section — Type B Editorial Split */}
       <PageHero
-        type="type-b"
+        type="type-a"
         category="MARKET ENTRY & FORMATION"
         title="Enter the Kingdom with clarity."
         subtitle="From MISA foreign investment licensing and Commercial Registration (CR) to corporate banking and operational portal activation — we handle the full establishment process so your Saudi entity is operational, not just registered."
@@ -60,49 +60,7 @@ export default function BusinessSetupPage() {
         onPrimaryCtaClick={() => setModalOpen(true)}
         secondaryCtaLabel="Explore Roadmap"
         secondaryCtaHref="#roadmap"
-        customVisual={
-          <div className="bg-[#101312] text-white p-8 sm:p-10 rounded-3xl border border-white/15 shadow-2xl space-y-6 backdrop-blur-2xl">
-            <div className="flex items-center justify-between border-b border-white/10 pb-4">
-              <span className="text-xs text-[#10E784] uppercase tracking-wider font-bold">MISA FORMATION MATRIX</span>
-              <span className="text-xs font-bold text-[#10E784] px-3 py-1 bg-[#10E784]/15 border border-[#10E784]/30 rounded-full font-mono">100% FOREIGN OWNERSHIP</span>
-            </div>
-
-            <div className="space-y-4">
-              <div className="p-4 bg-white/[0.03] border border-white/10 rounded-2xl">
-                <div className="flex items-center justify-between text-xs mb-1">
-                  <span className="text-[#A39B8B]">MISA Investment License</span>
-                  <span className="text-[#10E784] font-bold">VERIFIED</span>
-                </div>
-                <div className="text-sm font-bold text-white">Commercial / Service License (ISIC 4)</div>
-              </div>
-
-              <div className="p-4 bg-white/[0.03] border border-white/10 rounded-2xl">
-                <div className="flex items-center justify-between text-xs mb-1">
-                  <span className="text-[#A39B8B]">Commercial Registration (CR)</span>
-                  <span className="text-[#10E784] font-bold">ISSUED</span>
-                </div>
-                <div className="text-sm font-bold text-white">Ministry of Commerce Registration</div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div className="p-3 bg-white/[0.03] border border-white/10 rounded-2xl text-center">
-                  <span className="text-[10px] text-[#A39B8B] uppercase block">Qiwa Portal</span>
-                  <span className="text-xs font-bold text-[#10E784]">ACTIVATED</span>
-                </div>
-                <div className="p-3 bg-white/[0.03] border border-white/10 rounded-2xl text-center">
-                  <span className="text-[10px] text-[#A39B8B] uppercase block">Corporate Bank</span>
-                  <span className="text-xs font-bold text-[#10E784]">OPENED</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="pt-2 text-xs text-[#A39B8B] font-light flex items-center justify-between border-t border-white/10">
-              <span>Time to License: 5–10 Days</span>
-              <ShieldCheck className="h-4 w-4 text-[#10E784]" />
-            </div>
-          </div>
-        }
-      />
+        />
 
       {/* Visual Journey: DISCOVER → STRUCTURE → ESTABLISH → ACTIVATE → OPERATE */}
       <section id="roadmap" className="py-[var(--space-section-lg)] bg-[#0A0D0C] border-b border-white/10 relative overflow-hidden transition-colors duration-400">
@@ -149,7 +107,7 @@ export default function BusinessSetupPage() {
                     {s.desc}
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-[11px] font-medium text-[#A39B8B] group-hover:text-[#10E784]">
+                <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-medium text-[#A39B8B] group-hover:text-[#10E784]">
                   <span>Stage {s.step}</span>
                   <ArrowRight className="h-3.5 w-3.5" />
                 </div>

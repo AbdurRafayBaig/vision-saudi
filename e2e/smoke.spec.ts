@@ -195,8 +195,9 @@ test.describe("homepage tools", () => {
   });
 
   test("map shows details for the selected region", async ({ page }) => {
-    const map = page.locator("section", { hasText: "One Kingdom, five very different markets." });
-    await map.getByRole("button", { name: /^Eastern Province/ }).first().click();
+    const map = page.locator("section", { hasText: "One Kingdom, ten very different markets." });
+    // Click the chip, not a pin: the auto-tour re-renders pins and detaches them mid-click.
+    await map.getByRole("button", { name: "Eastern Province", exact: true }).click();
     await expect(map.getByRole("heading", { level: 3 })).toHaveText("Eastern Province");
   });
 
@@ -218,7 +219,8 @@ test.describe("homepage tools", () => {
     for (const name of ["Ministry of Foreign Affairs", "Riyadh Region Municipality"]) {
       const logo = partners.getByRole("img", { name }).first();
       await expect(logo).toBeVisible();
-      expect(await logo.evaluate((i: HTMLImageElement) => i.naturalWidth)).toBeGreaterThan(0);
+      // Marquee logos load lazily, so poll until the browser has actually decoded the file.
+      await expect.poll(() => logo.evaluate((i: HTMLImageElement) => i.naturalWidth), { timeout: 10000 }).toBeGreaterThan(0);
     }
   });
 });

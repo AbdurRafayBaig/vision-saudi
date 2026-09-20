@@ -89,7 +89,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
               </div>
               <button
                 onClick={resetFilters}
-                className="text-[11px] font-mono text-[#94A3B8] hover:text-white transition-colors flex items-center gap-1 cursor-pointer"
+                className="py-3 -my-3 pl-3 -ml-3 text-xs font-mono text-[#94A3B8] hover:text-white transition-colors flex items-center gap-1 cursor-pointer"
               >
                 <RotateCcw className="h-3 w-3" />
                 <span>RESET</span>
@@ -98,7 +98,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
 
             {/* LOCATION FILTER */}
             <div className="space-y-2.5">
-              <span className="text-[11px] font-bold text-[#94A3B8] uppercase tracking-wider block">
+              <span className="text-xs font-bold text-[#94A3B8] uppercase tracking-wider block">
                 LOCATION
               </span>
               <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1">
@@ -109,7 +109,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                     <button
                       key={loc}
                       onClick={() => setSelectedLocation(locKey)}
-                      className={`w-full text-left px-3.5 py-2 rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${
+                      className={`w-full text-left px-3.5 min-h-[44px] flex items-center rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${
                         isSelected
                           ? "bg-[#10E784]/20 text-[#10E784] border border-[#10E784] font-semibold shadow-sm"
                           : "bg-white/[0.03] text-[#94A3B8] hover:bg-white/[0.08] hover:text-white border border-white/5"
@@ -124,7 +124,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
 
             {/* PROPERTY TYPE FILTER */}
             <div className="space-y-2.5 pt-2 border-t border-white/10">
-              <span className="text-[11px] font-bold text-[#94A3B8] uppercase tracking-wider block">
+              <span className="text-xs font-bold text-[#94A3B8] uppercase tracking-wider block">
                 PROPERTY TYPE
               </span>
               <div className="space-y-1.5">
@@ -135,7 +135,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                     <button
                       key={type}
                       onClick={() => setSelectedType(typeKey)}
-                      className={`w-full text-left px-3.5 py-2 rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${
+                      className={`w-full text-left px-3.5 min-h-[44px] flex items-center rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${
                         isSelected
                           ? "bg-[#10E784]/20 text-[#10E784] border border-[#10E784] font-semibold shadow-sm"
                           : "bg-white/[0.03] text-[#94A3B8] hover:bg-white/[0.08] hover:text-white border border-white/5"
@@ -150,7 +150,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
 
             {/* STATUS FILTER */}
             <div className="space-y-2.5 pt-2 border-t border-white/10">
-              <span className="text-[11px] font-bold text-[#94A3B8] uppercase tracking-wider block">
+              <span className="text-xs font-bold text-[#94A3B8] uppercase tracking-wider block">
                 STATUS
               </span>
               <div className="space-y-1.5">
@@ -160,7 +160,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                     <button
                       key={st}
                       onClick={() => setSelectedStatus(st)}
-                      className={`w-full text-left px-3.5 py-2 rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${
+                      className={`w-full text-left px-3.5 min-h-[44px] flex items-center rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${
                         isSelected
                           ? "bg-[#10E784]/20 text-[#10E784] border border-[#10E784] font-semibold shadow-sm"
                           : "bg-white/[0.03] text-[#94A3B8] hover:bg-white/[0.08] hover:text-white border border-white/5"
@@ -175,7 +175,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
 
             {/* MAX PRICE SLIDER */}
             <div className="space-y-2 pt-2 border-t border-white/10">
-              <div className="flex justify-between text-[11px] font-mono">
+              <div className="flex justify-between text-xs font-mono">
                 <span className="text-[#94A3B8] font-bold">MAX PRICE</span>
                 <span className="text-[#10E784] font-semibold">
                   {maxPrice >= 10000000 ? "SAR 10,000,000+" : `SAR ${maxPrice.toLocaleString()}`}
@@ -190,7 +190,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                 onChange={(e) => setMaxPrice(Number(e.target.value))}
                 className="w-full accent-[#10E784] bg-white/10 rounded-lg cursor-pointer h-2"
               />
-              <div className="flex justify-between text-[10px] font-mono text-[#94A3B8]">
+              <div className="flex justify-between text-xs font-mono text-[#94A3B8]">
                 <span>SAR 0</span>
                 <span>SAR 10,000,000+</span>
               </div>
@@ -198,7 +198,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
 
             {/* MIN YIELD SLIDER */}
             <div className="space-y-2 pt-2 border-t border-white/10">
-              <div className="flex justify-between text-[11px] font-mono">
+              <div className="flex justify-between text-xs font-mono">
                 <span className="text-[#94A3B8] font-bold">MIN YIELD</span>
                 <span className="text-[#10E784] font-semibold">{minYield}%</span>
               </div>
@@ -211,11 +211,11 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                 onChange={(e) => setMinYield(Number(e.target.value))}
                 className="w-full accent-[#10E784] bg-white/10 rounded-lg cursor-pointer h-2"
               />
-              <div className="flex justify-between text-[10px] font-mono text-[#94A3B8]">
+              <div className="flex justify-between text-xs font-mono text-[#94A3B8]">
                 <span>0%</span>
                 <span>12%</span>
               </div>
-              <p className="text-[10px] text-[#94A3B8] leading-normal font-light">
+              <p className="text-xs text-[#94A3B8] leading-normal font-light">
                 Price and yield narrow the list where a figure has been confirmed.
               </p>
             </div>
@@ -232,7 +232,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
               {filteredProperties.length < MASTER_PROPERTIES.length && (
                 <button
                   onClick={resetFilters}
-                  className="text-xs font-mono text-[#10E784] hover:underline"
+                  className="inline-block py-3 -my-3 text-xs font-mono text-[#10E784] hover:underline"
                 >
                   Show All Properties
                 </button>
@@ -285,11 +285,11 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                       {/* Badges */}
                       <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
                         {property.featured && (
-                          <span className="px-2.5 py-1 bg-[#0A0D0C]/85 border border-[#10E784]/60 text-[#10E784] text-[9px] font-bold uppercase tracking-wider rounded backdrop-blur-md">
+                          <span className="px-2.5 py-1 bg-[#0A0D0C]/85 border border-[#10E784]/60 text-[#10E784] text-xs font-bold uppercase tracking-wider rounded backdrop-blur-md">
                             FEATURED
                           </span>
                         )}
-                        <span className="px-2.5 py-1 bg-[#101312]/85 border border-white/20 text-white text-[9px] font-bold uppercase tracking-wider rounded backdrop-blur-md">
+                        <span className="px-2.5 py-1 bg-[#101312]/85 border border-white/20 text-white text-xs font-bold uppercase tracking-wider rounded backdrop-blur-md">
                           {property.status}
                         </span>
                       </div>
@@ -318,12 +318,12 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                       {/* Pricing & Area Metrics */}
                       <div className="pt-4 border-t border-white/10 space-y-3">
                         <div>
-                          <span className="text-[10px] text-[#A39B8B] uppercase block">PRICE</span>
+                          <span className="text-xs text-[#A39B8B] uppercase block">PRICE</span>
                           <span className="text-sm font-bold font-mono text-[#10E784]">{property.price}</span>
                         </div>
 
                         {(property.propertyArea || property.buildingArea) && (
-                          <div className="grid grid-cols-2 gap-2 text-[10px] font-mono text-[#A39B8B] pt-1">
+                          <div className="grid grid-cols-2 gap-2 text-xs font-mono text-[#A39B8B] pt-1">
                             <div>
                               <span className="block uppercase text-white/50">PROPERTY AREA</span>
                               <span className="text-white font-medium">{property.propertyArea || "On request"}</span>

@@ -95,7 +95,7 @@ export const Modal: React.FC<ModalProps> = ({
             <div className="relative z-10 flex items-center justify-between pb-4 mb-6 border-b border-white/10">
               {title && (
                 <div>
-                  <div className="text-[10px] text-[#10E784] uppercase tracking-widest font-bold mb-0.5 flex items-center gap-1.5">
+                  <div className="text-xs text-[#10E784] uppercase tracking-widest font-bold mb-0.5 flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#10E784]" />
                     <span>VISION SAUDI ADVISORY · RIYADH HQ</span>
                   </div>

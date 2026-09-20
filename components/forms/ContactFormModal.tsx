@@ -331,7 +331,7 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
                         key={opt}
                         type="button"
                         onClick={() => setFormData({ ...formData, targetRegion: opt })}
-                        className={`py-2.5 px-2 text-center text-[11px] font-medium rounded-2xl border transition-all duration-300 ${
+                        className={`py-2.5 px-2 text-center text-xs font-medium rounded-2xl border transition-all duration-300 ${
                           formData.targetRegion === opt
                             ? "bg-[#10E784]/20 border-[#10E784] text-[#10E784] font-bold"
                             : "bg-white/[0.03] text-[#D8CCB8] border-white/10 hover:border-[#10E784]/40 hover:text-white"

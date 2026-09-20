@@ -142,7 +142,7 @@ export default function PremiumResidencyPage() {
                 </div>
 
                 <div className="pt-4 border-t border-white/10">
-                  <span className="text-[11px] font-bold text-[#10E784] uppercase block mb-1">
+                  <span className="text-xs font-bold text-[#10E784] uppercase block mb-1">
                     Key Advantage:
                   </span>
                   <p className="text-xs text-[#E2D9C8] font-medium leading-relaxed">

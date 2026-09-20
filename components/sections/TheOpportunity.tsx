@@ -86,7 +86,7 @@ export default function TheOpportunity() {
                     <ShieldCheck className="h-6 w-6 text-[#10E784]" />
                     <div>
                       <div className="text-xs font-bold text-white">Kingdom-Wide Ecosystem Access</div>
-                      <div className="text-[11px] text-[#94A3B8]">Riyadh Olaya Headquarters · MISA Licensed</div>
+                      <div className="text-xs text-[#94A3B8]">Riyadh Olaya Headquarters · MISA Licensed</div>
                     </div>
                   </div>
                   <span className="text-xs font-mono text-[#10E784] font-bold">KSA 2030</span>

@@ -102,7 +102,7 @@ export default function Navbar() {
                           <Link
                             key={sub.name}
                             href={sub.href}
-                            className="block px-4 py-3 text-xs text-[#94A3B8] hover:text-[#10E784] hover:bg-white/[0.05] transition-colors rounded-xl font-medium"
+                            className="flex min-h-[44px] items-center px-4 py-3 text-xs text-[#94A3B8] hover:text-[#10E784] hover:bg-white/[0.05] transition-colors rounded-xl font-medium"
                           >
                             {sub.name}
                           </Link>
@@ -187,7 +187,7 @@ export default function Navbar() {
                       key={sub.name}
                       href={sub.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="py-2 text-sm text-[#B9B3A8] hover:text-white transition-colors"
+                      className="flex min-h-[44px] items-center text-sm text-[#B9B3A8] hover:text-white transition-colors"
                     >
                       {sub.name}
                     </Link>

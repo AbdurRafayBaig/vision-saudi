@@ -220,7 +220,7 @@ export default function ContactPage() {
                       <div className="font-bold text-white mb-1">Direct Advisory Email</div>
                       <a
                         href={mailtoUrl()}
-                        className="text-xs font-mono text-[#10E784] hover:underline"
+                        className="inline-block py-3 -my-3 text-xs font-mono text-[#10E784] hover:underline"
                       >
                         {SITE.email}
                       </a>
@@ -237,7 +237,7 @@ export default function ContactPage() {
                         href={whatsappUrl()}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-xs font-mono text-[#10E784] hover:underline"
+                        className="inline-block py-3 -my-3 text-xs font-mono text-[#10E784] hover:underline"
                       >
                         {SITE.phoneDisplay}
                       </a>

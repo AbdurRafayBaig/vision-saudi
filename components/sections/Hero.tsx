@@ -125,7 +125,7 @@ export default function Hero() {
             <ArrowDown className="h-3.5 w-3.5 text-[#10E784] shrink-0" />
           </a>
 
-          <div className="hidden sm:flex items-center gap-6 text-[11px] font-mono text-[#B9B3A8]">
+          <div className="hidden sm:flex items-center gap-6 text-xs font-mono text-[#B9B3A8]">
             <span>RIYADH · JEDDAH · NEOM</span>
             <span className="w-1.5 h-1.5 rounded-full bg-[#10E784]" />
             <span>ESTABLISH · OPERATE · SCALE</span>

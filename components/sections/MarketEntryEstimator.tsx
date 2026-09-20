@@ -48,7 +48,7 @@ function Choice<T extends string>({
                 value={o.id}
                 checked={active}
                 onChange={() => onChange(o.id)}
-                className="mt-1 accent-[#10E784]"
+                className="mt-0.5 h-4 w-4 shrink-0 accent-[#10E784]"
               />
               <span>
                 <span className={`block text-sm font-semibold ${active ? "text-white" : "text-[#D8CCB8]"}`}>{o.label}</span>

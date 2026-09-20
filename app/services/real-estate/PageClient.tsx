@@ -224,7 +224,7 @@ export default function RealEstatePage() {
                     {step.desc}
                   </p>
                 </div>
-                <div className="mt-6 pt-4 border-t border-white/10 text-[11px] font-mono font-medium text-[#A39B8B]">
+                <div className="mt-6 pt-4 border-t border-white/10 text-xs font-mono font-medium text-[#A39B8B]">
                   Stage {step.step}
                 </div>
               </div>

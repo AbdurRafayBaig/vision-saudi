@@ -32,6 +32,9 @@ function PartnerTile({ partner }: { partner: (typeof PARTNERS)[number] }) {
           alt={partner.name}
           width={partner.width}
           height={48}
+          // Next refuses to run SVGs through the image optimiser, so serve these vector
+          // files as-is; they are small and need no resizing.
+          unoptimized
           className="h-12 w-auto max-w-full object-contain"
         />
       ) : (

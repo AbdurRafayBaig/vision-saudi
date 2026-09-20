@@ -273,3 +273,9 @@ h1, h2, h3, h4, h5, h6 {
     animation-delay: 0s !important;
   }
 }
+
+/* Map city labels: the SVG scales down on phones, so the type must scale up to stay readable. */
+.map-label { font-size: 12px; }
+@media (max-width: 640px) {
+  .map-label { font-size: 21px; }
+}

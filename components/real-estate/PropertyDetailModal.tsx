@@ -89,11 +89,11 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
                   {/* Status Badge */}
                   <div className="absolute top-4 left-4 flex flex-wrap gap-2">
                     {property.featured && (
-                      <span className="px-3 py-1 bg-slate-950/80 border border-[#10E784]/50 text-[#10E784] text-[10px] font-bold uppercase tracking-wider rounded-md backdrop-blur-md">
+                      <span className="px-3 py-1 bg-slate-950/80 border border-[#10E784]/50 text-[#10E784] text-xs font-bold uppercase tracking-wider rounded-md backdrop-blur-md">
                         FEATURED
                       </span>
                     )}
-                    <span className="px-3 py-1 bg-slate-950/80 border border-white/20 text-white text-[10px] font-bold uppercase tracking-wider rounded-md backdrop-blur-md">
+                    <span className="px-3 py-1 bg-slate-950/80 border border-white/20 text-white text-xs font-bold uppercase tracking-wider rounded-md backdrop-blur-md">
                       {property.status}
                     </span>
                   </div>
@@ -164,12 +164,12 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
 
                   <div className="pt-2 border-t border-white/10 flex items-baseline justify-between">
                     <div>
-                      <span className="text-[11px] text-[#A39B8B] uppercase block mb-1">Indicative Price</span>
+                      <span className="text-xs text-[#A39B8B] uppercase block mb-1">Indicative Price</span>
                       <span className="text-xl font-bold text-[#10E784] font-mono">{property.price}</span>
                     </div>
                     {property.yieldNumeric > 0 && (
                       <div className="text-right">
-                        <span className="text-[11px] text-[#A39B8B] uppercase block mb-1">Est. Rental Yield</span>
+                        <span className="text-xs text-[#A39B8B] uppercase block mb-1">Est. Rental Yield</span>
                         <span className="text-base font-bold text-[#10E784] font-mono">~{property.yieldNumeric}% p.a.</span>
                       </div>
                     )}
@@ -179,13 +179,13 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
                   <div className="grid grid-cols-2 gap-3 pt-3">
                     {property.propertyArea && (
                       <div className="p-3 bg-white/[0.04] rounded-xl border border-white/5 shadow-sm">
-                        <span className="text-[10px] text-[#A39B8B] uppercase block">Property Area</span>
+                        <span className="text-xs text-[#A39B8B] uppercase block">Property Area</span>
                         <span className="text-sm font-bold text-white font-mono">{property.propertyArea}</span>
                       </div>
                     )}
                     {property.buildingArea && (
                       <div className="p-3 bg-white/[0.04] rounded-xl border border-white/5 shadow-sm">
-                        <span className="text-[10px] text-[#A39B8B] uppercase block">Building Area</span>
+                        <span className="text-xs text-[#A39B8B] uppercase block">Building Area</span>
                         <span className="text-sm font-bold text-white font-mono">{property.buildingArea}</span>
                       </div>
                     )}
@@ -217,7 +217,7 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
                     <span>{showYieldCalculator ? "Hide Return Model" : "Model My Returns"}</span>
                   </button>
 
-                  <p className="text-[11px] text-[#A39B8B] leading-relaxed font-light">
+                  <p className="text-xs text-[#A39B8B] leading-relaxed font-light">
                     Details are indicative and confirmed case by case with specialist partners. Availability, pricing and specification are established directly as part of the opportunity assessment.
                   </p>
                 </div>
@@ -236,7 +236,7 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
                     </div>
 
                     <div>
-                      <label className="text-[11px] text-[#A39B8B] block mb-1">Capital Deployment (SAR)</label>
+                      <label className="text-xs text-[#A39B8B] block mb-1">Capital Deployment (SAR)</label>
                       <input
                         type="range"
                         min="500000"
@@ -246,7 +246,7 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
                         onChange={(e) => setInvestmentAmount(Number(e.target.value))}
                         className="w-full accent-[#10E784] bg-white/10 rounded-lg cursor-pointer h-2"
                       />
-                      <div className="flex justify-between text-[11px] font-mono text-white mt-1">
+                      <div className="flex justify-between text-xs font-mono text-white mt-1">
                         <span>SAR {investmentAmount.toLocaleString()}</span>
                         <span className="text-[#10E784] font-bold">+SAR {estimatedAnnualYield} / yr</span>
                       </div>

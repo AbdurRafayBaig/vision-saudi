@@ -51,7 +51,7 @@ export default function TechnologyPage() {
     <div className="bg-[#0A0D0C] text-white overflow-x-hidden min-h-screen transition-colors duration-300">
       {/* Hero Section — Type B Editorial Split */}
       <PageHero
-        type="type-b"
+        type="type-a"
         category="ENTERPRISE SYSTEMS & DIGITAL"
         title="Infrastructure behind growth."
         subtitle="Technology built for Saudi Arabia's regulatory and enterprise environment — from ERP systems and ZATCA integration to automated workflows, cloud hosting, and custom digital platforms."
@@ -61,46 +61,7 @@ export default function TechnologyPage() {
         onPrimaryCtaClick={() => setModalOpen(true)}
         secondaryCtaLabel="Explore Enterprise Systems"
         secondaryCtaHref="#systems"
-        customVisual={
-          <div className="bg-[#101312] text-white p-8 sm:p-10 rounded-3xl border border-white/15 shadow-2xl space-y-6 backdrop-blur-2xl">
-            <div className="flex items-center justify-between border-b border-white/10 pb-4">
-              <span className="text-xs text-[#10E784] uppercase tracking-wider font-bold">ENTERPRISE TECH STACK</span>
-              <span className="text-xs font-bold text-[#10E784] px-3 py-1 bg-[#10E784]/15 border border-[#10E784]/40 rounded-full font-mono">CST CERTIFIED</span>
-            </div>
-
-            <div className="space-y-3">
-              <div className="p-3.5 bg-white/[0.03] border border-white/10 rounded-2xl flex items-center justify-between">
-                <div>
-                  <div className="text-xs font-bold text-white">ERP & ZATCA Integration</div>
-                  <div className="text-[11px] text-[#A39B8B]">SAP / Oracle / Odoo Middleware</div>
-                </div>
-                <span className="text-xs font-bold text-[#10E784] font-mono">LIVE</span>
-              </div>
-
-              <div className="p-3.5 bg-white/[0.03] border border-white/10 rounded-2xl flex items-center justify-between">
-                <div>
-                  <div className="text-xs font-bold text-white">KSA Local Cloud Hosting</div>
-                  <div className="text-[11px] text-[#A39B8B]">Saudi Telecom Cloud Node</div>
-                </div>
-                <span className="text-xs font-bold text-[#10E784] font-mono">SECURE</span>
-              </div>
-
-              <div className="p-3.5 bg-white/[0.03] border border-white/10 rounded-2xl flex items-center justify-between">
-                <div>
-                  <div className="text-xs font-bold text-white">Automated AI Workflows</div>
-                  <div className="text-[11px] text-[#A39B8B]">Enterprise Document & Customer Pipeline</div>
-                </div>
-                <span className="text-xs font-bold text-[#10E784] font-mono">AUTOMATED</span>
-              </div>
-            </div>
-
-            <div className="pt-2 text-xs text-[#A39B8B] font-light flex items-center justify-between border-t border-white/10">
-              <span>Delivered via Strategic Partner SLNEE</span>
-              <ShieldCheck className="h-4 w-4 text-[#10E784]" />
-            </div>
-          </div>
-        }
-      />
+        />
 
       {/* Strategic Technology Partner Attribution Banner */}
       <section className="bg-[#0A0D0C] text-white py-12 border-b border-white/10 relative overflow-hidden transition-colors">
@@ -162,7 +123,7 @@ export default function TechnologyPage() {
                 <p className="text-xs text-[#A39B8B] font-light leading-relaxed mb-6">
                   {mod.desc}
                 </p>
-                <div className="pt-4 border-t border-white/10 text-[11px] font-bold text-[#10E784] tracking-wider uppercase">
+                <div className="pt-4 border-t border-white/10 text-xs font-bold text-[#10E784] tracking-wider uppercase">
                   Enterprise Ready · KSA
                 </div>
               </motion.div>
@@ -216,21 +177,21 @@ export default function TechnologyPage() {
 
               <div className="space-y-6">
                 <div className="p-4 bg-white/[0.03] border border-white/10 rounded-2xl">
-                  <span className="text-[11px] font-mono text-[#10E784] block mb-1">INPUT LAYER</span>
+                  <span className="text-xs font-mono text-[#10E784] block mb-1">INPUT LAYER</span>
                   <div className="text-sm font-bold text-white">Commercial Transactions & HR Data</div>
                 </div>
 
                 <div className="flex justify-center text-[#10E784]">↓</div>
 
                 <div className="p-4 bg-[#10E784]/15 border border-[#10E784]/30 rounded-2xl text-center">
-                  <span className="text-[11px] font-mono text-[#10E784] block mb-1 font-bold">VISION SAUDI DIGITAL CORE</span>
+                  <span className="text-xs font-mono text-[#10E784] block mb-1 font-bold">VISION SAUDI DIGITAL CORE</span>
                   <div className="text-base font-bold text-white">ZATCA + ERP + WPS Automation Engine</div>
                 </div>
 
                 <div className="flex justify-center text-[#10E784]">↓</div>
 
                 <div className="p-4 bg-white/[0.03] border border-white/10 rounded-2xl">
-                  <span className="text-[11px] font-mono text-[#10E784] block mb-1">OUTPUT LAYER</span>
+                  <span className="text-xs font-mono text-[#10E784] block mb-1">OUTPUT LAYER</span>
                   <div className="text-sm font-bold text-white">Real-Time Financial Dashboard & Government Reporting</div>
                 </div>
               </div>

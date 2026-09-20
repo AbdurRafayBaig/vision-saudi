@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/ui/Reveal";
 import { PageHero } from "@/components/ui/PageHero";
 import { Input, Select, Textarea } from "@/components/ui/FormInput";
 import { useContactSubmit } from "@/lib/useContactSubmit";
@@ -66,12 +66,7 @@ export default function ContactPage() {
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Form Container */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-7 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl p-8 sm:p-12 shadow-2xl"
-            >
+            <Reveal y={20} immediate className="lg:col-span-7 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl p-8 sm:p-12 shadow-2xl">
               {isSubmitted ? (
                 <div className="py-12 text-center flex flex-col items-center">
                   <div className="mb-6">
@@ -189,7 +184,7 @@ export default function ContactPage() {
                   </Button>
                 </form>
               )}
-            </motion.div>
+            </Reveal>
 
             {/* Sidebar Contact Info */}
             <div className="lg:col-span-5 space-y-6">

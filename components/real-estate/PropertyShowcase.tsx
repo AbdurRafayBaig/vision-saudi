@@ -2,7 +2,6 @@
 
 import React, { useState, useMemo } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { MapPin, Building, RotateCcw, SlidersHorizontal } from "lucide-react";
 import { MASTER_PROPERTIES, PropertyItem } from "@/data/properties";
 import { PropertyDetailModal } from "./PropertyDetailModal";
@@ -254,12 +253,8 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {filteredProperties.map((property) => (
-                  <motion.div
+                  <div
                     key={property.id}
-                    layout
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
                     onClick={() => setSelectedProperty(property)}
                     role="button"
                     tabIndex={0}
@@ -270,7 +265,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                         setSelectedProperty(property);
                       }
                     }}
-                    className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#10E784] group bg-[#101312] border border-white/15 rounded-3xl overflow-hidden hover:border-[#10E784] hover:shadow-2xl hover:shadow-[#10E784]/20 transition-all duration-300 flex flex-col justify-between cursor-pointer text-white"
+                    className="anim-rise-in focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#10E784] group bg-[#101312] border border-white/15 rounded-3xl overflow-hidden hover:border-[#10E784] hover:shadow-2xl hover:shadow-[#10E784]/20 transition-all duration-300 flex flex-col justify-between cursor-pointer text-white"
                   >
                     {/* Card Image Header */}
                     <div className="relative aspect-[16/10] overflow-hidden bg-slate-900">
@@ -336,7 +331,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                         )}
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             )}

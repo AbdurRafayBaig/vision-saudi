@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/ui/Reveal";
 import { PageHero } from "@/components/ui/PageHero";
 import { NextStepCTA } from "@/components/ui/NextStepCTA";
 import { MASTER_SERVICES } from "@/data/services";
@@ -67,13 +67,7 @@ export default function BusinessSetupPage() {
         <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[500px] h-[500px] bg-[#10E784]/10 rounded-full blur-[140px] pointer-events-none" />
 
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="mb-16"
-          >
+          <Reveal y={20} className="mb-16">
             <p className="text-[#10E784] text-xs uppercase tracking-widest mb-4 font-bold">
               The Establishment Journey
             </p>
@@ -83,19 +77,12 @@ export default function BusinessSetupPage() {
             <p className="text-[#A39B8B] text-lg leading-relaxed max-w-2xl font-light">
               Most firms get you established. We built what comes next. Here is how your Saudi entity moves from initial strategic discovery to full operational scale.
             </p>
-          </motion.div>
+          </Reveal>
 
           {/* Step Cards Stack */}
           <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
             {roadmapSteps.map((s, idx) => (
-              <motion.div
-                key={s.step}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                viewport={{ once: true, margin: "-100px" }}
-                className="bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl p-6 flex flex-col justify-between hover:border-[#10E784] hover:-translate-y-1 transition-all duration-300 shadow-2xl group"
-              >
+              <Reveal delay={idx * 0.1} key={s.step} y={20} className="bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl p-6 flex flex-col justify-between hover:border-[#10E784] hover:-translate-y-1 transition-all duration-300 shadow-2xl group">
                 <div>
                   <div className="text-xs font-bold text-[#10E784] mb-3 tracking-wider uppercase">
                     {s.step} · {s.title}
@@ -111,7 +98,7 @@ export default function BusinessSetupPage() {
                   <span>Stage {s.step}</span>
                   <ArrowRight className="h-3.5 w-3.5" />
                 </div>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -131,14 +118,7 @@ export default function BusinessSetupPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {service.capabilities.map((cap, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                viewport={{ once: true, margin: "-100px" }}
-                className="bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl p-8 sm:p-10 shadow-2xl hover:border-[#10E784] transition-all duration-300 group"
-              >
+              <Reveal delay={idx * 0.1} key={idx} y={20} className="bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl p-8 sm:p-10 shadow-2xl hover:border-[#10E784] transition-all duration-300 group">
                 <h3 className="font-display text-2xl text-white font-bold mb-3 group-hover:text-[#10E784] transition-colors">
                   {cap.title}
                 </h3>
@@ -153,7 +133,7 @@ export default function BusinessSetupPage() {
                     </li>
                   ))}
                 </ul>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
         </div>

@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
 import { PageHero } from "@/components/ui/PageHero";
 import { NextStepCTA } from "@/components/ui/NextStepCTA";
 import { MASTER_SERVICES } from "@/data/services";
@@ -167,15 +166,10 @@ export default function CorporateServicesPage() {
 
             {/* Right: Active Capability Media & Detail Box */}
             <div className="lg:col-span-6 sticky top-28">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeCapability}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -15 }}
-                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  className="bg-[#101312] text-white p-8 sm:p-10 rounded-3xl shadow-2xl border border-white/15 backdrop-blur-2xl"
-                >
+              <div
+                key={activeCapability}
+                className="anim-rise-in bg-[#101312] text-white p-8 sm:p-10 rounded-3xl shadow-2xl border border-white/15 backdrop-blur-2xl"
+              >
                   <div className="relative aspect-[16/10] overflow-hidden rounded-2xl mb-8 border border-white/10">
                     <Image
                       src={capabilities[activeCapability].image}
@@ -203,8 +197,7 @@ export default function CorporateServicesPage() {
                     <span>Official Kingdom Compliance</span>
                     <ShieldCheck className="h-4 w-4 text-[#10E784]" />
                   </div>
-                </motion.div>
-              </AnimatePresence>
+                </div>
             </div>
           </div>
         </div>

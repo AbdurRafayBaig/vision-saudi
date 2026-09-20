@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { Reveal } from "@/components/ui/Reveal";
 import { Clock, Mail } from "lucide-react";
 import {
   ACTIVITIES,
@@ -118,18 +118,13 @@ export default function MarketEntryEstimator() {
             </p>
 
             {/* Steps build in one by one; the key restarts the sequence whenever an answer changes */}
-            <motion.ol
+            <ol
               key={`${entity}-${activity}`}
-              initial="hidden"
-              animate="show"
-              variants={{ show: { transition: { staggerChildren: 0.09 } } }}
-              className="space-y-3 mb-6"
+              className="anim-stagger space-y-3 mb-6"
             >
               {result.steps.map((step, i) => (
-                <motion.li
+                <li
                   key={step.title}
-                  variants={{ hidden: { opacity: 0, x: -12 }, show: { opacity: 1, x: 0 } }}
-                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                   className="flex items-start gap-4 rounded-2xl border border-white/10 bg-[#0A0D0C]/60 px-4 py-3"
                 >
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#10E784]/15 text-xs font-bold text-[#10E784]">
@@ -142,9 +137,9 @@ export default function MarketEntryEstimator() {
                   <span className="shrink-0 text-xs font-mono text-[#B9B3A8]">
                     {step.weeks[0] === step.weeks[1] ? step.weeks[0] : `${step.weeks[0]}–${step.weeks[1]}`} wk
                   </span>
-                </motion.li>
+                </li>
               ))}
-            </motion.ol>
+            </ol>
 
             {result.notes.length > 0 && (
               <ul className="space-y-2 mb-6">
@@ -161,49 +156,36 @@ export default function MarketEntryEstimator() {
               authority processing. Government fees are included in your full plan.
             </p>
 
-            <AnimatePresence mode="wait" initial={false}>
-              {isSubmitted ? (
-                <motion.div
-                  key="done"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="flex flex-col items-center text-center rounded-2xl border border-[#10E784]/30 bg-[#10E784]/5 p-6"
-                >
-                  <AnimatedCheck size={56} />
-                  <p className="mt-4 font-semibold text-white">Your roadmap is on its way.</p>
-                  <p className="text-sm text-[#B9B3A8] mt-1">
-                    A senior strategist will follow up within 24 hours with fees and a document checklist.
-                  </p>
-                </motion.div>
-              ) : showForm ? (
-                <motion.form
-                  key="form"
-                  onSubmit={handleSubmit}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="relative space-y-4"
-                >
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <Input label="Full Name *" required value={lead.name} onChange={(e) => setLead({ ...lead, name: e.target.value })} />
-                    <Input label="Email *" type="email" required value={lead.email} onChange={(e) => setLead({ ...lead, email: e.target.value })} />
-                    <Input label="Phone / WhatsApp *" required placeholder="+966 50 000 0000" value={lead.phone} onChange={(e) => setLead({ ...lead, phone: e.target.value })} />
-                    <Input label="Company" value={lead.company} onChange={(e) => setLead({ ...lead, company: e.target.value })} />
-                  </div>
-                  <ConsentFields consent={consent} onConsentChange={setConsent} website={website} onWebsiteChange={setWebsite} />
-                  {submitError && <p className="text-red-400 text-xs">{submitError}</p>}
-                  <Button variant="primary" size="lg" type="submit" className="w-full" disabled={isSubmitting}>
-                    {isSubmitting ? "Sending…" : "Email me the full plan"}
-                  </Button>
-                </motion.form>
-              ) : (
-                <motion.div key="cta" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                  <Button variant="primary" size="lg" showArrow className="w-full" onClick={() => setShowForm(true)}>
-                    <Mail className="h-4 w-4 mr-2" aria-hidden="true" />
-                    Email me the full plan
-                  </Button>
-                </motion.div>
-              )}
-            </AnimatePresence>
+            {isSubmitted ? (
+              <Reveal immediate className="flex flex-col items-center text-center rounded-2xl border border-[#10E784]/30 bg-[#10E784]/5 p-6">
+                <AnimatedCheck size={56} />
+                <p className="mt-4 font-semibold text-white">Your roadmap is on its way.</p>
+                <p className="text-sm text-[#B9B3A8] mt-1">
+                  A senior strategist will follow up within 24 hours with fees and a document checklist.
+                </p>
+              </Reveal>
+            ) : showForm ? (
+              <form onSubmit={handleSubmit} className="anim-rise-in relative space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <Input label="Full Name *" required value={lead.name} onChange={(e) => setLead({ ...lead, name: e.target.value })} />
+                  <Input label="Email *" type="email" required value={lead.email} onChange={(e) => setLead({ ...lead, email: e.target.value })} />
+                  <Input label="Phone / WhatsApp *" required placeholder="+966 50 000 0000" value={lead.phone} onChange={(e) => setLead({ ...lead, phone: e.target.value })} />
+                  <Input label="Company" value={lead.company} onChange={(e) => setLead({ ...lead, company: e.target.value })} />
+                </div>
+                <ConsentFields consent={consent} onConsentChange={setConsent} website={website} onWebsiteChange={setWebsite} />
+                {submitError && <p className="text-red-400 text-xs">{submitError}</p>}
+                <Button variant="primary" size="lg" type="submit" className="w-full" disabled={isSubmitting}>
+                  {isSubmitting ? "Sending…" : "Email me the full plan"}
+                </Button>
+              </form>
+            ) : (
+              <Reveal immediate>
+                <Button variant="primary" size="lg" showArrow className="w-full" onClick={() => setShowForm(true)}>
+                  <Mail className="h-4 w-4 mr-2" aria-hidden="true" />
+                  Email me the full plan
+                </Button>
+              </Reveal>
+            )}
           </div>
         </div>
       </div>

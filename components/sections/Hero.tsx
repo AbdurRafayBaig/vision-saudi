@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { ArrowDown } from "lucide-react";
 import { ContactFormModal } from "@/components/forms/ContactFormModal";
@@ -57,27 +57,15 @@ export default function Hero() {
         <div className="max-w-3xl">
           
           {/* Left Narrative Column */}
-          <motion.div
-            initial={{ y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          >
+          <div>
             {/* Editorial Headline: "Vision" static + dynamic city */}
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-6 text-white flex flex-wrap items-baseline gap-x-3 sm:gap-x-4">
               <span className="shrink-0">Vision</span>
               <span className="inline-flex items-baseline relative overflow-hidden h-[1.25em] min-w-max pb-1">
-                <AnimatePresence mode="popLayout" initial={false}>
-                  <motion.span
-                    key={CITIES[cityIndex]}
-                    initial={{ y: "100%", opacity: 0 }}
-                    animate={{ y: "0%", opacity: 1 }}
-                    exit={{ y: "-100%", opacity: 0 }}
-                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    className="green-gradient-text inline-block whitespace-nowrap"
-                  >
-                    {CITIES[cityIndex]}
-                  </motion.span>
-                </AnimatePresence>
+                {/* key remounts the span, which replays the CSS slide-up — no animation library needed */}
+                <span key={CITIES[cityIndex]} className="green-gradient-text inline-block whitespace-nowrap anim-slide-up-in">
+                  {CITIES[cityIndex]}
+                </span>
               </span>
             </h1>
 
@@ -104,19 +92,14 @@ export default function Hero() {
                 Explore Platform
               </Button>
             </div>
-          </motion.div>
+          </div>
 
         </div>
       </div>
 
       {/* Scroll Bar Footer */}
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-8 w-full pt-4">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 0.8 }}
-          className="flex items-center justify-between border-t border-white/10 pt-4"
-        >
+        <Reveal delay={1} immediate className="flex items-center justify-between border-t border-white/10 pt-4">
           <a
             href="#opportunity"
             className="inline-flex items-center gap-2 py-3 -my-3 text-[#B9B3A8] text-xs tracking-wider uppercase hover:text-white transition-colors"
@@ -130,7 +113,7 @@ export default function Hero() {
             <span className="w-1.5 h-1.5 rounded-full bg-[#10E784]" />
             <span>ESTABLISH · OPERATE · SCALE</span>
           </div>
-        </motion.div>
+        </Reveal>
       </div>
 
       <ContactFormModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />

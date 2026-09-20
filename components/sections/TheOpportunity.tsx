@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/ui/Reveal";
 import { TrendingUp, ShieldCheck, Landmark } from "lucide-react";
 import { CountUp } from "@/components/ui/CountUp";
 
@@ -19,13 +19,7 @@ export default function TheOpportunity() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* Left Editorial Narrative */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="lg:col-span-6"
-          >
+          <Reveal y={20} className="lg:col-span-6">
             <h2 className="font-display text-2xl sm:text-4xl lg:text-5xl font-bold leading-[1.08] tracking-tight mb-6 heading-gradient-light-to-dark">
               A market opening at <br />
               <span className="green-gradient-text">extraordinary speed.</span>
@@ -59,16 +53,10 @@ export default function TheOpportunity() {
                 <div className="text-xs text-[#94A3B8] mt-1 font-light">Regional HQ Program Compliance</div>
               </div>
             </div>
-          </motion.div>
+          </Reveal>
 
           {/* Right Image Showcase */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="lg:col-span-6 relative"
-          >
+          <Reveal className="lg:col-span-6 relative">
             <div className="relative aspect-[4/5] sm:aspect-[16/10] lg:aspect-[4/5] overflow-hidden rounded-3xl border border-white/10 shadow-2xl group hover:border-[#10E784] hover:shadow-[#10E784]/20 transition-all duration-500">
               <Image
                 src="/images/businessSetup.webp"
@@ -93,7 +81,7 @@ export default function TheOpportunity() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </Reveal>
 
 
         </div>

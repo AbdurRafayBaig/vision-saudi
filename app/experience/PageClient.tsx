@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/ui/Reveal";
 import { PageHero } from "@/components/ui/PageHero";
 import { NextStepCTA } from "@/components/ui/NextStepCTA";
 import { MASTER_EXPERIENCE_TRACK_RECORD, KEY_CREDIBILITY_METRICS } from "@/data/experience";
@@ -138,16 +138,9 @@ export default function ExperiencePage() {
           {/* Project Showcase Grid */}
           <div className={filteredItems.length === 1 ? "flex justify-center" : "grid grid-cols-1 md:grid-cols-2 gap-8"}>
             {filteredItems.map((item, idx) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                viewport={{ once: true, margin: "-100px" }}
-                className={`bg-white/[0.03] border border-white/10 rounded-3xl p-8 sm:p-10 flex flex-col justify-between hover-green-box transition-all duration-300 shadow-xl group backdrop-blur-xl ${
+              <Reveal delay={idx * 0.1} key={item.id} y={20} className={`bg-white/[0.03] border border-white/10 rounded-3xl p-8 sm:p-10 flex flex-col justify-between hover-green-box transition-all duration-300 shadow-xl group backdrop-blur-xl ${
                   filteredItems.length === 1 ? "w-full max-w-2xl" : ""
-                }`}
-              >
+                }`}>
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-xs font-bold text-[#10E784] uppercase tracking-wider px-3.5 py-1 bg-[#10E784]/10 border border-[#10E784]/30 rounded-full">
@@ -186,7 +179,7 @@ export default function ExperiencePage() {
                     </span>
                   ))}
                 </div>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
         </div>

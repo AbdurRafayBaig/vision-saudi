@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { ShieldCheck } from "lucide-react";
 
@@ -78,12 +78,7 @@ export function PageHero({
 
         {/* Content Container */}
         <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-8 w-full">
-          <motion.div
-            initial={{ y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-3xl"
-          >
+          <div className="max-w-3xl">
             <CategoryLabel category={category} />
             <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.08] tracking-tight mb-6 heading-gradient-light-to-dark">
               {title}
@@ -111,7 +106,7 @@ export function PageHero({
                 </Button>
               )}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     );
@@ -126,12 +121,7 @@ export function PageHero({
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* Left Narrative Column */}
-            <motion.div
-              initial={{ x: -12 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-7"
-            >
+            <div className="lg:col-span-7">
               <CategoryLabel category={category} />
               <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.1] tracking-tight mb-6 heading-gradient-light-to-dark">
                 {title}
@@ -159,15 +149,10 @@ export function PageHero({
                   </Button>
                 )}
               </div>
-            </motion.div>
+            </div>
 
             {/* Right Media / Custom Visual Column */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-5 relative"
-            >
+            <Reveal delay={0.2} immediate className="lg:col-span-5 relative">
               {customVisual ? (
                 customVisual
               ) : (
@@ -182,7 +167,7 @@ export function PageHero({
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0A0D0C]/90 via-transparent to-transparent" />
                 </div>
               )}
-            </motion.div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -197,12 +182,7 @@ export function PageHero({
 
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <motion.div
-              initial={{ y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className={customVisual ? "lg:col-span-7" : "lg:col-span-12 max-w-4xl"}
-            >
+            <div className={customVisual ? "lg:col-span-7" : "lg:col-span-12 max-w-4xl"}>
               <CategoryLabel category={category} />
               <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.12] tracking-tight mb-6 heading-gradient-light-to-dark">
                 {title}
@@ -232,17 +212,12 @@ export function PageHero({
                   </div>
                 )}
               </div>
-            </motion.div>
+            </div>
 
             {customVisual && (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="lg:col-span-5"
-              >
+              <Reveal delay={0.2} immediate className="lg:col-span-5">
                 {customVisual}
-              </motion.div>
+              </Reveal>
             )}
           </div>
         </div>
@@ -256,12 +231,7 @@ export function PageHero({
       <BackgroundHDImage imageSrc={imageSrc} imageAlt={imageAlt} />
 
       <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative z-10">
-        <motion.div
-          initial={{ y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-3xl"
-        >
+        <div className="max-w-3xl">
           <CategoryLabel category={category} />
           <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.12] tracking-tight mb-6 heading-gradient-light-to-dark">
             {title}
@@ -270,7 +240,7 @@ export function PageHero({
           <p className="text-[#94A3B8] text-lg sm:text-xl font-light leading-relaxed max-w-2xl">
             {subtitle}
           </p>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

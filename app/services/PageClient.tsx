@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/ui/Reveal";
 import { PageHero } from "@/components/ui/PageHero";
 import { NextStepCTA } from "@/components/ui/NextStepCTA";
 import { MASTER_SERVICES } from "@/data/services";
@@ -32,15 +32,7 @@ export default function ServicesPage() {
       <section id="pillars" className="py-[var(--space-section-lg)] bg-[#101312] transition-colors duration-300">
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 space-y-16">
           {MASTER_SERVICES.map((service) => (
-            <motion.div
-              key={service.id}
-              id={service.slug}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              viewport={{ once: true, margin: "-100px" }}
-              className="bg-white/[0.03] border border-white/10 rounded-3xl p-8 sm:p-12 hover-green-box transition-all duration-300 shadow-xl group relative backdrop-blur-xl"
-            >
+            <Reveal key={service.id} id={service.slug} y={20} className="bg-white/[0.03] border border-white/10 rounded-3xl p-8 sm:p-12 hover-green-box transition-all duration-300 shadow-xl group relative backdrop-blur-xl">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
                 <div className="lg:col-span-7">
                   <div className="flex items-center gap-3 mb-4">
@@ -107,7 +99,7 @@ export default function ServicesPage() {
                   </Link>
                 </div>
               </div>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
       </section>

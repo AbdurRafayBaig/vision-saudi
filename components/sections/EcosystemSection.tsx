@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { ContactFormModal } from "@/components/forms/ContactFormModal";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
@@ -52,13 +52,7 @@ export default function EcosystemSection() {
 
       <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="max-w-3xl mb-16"
-        >
+        <Reveal y={20} className="max-w-3xl mb-16">
           <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.12] tracking-tight mb-6">
             <span className="heading-gradient-light-to-dark block">Your CR opens the door.</span>
             <span className="green-gradient-text block font-sans">We take you further.</span>
@@ -66,27 +60,18 @@ export default function EcosystemSection() {
           <p className="text-[#D8CCB8] text-lg leading-relaxed font-light">
             Setting up a Saudi legal entity shouldn&apos;t leave you searching for another provider every time the business needs something. Six core commercial capabilities, one unified platform.
           </p>
-        </motion.div>
+        </Reveal>
 
         {/* Ecosystem Categories — Typography & Glass-led Accordion */}
         <div className="border border-white/10 rounded-3xl overflow-hidden bg-white/[0.02] backdrop-blur-xl p-4 sm:p-6 shadow-xl">
           {ecosystemCategories.map((category, idx) => {
             const isActive = activeIndex === idx;
             return (
-              <motion.div
-                key={category.name}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.5,
-                  delay: idx * 0.05,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                viewport={{ once: true, margin: "-30px" }}
-                className="border-b border-white/10 last:border-b-0"
-              >
+              <Reveal key={category.name} y={10} className="border-b border-white/10 last:border-b-0">
                 <button
                   onClick={() => setActiveIndex(isActive ? null : idx)}
+                  aria-expanded={isActive}
+                  aria-controls={`ecosystem-panel-${idx}`}
                   className="w-full py-6 px-4 flex items-center justify-between text-left group transition-all duration-300 rounded-2xl hover:bg-white/[0.03]"
                 >
                   <div className="flex items-center gap-5">
@@ -107,16 +92,9 @@ export default function EcosystemSection() {
                   </div>
                 </button>
 
-                <AnimatePresence>
-                  {isActive && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                      className="overflow-hidden"
-                    >
-                      <div className="pl-6 sm:pl-12 pr-4 sm:pr-6 pb-6 pt-2">
+                <div id={`ecosystem-panel-${idx}`} className="accordion-panel" data-open={isActive}>
+                  <div>
+                    <div className="pl-6 sm:pl-12 pr-4 sm:pr-6 pb-6 pt-2">
                         <div className="p-6 bg-white/[0.04] border border-white/10 rounded-2xl shadow-inner flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
                           <p className="text-[#D8CCB8] text-base leading-relaxed font-light max-w-2xl">
                             {category.description}
@@ -133,11 +111,10 @@ export default function EcosystemSection() {
                             </span>
                           </Button>
                         </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
             );
           })}
         </div>

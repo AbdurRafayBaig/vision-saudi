@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { ContactFormModal } from "@/components/forms/ContactFormModal";
 import { ShieldCheck, Calendar } from "lucide-react";
@@ -17,13 +17,7 @@ export default function FinalCTA() {
       </div>
 
       <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="max-w-4xl mx-auto p-10 sm:p-16 bg-[#101312] border border-white/15 rounded-3xl shadow-2xl backdrop-blur-2xl relative group hover:border-[#10E784] transition-all duration-500 text-center overflow-hidden"
-        >
+        <Reveal y={20} className="max-w-4xl mx-auto p-10 sm:p-16 bg-[#101312] border border-white/15 rounded-3xl shadow-2xl backdrop-blur-2xl relative group hover:border-[#10E784] transition-all duration-500 text-center overflow-hidden">
           {/* Subtle inner neon green shimmer line */}
           <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#10E784] to-transparent opacity-80" />
 
@@ -65,7 +59,7 @@ export default function FinalCTA() {
               <span>Direct Access to Riyadh Advisory Team</span>
             </div>
           </div>
-        </motion.div>
+        </Reveal>
       </div>
 
       <ContactFormModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />

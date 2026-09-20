@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Reveal } from "@/components/ui/Reveal";
 import { Modal } from "@/components/ui/Modal";
 import { Button } from "@/components/ui/Button";
 import { Input, Textarea } from "@/components/ui/FormInput";
@@ -125,11 +125,7 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
       title={isSubmitted ? "Confidential Strategy Dispatched" : "MAKE THE FIRST MOVE"}
     >
       {isSubmitted ? (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="py-6 text-center flex flex-col items-center"
-        >
+        <Reveal immediate className="py-6 text-center flex flex-col items-center">
           <div className="mb-6">
             <AnimatedCheck size={80} />
           </div>
@@ -174,7 +170,7 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
               Close Window
             </Button>
           </div>
-        </motion.div>
+        </Reveal>
       ) : (
         <div>
           {/* Progress Bar & Indicators */}
@@ -197,16 +193,9 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
             </div>
           </div>
 
-          <AnimatePresence mode="wait">
-            {/* STEP 1: CHOOSE PRIMARY DIRECTION */}
+                      {/* STEP 1: CHOOSE PRIMARY DIRECTION */}
             {step === 1 && (
-              <motion.div
-                key="step1"
-                initial={{ opacity: 0, x: 15 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -15 }}
-                transition={{ duration: 0.25 }}
-              >
+              <div key="step1" className="anim-rise-in">
                 <div className="mb-5">
                   <h4 className="text-xl font-display font-bold text-white mb-1">
                     Select Your Primary Strategic Objective
@@ -253,19 +242,12 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
                     Proceed to Profiler
                   </Button>
                 </div>
-              </motion.div>
+              </div>
             )}
 
             {/* STEP 2: SCOPE & CAPITAL PROFILER */}
             {step === 2 && (
-              <motion.div
-                key="step2"
-                initial={{ opacity: 0, x: 15 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -15 }}
-                transition={{ duration: 0.25 }}
-                className="space-y-5"
-              >
+              <div key="step2" className="anim-rise-in space-y-5">
                 {/* Active Direction Badge */}
                 <div className="flex items-center justify-between bg-white/[0.04] border border-[#10E784]/40 px-4 py-2.5 rounded-full text-xs font-sans text-[#D8CCB8]">
                   <span>Objective: <strong className="text-[#10E784] font-bold uppercase">{formData.serviceIntent.replaceAll("-", " ")}</strong></span>
@@ -356,18 +338,12 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
                     Proceed to Contact
                   </Button>
                 </div>
-              </motion.div>
+              </div>
             )}
 
             {/* STEP 3: CONFIDENTIAL CONTACT BRIEF */}
             {step === 3 && (
-              <motion.div
-                key="step3"
-                initial={{ opacity: 0, x: 15 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -15 }}
-                transition={{ duration: 0.25 }}
-              >
+              <div key="step3" className="anim-rise-in">
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <Input
@@ -443,9 +419,8 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
                     </Button>
                   </div>
                 </form>
-              </motion.div>
+              </div>
             )}
-          </AnimatePresence>
         </div>
       )}
     </Modal>

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 
 export default function RealEstateSection() {
@@ -22,12 +22,7 @@ export default function RealEstateSection() {
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 lg:px-8 py-[var(--space-section-lg)]">
         <div className="max-w-xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            viewport={{ once: true, margin: "-100px" }}
-          >
+          <Reveal y={20}>
             <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.12] tracking-tight mb-6">
               <span className="heading-gradient-light-to-dark block">Where capital</span>
               <span className="green-gradient-text block font-sans">meets place.</span>
@@ -50,7 +45,7 @@ export default function RealEstateSection() {
             >
               Explore Real Estate
             </Button>
-          </motion.div>
+          </Reveal>
         </div>
       </div>
     </section>

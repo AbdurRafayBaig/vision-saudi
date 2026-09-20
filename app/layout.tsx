@@ -7,7 +7,6 @@ import Footer from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { ConsentAndAnalytics } from "@/components/analytics/ConsentAndAnalytics";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { MotionProvider } from "@/components/providers/MotionProvider";
 import { SITE, absoluteUrl } from "@/lib/site-config";
 
 const ORGANIZATION_LD = {
@@ -115,21 +114,19 @@ export default function RootLayout({
         {/* Scroll-reveal animations render their `initial` opacity server-side, so without
             JS those sections would stay invisible. Reveal them when JS is unavailable. */}
         <noscript>
-          <style>{`[style*="opacity:0"],[style*="opacity: 0"]{opacity:1!important;transform:none!important}`}</style>
+          <style>{`.reveal,[style*="opacity:0"],[style*="opacity: 0"]{opacity:1!important;transform:none!important}.svg-draw{animation:none!important;stroke-dashoffset:0!important}.svg-fill-in{animation:none!important;fill-opacity:1!important}`}</style>
         </noscript>
       </head>
       <body className="min-h-full flex flex-col bg-[#0A0D0C] text-white">
         <JsonLd data={ORGANIZATION_LD} />
-        <MotionProvider>
-          <Navbar />
-          {/* Route changes are React transitions, so this crossfades page content on navigation. */}
-          <ViewTransition default="page-fade">
-            <main className="flex-1">{children}</main>
-          </ViewTransition>
-          <Footer />
-          <WhatsAppButton />
-          <ConsentAndAnalytics />
-        </MotionProvider>
+        <Navbar />
+        {/* Route changes are React transitions, so this crossfades page content on navigation. */}
+        <ViewTransition default="page-fade">
+          <main className="flex-1">{children}</main>
+        </ViewTransition>
+        <Footer />
+        <WhatsAppButton />
+        <ConsentAndAnalytics />
       </body>
     </html>
   );

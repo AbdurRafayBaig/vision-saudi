@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 const services = [
@@ -106,14 +105,9 @@ export default function ServiceNavigator() {
 
           {/* Right: Image + Description */}
           <div className="col-span-7">
-            <AnimatePresence mode="wait">
-              <motion.div
+            <div
                 key={activeService.number}
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.98 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="bg-white/[0.03] p-8 rounded-3xl border border-white/10 backdrop-blur-xl shadow-2xl"
+                className="anim-scale-in bg-white/[0.03] p-8 rounded-3xl border border-white/10 backdrop-blur-xl shadow-2xl"
               >
                 {/* Image */}
                 <div className="relative aspect-[16/10] overflow-hidden rounded-2xl mb-8 border border-white/10 shadow-lg">
@@ -139,8 +133,7 @@ export default function ServiceNavigator() {
                   <span>Explore {activeService.title} Specification</span>
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-              </motion.div>
-            </AnimatePresence>
+            </div>
           </div>
         </div>
 

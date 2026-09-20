@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { Reveal } from "@/components/ui/Reveal";
 import { MapPin } from "lucide-react";
 
 // Simple equirectangular projection over the Kingdom's bounding box.
@@ -131,6 +131,19 @@ const HUBS: Hub[] = [
   },
 ];
 
+// Tap targets are generous, but never so wide that a pin swallows its neighbour:
+// Jeddah and Makkah sit ~20px apart, so a flat 22px radius made Jeddah unclickable.
+const HIT_RADII = HUBS.map((hub) => {
+  const [x, y] = project(hub.coord);
+  const nearest = Math.min(
+    ...HUBS.filter((o) => o !== hub).map((o) => {
+      const [ox, oy] = project(o.coord);
+      return Math.hypot(x - ox, y - oy);
+    })
+  );
+  return Math.max(9, Math.min(22, nearest / 2));
+});
+
 const HQ = HUBS[0];
 const TOUR_MS = 3800;
 
@@ -174,40 +187,36 @@ export default function SaudiMap() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          <div className="lg:col-span-7">
+          <Reveal className="lg:col-span-7">
             <svg
               viewBox="-20 -20 700 550"
               className="w-full h-auto"
               role="group"
               aria-label="Map of Saudi Arabia with the regions Vision Saudi covers"
             >
-              <motion.path
+              <path
                 d={BORDER_PATH}
+                pathLength={1}
                 fill="rgba(16,231,132,0.04)"
                 stroke="rgba(16,231,132,0.55)"
                 strokeWidth={1.5}
                 strokeLinejoin="round"
-                initial={{ pathLength: 0, fillOpacity: 0 }}
-                whileInView={{ pathLength: 1, fillOpacity: 1 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ pathLength: { duration: 1.8, ease: "easeInOut" }, fillOpacity: { duration: 0.8, delay: 1.4 } }}
+                className="svg-draw svg-fill-in"
               />
 
               {/* Route line from the Riyadh HQ to the selected region */}
               {active.id !== HQ.id && (
-                <motion.line
+                <line
                   key={active.id}
                   x1={hqX}
                   y1={hqY}
                   x2={ax}
                   y2={ay}
+                  pathLength={1}
                   stroke="#10E784"
                   strokeWidth={1.2}
-                  strokeDasharray="5 5"
                   opacity={0.65}
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  className="svg-draw svg-draw--fast"
                 />
               )}
 
@@ -216,13 +225,7 @@ export default function SaudiMap() {
                 const isActive = hub.id === activeId;
                 const [lx, ly] = hub.label ?? [0, -16];
                 return (
-                  <motion.g
-                    key={hub.id}
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true, margin: "-80px" }}
-                    transition={{ delay: 1.1 + i * 0.07 }}
-                  >
+                  <Reveal key={hub.id} as="g" y={0} delay={0.25 + i * 0.07}>
                     {isActive && <circle cx={x} cy={y} r={15} className="map-pin-pulse" fill="#10E784" opacity={0.3} />}
                     {/* Plain SVG: browsers transition the r attribute in CSS, and animating it
                         through the motion library renders an invalid frame on mount. */}
@@ -250,7 +253,7 @@ export default function SaudiMap() {
                     <circle
                       cx={x}
                       cy={y}
-                      r={22}
+                      r={HIT_RADII[i]}
                       fill="transparent"
                       role="button"
                       tabIndex={0}
@@ -261,47 +264,32 @@ export default function SaudiMap() {
                       onFocus={() => pick(hub.id)}
                       onClick={() => pick(hub.id)}
                     />
-                  </motion.g>
+                  </Reveal>
                 );
               })}
             </svg>
-          </div>
+          </Reveal>
 
           <div className="lg:col-span-5">
             <div aria-live="polite">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={active.id}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.28 }}
-                  className="rounded-3xl border border-white/10 bg-white/[0.03] p-8"
-                >
+                              <div key={active.id} className="anim-rise-in rounded-3xl border border-white/10 bg-white/[0.03] p-8">
                   <div className="flex items-center gap-2 text-[#10E784] mb-3">
                     <MapPin className="h-4 w-4" aria-hidden="true" />
                     <span className="text-xs font-bold uppercase tracking-wider">{active.tagline}</span>
                   </div>
                   <h3 className="font-display text-3xl font-bold text-white mb-5">{active.name}</h3>
-                  <motion.ul
-                    className="flex flex-wrap gap-2 mb-6"
-                    initial="hidden"
-                    animate="show"
-                    variants={{ show: { transition: { staggerChildren: 0.06 } } }}
-                  >
+                  <ul className="anim-stagger flex flex-wrap gap-2 mb-6">
                     {active.sectors.map((s) => (
-                      <motion.li
+                      <li
                         key={s}
-                        variants={{ hidden: { opacity: 0, y: 6 }, show: { opacity: 1, y: 0 } }}
                         className="rounded-full border border-white/15 px-3 py-1 text-xs text-[#D8CCB8]"
                       >
                         {s}
-                      </motion.li>
+                      </li>
                     ))}
-                  </motion.ul>
+                  </ul>
                   <p className="text-sm text-[#B9B3A8] leading-relaxed">{active.help}</p>
-                </motion.div>
-              </AnimatePresence>
+                </div>
             </div>
 
             {/* Always available: easier than hitting a pin, and keyboard friendly */}

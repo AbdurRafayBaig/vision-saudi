@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 
 interface AccordionItemProps {
   question: string;
@@ -16,6 +15,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
   isOpenDefault = false,
 }) => {
   const [isOpen, setIsOpen] = useState(isOpenDefault);
+  const panelId = React.useId();
 
   return (
     <div className="border-b border-white/10 py-4 transition-colors hover:border-[#10E784]/60">
@@ -23,6 +23,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-between text-left py-2 focus:outline-none group text-white font-display font-bold hover:text-[#10E784] transition-colors"
         aria-expanded={isOpen}
+        aria-controls={panelId}
       >
         <span className="text-base sm:text-lg pr-4">{question}</span>
         <ChevronDown
@@ -31,22 +32,16 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
           }`}
         />
       </button>
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="overflow-hidden"
-          >
-            <p className="pt-2 pb-4 text-[#D8CCB8] text-sm sm:text-base leading-relaxed font-light">
-              {answer}
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* The answer stays in the DOM so it is crawlable; the panel animates its
+          height in CSS (see .accordion-panel) and hides itself from assistive
+          tech while collapsed. */}
+      <div id={panelId} className="accordion-panel" data-open={isOpen}>
+        <div>
+          <p className="pt-2 pb-4 text-[#D8CCB8] text-sm sm:text-base leading-relaxed font-light">
+            {answer}
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
-

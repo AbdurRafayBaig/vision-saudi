@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/ui/Reveal";
 import { PageHero } from "@/components/ui/PageHero";
 import { NextStepCTA } from "@/components/ui/NextStepCTA";
 import { MASTER_SERVICES } from "@/data/services";
@@ -118,14 +118,7 @@ export default function PremiumResidencyPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {pathways.map((p, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                viewport={{ once: true, margin: "-100px" }}
-                className="bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl p-8 flex flex-col justify-between hover:border-[#10E784] hover:-translate-y-1 transition-all duration-300 shadow-2xl group text-white"
-              >
+              <Reveal key={idx} y={20} className="bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl p-8 flex flex-col justify-between hover:border-[#10E784] hover:-translate-y-1 transition-all duration-300 shadow-2xl group text-white">
                 <div>
                   <div className="w-12 h-12 rounded-2xl bg-[#10E784]/15 border border-[#10E784]/30 flex items-center justify-center text-[#10E784] mb-6 group-hover:bg-[#10E784] group-hover:text-[#0A0D0C] transition-all duration-300">
                     <p.icon className="h-6 w-6" />
@@ -149,7 +142,7 @@ export default function PremiumResidencyPage() {
                     {p.privilege}
                   </p>
                 </div>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
         </div>

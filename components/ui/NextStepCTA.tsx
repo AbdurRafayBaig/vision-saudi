@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
 import { ContactFormModal } from "@/components/forms/ContactFormModal";
 
@@ -40,13 +40,7 @@ export function NextStepCTA({
     <>
       <section className="bg-[#101312] text-white py-[var(--space-section-lg)] relative overflow-hidden border-t border-white/10 transition-colors duration-300">
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="max-w-3xl"
-          >
+          <Reveal y={20} className="max-w-3xl">
             <div className="inline-flex items-center gap-2 text-[#10E784] text-xs font-semibold tracking-widest uppercase mb-4">
               <span>VISION SAUDI / {eyebrow}</span>
             </div>
@@ -77,7 +71,7 @@ export function NextStepCTA({
                 </Button>
               )}
             </div>
-          </motion.div>
+          </Reveal>
         </div>
       </section>
 

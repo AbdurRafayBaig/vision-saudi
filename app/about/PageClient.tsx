@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/ui/Reveal";
 import { PageHero } from "@/components/ui/PageHero";
 import { NextStepCTA } from "@/components/ui/NextStepCTA";
 import { KEY_CREDIBILITY_METRICS } from "@/data/experience";
@@ -105,14 +105,7 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {principles.map((item, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                viewport={{ once: true, margin: "-100px" }}
-                className="p-8 bg-white/[0.03] border-l-4 border-[#10E784] rounded-3xl hover:border-[#10E784] hover:shadow-[0_0_25px_rgba(16,231,132,0.1)] transition-all duration-300 shadow-md group backdrop-blur-md"
-              >
+              <Reveal key={idx} y={20} className="p-8 bg-white/[0.03] border-l-4 border-[#10E784] rounded-3xl hover:border-[#10E784] hover:shadow-[0_0_25px_rgba(16,231,132,0.1)] transition-all duration-300 shadow-md group backdrop-blur-md">
                 <item.icon className="h-8 w-8 text-[#10E784] mb-6 group-hover:scale-110 transition-transform duration-300" />
                 <h3 className="font-display text-2xl text-white font-bold mb-3">
                   {item.title}
@@ -120,7 +113,7 @@ export default function AboutPage() {
                 <p className="text-xs text-[#B9B3A8] font-light leading-relaxed">
                   {item.desc}
                 </p>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
         </div>

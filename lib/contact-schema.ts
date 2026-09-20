@@ -1,31 +1,20 @@
 import { z } from "zod";
+import {
+  CAPITAL_SCALES,
+  LEAD_TYPES,
+  SERVICE_INTENTS,
+  TARGET_REGIONS,
+  TIMELINES,
+  isValidPhone,
+} from "@/lib/contact-fields";
 
-// Shared by both contact forms and /api/contact, so client and server enforce
-// identical rules. Every value the UI can send must appear in these lists.
-export const SERVICE_INTENTS = [
-  "business-setup",
-  "corporate-services",
-  "real-estate",
-  "premium-residency",
-  "technology",
-  "partnership",
-  "other",
-] as const;
-
-export const CAPITAL_SCALES = ["Under $500K", "$500K - $2M", "$2M - $10M", "$10M+ Enterprise"] as const;
-export const TIMELINES = ["Immediate (1-3 months)", "Planning (3-6 months)", "Long-term (6-12 months)"] as const;
-export const LEAD_TYPES = ["inquiry", "estimate", "guide"] as const;
-
-export const TARGET_REGIONS = ["Riyadh (Olaya / KAFD)", "Jeddah / Western", "Eastern Province", "All Kingdom"] as const;
+// Server-side source of truth for /api/contact. The browser never loads this
+// file: forms validate with validateLead() in contact-fields.ts instead, so zod
+// stays out of the client bundle. Both draw on the same lists of allowed values.
+export { CAPITAL_SCALES, LEAD_TYPES, SERVICE_INTENTS, TARGET_REGIONS, TIMELINES };
 
 const optionalText = (max: number) =>
   z.string().trim().max(max, `Please keep this under ${max} characters.`).optional().or(z.literal(""));
-
-// Accepts international formats (+966 50 000 0000, 0044-20..., etc.): 7–15 digits.
-const isValidPhone = (v: string) => {
-  const digits = v.replace(/\D/g, "").length;
-  return /^\+?[\d\s\-()]+$/.test(v) && digits >= 7 && digits <= 15;
-};
 
 export const contactSchema = z
   .object({

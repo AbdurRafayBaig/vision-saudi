@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
 import { PageHero } from "@/components/ui/PageHero";
 import { NextStepCTA } from "@/components/ui/NextStepCTA";
 import { MASTER_SERVICES } from "@/data/services";
@@ -153,15 +152,10 @@ export default function RealEstatePage() {
           </div>
 
           {/* Active Category Display */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeCategory}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-[#101312] border border-white/15 rounded-3xl p-8 sm:p-12 shadow-2xl backdrop-blur-2xl text-white"
-            >
+          <div
+            key={activeCategory}
+            className="anim-rise-in bg-[#101312] border border-white/15 rounded-3xl p-8 sm:p-12 shadow-2xl backdrop-blur-2xl text-white"
+          >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                 <div className="lg:col-span-7">
                   <span className="text-xs font-bold text-[#10E784] tracking-widest uppercase block mb-2">
@@ -196,8 +190,7 @@ export default function RealEstatePage() {
                   </div>
                 </div>
               </div>
-            </motion.div>
-          </AnimatePresence>
+            </div>
         </div>
       </section>
 

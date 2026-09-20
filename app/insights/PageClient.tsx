@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/ui/Reveal";
 import { PageHero } from "@/components/ui/PageHero";
 import { NextStepCTA } from "@/components/ui/NextStepCTA";
 import { MASTER_INSIGHTS } from "@/data/insights";
@@ -149,14 +149,7 @@ export default function InsightsPage() {
           {/* Article Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {filteredArticles.map((article, idx) => (
-              <motion.div
-                key={article.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                viewport={{ once: true, margin: "-100px" }}
-                className="bg-white/[0.03] border border-white/10 rounded-3xl p-8 flex flex-col justify-between hover:border-[#10E784]/60 transition-all duration-300 shadow-lg group backdrop-blur-xl"
-              >
+              <Reveal delay={idx * 0.1} key={article.id} y={20} className="bg-white/[0.03] border border-white/10 rounded-3xl p-8 flex flex-col justify-between hover:border-[#10E784]/60 transition-all duration-300 shadow-lg group backdrop-blur-xl">
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-xs font-bold text-[#10E784] uppercase tracking-wider px-3.5 py-1 bg-[#10E784]/10 border border-[#10E784]/30 rounded-full">
@@ -184,7 +177,7 @@ export default function InsightsPage() {
                   <span>Read Full Article</span>
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
         </div>

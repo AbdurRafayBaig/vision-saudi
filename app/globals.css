@@ -279,3 +279,90 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 640px) {
   .map-label { font-size: 21px; }
 }
+
+/* ═══════════════════════════════════════════
+   REVEAL — scroll-in fade used across the site (see components/ui/Reveal.tsx)
+   ═══════════════════════════════════════════ */
+
+.reveal {
+  opacity: 0;
+  transform: translate3d(var(--reveal-x, 0), var(--reveal-y, 20px), 0);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0s),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) var(--reveal-delay, 0s);
+  will-change: opacity, transform;
+}
+.reveal.is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Content must never depend on JS or motion preferences to become visible. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ═══════════════════════════════════════════
+   MOTION UTILITIES — replace the animation library with CSS
+   ═══════════════════════════════════════════ */
+
+/* Fade/slide something in when it mounts (modals, swapped panels, rotating text). */
+.anim-fade-in { animation: anim-fade-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) both; }
+@keyframes anim-fade-in { from { opacity: 0; } }
+
+.anim-rise-in { animation: anim-rise-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
+@keyframes anim-rise-in { from { opacity: 0; transform: translateY(10px); } }
+
+.anim-slide-up-in { animation: anim-slide-up-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
+@keyframes anim-slide-up-in { from { opacity: 0; transform: translateY(100%); } }
+
+.anim-scale-in { animation: anim-scale-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) both; }
+@keyframes anim-scale-in { from { opacity: 0; transform: scale(0.96) translateY(8px); } }
+
+/* Children appear one after another; no JS timers needed. */
+.anim-stagger > * { animation: anim-rise-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.anim-stagger > *:nth-child(1) { animation-delay: 0.04s; }
+.anim-stagger > *:nth-child(2) { animation-delay: 0.12s; }
+.anim-stagger > *:nth-child(3) { animation-delay: 0.2s; }
+.anim-stagger > *:nth-child(4) { animation-delay: 0.28s; }
+.anim-stagger > *:nth-child(5) { animation-delay: 0.36s; }
+.anim-stagger > *:nth-child(6) { animation-delay: 0.44s; }
+.anim-stagger > *:nth-child(n + 7) { animation-delay: 0.5s; }
+
+/* SVG line drawing. The element must carry pathLength="1", so dash units are
+   fractions of its length and one rule fits any path. Paused until an ancestor
+   .reveal is in view, so the map draws itself when you scroll to it. */
+.svg-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: svg-draw 1.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+@keyframes svg-draw { to { stroke-dashoffset: 0; } }
+.svg-draw--fast { animation-duration: 0.6s; animation-timing-function: ease-out; }
+.svg-fill-in { fill-opacity: 0; animation: svg-fill-in 0.8s ease-out 1.4s forwards; }
+@keyframes svg-fill-in { to { fill-opacity: 1; } }
+/* Both at once: two single-class rules would each set 'animation' and cancel the other out. */
+.svg-draw.svg-fill-in {
+  animation: svg-draw 1.8s cubic-bezier(0.65, 0, 0.35, 1) forwards, svg-fill-in 0.8s ease-out 1.4s forwards;
+}
+.reveal:not(.is-revealed) .svg-draw,
+.reveal:not(.is-revealed) .svg-fill-in { animation-play-state: paused; }
+
+/* Journey timeline dots: dim until their stage scrolls into view. */
+.journey-dot { border-color: rgba(255, 255, 255, 0.2); box-shadow: 0 0 0 rgba(16, 231, 132, 0); transition: border-color 0.5s ease, box-shadow 0.5s ease; }
+.journey-dot__num { color: #b9b3a8; transition: color 0.5s ease; }
+.is-revealed .journey-dot { border-color: #10e784; box-shadow: 0 0 18px rgba(16, 231, 132, 0.45); }
+.is-revealed .journey-dot__num { color: #10e784; }
+
+/* Height-auto accordion: grid rows animate where height:auto cannot. */
+.accordion-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
+.accordion-panel > * { overflow: hidden; visibility: hidden; transition: visibility 0s linear 0.35s; }
+.accordion-panel[data-open="true"] { grid-template-rows: 1fr; }
+.accordion-panel[data-open="true"] > * { visibility: visible; transition-delay: 0s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-fade-in, .anim-rise-in, .anim-slide-up-in, .anim-scale-in, .anim-stagger > * { animation: none; }
+  .svg-draw { animation: none; stroke-dashoffset: 0; }
+  .svg-fill-in { animation: none; fill-opacity: 1; }
+  .accordion-panel, .accordion-panel > * { transition: none; }
+  .journey-dot, .journey-dot__num { transition: none; border-color: #10e784; color: #10e784; }
+}

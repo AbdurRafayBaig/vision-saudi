@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion, useScroll } from "framer-motion";
+import { Reveal } from "@/components/ui/Reveal";
+import { useScrollProgress } from "@/lib/useScrollProgress";
 
 const stages = [
   {
@@ -44,7 +45,7 @@ const stages = [
 export default function JourneyNarrative() {
   const timelineRef = useRef<HTMLDivElement>(null);
   // 0 when the timeline top reaches 70% down the viewport, 1 when its end passes 55%.
-  const { scrollYProgress } = useScroll({ target: timelineRef, offset: ["start 70%", "end 55%"] });
+  const progress = useScrollProgress(timelineRef);
 
   return (
     <section className="bg-[#0A0D0C] text-white transition-colors duration-300 py-[var(--space-section-lg)] border-b border-white/10 relative overflow-hidden">
@@ -53,13 +54,7 @@ export default function JourneyNarrative() {
 
       <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="max-w-2xl mb-20"
-        >
+        <Reveal y={20} className="max-w-2xl mb-20">
           <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.12] tracking-tight mb-6">
             <span className="heading-gradient-light-to-dark block">Most firms help you start.</span>
             <span className="green-gradient-text block font-sans">We stay for what comes next.</span>
@@ -68,52 +63,29 @@ export default function JourneyNarrative() {
             A Saudi company on paper is only the beginning. The real work
             starts when the business needs to operate, connect, and grow.
           </p>
-        </motion.div>
+        </Reveal>
 
         {/* Journey Stages */}
         <div ref={timelineRef} className="relative">
           {/* Vertical connecting line, with a green fill that tracks scroll progress */}
           <div className="absolute left-[19px] lg:left-[23px] top-0 bottom-0 w-0.5 bg-white/15" />
-          <motion.div
+          <div
             aria-hidden="true"
-            style={{ scaleY: scrollYProgress }}
+            style={{ transform: `scaleY(${progress})` }}
             className="absolute left-[19px] lg:left-[23px] top-0 bottom-0 w-0.5 origin-top bg-gradient-to-b from-[#10E784] to-[#059669] shadow-[0_0_12px_rgba(16,231,132,0.3)]"
           />
 
           <div className="flex flex-col gap-0">
-            {stages.map((stage, idx) => (
-              <motion.div
-                key={stage.number}
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{
-                  duration: 0.6,
-                  delay: idx * 0.08,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                viewport={{ once: true, margin: "-50px" }}
-                className="relative pl-14 lg:pl-16 py-8 group"
-              >
+            {stages.map((stage) => (
+              <Reveal key={stage.number} x={-10} className="relative pl-14 lg:pl-16 py-8 group">
                 {/* Stage number dot */}
                 <div className="absolute left-0 top-8 flex items-center justify-center">
-                  {/* Lights up once the progress line reaches it (dot crosses the middle of the viewport) */}
-                  <motion.div
-                    initial={{ borderColor: "rgba(255,255,255,0.2)", boxShadow: "0 0 0px rgba(16,231,132,0)" }}
-                    whileInView={{ borderColor: "#10E784", boxShadow: "0 0 18px rgba(16,231,132,0.45)" }}
-                    viewport={{ once: true, margin: "0px 0px -45% 0px" }}
-                    transition={{ duration: 0.5 }}
-                    className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border bg-[#1A3C2E] flex items-center justify-center"
-                  >
-                    <motion.span
-                      initial={{ color: "#B9B3A8" }}
-                      whileInView={{ color: "#10E784" }}
-                      viewport={{ once: true, margin: "0px 0px -45% 0px" }}
-                      transition={{ duration: 0.5 }}
-                      className="text-xs lg:text-sm font-bold"
-                    >
+                  {/* Lights up once its stage scrolls into view — see .journey-dot in globals.css */}
+                  <div className="journey-dot w-10 h-10 lg:w-12 lg:h-12 rounded-full border bg-[#1A3C2E] flex items-center justify-center">
+                    <span className="journey-dot__num text-xs lg:text-sm font-bold">
                       {stage.number}
-                    </motion.span>
-                  </motion.div>
+                    </span>
+                  </div>
                 </div>
 
                 {/* Content */}
@@ -128,7 +100,7 @@ export default function JourneyNarrative() {
                     {stage.description}
                   </p>
                 </div>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
         </div>

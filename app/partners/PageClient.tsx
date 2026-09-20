@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { Reveal } from "@/components/ui/Reveal";
 import { PageHero } from "@/components/ui/PageHero";
 import { NextStepCTA } from "@/components/ui/NextStepCTA";
 import { Button } from "@/components/ui/Button";
@@ -65,12 +65,7 @@ export default function PartnersPage() {
 
           {/* Active Tab Content */}
           {activeTab === "service" ? (
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start"
-            >
+            <Reveal y={15} immediate className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
               <div className="lg:col-span-7 bg-white/[0.03] backdrop-blur-xl border border-white/10 p-8 sm:p-12 rounded-3xl shadow-xl">
                 <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#10E784] bg-[#10E784]/10 px-3.5 py-1 border border-[#10E784]/30 rounded-full mb-6">
                   <Globe className="h-3.5 w-3.5" />
@@ -117,14 +112,9 @@ export default function PartnersPage() {
                   <span>Verified Project-Specific Frameworks</span>
                 </div>
               </div>
-            </motion.div>
+            </Reveal>
           ) : (
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start"
-            >
+            <Reveal y={15} immediate className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
               <div className="lg:col-span-7 bg-white/[0.03] backdrop-blur-xl border border-white/10 p-8 sm:p-12 rounded-3xl shadow-xl">
                 <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#10E784] bg-[#10E784]/10 px-3.5 py-1 border border-[#10E784]/30 rounded-full mb-6">
                   <Network className="h-3.5 w-3.5" />
@@ -161,7 +151,7 @@ export default function PartnersPage() {
                   <span>Internal Ecosystem Synergies</span>
                 </div>
               </div>
-            </motion.div>
+            </Reveal>
           )}
         </div>
       </section>

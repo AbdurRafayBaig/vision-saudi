@@ -229,14 +229,17 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
                 </div>
 
                 <div>
-                  <label className="text-xs text-[#A39B8B] block mb-1">Capital Deployment (SAR)</label>
+                  {/* htmlFor/id, so the label is actually attached to the control. */}
+                  <label htmlFor="capital-deployment" className="text-xs text-[#A39B8B] block mb-1">Capital Deployment (SAR)</label>
                   <input
+                    id="capital-deployment"
                     type="range"
                     min="500000"
                     max="20000000"
                     step="250000"
                     value={investmentAmount}
                     onChange={(e) => setInvestmentAmount(Number(e.target.value))}
+                    aria-valuetext={`SAR ${investmentAmount.toLocaleString()}`}
                     className="range-touch w-full accent-[#10E784] cursor-pointer"
                   />
                   <div className="flex justify-between text-xs font-mono text-white mt-1">

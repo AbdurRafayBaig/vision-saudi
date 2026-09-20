@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { SITE, absoluteUrl } from "@/lib/site-config";
+import { pageMetadata } from "@/lib/seo";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -23,19 +24,14 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const article = findArticle((await params).slug);
   if (!article) return {};
   const path = `/insights/${article.slug}`;
-  return {
+  return pageMetadata({
     title: article.title,
     description: article.excerpt,
-    alternates: { canonical: path },
-    openGraph: {
-      type: "article",
-      title: article.title,
-      description: article.excerpt,
-      url: path,
-      publishedTime: article.publishedISO,
-      section: article.category,
-    },
-  };
+    path,
+    type: "article",
+    publishedTime: article.publishedISO,
+    section: article.category,
+  });
 }
 
 // Markdown elements styled to match the site's editorial article design.

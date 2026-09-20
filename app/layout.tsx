@@ -60,11 +60,14 @@ const fontArabic = IBM_Plex_Sans_Arabic({
 
 export const metadata: Metadata = {
   title: {
-    default: "Vision Saudi | Premium Saudi Business, Investment & Market-Entry Platform",
+    // Google shows roughly 60 characters. The old title ran to 73, so
+    // "Market-Entry Platform" was cut off in every result.
+    default: "Vision Saudi | Market Entry & Investment Advisory",
     template: "%s | Vision Saudi",
   },
+  // And roughly 155 for the description; the old one ran to 184.
   description:
-    "Vision Saudi connects international enterprise, investors, and founders to the wider Saudi ecosystem. Business setup, real estate, Premium Residency, and post-establishment operations.",
+    "Market entry, corporate operations, real estate and Premium Residency in Saudi Arabia — advisory for international enterprise, investors and founders.",
   keywords: [
     "Vision Saudi",
     "Saudi Business Setup",

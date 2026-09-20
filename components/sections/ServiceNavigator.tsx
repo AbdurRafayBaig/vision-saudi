@@ -56,7 +56,7 @@ export default function ServiceNavigator() {
                         {service.title}
                       </h3>
                       <p className={`text-xs transition-all duration-300 font-light ${
-                        isActive ? "text-[#D8CCB8]" : "text-[#7A7A72]"
+                        isActive ? "text-[#D8CCB8]" : "text-[#94A3B8]"
                       }`}>
                         {service.tagline}
                       </p>

@@ -39,6 +39,9 @@ export default function CorporateServicesPage() {
       {/* Continuity Journey: ESTABLISH → ACTIVATE → OPERATE */}
       <section className="py-16 bg-[#0A0D0C] border-b border-white/10 relative overflow-hidden transition-colors duration-400">
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative z-10">
+          {/* The design has no visible title here, but the outline needs one —
+              without it the three cards jumped straight from h1 to h3. */}
+          <h2 className="sr-only">How corporate services fit the establishment journey</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="p-8 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl">
               <span className="text-xs font-bold text-[#A39B8B] uppercase tracking-wider block mb-2">Stage 01</span>

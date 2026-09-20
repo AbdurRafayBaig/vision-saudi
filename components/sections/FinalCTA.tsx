@@ -1,14 +1,10 @@
-"use client";
-
-import React, { useState } from "react";
+import React from "react";
 import { Reveal } from "@/components/ui/Reveal";
-import { Button } from "@/components/ui/Button";
-import { ContactFormModal } from "@/components/forms/ContactFormModal";
+import { EnquiryButtons } from "@/components/forms/EnquiryButtons";
 import { ShieldCheck, Calendar } from "lucide-react";
 
+// A server component. Only the buttons and their modal are client code.
 export default function FinalCTA() {
-  const [modalOpen, setModalOpen] = useState(false);
-
   return (
     <section className="py-24 sm:py-32 bg-[#0A0D0C] text-white relative overflow-hidden border-t border-white/10 transition-colors duration-300">
       {/* Ambient Radial Glows */}
@@ -30,24 +26,13 @@ export default function FinalCTA() {
             Establish, invest, operate, and scale in Saudi Arabia with an experienced partner backed by 16+ years of operating track record and enterprise technology.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button
-              variant="primary"
-              size="lg"
-              onClick={() => setModalOpen(true)}
-              className="font-bold shadow-md shadow-[#10E784]/20"
-            >
-              Make the First Move
-            </Button>
-            <Button
-              variant="ivory"
-              size="lg"
-              onClick={() => setModalOpen(true)}
-              className="font-bold"
-            >
-              Schedule Senior Strategy Call
-            </Button>
-          </div>
+          <EnquiryButtons
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            triggers={[
+              { label: "Make the First Move", variant: "primary", size: "lg", className: "font-bold shadow-md shadow-[#10E784]/20" },
+              { label: "Schedule Senior Strategy Call", variant: "ivory", size: "lg", className: "font-bold" },
+            ]}
+          />
 
           <div className="mt-10 pt-8 border-t border-white/10 flex flex-wrap items-center justify-center gap-8 text-xs text-[#A39B8B]">
             <div className="flex items-center gap-2">
@@ -61,8 +46,6 @@ export default function FinalCTA() {
           </div>
         </Reveal>
       </div>
-
-      <ContactFormModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </section>
   );
 }

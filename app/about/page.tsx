@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import PageClient from "./PageClient";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "About",
   description: "Vision Saudi connects global enterprise, investors, and founders to the wider Saudi ecosystem.",
-  alternates: { canonical: "/about" },
-  openGraph: {
-    title: "About | Vision Saudi",
-    description: "Vision Saudi connects global enterprise, investors, and founders to the wider Saudi ecosystem.",
-    url: "/about",
-  },
-};
+  path: "/about",
+});
 
 export default function Page() {
   return <PageClient />;

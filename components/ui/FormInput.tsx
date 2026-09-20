@@ -19,7 +19,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           id={inputId}
           className={`w-full bg-[#101312] border ${
             error ? "border-red-500" : "border-white/15 focus:border-[#10E784]"
-          } text-white px-5 py-3.5 text-sm focus:outline-none transition-all rounded-2xl placeholder-[#7A7A72] ${className}`}
+          } text-white px-5 py-3.5 text-sm focus:outline-none transition-all rounded-2xl placeholder-[#76839A] ${className}`}
           {...props}
         />
         {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
@@ -84,7 +84,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           id={textareaId}
           className={`w-full bg-[#101312] border ${
             error ? "border-red-500" : "border-white/15 focus:border-[#10E784]"
-          } text-white px-5 py-3.5 text-sm focus:outline-none transition-all rounded-2xl placeholder-[#7A7A72] ${className}`}
+          } text-white px-5 py-3.5 text-sm focus:outline-none transition-all rounded-2xl placeholder-[#76839A] ${className}`}
           rows={4}
           {...props}
         />

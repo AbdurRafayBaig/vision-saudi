@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 import { ShieldCheck, Building2 } from "lucide-react";
@@ -47,9 +45,9 @@ export default function Footer() {
 
           {/* Column 1: Services */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-6">
+            <h2 className="text-xs font-bold uppercase tracking-wider text-white mb-6">
               Core Pillars
-            </h4>
+            </h2>
             <ul className="space-y-3 text-sm">
               <li>
                 <Link href="/services/business-setup" className="inline-block py-3 -my-3 hover:text-[#10E784] transition-colors">
@@ -81,9 +79,9 @@ export default function Footer() {
 
           {/* Column 2: Platform */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-6">
+            <h2 className="text-xs font-bold uppercase tracking-wider text-white mb-6">
               Platform & Track Record
-            </h4>
+            </h2>
             <ul className="space-y-3 text-sm">
               <li>
                 <Link href="/about" className="inline-block py-3 -my-3 hover:text-[#10E784] transition-colors">
@@ -115,9 +113,9 @@ export default function Footer() {
 
           {/* Column 3: Governance */}
           <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-6">
+            <h2 className="text-xs font-bold uppercase tracking-wider text-white mb-6">
               Governance & Compliance
-            </h4>
+            </h2>
             <ul className="space-y-3 text-sm mb-6">
               <li>
                 <Link href="/privacy" className="inline-block py-3 -my-3 hover:text-[#10E784] transition-colors">

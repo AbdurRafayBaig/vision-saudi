@@ -65,9 +65,9 @@ export default function ContactPage() {
                   <div className="mb-6">
                     <AnimatedCheck size={64} />
                   </div>
-                  <h3 className="text-3xl font-display font-bold text-white mb-3">
+                  <h2 className="text-3xl font-display font-bold text-white mb-3">
                     Confidential Inquiry Received
-                  </h3>
+                  </h2>
                   <p className="text-[#D8CCB8] text-base max-w-md mb-8 leading-relaxed font-light">
                     Thank you. A Vision Saudi senior strategist will review your requirements and reply during Riyadh working hours, Sunday to Thursday.
                   </p>
@@ -141,9 +141,9 @@ export default function ContactPage() {
             <div className="lg:col-span-5 space-y-6">
               <BookCall />
               <div className="p-8 sm:p-10 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl">
-                <h3 className="font-display text-2xl font-bold mb-6 text-white">
+                <h2 className="font-display text-2xl font-bold mb-6 text-white">
                   Riyadh Advisory Headquarters
-                </h3>
+                </h2>
 
                 <div className="space-y-6 text-sm text-[#D8CCB8]">
                   <div className="flex items-start gap-4">

@@ -1,17 +1,25 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { faqLd, serviceLd } from "@/lib/schema";
+import { MASTER_SERVICES } from "@/data/services";
 import PageClient from "./PageClient";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Corporate Services & GRO",
   description: "Ongoing GRO, compliance, payroll, and government-relations support that keeps your Saudi entity operating.",
-  alternates: { canonical: "/services/corporate-services" },
-  openGraph: {
-    title: "Corporate Services & GRO | Vision Saudi",
-    description: "Ongoing GRO, compliance, payroll, and government-relations support that keeps your Saudi entity operating.",
-    url: "/services/corporate-services",
-  },
-};
+  path: "/services/corporate-services",
+});
+
+const service = MASTER_SERVICES.find((s) => s.slug === "corporate-services")!;
 
 export default function Page() {
-  return <PageClient />;
+  return (
+    <>
+      {/* Marked up from the same data the page renders, so the answers Google
+          shows are the answers actually on the page. */}
+      <JsonLd data={[serviceLd(service), faqLd(service.faqs)]} />
+      <PageClient />
+    </>
+  );
 }

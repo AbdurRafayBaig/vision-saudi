@@ -183,6 +183,8 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                   {maxPrice >= 10000000 ? "SAR 10,000,000+" : `SAR ${maxPrice.toLocaleString()}`}
                 </span>
               </div>
+              {/* The heading above is a span, so the slider had no accessible name
+                  at all — a screen reader announced "slider, 3000000". */}
               <input
                 type="range"
                 min="500000"
@@ -190,6 +192,8 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                 step="500000"
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(Number(e.target.value))}
+                aria-label="Maximum price"
+                aria-valuetext={maxPrice >= 10000000 ? "SAR 10,000,000 or more" : `SAR ${maxPrice.toLocaleString()}`}
                 className="range-touch w-full accent-[#10E784] cursor-pointer"
               />
               <div className="flex justify-between text-xs font-mono text-[#94A3B8]">
@@ -211,6 +215,8 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                 step="1"
                 value={minYield}
                 onChange={(e) => setMinYield(Number(e.target.value))}
+                aria-label="Minimum yield"
+                aria-valuetext={`${minYield} percent`}
                 className="range-touch w-full accent-[#10E784] cursor-pointer"
               />
               <div className="flex justify-between text-xs font-mono text-[#94A3B8]">

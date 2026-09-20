@@ -4,17 +4,18 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Modal } from "@/components/ui/Modal";
 import { Button } from "@/components/ui/Button";
-import { Input, Select, Textarea } from "@/components/ui/FormInput";
+import { Input, Textarea } from "@/components/ui/FormInput";
+import { useContactSubmit } from "@/lib/useContactSubmit";
+import { ConsentFields } from "@/components/forms/ConsentFields";
+import { AnimatedCheck } from "@/components/ui/AnimatedCheck";
+import { whatsappUrl } from "@/lib/site-config";
 import {
-  CheckCircle2,
-  ArrowRight,
   Building2,
   ShieldCheck,
   Landmark,
   Crown,
   Cpu,
   Handshake,
-  Sparkles,
   MessageSquare,
   ArrowLeft,
 } from "lucide-react";
@@ -48,8 +49,9 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
     message: "",
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const { submit, isSubmitting, isSubmitted, submitError, reset } = useContactSubmit();
+  const [consent, setConsent] = useState(false);
+  const [website, setWebsite] = useState("");
 
   const directions = [
     {
@@ -101,16 +103,12 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-    }, 1200);
+    submit({ ...formData, consent, website });
   };
 
   const resetAndClose = () => {
     setStep(1);
-    setIsSubmitted(false);
+    reset();
     onClose();
   };
 
@@ -132,41 +130,38 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
           animate={{ opacity: 1, scale: 1 }}
           className="py-6 text-center flex flex-col items-center"
         >
-          <div className="relative mb-6">
-            <div className="w-20 h-20 bg-[#10E784]/20 border-2 border-[#10E784] rounded-full flex items-center justify-center text-[#10E784] shadow-[0_0_40px_rgba(16,231,132,0.4)] animate-pulse">
-              <CheckCircle2 className="h-10 w-10" />
-            </div>
-            <div className="absolute -top-1 -right-1 w-6 h-6 bg-[#10E784] rounded-full flex items-center justify-center text-slate-950 text-[10px] font-bold">
-              KSA
-            </div>
+          <div className="mb-6">
+            <AnimatedCheck size={80} />
           </div>
 
-          <h4 className="text-2xl sm:text-3xl font-display font-bold text-slate-900 dark:text-white mb-3">
+          <h4 className="text-2xl sm:text-3xl font-display font-bold text-white mb-3">
             Strategy Brief Dispatched
           </h4>
-          <p className="text-slate-600 dark:text-[#D8CCB8] text-sm max-w-lg mb-6 leading-relaxed font-light">
-            Thank you, <strong className="text-slate-900 dark:text-white font-bold">{formData.name || "Partner"}</strong>. Your confidential Saudi market-entry parameters have been assigned to a Vision Saudi senior partner in Riyadh. You will receive a direct contact response within 24 hours.
+          <p className="text-[#D8CCB8] text-sm max-w-lg mb-6 leading-relaxed font-light">
+            Thank you, <strong className="text-white font-bold">{formData.name || "Partner"}</strong>. Your confidential Saudi market-entry parameters have been assigned to a Vision Saudi senior partner in Riyadh. You will receive a direct contact response within 24 hours.
           </p>
 
           {/* Submitted Summary Badge */}
-          <div className="w-full p-4 bg-slate-50 dark:bg-white/[0.04] border border-[#10E784]/30 rounded-2xl mb-8 text-left space-y-2 font-mono text-xs text-slate-700 dark:text-[#D8CCB8]">
-            <div className="flex justify-between border-b border-slate-200 dark:border-white/10 pb-2">
-              <span className="text-slate-400 dark:text-[#B9B3A8]">OBJECTIVE:</span>
-              <span className="text-[#10E784] font-bold uppercase">{formData.serviceIntent.replace("-", " ")}</span>
+          <div className="w-full p-4 bg-white/[0.04] border border-[#10E784]/30 rounded-2xl mb-8 text-left space-y-2 font-mono text-xs text-[#D8CCB8]">
+            <div className="flex justify-between border-b border-white/10 pb-2">
+              <span className="text-[#B9B3A8]">OBJECTIVE:</span>
+              <span className="text-[#10E784] font-bold uppercase">{formData.serviceIntent.replaceAll("-", " ")}</span>
             </div>
-            <div className="flex justify-between border-b border-slate-200 dark:border-white/10 pb-2">
-              <span className="text-slate-400 dark:text-[#B9B3A8]">CAPITAL SCALE:</span>
-              <span className="text-slate-900 dark:text-white font-bold">{formData.capitalScale}</span>
+            <div className="flex justify-between border-b border-white/10 pb-2">
+              <span className="text-[#B9B3A8]">CAPITAL SCALE:</span>
+              <span className="text-white font-bold">{formData.capitalScale}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-slate-400 dark:text-[#B9B3A8]">TARGET TIMELINE:</span>
-              <span className="text-slate-900 dark:text-white font-bold">{formData.timeline}</span>
+              <span className="text-[#B9B3A8]">TARGET TIMELINE:</span>
+              <span className="text-white font-bold">{formData.timeline}</span>
             </div>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-4">
             <a
-              href={`https://wa.me/966500000000?text=Hello%20Vision%20Saudi%20Advisory,%20I%20have%20submitted%20a%20confidential%20inquiry%20regarding%20${encodeURIComponent(formData.serviceIntent)}`}
+              href={whatsappUrl(
+                `Hello Vision Saudi Advisory, I have submitted a confidential inquiry regarding ${formData.serviceIntent}`
+              )}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#25D366] text-black font-bold text-xs uppercase tracking-wider hover:brightness-110 shadow-md transition-all"
@@ -185,17 +180,17 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
           {/* Progress Bar & Indicators */}
           <div className="mb-6">
             <div className="flex items-center justify-between text-xs font-sans font-semibold mb-2 tracking-wide">
-              <span className={step === 1 ? "text-[#10E784] font-bold" : "text-slate-400 dark:text-white/40"}>
+              <span className={step === 1 ? "text-[#10E784] font-bold" : "text-white/40"}>
                 01. Strategic Direction
               </span>
-              <span className={step === 2 ? "text-[#10E784] font-bold" : "text-slate-400 dark:text-white/40"}>
+              <span className={step === 2 ? "text-[#10E784] font-bold" : "text-white/40"}>
                 02. Scope & Profiler
               </span>
-              <span className={step === 3 ? "text-[#10E784] font-bold" : "text-slate-400 dark:text-white/40"}>
+              <span className={step === 3 ? "text-[#10E784] font-bold" : "text-white/40"}>
                 03. Confidential Brief
               </span>
             </div>
-            <div className="w-full h-1.5 bg-slate-200 dark:bg-white/10 rounded-full overflow-hidden relative">
+            <div className="w-full h-1.5 bg-white/10 rounded-full overflow-hidden relative">
               <div
                 className={`h-full bg-gradient-to-r from-[#10E784] to-[#0be07b] transition-all duration-500 rounded-full ${getStepProgressWidth()}`}
               />
@@ -213,10 +208,10 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
                 transition={{ duration: 0.25 }}
               >
                 <div className="mb-5">
-                  <h4 className="text-xl font-display font-bold text-slate-900 dark:text-white mb-1">
+                  <h4 className="text-xl font-display font-bold text-white mb-1">
                     Select Your Primary Strategic Objective
                   </h4>
-                  <p className="text-xs font-sans text-slate-600 dark:text-[#D8CCB8] font-light">
+                  <p className="text-xs font-sans text-[#D8CCB8] font-light">
                     Choose an objective to configure your Saudi establishment or investment parameters.
                   </p>
                 </div>
@@ -231,19 +226,19 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
                         onClick={() => handleSelectDirection(dir.id)}
                         className={`p-4 text-left border rounded-2xl transition-all duration-300 group relative ${
                           isSelected
-                            ? "bg-[#10E784]/15 border-[#10E784] shadow-[0_0_25px_rgba(16,231,132,0.15)]"
-                            : "bg-slate-50 dark:bg-white/[0.03] border-slate-200 dark:border-white/10 hover:border-[#10E784]/60 hover:bg-emerald-500/5 dark:hover:bg-white/[0.06]"
+                            ? "bg-[#10E784]/15 border-[#10E784] shadow-[0_0_25px_rgba(16,231,132,0.07)]"
+                            : "bg-white/[0.03] border-white/10 hover:border-[#10E784]/60 hover:bg-white/[0.06]"
                         }`}
                       >
                         <div className="flex items-start gap-3.5">
-                          <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors ${isSelected ? "bg-[#10E784] text-slate-950" : "bg-slate-200 dark:bg-white/10 text-slate-700 dark:text-[#10E784] group-hover:bg-[#10E784] group-hover:text-slate-950"}`}>
+                          <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors ${isSelected ? "bg-[#10E784] text-slate-950" : "bg-white/10 text-[#10E784] group-hover:bg-[#10E784] group-hover:text-slate-950"}`}>
                             <Icon className="h-5 w-5" />
                           </div>
                           <div>
-                            <div className="text-xs font-semibold text-slate-900 dark:text-white group-hover:text-[#10E784] transition-colors mb-1">
+                            <div className="text-xs font-semibold text-white group-hover:text-[#10E784] transition-colors mb-1">
                               {dir.title}
                             </div>
-                            <div className="text-xs text-slate-500 dark:text-[#D8CCB8]/80 font-light leading-relaxed">
+                            <div className="text-xs text-[#D8CCB8]/80 font-light leading-relaxed">
                               {dir.desc}
                             </div>
                           </div>
@@ -272,16 +267,16 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
                 className="space-y-5"
               >
                 {/* Active Direction Badge */}
-                <div className="flex items-center justify-between bg-slate-100 dark:bg-white/[0.04] border border-[#10E784]/40 px-4 py-2.5 rounded-full text-xs font-sans text-slate-700 dark:text-[#D8CCB8]">
-                  <span>Objective: <strong className="text-[#10E784] font-bold uppercase">{formData.serviceIntent.replace("-", " ")}</strong></span>
-                  <button onClick={() => setStep(1)} className="text-xs text-[#10E784] underline hover:text-slate-900 dark:hover:text-white font-medium">
+                <div className="flex items-center justify-between bg-white/[0.04] border border-[#10E784]/40 px-4 py-2.5 rounded-full text-xs font-sans text-[#D8CCB8]">
+                  <span>Objective: <strong className="text-[#10E784] font-bold uppercase">{formData.serviceIntent.replaceAll("-", " ")}</strong></span>
+                  <button onClick={() => setStep(1)} className="text-xs text-[#10E784] underline hover:text-white font-medium">
                     Change
                   </button>
                 </div>
 
                 {/* Capital Investment Scale Selector */}
                 <div>
-                  <label className="block text-xs font-sans font-medium text-slate-700 dark:text-[#D8CCB8] mb-2">
+                  <label className="block text-xs font-sans font-medium text-[#D8CCB8] mb-2">
                     Target Capital Allocation / Investment Scale *
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -293,7 +288,7 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
                         className={`py-3 px-2 text-center text-xs font-medium rounded-2xl border transition-all duration-300 ${
                           formData.capitalScale === opt
                             ? "bg-[#10E784]/20 border-[#10E784] text-[#10E784] font-bold"
-                            : "bg-slate-50 dark:bg-white/[0.03] text-slate-600 dark:text-[#D8CCB8] border-slate-200 dark:border-white/10 hover:border-[#10E784]/40 hover:text-slate-900 dark:hover:text-white"
+                            : "bg-white/[0.03] text-[#D8CCB8] border-white/10 hover:border-[#10E784]/40 hover:text-white"
                         }`}
                       >
                         {opt}
@@ -304,7 +299,7 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
 
                 {/* Timeline Selector */}
                 <div>
-                  <label className="block text-xs font-sans font-medium text-slate-700 dark:text-[#D8CCB8] mb-2">
+                  <label className="block text-xs font-sans font-medium text-[#D8CCB8] mb-2">
                     Planned Execution Timeline *
                   </label>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
@@ -316,7 +311,7 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
                         className={`py-3 px-3 text-center text-xs font-medium rounded-2xl border transition-all duration-300 ${
                           formData.timeline === opt
                             ? "bg-[#10E784]/20 border-[#10E784] text-[#10E784] font-bold"
-                            : "bg-slate-50 dark:bg-white/[0.03] text-slate-600 dark:text-[#D8CCB8] border-slate-200 dark:border-white/10 hover:border-[#10E784]/40 hover:text-slate-900 dark:hover:text-white"
+                            : "bg-white/[0.03] text-[#D8CCB8] border-white/10 hover:border-[#10E784]/40 hover:text-white"
                         }`}
                       >
                         {opt}
@@ -327,7 +322,7 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
 
                 {/* Target Region Selector */}
                 <div>
-                  <label className="block text-xs font-sans font-medium text-slate-700 dark:text-[#D8CCB8] mb-2">
+                  <label className="block text-xs font-sans font-medium text-[#D8CCB8] mb-2">
                     Primary Regional Headquarters Focus *
                   </label>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -339,7 +334,7 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
                         className={`py-2.5 px-2 text-center text-[11px] font-medium rounded-2xl border transition-all duration-300 ${
                           formData.targetRegion === opt
                             ? "bg-[#10E784]/20 border-[#10E784] text-[#10E784] font-bold"
-                            : "bg-slate-50 dark:bg-white/[0.03] text-slate-600 dark:text-[#D8CCB8] border-slate-200 dark:border-white/10 hover:border-[#10E784]/40 hover:text-slate-900 dark:hover:text-white"
+                            : "bg-white/[0.03] text-[#D8CCB8] border-white/10 hover:border-[#10E784]/40 hover:text-white"
                         }`}
                       >
                         {opt}
@@ -352,7 +347,7 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
                   <button
                     type="button"
                     onClick={() => setStep(1)}
-                    className="inline-flex items-center gap-1.5 text-xs font-sans text-slate-600 dark:text-[#D8CCB8] hover:text-slate-900 dark:hover:text-white"
+                    className="inline-flex items-center gap-1.5 text-xs font-sans text-[#D8CCB8] hover:text-white"
                   >
                     <ArrowLeft className="h-3.5 w-3.5" />
                     <span>Back to Strategic Direction</span>
@@ -422,11 +417,17 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   />
 
+                  <ConsentFields consent={consent} onConsentChange={setConsent} website={website} onWebsiteChange={setWebsite} />
+
+                  {submitError && (
+                    <p className="text-red-500 text-xs -mt-1">{submitError}</p>
+                  )}
+
                   <div className="pt-3 flex items-center justify-between">
                     <button
                       type="button"
                       onClick={() => setStep(2)}
-                      className="inline-flex items-center gap-1.5 text-xs font-sans text-slate-600 dark:text-[#D8CCB8] hover:text-slate-900 dark:hover:text-white"
+                      className="inline-flex items-center gap-1.5 text-xs font-sans text-[#D8CCB8] hover:text-white"
                     >
                       <ArrowLeft className="h-3.5 w-3.5" />
                       <span>Back to Scope Profiler</span>

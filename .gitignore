@@ -51,3 +51,6 @@ next-env.d.ts
 /.jetro/
 /_archive/
 tsconfig.tsbuildinfo
+
+# ...but the example file documents required vars and belongs in the repo
+!.env.example

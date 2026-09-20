@@ -261,7 +261,7 @@ test.describe("wayfinding", () => {
     await page.goto("/insights/saudi-market-entry-guide-2026");
     await expect(page.getByRole("link", { name: /Speak to a strategist/ })).toBeVisible();
     await expect(
-      page.getByRole("navigation", { name: "More insights" }).getByRole("link").first()
+      page.getByRole("navigation", { name: "More guides" }).getByRole("link").first()
     ).toBeVisible();
   });
 
@@ -382,4 +382,49 @@ test("the document declares its language and direction", async ({ page }) => {
     ls.map((l) => l.getAttribute("hreflang"))
   );
   expect(alternates).not.toContain("ar");
+});
+
+test.describe("site search", () => {
+  test("opens from the keyboard, ranks sensibly, and navigates", async ({ page }) => {
+    await page.goto("/");
+    await page.getByRole("button", { name: "Decline" }).click();
+
+    await page.keyboard.press("Control+k");
+    const dialog = page.getByRole("dialog", { name: /search/i });
+    await expect(dialog).toBeVisible();
+
+    // A term that only appears deep in a pillar's capabilities must still find it.
+    await page.locator('input[role="combobox"]').fill("gosi");
+    await expect(dialog.getByRole("option").first()).toContainText("Business Setup");
+
+    // The closest match leads; arrowing moves through the same order as the eye.
+    await page.locator('input[role="combobox"]').fill("premium residency");
+    await expect(dialog.getByRole("option").first()).toContainText("Saudi Premium Residency");
+    await page.keyboard.press("Enter");
+    await expect(page).toHaveURL(/\/services\/premium-residency$/);
+  });
+
+  test("says so when nothing matches, and offers a person instead", async ({ page }) => {
+    await page.goto("/");
+    await page.getByRole("button", { name: "Decline" }).click();
+    await page.keyboard.press("/");
+
+    const dialog = page.getByRole("dialog", { name: /search/i });
+    await page.locator('input[role="combobox"]').fill("qqqzzz");
+    await expect(dialog.getByRole("option")).toHaveCount(0);
+    await expect(dialog.getByRole("link", { name: /ask them directly/i })).toBeVisible();
+
+    await page.keyboard.press("Escape");
+    await expect(dialog).toHaveCount(0);
+  });
+});
+
+test("the guide library does not pretend to be a busy journal", async ({ page }) => {
+  await page.goto("/insights");
+
+  // A category filter over a handful of articles is furniture, not navigation.
+  await expect(page.getByRole("button", { name: "All", exact: true })).toHaveCount(0);
+  // And nothing promises a cadence nobody committed to.
+  await expect(page.getByText(/subscribe/i)).toHaveCount(0);
+  await expect(page.getByText(/quarterly/i)).toHaveCount(0);
 });

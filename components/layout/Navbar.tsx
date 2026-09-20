@@ -3,11 +3,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown, Home as HomeIcon } from "lucide-react";
+import { Menu, X, ChevronDown, Home as HomeIcon, Search } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { ContactFormModal } from "@/components/forms/ContactFormModal";
 import { VisionSaudiLogo } from "@/components/ui/VisionSaudiLogo";
 import { translator } from "@/lib/messages";
+import { SearchDialog } from "@/components/layout/SearchDialog";
 
 const t = translator();
 
@@ -34,6 +35,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [contactModalOpen, setContactModalOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
 
@@ -47,6 +49,21 @@ export default function Navbar() {
     document.body.style.overflow = mobileMenuOpen ? "hidden" : "unset";
     return () => { document.body.style.overflow = "unset"; };
   }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      const typing = (e.target as HTMLElement | null)?.closest("input, textarea, [contenteditable]");
+      if ((e.key === "k" || e.key === "K") && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setSearchOpen(true);
+      } else if (e.key === "/" && !typing && !e.metaKey && !e.ctrlKey) {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
 
   const handleDropdownEnter = () => {
     if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current);
@@ -135,6 +152,15 @@ export default function Navbar() {
 
           {/* Professional Executive CTA & Theme Toggle */}
           <div className="hidden lg:flex items-center gap-3 shrink-0">
+            <button
+              onClick={() => setSearchOpen(true)}
+              aria-label={`${t("search.label")} (Ctrl K)`}
+              className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-2 text-xs text-[#94A3B8] transition-colors hover:border-[#10E784]/50 hover:text-white"
+            >
+              <Search className="h-3.5 w-3.5" aria-hidden="true" />
+              <span>{t("search.label")}</span>
+              <kbd className="ms-1 rounded border border-white/15 px-1.5 py-0.5 font-mono text-xs">⌘K</kbd>
+            </button>
             <Button
               variant="emerald"
               size="sm"
@@ -145,6 +171,14 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Menu Toggle */}
+          <button
+            onClick={() => setSearchOpen(true)}
+            aria-label={t("search.label")}
+            className="lg:hidden p-2 text-white transition-colors hover:text-[#10E784]"
+          >
+            <Search className="h-5 w-5" />
+          </button>
+
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="lg:hidden p-2 text-white hover:text-[#10E784] transition-colors"
@@ -218,6 +252,8 @@ export default function Navbar() {
           </p>
         </div>
       </div>
+
+      {searchOpen && <SearchDialog onClose={() => setSearchOpen(false)} />}
 
       <ContactFormModal
         isOpen={contactModalOpen}

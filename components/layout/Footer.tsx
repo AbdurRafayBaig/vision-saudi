@@ -97,7 +97,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/insights" className="inline-block py-3 -my-3 hover:text-[#10E784] transition-colors">
-                  Market Insights & Research
+                  Guides & Briefings
                 </Link>
               </li>
               <li>

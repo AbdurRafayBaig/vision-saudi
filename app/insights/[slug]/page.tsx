@@ -97,7 +97,7 @@ export default async function ArticlePage({ params }: Params) {
       </div>
 
       <article className="max-w-4xl mx-auto px-6 lg:px-8 relative z-10">
-        <Breadcrumbs trail={[{ label: "Insights", href: "/insights" }, { label: article.title }]} bare />
+        <Breadcrumbs trail={[{ label: "Guides", href: "/insights" }, { label: article.title }]} bare />
 
         <div className="flex items-center gap-3 mb-6">
           <span className="text-xs font-bold text-[#10E784] uppercase tracking-widest px-4 py-1.5 bg-[#10E784]/15 border border-[#10E784]/30 rounded-full shadow-[0_0_15px_rgba(16,231,132,0.07)]">
@@ -135,7 +135,7 @@ export default async function ArticlePage({ params }: Params) {
         </aside>
 
         {others.length > 0 && (
-          <nav aria-label="More insights" className="mt-12">
+          <nav aria-label="More guides" className="mt-12">
             <h2 className="font-display text-base font-bold text-white mb-4">Keep reading</h2>
             <ul className="space-y-3">
               {others.map((other) => (

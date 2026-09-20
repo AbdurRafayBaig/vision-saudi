@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 const SUGGESTED = [
   { href: "/services", label: "Our services" },
   { href: "/services/business-setup", label: "Business setup" },
-  { href: "/insights", label: "Market insights" },
+  { href: "/insights", label: "Guides & briefings" },
   { href: "/contact", label: "Contact a strategist" },
 ];
 

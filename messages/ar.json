@@ -25,5 +25,8 @@
   "form.message": "",
   "form.optionalDetail": "",
   "office.open": "",
-  "office.closed": ""
+  "office.closed": "",
+  "search.label": "",
+  "search.placeholder": "",
+  "search.empty": ""
 }

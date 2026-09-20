@@ -25,5 +25,8 @@
   "form.message": "Overview of Strategic Objectives",
   "form.optionalDetail": "Add detail so we can answer properly (optional)",
   "office.open": "Riyadh office open",
-  "office.closed": "Outside Riyadh hours"
+  "office.closed": "Outside Riyadh hours",
+  "search.label": "Search",
+  "search.placeholder": "Search services, guides, properties…",
+  "search.empty": "Nothing matches"
 }

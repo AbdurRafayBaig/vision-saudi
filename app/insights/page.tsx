@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import PageClient from "./PageClient";
 
 export const metadata: Metadata = {
-  title: "Market Insights",
-  description: "Perspective and research on Saudi Arabia's Vision 2030 transformation, regulation, and investment landscape.",
+  title: "Guides & Briefings",
+  description: "Working guides on Saudi market entry, foreign ownership, real estate and Premium Residency, written by the team that files the paperwork.",
   alternates: { canonical: "/insights" },
   openGraph: {
-    title: "Market Insights | Vision Saudi",
-    description: "Perspective and research on Saudi Arabia's Vision 2030 transformation, regulation, and investment landscape.",
+    title: "Guides & Briefings | Vision Saudi",
+    description: "Working guides on Saudi market entry, foreign ownership, real estate and Premium Residency, written by the team that files the paperwork.",
     url: "/insights",
   },
 };

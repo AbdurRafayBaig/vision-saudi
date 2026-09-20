@@ -10,6 +10,9 @@ import { MASTER_INSIGHTS } from "@/data/insights";
 import { ArrowRight, BookOpen, Clock } from "lucide-react";
 import { ContactFormModal } from "@/components/forms/ContactFormModal";
 
+/** Articles needed before the category filter earns its place on the page. */
+const FILTERS_FROM = 6;
+
 export default function InsightsPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
@@ -21,6 +24,10 @@ export default function InsightsPage() {
   const featuredArticle = MASTER_INSIGHTS[0];
   const remainingArticles = MASTER_INSIGHTS.slice(1);
 
+  // A filter bar over three articles is furniture, not navigation. It appears
+  // once the library is big enough to need one.
+  const showFilters = MASTER_INSIGHTS.length >= FILTERS_FROM;
+
   const filteredArticles = selectedCategory === "All"
     ? remainingArticles
     : remainingArticles.filter((a) => a.category === selectedCategory);
@@ -30,19 +37,19 @@ export default function InsightsPage() {
       {/* Hero Section — Type C Editorial Publication */}
       <PageHero
         type="type-c"
-        category="MARKET INTELLIGENCE & EDITORIAL"
-        title="Perspective on the Kingdom's transformation."
-        subtitle="Strategic analysis on Saudi market entry, foreign investment regulations, real estate advisory, and Vision 2030 commercial frameworks."
+        category="GUIDES & BRIEFINGS"
+        title="What we get asked, written down."
+        subtitle="Working guides on Saudi market entry, foreign ownership rules, real estate advisory and Premium Residency — written by the team that files the paperwork."
         imageSrc="/images/insights-header.webp"
         imageAlt="Saudi Intelligence & Research Analysis"
-        primaryCtaLabel="Subscribe to Insights"
+        primaryCtaLabel="Ask us something specific"
         onPrimaryCtaClick={() => setModalOpen(true)}
         customVisual={
           <div className="bg-white/[0.03] text-white p-8 sm:p-10 rounded-3xl border border-white/10 shadow-2xl space-y-6 backdrop-blur-2xl relative group hover-green-box transition-all duration-500">
             <div className="absolute top-0 start-0 end-0 h-[2px] bg-gradient-to-r from-transparent via-[#10E784] to-transparent opacity-80" />
             <div className="flex items-center justify-between border-b border-white/10 pb-4">
-              <span className="text-xs text-[#D8CCB8] uppercase tracking-wider">EDITORIAL PUBLICATION</span>
-              <span className="text-xs font-bold text-[#10E784] px-3.5 py-1 bg-[#10E784]/15 border border-[#10E784]/30 rounded-full font-mono">STRATEGIC RESEARCH</span>
+              <span className="text-xs text-[#D8CCB8] uppercase tracking-wider">WRITTEN IN RIYADH</span>
+              <span className="text-xs font-bold text-[#10E784] px-3.5 py-1 bg-[#10E784]/15 border border-[#10E784]/30 rounded-full font-mono">PRACTITIONER NOTES</span>
             </div>
 
             <div className="space-y-3">
@@ -58,7 +65,7 @@ export default function InsightsPage() {
             </div>
 
             <div className="pt-2 text-xs text-[#B9B3A8] font-light flex items-center justify-between border-t border-white/10">
-              <span>Quarterly Advisory Journal</span>
+              <span>Updated as the rules change</span>
               <BookOpen className="h-4 w-4 text-[#10E784]" />
             </div>
           </div>
@@ -118,19 +125,21 @@ export default function InsightsPage() {
       )}
 
       {/* Editorial Article List & Category Filter */}
+      {remainingArticles.length > 0 && (
       <section className="py-[var(--space-section-lg)] bg-[#0A0D0C] transition-colors duration-300">
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
               <p className="text-[#10E784] text-xs font-bold tracking-widest mb-3 uppercase">
-                PUBLICATION LIBRARY
+                THE LIBRARY
               </p>
               <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
-                Strategic publications.
+                {remainingArticles.length === 1 ? "One more guide." : "More guides."}
               </h2>
             </div>
 
             {/* Filter Tabs */}
+            {showFilters && (
             <div className="flex items-center gap-2 overflow-x-auto pb-2">
               {categories.map((cat) => (
                 <button
@@ -146,10 +155,13 @@ export default function InsightsPage() {
                 </button>
               ))}
             </div>
+            )}
           </div>
 
           {/* Article Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* A lone card stranded in a two-column grid looks like something failed
+              to load. One article gets one column. */}
+          <div className={`grid grid-cols-1 gap-8 ${filteredArticles.length > 1 ? "md:grid-cols-2" : "max-w-2xl"}`}>
             {filteredArticles.map((article, idx) => (
               <Reveal delay={idx * 0.1} key={article.id} y={20} className="bg-white/[0.03] border border-white/10 rounded-3xl p-8 flex flex-col justify-between hover:border-[#10E784]/60 transition-all duration-300 shadow-lg group backdrop-blur-xl">
                 <div>
@@ -184,6 +196,7 @@ export default function InsightsPage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* Next Step CTA */}
       <NextStepCTA

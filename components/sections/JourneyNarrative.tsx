@@ -55,6 +55,10 @@ export default function JourneyNarrative() {
       <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
         {/* Section Header */}
         <Reveal y={20} className="max-w-2xl mb-20">
+          {/* Third beat. This section always carried the differentiator; it
+              just never said so, which is why the argument read as repetition
+              when the ecosystem section made it again further down. */}
+          <p className="text-xs font-bold uppercase tracking-wider text-[#10E784] mb-4">Why us</p>
           <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold leading-[1.12] tracking-tight mb-6">
             <span className="heading-gradient-light-to-dark block">Most firms help you start.</span>
             <span className="green-gradient-text block font-sans">We stay for what comes next.</span>

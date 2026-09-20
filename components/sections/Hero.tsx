@@ -65,6 +65,13 @@ export default function Hero() {
           
           {/* Left Narrative Column */}
           <div>
+            {/* What we are. The headline says the name and the supporting line
+                says what we do, but nothing said what kind of firm this is —
+                a visitor could not tell an advisory from a broker or a portal. */}
+            <p className="anim-fade-in text-xs font-bold uppercase tracking-wider text-[#10E784] mb-4">
+              Market-Entry Advisory · Riyadh
+            </p>
+
             {/* Editorial Headline: "Vision" static + dynamic city */}
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-6 text-white flex flex-wrap items-baseline gap-x-3 sm:gap-x-4">
               <span className="shrink-0">Vision</span>

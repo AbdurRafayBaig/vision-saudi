@@ -18,6 +18,8 @@ export default function ServiceNavigator() {
       <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="mb-16">
+          {/* Second beat of what we are / what we do / why us. */}
+          <p className="text-xs font-bold uppercase tracking-wider text-[#10E784] mb-4">What we do</p>
           <h2 className="font-display text-2xl sm:text-3xl lg:text-5xl font-bold leading-[1.12] tracking-tight">
             <span className="heading-gradient-light-to-dark block">Five directions into</span>
             <span className="green-gradient-text block font-sans">the Saudi market.</span>

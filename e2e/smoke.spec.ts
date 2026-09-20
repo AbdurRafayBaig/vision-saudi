@@ -287,12 +287,86 @@ test.describe("contact", () => {
     const form = page.locator("form");
 
     await expect(form.getByLabel("Full Name *")).toBeVisible();
-    await expect(form.getByLabel("Corporate Email *")).toBeVisible();
+    await expect(form.getByLabel("Work Email *")).toBeVisible();
     await expect(form.getByLabel("Phone / WhatsApp *")).toBeVisible();
 
     const company = form.getByLabel("Company / Entity Name");
     await expect(company).toBeHidden();
     await form.getByText(/Add detail so we can answer properly/).click();
     await expect(company).toBeVisible();
+  });
+});
+
+test.describe("estimator, step two", () => {
+  test("judges a target date and carries the answer into the plan", async ({ page }) => {
+    await page.goto("/");
+    const est = page.locator("#estimator");
+
+    const soon = new Date(Date.now() + 30 * 864e5).toISOString().slice(0, 10);
+    await est.locator("#estimator-target-date").fill(soon);
+    await expect(est.getByText(/no slack|Not on that date/)).toBeVisible();
+
+    const far = new Date(Date.now() + 300 * 864e5).toISOString().slice(0, 10);
+    await est.locator("#estimator-target-date").fill(far);
+    await expect(est.getByText("That date is achievable.")).toBeVisible();
+
+    await est.getByRole("button", { name: /Email me the full plan/ }).click();
+    await est.getByLabel("Full Name *").fill("Date Tester");
+    await est.getByLabel("Work Email *").fill("date@example.com");
+    await est.getByLabel("Phone / WhatsApp *").fill("+966500000000");
+    await est.getByRole("checkbox").check();
+
+    const [req] = await Promise.all([
+      page.waitForRequest((r) => r.url().includes("/api/contact") && r.method() === "POST"),
+      est.getByRole("button", { name: /Email me the full plan/ }).click(),
+    ]);
+    expect(req.postDataJSON().planSummary).toContain("Target operational date");
+  });
+
+  test("the document checklist follows the entity and reports what is ready", async ({ page }) => {
+    await page.goto("/");
+    const est = page.locator("#estimator");
+    await est.getByText(/Documents you'll need to provide/).click();
+
+    await expect(est.getByText("Articles of Association", { exact: true })).toBeVisible();
+    await est.getByText("Branch of a Foreign Company").click();
+    await expect(est.getByText("Bank reference letter")).toBeVisible();
+    await expect(est.getByText("Articles of Association", { exact: true })).toHaveCount(0);
+
+    await est.locator("details input[type=checkbox]").first().check();
+    await expect(est.getByText("(1/8 ready)")).toBeVisible();
+  });
+});
+
+test.describe("property shortlist", () => {
+  test("saves across a reload and sends the set as one enquiry", async ({ page }) => {
+    await page.goto("/services/real-estate");
+    await page.getByRole("button", { name: "Decline" }).click();
+    const saves = page.locator('button[aria-label^="Save "]');
+    await saves.first().scrollIntoViewIfNeeded();
+    await saves.nth(0).click();
+    await saves.nth(1).click();
+
+    const bar = page.locator("text=shortlisted").first();
+    await expect(bar).toContainText("2");
+
+    // The point of saving is that it survives leaving the page.
+    await page.reload();
+    await expect(page.getByRole("button", { name: "Decline" })).toHaveCount(0);
+    await expect(page.locator("text=shortlisted").first()).toContainText("2");
+
+    await page.getByRole("button", { name: /Email me these 2/ }).click();
+    await page.getByLabel("Full Name *").fill("Shortlist Tester");
+    await page.getByLabel("Work Email *").fill("shortlist@example.com");
+    await page.getByLabel("Phone / WhatsApp *").fill("+966500000000");
+    await page.getByRole("checkbox").check();
+
+    const [req] = await Promise.all([
+      page.waitForRequest((r) => r.url().includes("/api/contact") && r.method() === "POST"),
+      page.getByRole("button", { name: /Email me these 2/ }).click(),
+    ]);
+    const body = req.postDataJSON();
+    expect(body.serviceIntent).toBe("real-estate");
+    expect(body.planSummary).toContain("Shortlisted 2 properties");
   });
 });

@@ -2,9 +2,11 @@
 
 import React, { useState, useMemo } from "react";
 import Image from "next/image";
-import { MapPin, Building, RotateCcw, SlidersHorizontal } from "lucide-react";
+import { MapPin, Building, RotateCcw, SlidersHorizontal, Bookmark, BookmarkCheck } from "lucide-react";
 import { MASTER_PROPERTIES, PropertyItem } from "@/data/properties";
 import { PropertyDetailModal } from "./PropertyDetailModal";
+import { ShortlistBar } from "./ShortlistBar";
+import { useShortlist } from "@/lib/useShortlist";
 
 interface PropertyShowcaseProps {
   onBookConsultation: (propertyTitle: string) => void;
@@ -17,6 +19,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
   const [maxPrice, setMaxPrice] = useState<number>(10000000);
   const [minYield, setMinYield] = useState<number>(0);
   const [selectedProperty, setSelectedProperty] = useState<PropertyItem | null>(null);
+  const shortlist = useShortlist();
 
   const locations = ["ALL LOCATIONS", "DHAHRAN", "MAKKAH", "MEDINA", "RIYADH"];
   const types = ["ALL TYPES", "APARTMENT", "COMMERCIAL", "RESIDENTIAL", "VILLA"];
@@ -282,6 +285,33 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                         Indicative image
                       </span>
 
+                      {/* Shortlist toggle. stopPropagation: the whole card opens the
+                          detail modal, and saving is not opening. */}
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          shortlist.toggle(property.id);
+                        }}
+                        aria-pressed={shortlist.has(property.id)}
+                        aria-label={
+                          shortlist.has(property.id)
+                            ? `Remove ${property.title} from your shortlist`
+                            : `Save ${property.title} to your shortlist`
+                        }
+                        className={`absolute top-3 right-3 z-10 flex h-10 w-10 items-center justify-center rounded-full border backdrop-blur-md transition-colors ${
+                          shortlist.has(property.id)
+                            ? "border-[#10E784] bg-[#10E784]/20 text-[#10E784]"
+                            : "border-white/20 bg-[#0A0D0C]/70 text-white hover:border-[#10E784] hover:text-[#10E784]"
+                        }`}
+                      >
+                        {shortlist.has(property.id) ? (
+                          <BookmarkCheck className="h-5 w-5" aria-hidden="true" />
+                        ) : (
+                          <Bookmark className="h-5 w-5" aria-hidden="true" />
+                        )}
+                      </button>
+
                       {/* Badges */}
                       <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
                         {property.featured && (
@@ -351,6 +381,8 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
         onClose={() => setSelectedProperty(null)}
         onBookConsultation={onBookConsultation}
       />
+
+      <ShortlistBar />
     </section>
   );
 };

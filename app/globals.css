@@ -353,6 +353,9 @@ h1, h2, h3, h4, h5, h6 {
 .is-revealed .journey-dot { border-color: #10e784; box-shadow: 0 0 18px rgba(16, 231, 132, 0.45); }
 .is-revealed .journey-dot__num { color: #10e784; }
 
+/* The cookie banner owns the bottom of the screen until it is answered. */
+body:has([data-consent-banner]) .shortlist-bar { display: none; }
+
 /* Height-auto accordion: grid rows animate where height:auto cannot. */
 .accordion-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
 .accordion-panel > * { overflow: hidden; visibility: hidden; transition: visibility 0s linear 0.35s; }

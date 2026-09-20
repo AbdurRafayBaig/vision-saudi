@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Reveal } from "@/components/ui/Reveal";
 import { Modal } from "@/components/ui/Modal";
 import { Button } from "@/components/ui/Button";
-import { Input, Textarea } from "@/components/ui/FormInput";
+import { LeadFields } from "@/components/forms/LeadFields";
 import { useContactSubmit } from "@/lib/useContactSubmit";
 import { ConsentFields } from "@/components/forms/ConsentFields";
 import { AnimatedCheck } from "@/components/ui/AnimatedCheck";
@@ -345,52 +345,10 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
             {step === 3 && (
               <div key="step3" className="anim-rise-in">
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <Input
-                      label="Full Name *"
-                      required
-                      placeholder="e.g. Alexander Vance"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    />
-                    <Input
-                      label="Corporate Email *"
-                      type="email"
-                      required
-                      placeholder="name@company.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <Input
-                      label="Phone / WhatsApp *"
-                      required
-                      placeholder="+966 50 000 0000"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    />
-                    <Input
-                      label="Company / Entity Name"
-                      placeholder="e.g. Apex Global Enterprise"
-                      value={formData.company}
-                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    />
-                  </div>
-
-                  <Input
-                    label="Country of Origin"
-                    placeholder="e.g. United Kingdom / UAE / USA"
-                    value={formData.country}
-                    onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                  />
-
-                  <Textarea
-                    label="Overview of Strategic Objectives (Optional)"
-                    placeholder="Share specific activities, partner requirements, or questions for senior strategists."
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  <LeadFields
+                    compact
+                    value={formData}
+                    onChange={(patch) => setFormData({ ...formData, ...patch })}
                   />
 
                   <ConsentFields consent={consent} onConsentChange={setConsent} website={website} onWebsiteChange={setWebsite} />

@@ -12,6 +12,12 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Isolated E2E build output, test artifacts, and local-only folders
+    ".next-e2e/**",
+    "playwright-report/**",
+    "test-results/**",
+    "_archive/**",
+    ".jetro/**",
   ]),
 ]);
 

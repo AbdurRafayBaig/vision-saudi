@@ -29,10 +29,10 @@ export const MASTER_PROPERTIES: PropertyItem[] = [
     propertyArea: "12,500 m²",
     buildingArea: "28,000 m²",
     featured: true,
-    image: "/images/properties/saudi_commercial_tower_1_1789299197392.png",
+    image: "/images/properties/saudi_commercial_tower_1_1789299197392.webp",
     gallery: [
-      "/images/properties/saudi_commercial_tower_1_1789299197392.png",
-      "/images/hero-riyadh.png",
+      "/images/properties/saudi_commercial_tower_1_1789299197392.webp",
+      "/images/corporateBusinessServices.webp",
       "/images/service-realestate.png",
     ],
     description: "Grade-A corporate office compound located in prime Olaya commercial corridor. Designed for international enterprise headquarters with full MISA & Ministry compliance.",
@@ -50,10 +50,10 @@ export const MASTER_PROPERTIES: PropertyItem[] = [
     propertyArea: "145 m²",
     buildingArea: "185 m²",
     featured: true,
-    image: "/images/properties/saudi_luxury_compound_1_1789299138290.png",
+    image: "/images/properties/saudi_luxury_compound_1_1789299138290.webp",
     gallery: [
-      "/images/properties/saudi_luxury_compound_1_1789299138290.png",
-      "/images/properties/sheet_0_0.jpg",
+      "/images/properties/saudi_luxury_compound_1_1789299138290.webp",
+      "/images/properties/sheet_0_0.webp",
       "/images/properties/sheet_0_1.jpg",
     ],
     description: "Modern luxury apartment compound situated in North Riyadh, featuring private balconies, smart home systems, and resort-style amenities.",
@@ -71,10 +71,10 @@ export const MASTER_PROPERTIES: PropertyItem[] = [
     propertyArea: "150 m²",
     buildingArea: "190 m²",
     featured: true,
-    image: "/images/properties/sheet_0_0.jpg",
+    image: "/images/properties/sheet_0_0.webp",
     gallery: [
-      "/images/properties/sheet_0_0.jpg",
-      "/images/properties/saudi_luxury_compound_1_1789299138290.png",
+      "/images/properties/sheet_0_0.webp",
+      "/images/properties/saudi_luxury_compound_1_1789299138290.webp",
       "/images/properties/sheet_0_1.jpg",
     ],
     description: "Contemporary residential compound offering modern executive apartments with dedicated parking and lush landscaped courtyards.",
@@ -95,8 +95,8 @@ export const MASTER_PROPERTIES: PropertyItem[] = [
     image: "/images/properties/sheet_0_1.jpg",
     gallery: [
       "/images/properties/sheet_0_1.jpg",
-      "/images/properties/sheet_0_0.jpg",
-      "/images/properties/sheet_0_2.jpg",
+      "/images/properties/sheet_0_0.webp",
+      "/images/properties/sheet_0_2.webp",
     ],
     description: "Exclusive residential residence in Al Narjis district, featuring 3-bedroom luxury layouts tailored for foreign executives and high-yield investors.",
     highlights: ["170 m² Spacious Layout", "Al Narjis District", "High Corporate Tenant Demand", "REGA Compliant Leasing"]
@@ -113,11 +113,11 @@ export const MASTER_PROPERTIES: PropertyItem[] = [
     propertyArea: "180 m²",
     buildingArea: "220 m²",
     featured: false,
-    image: "/images/properties/sheet_0_2.jpg",
+    image: "/images/properties/sheet_0_2.webp",
     gallery: [
-      "/images/properties/sheet_0_2.jpg",
+      "/images/properties/sheet_0_2.webp",
       "/images/properties/sheet_0_3.jpg",
-      "/images/properties/sheet_1_0.jpg",
+      "/images/properties/sheet_1_0.webp",
     ],
     description: "Strategic investment property near Makkah Central Zone, offering high seasonal rental returns during Umrah and Hajj periods.",
     highlights: ["Makkah Central Corridor", "High Hospitality Rental Yield", "Specialized Leasehold Structure", "Full Property Management"]
@@ -137,8 +137,8 @@ export const MASTER_PROPERTIES: PropertyItem[] = [
     image: "/images/properties/sheet_0_3.jpg",
     gallery: [
       "/images/properties/sheet_0_3.jpg",
-      "/images/properties/sheet_1_0.jpg",
-      "/images/properties/saudi_luxury_villas_1_1789299253981.png",
+      "/images/properties/sheet_1_0.webp",
+      "/images/properties/saudi_luxury_villas_1_1789299253981.webp",
     ],
     description: "Upcoming master-planned residential community featuring modern luxury townhouses and community retail plazas.",
     highlights: ["Master-Planned Gated Community", "Pre-Launch Priority Allocation", "Diriyah Gate Corridor", "Green Building Standard"]
@@ -155,10 +155,10 @@ export const MASTER_PROPERTIES: PropertyItem[] = [
     propertyArea: "533,237 m²",
     buildingArea: "On request",
     featured: false,
-    image: "/images/properties/sheet_1_0.jpg",
+    image: "/images/properties/sheet_1_0.webp",
     gallery: [
-      "/images/properties/sheet_1_0.jpg",
-      "/images/properties/sheet_1_1.jpg",
+      "/images/properties/sheet_1_0.webp",
+      "/images/properties/sheet_1_1.webp",
       "/images/service-realestate.png",
     ],
     description: "Prime urban land master plan parcel suitable for major residential subdivision, mixed-use commercial hubs, and giga-project expansion.",
@@ -176,11 +176,11 @@ export const MASTER_PROPERTIES: PropertyItem[] = [
     propertyArea: "400 m²",
     buildingArea: "520 m²",
     featured: false,
-    image: "/images/properties/sheet_1_1.jpg",
+    image: "/images/properties/sheet_1_1.webp",
     gallery: [
-      "/images/properties/sheet_1_1.jpg",
-      "/images/properties/saudi_luxury_villas_1_1789299253981.png",
-      "/images/properties/sheet_1_2.jpg",
+      "/images/properties/sheet_1_1.webp",
+      "/images/properties/saudi_luxury_villas_1_1789299253981.webp",
+      "/images/properties/sheet_1_2.webp",
     ],
     description: "High-end standalone luxury villa development with private swimming pool, internal elevator, and rooftop entertainment terrace.",
     highlights: ["Standalone Luxury Villa", "Private Pool & Elevator", "Al Yasmin District", "Freehold Ownership Structure"]
@@ -197,11 +197,11 @@ export const MASTER_PROPERTIES: PropertyItem[] = [
     propertyArea: "350 m²",
     buildingArea: "420 m²",
     featured: false,
-    image: "/images/properties/saudi_luxury_villas_1_1789299253981.png",
+    image: "/images/properties/saudi_luxury_villas_1_1789299253981.webp",
     gallery: [
-      "/images/properties/saudi_luxury_villas_1_1789299253981.png",
-      "/images/properties/sheet_1_1.jpg",
-      "/images/properties/sheet_1_2.jpg",
+      "/images/properties/saudi_luxury_villas_1_1789299253981.webp",
+      "/images/properties/sheet_1_1.webp",
+      "/images/properties/sheet_1_2.webp",
     ],
     description: "Contemporary villa collection featuring sleek modern stone facades, double-height ceilings, and energy-efficient climate design.",
     highlights: ["350 m² Plot Area", "Double-Height Ceilings", "Smart Climate Automation", "SAR 4M Premium Residency Eligible"]
@@ -218,11 +218,11 @@ export const MASTER_PROPERTIES: PropertyItem[] = [
     propertyArea: "433 m²",
     buildingArea: "560 m²",
     featured: false,
-    image: "/images/properties/sheet_1_2.jpg",
+    image: "/images/properties/sheet_1_2.webp",
     gallery: [
-      "/images/properties/sheet_1_2.jpg",
+      "/images/properties/sheet_1_2.webp",
       "/images/properties/sheet_1_3.jpg",
-      "/images/properties/saudi_luxury_villas_1_1789299253981.png",
+      "/images/properties/saudi_luxury_villas_1_1789299253981.webp",
     ],
     description: "Fully sold out luxury villa project recognized for its exceptional building quality, generous floor plans, and strong capital growth.",
     highlights: ["Fully Sold Out Project", "100% Occupancy Track Record", "433 m² Land Footprint", "Verified Benchmark Asset"]
@@ -243,7 +243,7 @@ export const MASTER_PROPERTIES: PropertyItem[] = [
     gallery: [
       "/images/properties/sheet_1_3.jpg",
       "/images/service-residency.png",
-      "/images/properties/sheet_1_2.jpg",
+      "/images/properties/sheet_1_2.webp",
     ],
     description: "Popular duplex villa development offering efficient luxury living for modern families and private rental portfolios.",
     highlights: ["Sold Out Portfolio", "275 m² Plot Size", "High Secondary Market Value", "REGA Title Attestation"]
@@ -263,8 +263,8 @@ export const MASTER_PROPERTIES: PropertyItem[] = [
     image: "/images/service-residency.png",
     gallery: [
       "/images/service-residency.png",
-      "/images/properties/saudi_luxury_villas_1_1789299253981.png",
-      "/images/properties/sheet_1_1.jpg",
+      "/images/properties/saudi_luxury_villas_1_1789299253981.webp",
+      "/images/properties/sheet_1_1.webp",
     ],
     description: "Gated community of luxury villas delivered with ultra-premium finishing, smart home integration, and private security.",
     highlights: ["Sold Out Luxury Community", "Private Security Gated", "Smart Home Standard", "High Yield Historic Return"]
@@ -281,11 +281,11 @@ export const MASTER_PROPERTIES: PropertyItem[] = [
     propertyArea: "165 m²",
     buildingArea: "195 m²",
     featured: false,
-    image: "/images/service-experience.png",
+    image: "/images/service-experience.webp",
     gallery: [
-      "/images/service-experience.png",
-      "/images/properties/sheet_0_2.jpg",
-      "/images/partners-header.png",
+      "/images/service-experience.webp",
+      "/images/properties/sheet_0_2.webp",
+      "/images/partners-header.webp",
     ],
     description: "Completed residential compound in Al-Madinah Al-Munawwarah catering to pilgrimage visitors and corporate hospitality tenants.",
     highlights: ["Medina Holy City Location", "Sold Out Hospitality Asset", "High Seasonal Rental Yields", "Regulatory Advisory Portfolio"]
@@ -302,11 +302,11 @@ export const MASTER_PROPERTIES: PropertyItem[] = [
     propertyArea: "160 m²",
     buildingArea: "190 m²",
     featured: false,
-    image: "/images/partners-header.png",
+    image: "/images/partners-header.webp",
     gallery: [
-      "/images/partners-header.png",
-      "/images/properties/saudi_luxury_compound_1_1789299138290.png",
-      "/images/properties/sheet_0_0.jpg",
+      "/images/partners-header.webp",
+      "/images/properties/saudi_luxury_compound_1_1789299138290.webp",
+      "/images/properties/sheet_0_0.webp",
     ],
     description: "Western-style executive compound in Dhahran Eastern Province, built to international housing standards for energy & tech executives.",
     highlights: ["Dhahran Eastern Province", "Sold Out Executive Compound", "Aramco & Energy Corridor", "Premium Facility Operations"]

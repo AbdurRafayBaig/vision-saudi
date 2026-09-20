@@ -82,7 +82,7 @@ export const MASTER_ECOSYSTEM_VECTORS: EcosystemVector[] = [
       "Residential Property Investment Analysis",
       "Holy Cities (Makkah & Madinah) Property Guidance"
     ],
-    partnerHighlight: "Al Sulaiman Real Estate Strategic Network",
+    partnerHighlight: "Riyadh & Jeddah commercial real estate network",
     iconName: "Building"
   },
   {

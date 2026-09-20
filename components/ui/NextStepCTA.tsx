@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { ContactFormModal } from "@/components/forms/ContactFormModal";
@@ -39,7 +38,7 @@ export function NextStepCTA({
 
   return (
     <>
-      <section className="bg-white dark:bg-[#101312] text-slate-900 dark:text-white py-[var(--space-section-lg)] relative overflow-hidden border-t border-slate-200 dark:border-white/10 transition-colors duration-300">
+      <section className="bg-[#101312] text-white py-[var(--space-section-lg)] relative overflow-hidden border-t border-white/10 transition-colors duration-300">
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -48,7 +47,7 @@ export function NextStepCTA({
             viewport={{ once: true, margin: "-100px" }}
             className="max-w-3xl"
           >
-            <div className="inline-flex items-center gap-2 text-[#059669] dark:text-[#10E784] text-xs font-mono font-semibold tracking-widest uppercase mb-4">
+            <div className="inline-flex items-center gap-2 text-[#10E784] text-xs font-semibold tracking-widest uppercase mb-4">
               <span>VISION SAUDI / {eyebrow}</span>
             </div>
 
@@ -56,7 +55,7 @@ export function NextStepCTA({
               <span className="heading-gradient-light-to-dark block">{headline}</span>
             </h2>
 
-            <p className="text-slate-600 dark:text-[#D8CCB8] text-lg leading-relaxed mb-10 font-light max-w-2xl">
+            <p className="text-[#D8CCB8] text-lg leading-relaxed mb-10 font-light max-w-2xl">
               {subtext}
             </p>
 
@@ -73,7 +72,7 @@ export function NextStepCTA({
               </Button>
 
               {secondaryCtaText && secondaryCtaHref && (
-                <Button variant="ivory" size="lg" href={secondaryCtaHref} className="border border-slate-300 dark:border-white/20 bg-slate-100 dark:bg-white/5 text-slate-900 dark:text-white font-bold">
+                <Button variant="ivory" size="lg" href={secondaryCtaHref} className="border border-white/20 bg-white/5 text-white font-bold">
                   {secondaryCtaText}
                 </Button>
               )}

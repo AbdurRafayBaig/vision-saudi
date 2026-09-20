@@ -18,10 +18,10 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
   const [isOpen, setIsOpen] = useState(isOpenDefault);
 
   return (
-    <div className="border-b border-slate-200 dark:border-white/10 py-4 transition-colors hover:border-[#10E784]/60">
+    <div className="border-b border-white/10 py-4 transition-colors hover:border-[#10E784]/60">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between text-left py-2 focus:outline-none group text-slate-900 dark:text-white font-display font-bold hover:text-[#10E784] transition-colors"
+        className="w-full flex items-center justify-between text-left py-2 focus:outline-none group text-white font-display font-bold hover:text-[#10E784] transition-colors"
         aria-expanded={isOpen}
       >
         <span className="text-base sm:text-lg pr-4">{question}</span>
@@ -40,7 +40,7 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <p className="pt-2 pb-4 text-slate-600 dark:text-[#D8CCB8] text-sm sm:text-base leading-relaxed font-light">
+            <p className="pt-2 pb-4 text-[#D8CCB8] text-sm sm:text-base leading-relaxed font-light">
               {answer}
             </p>
           </motion.div>

@@ -2,7 +2,7 @@ export interface ExperienceItem {
   id: string;
   title: string;
   clientSector: 'Government' | 'Semi-Government' | 'Enterprise' | 'Private Sector';
-  deliveryPartner: 'Delivered through strategic partner SLNEE' | 'Vision Saudi Ecosystem Delivery' | 'AATIQ Ecosystem Delivery' | 'Strategic Partner';
+  deliveryPartner: 'Delivered through strategic partner SLNEE' | 'Vision Saudi Ecosystem Delivery' | 'Strategic Partner';
   summary: string;
   impactMetrics: string[];
   capabilitiesUsed: string[];

@@ -5,6 +5,8 @@ export interface ArticleInsight {
   category: 'Saudi Market Entry' | 'Investment & Real Estate' | 'Regulatory & Policy' | 'Technology';
   readTime: string;
   publishedDate: string;
+  /** ISO 8601 (month precision is fine) for structured data and sitemaps. */
+  publishedISO: string;
   excerpt: string;
   contentMarkdown: string;
 }
@@ -17,10 +19,9 @@ export const MASTER_INSIGHTS: ArticleInsight[] = [
     category: "Saudi Market Entry",
     readTime: "6 min read",
     publishedDate: "September 2026",
+    publishedISO: "2026-09",
     excerpt: "Why obtaining a Commercial Registration (CR) is only 20% of establishing a successful operational footprint in the Kingdom of Saudi Arabia.",
     contentMarkdown: `
-# Navigating Saudi Market Entry in 2026: Beyond Company Formation
-
 Entering the Kingdom of Saudi Arabia represents one of the most compelling commercial expansion opportunities in the global economy. Powered by Vision 2030 initiatives, massive infrastructure expenditure, and regulatory modernization, foreign direct investment into Riyadh and Jeddah continues to reach historic highs.
 
 However, international corporate leadership frequently underestimates the operational transition that occurs *after* corporate registration.
@@ -47,10 +48,9 @@ A Saudi entity on paper cannot sponsor employee visas, execute commercial lease 
     category: "Regulatory & Policy",
     readTime: "8 min read",
     publishedDate: "August 2026",
+    publishedISO: "2026-08",
     excerpt: "An in-depth evaluation of Investor, Real Estate Owner, Special Talent, and Entrepreneur Premium Residency categories.",
     contentMarkdown: `
-# The Strategic Investor's Guide to Saudi Premium Residency
-
 Saudi Arabia's Premium Residency Center (PRC) has established a competitive framework designed to attract global capital, executive leadership, entrepreneurs, and high-net-worth investors.
 
 ## Key Residency Pathways Overview

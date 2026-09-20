@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { ContactFormModal } from "@/components/forms/ContactFormModal";
-import { ArrowUpRight, CheckCircle2, ChevronDown } from "lucide-react";
+import { ArrowUpRight, ChevronDown } from "lucide-react";
 
 const ecosystemCategories = [
   {
@@ -44,10 +44,10 @@ export default function EcosystemSection() {
   const [contactModalOpen, setContactModalOpen] = useState(false);
 
   return (
-    <section className="bg-slate-50 dark:bg-[#0A0D0C] text-slate-900 dark:text-white py-[var(--space-section-lg)] border-b border-slate-200 dark:border-white/10 relative overflow-hidden transition-colors duration-300">
+    <section className="bg-[#0A0D0C] text-white py-[var(--space-section-lg)] border-b border-white/10 relative overflow-hidden transition-colors duration-300">
       {/* Ambient background glows */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/3 left-0 w-[500px] h-[500px] rounded-full bg-[#10E784]/10 blur-[150px]" />
+        <div className="absolute top-1/3 left-0 w-[500px] h-[500px] rounded-full bg-[#10E784]/5 blur-[150px]" />
       </div>
 
       <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative z-10">
@@ -63,13 +63,13 @@ export default function EcosystemSection() {
             <span className="heading-gradient-light-to-dark block">Your CR opens the door.</span>
             <span className="green-gradient-text block font-sans">We take you further.</span>
           </h2>
-          <p className="text-slate-600 dark:text-[#D8CCB8] text-lg leading-relaxed font-light">
-            Setting up a Saudi legal entity shouldn't leave you searching for another provider every time the business needs something. Six core commercial capabilities, one unified platform.
+          <p className="text-[#D8CCB8] text-lg leading-relaxed font-light">
+            Setting up a Saudi legal entity shouldn&apos;t leave you searching for another provider every time the business needs something. Six core commercial capabilities, one unified platform.
           </p>
         </motion.div>
 
         {/* Ecosystem Categories — Typography & Glass-led Accordion */}
-        <div className="border border-slate-200 dark:border-white/10 rounded-3xl overflow-hidden bg-white dark:bg-white/[0.02] backdrop-blur-xl p-4 sm:p-6 shadow-xl">
+        <div className="border border-white/10 rounded-3xl overflow-hidden bg-white/[0.02] backdrop-blur-xl p-4 sm:p-6 shadow-xl">
           {ecosystemCategories.map((category, idx) => {
             const isActive = activeIndex === idx;
             return (
@@ -83,11 +83,11 @@ export default function EcosystemSection() {
                   ease: [0.16, 1, 0.3, 1],
                 }}
                 viewport={{ once: true, margin: "-30px" }}
-                className="border-b border-slate-200 dark:border-white/10 last:border-b-0"
+                className="border-b border-white/10 last:border-b-0"
               >
                 <button
                   onClick={() => setActiveIndex(isActive ? null : idx)}
-                  className="w-full py-6 px-4 flex items-center justify-between text-left group transition-all duration-300 rounded-2xl hover:bg-emerald-500/5 dark:hover:bg-white/[0.03]"
+                  className="w-full py-6 px-4 flex items-center justify-between text-left group transition-all duration-300 rounded-2xl hover:bg-white/[0.03]"
                 >
                   <div className="flex items-center gap-5">
                     <span className="text-sm font-mono text-[#10E784] font-bold w-6">
@@ -95,14 +95,14 @@ export default function EcosystemSection() {
                     </span>
                     <h3
                       className={`font-display text-xl lg:text-2xl font-bold transition-colors duration-300 ${
-                        isActive ? "text-[#10E784]" : "text-slate-900 dark:text-white group-hover:text-[#10E784]"
+                        isActive ? "text-[#10E784]" : "text-white group-hover:text-[#10E784]"
                       }`}
                     >
                       {category.name}
                     </h3>
                   </div>
 
-                  <div className={`w-9 h-9 rounded-full border flex items-center justify-center transition-all duration-300 ${isActive ? "rotate-180 bg-[#10E784]/20 border-[#10E784] text-[#10E784]" : "border-slate-300 dark:border-white/10 text-slate-500 dark:text-[#B9B3A8] group-hover:border-[#10E784] group-hover:text-[#10E784]"}`}>
+                  <div className={`w-9 h-9 rounded-full border flex items-center justify-center transition-all duration-300 ${isActive ? "rotate-180 bg-[#10E784]/20 border-[#10E784] text-[#10E784]" : "border-white/10 text-[#B9B3A8] group-hover:border-[#10E784] group-hover:text-[#10E784]"}`}>
                     <ChevronDown className="h-4 w-4" />
                   </div>
                 </button>
@@ -117,8 +117,8 @@ export default function EcosystemSection() {
                       className="overflow-hidden"
                     >
                       <div className="pl-6 sm:pl-12 pr-4 sm:pr-6 pb-6 pt-2">
-                        <div className="p-6 bg-slate-50 dark:bg-white/[0.04] border border-slate-200 dark:border-white/10 rounded-2xl shadow-inner flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-                          <p className="text-slate-600 dark:text-[#D8CCB8] text-base leading-relaxed font-light max-w-2xl">
+                        <div className="p-6 bg-white/[0.04] border border-white/10 rounded-2xl shadow-inner flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+                          <p className="text-[#D8CCB8] text-base leading-relaxed font-light max-w-2xl">
                             {category.description}
                           </p>
                           <Button

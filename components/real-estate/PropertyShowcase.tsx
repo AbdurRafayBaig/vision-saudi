@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { MapPin, Building, RotateCcw, Filter, ChevronRight, SlidersHorizontal } from "lucide-react";
+import { MapPin, Building, RotateCcw, SlidersHorizontal } from "lucide-react";
 import { MASTER_PROPERTIES, PropertyItem } from "@/data/properties";
 import { PropertyDetailModal } from "./PropertyDetailModal";
 
@@ -63,17 +63,17 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
   };
 
   return (
-    <section id="properties-showcase" className="py-16 bg-slate-50 dark:bg-[#0A0D0C] text-slate-900 dark:text-white relative transition-colors duration-400">
+    <section id="properties-showcase" className="py-16 bg-[#0A0D0C] text-white relative transition-colors duration-400">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <p className="text-[#059669] dark:text-[#10E784] text-xs font-mono uppercase tracking-widest mb-3 font-bold">
+          <p className="text-[#10E784] text-xs uppercase tracking-widest mb-3 font-bold">
             Real Estate Portfolio
           </p>
-          <h2 className="font-display text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white tracking-tight mb-4 heading-gradient-light-to-dark">
+          <h2 className="font-display text-4xl sm:text-5xl font-bold text-white tracking-tight mb-4 heading-gradient-light-to-dark">
             Properties
           </h2>
-          <p className="text-slate-600 dark:text-[#94A3B8] text-base leading-relaxed font-light">
+          <p className="text-[#94A3B8] text-base leading-relaxed font-light">
             Residential, commercial and investment opportunities across the Kingdom, assessed with specialist partners.
           </p>
         </div>
@@ -81,15 +81,15 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
         {/* Layout Grid: Left Sidebar Filters + Right Property Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Sidebar: Filter Panel */}
-          <div className="lg:col-span-3 bg-white dark:bg-[#101312] border border-slate-200 dark:border-white/15 rounded-3xl p-6 shadow-xl dark:shadow-2xl space-y-6 sticky top-28 text-slate-900 dark:text-white">
-            <div className="flex items-center justify-between pb-4 border-b border-slate-200 dark:border-white/10">
-              <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#059669] dark:text-[#10E784] uppercase tracking-wider">
-                <SlidersHorizontal className="h-4 w-4 text-[#059669] dark:text-[#10E784]" />
+          <div className="lg:col-span-3 bg-[#101312] border border-white/15 rounded-3xl p-6 shadow-2xl space-y-6 sticky top-28 text-white">
+            <div className="flex items-center justify-between pb-4 border-b border-white/10">
+              <div className="flex items-center gap-2 text-xs font-bold text-[#10E784] uppercase tracking-wider">
+                <SlidersHorizontal className="h-4 w-4 text-[#10E784]" />
                 <span>FILTER PROPERTIES</span>
               </div>
               <button
                 onClick={resetFilters}
-                className="text-[11px] font-mono text-slate-500 dark:text-[#94A3B8] hover:text-slate-900 dark:hover:text-white transition-colors flex items-center gap-1 cursor-pointer"
+                className="text-[11px] font-mono text-[#94A3B8] hover:text-white transition-colors flex items-center gap-1 cursor-pointer"
               >
                 <RotateCcw className="h-3 w-3" />
                 <span>RESET</span>
@@ -98,7 +98,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
 
             {/* LOCATION FILTER */}
             <div className="space-y-2.5">
-              <span className="text-[11px] font-mono font-bold text-slate-500 dark:text-[#94A3B8] uppercase tracking-wider block">
+              <span className="text-[11px] font-bold text-[#94A3B8] uppercase tracking-wider block">
                 LOCATION
               </span>
               <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1">
@@ -111,8 +111,8 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                       onClick={() => setSelectedLocation(locKey)}
                       className={`w-full text-left px-3.5 py-2 rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${
                         isSelected
-                          ? "bg-[#10E784]/20 text-[#047857] dark:text-[#10E784] border border-[#10E784] font-semibold shadow-sm"
-                          : "bg-slate-100 dark:bg-white/[0.03] text-slate-600 dark:text-[#94A3B8] hover:bg-slate-200 dark:hover:bg-white/[0.08] hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-white/5"
+                          ? "bg-[#10E784]/20 text-[#10E784] border border-[#10E784] font-semibold shadow-sm"
+                          : "bg-white/[0.03] text-[#94A3B8] hover:bg-white/[0.08] hover:text-white border border-white/5"
                       }`}
                     >
                       {loc}
@@ -123,8 +123,8 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
             </div>
 
             {/* PROPERTY TYPE FILTER */}
-            <div className="space-y-2.5 pt-2 border-t border-slate-200 dark:border-white/10">
-              <span className="text-[11px] font-mono font-bold text-slate-500 dark:text-[#94A3B8] uppercase tracking-wider block">
+            <div className="space-y-2.5 pt-2 border-t border-white/10">
+              <span className="text-[11px] font-bold text-[#94A3B8] uppercase tracking-wider block">
                 PROPERTY TYPE
               </span>
               <div className="space-y-1.5">
@@ -137,8 +137,8 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                       onClick={() => setSelectedType(typeKey)}
                       className={`w-full text-left px-3.5 py-2 rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${
                         isSelected
-                          ? "bg-[#10E784]/20 text-[#047857] dark:text-[#10E784] border border-[#10E784] font-semibold shadow-sm"
-                          : "bg-slate-100 dark:bg-white/[0.03] text-slate-600 dark:text-[#94A3B8] hover:bg-slate-200 dark:hover:bg-white/[0.08] hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-white/5"
+                          ? "bg-[#10E784]/20 text-[#10E784] border border-[#10E784] font-semibold shadow-sm"
+                          : "bg-white/[0.03] text-[#94A3B8] hover:bg-white/[0.08] hover:text-white border border-white/5"
                       }`}
                     >
                       {type}
@@ -149,8 +149,8 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
             </div>
 
             {/* STATUS FILTER */}
-            <div className="space-y-2.5 pt-2 border-t border-slate-200 dark:border-white/10">
-              <span className="text-[11px] font-mono font-bold text-slate-500 dark:text-[#94A3B8] uppercase tracking-wider block">
+            <div className="space-y-2.5 pt-2 border-t border-white/10">
+              <span className="text-[11px] font-bold text-[#94A3B8] uppercase tracking-wider block">
                 STATUS
               </span>
               <div className="space-y-1.5">
@@ -162,8 +162,8 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                       onClick={() => setSelectedStatus(st)}
                       className={`w-full text-left px-3.5 py-2 rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${
                         isSelected
-                          ? "bg-[#10E784]/20 text-[#047857] dark:text-[#10E784] border border-[#10E784] font-semibold shadow-sm"
-                          : "bg-slate-100 dark:bg-white/[0.03] text-slate-600 dark:text-[#94A3B8] hover:bg-slate-200 dark:hover:bg-white/[0.08] hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-white/5"
+                          ? "bg-[#10E784]/20 text-[#10E784] border border-[#10E784] font-semibold shadow-sm"
+                          : "bg-white/[0.03] text-[#94A3B8] hover:bg-white/[0.08] hover:text-white border border-white/5"
                       }`}
                     >
                       {st}
@@ -174,10 +174,10 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
             </div>
 
             {/* MAX PRICE SLIDER */}
-            <div className="space-y-2 pt-2 border-t border-slate-200 dark:border-white/10">
+            <div className="space-y-2 pt-2 border-t border-white/10">
               <div className="flex justify-between text-[11px] font-mono">
-                <span className="text-slate-500 dark:text-[#94A3B8] font-bold">MAX PRICE</span>
-                <span className="text-[#059669] dark:text-[#10E784] font-semibold">
+                <span className="text-[#94A3B8] font-bold">MAX PRICE</span>
+                <span className="text-[#10E784] font-semibold">
                   {maxPrice >= 10000000 ? "SAR 10,000,000+" : `SAR ${maxPrice.toLocaleString()}`}
                 </span>
               </div>
@@ -188,19 +188,19 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                 step="500000"
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(Number(e.target.value))}
-                className="w-full accent-[#10E784] bg-slate-200 dark:bg-white/10 rounded-lg cursor-pointer h-2"
+                className="w-full accent-[#10E784] bg-white/10 rounded-lg cursor-pointer h-2"
               />
-              <div className="flex justify-between text-[10px] font-mono text-slate-500 dark:text-[#94A3B8]">
+              <div className="flex justify-between text-[10px] font-mono text-[#94A3B8]">
                 <span>SAR 0</span>
                 <span>SAR 10,000,000+</span>
               </div>
             </div>
 
             {/* MIN YIELD SLIDER */}
-            <div className="space-y-2 pt-2 border-t border-slate-200 dark:border-white/10">
+            <div className="space-y-2 pt-2 border-t border-white/10">
               <div className="flex justify-between text-[11px] font-mono">
-                <span className="text-slate-500 dark:text-[#94A3B8] font-bold">MIN YIELD</span>
-                <span className="text-[#059669] dark:text-[#10E784] font-semibold">{minYield}%</span>
+                <span className="text-[#94A3B8] font-bold">MIN YIELD</span>
+                <span className="text-[#10E784] font-semibold">{minYield}%</span>
               </div>
               <input
                 type="range"
@@ -209,13 +209,13 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                 step="1"
                 value={minYield}
                 onChange={(e) => setMinYield(Number(e.target.value))}
-                className="w-full accent-[#10E784] bg-slate-200 dark:bg-white/10 rounded-lg cursor-pointer h-2"
+                className="w-full accent-[#10E784] bg-white/10 rounded-lg cursor-pointer h-2"
               />
-              <div className="flex justify-between text-[10px] font-mono text-slate-500 dark:text-[#94A3B8]">
+              <div className="flex justify-between text-[10px] font-mono text-[#94A3B8]">
                 <span>0%</span>
                 <span>12%</span>
               </div>
-              <p className="text-[10px] text-slate-400 dark:text-[#94A3B8] leading-normal font-light">
+              <p className="text-[10px] text-[#94A3B8] leading-normal font-light">
                 Price and yield narrow the list where a figure has been confirmed.
               </p>
             </div>
@@ -225,14 +225,14 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
           <div className="lg:col-span-9 space-y-6">
             {/* Counter Header */}
             <div className="flex items-center justify-between px-2">
-              <span className="text-xs font-mono text-[#059669] dark:text-[#10E784] uppercase tracking-wider font-bold">
-                SHOWING <strong className="text-slate-900 dark:text-white font-bold">{filteredProperties.length}</strong> OF {MASTER_PROPERTIES.length} PROPERTIES
+              <span className="text-xs text-[#10E784] uppercase tracking-wider font-bold">
+                SHOWING <strong className="text-white font-bold">{filteredProperties.length}</strong> OF {MASTER_PROPERTIES.length} PROPERTIES
               </span>
 
               {filteredProperties.length < MASTER_PROPERTIES.length && (
                 <button
                   onClick={resetFilters}
-                  className="text-xs font-mono text-[#059669] dark:text-[#10E784] hover:underline"
+                  className="text-xs font-mono text-[#10E784] hover:underline"
                 >
                   Show All Properties
                 </button>
@@ -241,9 +241,9 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
 
             {/* Properties Cards Grid */}
             {filteredProperties.length === 0 ? (
-              <div className="p-12 text-center bg-white dark:bg-[#101312] border border-slate-200 dark:border-white/10 rounded-3xl space-y-4 shadow-md">
-                <p className="text-slate-900 dark:text-white text-lg font-display font-medium">No properties match your active filter criteria.</p>
-                <p className="text-slate-500 dark:text-[#94A3B8] text-sm font-light">Try expanding your price range, location, or yield filters.</p>
+              <div className="p-12 text-center bg-[#101312] border border-white/10 rounded-3xl space-y-4 shadow-md">
+                <p className="text-white text-lg font-display font-medium">No properties match your active filter criteria.</p>
+                <p className="text-[#94A3B8] text-sm font-light">Try expanding your price range, location, or yield filters.</p>
                 <button
                   onClick={resetFilters}
                   className="px-6 py-2.5 rounded-full btn-neon-green text-xs font-semibold uppercase tracking-wider transition-all"
@@ -261,7 +261,16 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
                     onClick={() => setSelectedProperty(property)}
-                    className="group bg-white dark:bg-[#101312] border border-slate-200 dark:border-white/15 rounded-3xl overflow-hidden hover:border-[#10E784] hover:shadow-xl dark:hover:shadow-2xl hover:shadow-[#10E784]/20 transition-all duration-300 flex flex-col justify-between cursor-pointer text-slate-900 dark:text-white"
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`View details for ${property.title}`}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        setSelectedProperty(property);
+                      }
+                    }}
+                    className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#10E784] group bg-[#101312] border border-white/15 rounded-3xl overflow-hidden hover:border-[#10E784] hover:shadow-2xl hover:shadow-[#10E784]/20 transition-all duration-300 flex flex-col justify-between cursor-pointer text-white"
                   >
                     {/* Card Image Header */}
                     <div className="relative aspect-[16/10] overflow-hidden bg-slate-900">
@@ -276,11 +285,11 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                       {/* Badges */}
                       <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
                         {property.featured && (
-                          <span className="px-2.5 py-1 bg-slate-950/85 dark:bg-[#0A0D0C]/85 border border-[#10E784]/60 text-[#10E784] text-[9px] font-mono font-bold uppercase tracking-wider rounded backdrop-blur-md">
+                          <span className="px-2.5 py-1 bg-[#0A0D0C]/85 border border-[#10E784]/60 text-[#10E784] text-[9px] font-bold uppercase tracking-wider rounded backdrop-blur-md">
                             FEATURED
                           </span>
                         )}
-                        <span className="px-2.5 py-1 bg-slate-950/85 dark:bg-[#101312]/85 border border-white/20 text-white text-[9px] font-mono font-bold uppercase tracking-wider rounded backdrop-blur-md">
+                        <span className="px-2.5 py-1 bg-[#101312]/85 border border-white/20 text-white text-[9px] font-bold uppercase tracking-wider rounded backdrop-blur-md">
                           {property.status}
                         </span>
                       </div>
@@ -289,39 +298,39 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                     {/* Card Content Body */}
                     <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                       <div>
-                        <h3 className="text-lg font-display font-bold text-slate-900 dark:text-white group-hover:text-[#059669] dark:group-hover:text-[#10E784] transition-colors mb-1.5">
+                        <h3 className="text-lg font-display font-bold text-white group-hover:text-[#10E784] transition-colors mb-1.5">
                           {property.title}
                         </h3>
 
-                        <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-[#94A3B8]">
+                        <div className="flex items-center gap-2 text-xs text-[#94A3B8]">
                           <span className="flex items-center gap-1">
-                            <MapPin className="h-3 w-3 text-[#059669] dark:text-[#10E784]" />
+                            <MapPin className="h-3 w-3 text-[#10E784]" />
                             {property.location}
                           </span>
                           <span>·</span>
                           <span className="flex items-center gap-1">
-                            <Building className="h-3 w-3 text-[#059669] dark:text-[#10E784]" />
+                            <Building className="h-3 w-3 text-[#10E784]" />
                             {property.type}
                           </span>
                         </div>
                       </div>
 
                       {/* Pricing & Area Metrics */}
-                      <div className="pt-4 border-t border-slate-200 dark:border-white/10 space-y-3">
+                      <div className="pt-4 border-t border-white/10 space-y-3">
                         <div>
-                          <span className="text-[10px] font-mono text-slate-400 dark:text-[#A39B8B] uppercase block">PRICE</span>
-                          <span className="text-sm font-bold font-mono text-[#059669] dark:text-[#10E784]">{property.price}</span>
+                          <span className="text-[10px] text-[#A39B8B] uppercase block">PRICE</span>
+                          <span className="text-sm font-bold font-mono text-[#10E784]">{property.price}</span>
                         </div>
 
                         {(property.propertyArea || property.buildingArea) && (
-                          <div className="grid grid-cols-2 gap-2 text-[10px] font-mono text-slate-500 dark:text-[#A39B8B] pt-1">
+                          <div className="grid grid-cols-2 gap-2 text-[10px] font-mono text-[#A39B8B] pt-1">
                             <div>
-                              <span className="block uppercase text-slate-400 dark:text-white/50">PROPERTY AREA</span>
-                              <span className="text-slate-800 dark:text-white font-medium">{property.propertyArea || "On request"}</span>
+                              <span className="block uppercase text-white/50">PROPERTY AREA</span>
+                              <span className="text-white font-medium">{property.propertyArea || "On request"}</span>
                             </div>
                             <div>
-                              <span className="block uppercase text-slate-400 dark:text-white/50">BUILDING AREA</span>
-                              <span className="text-slate-800 dark:text-white font-medium">{property.buildingArea || "On request"}</span>
+                              <span className="block uppercase text-white/50">BUILDING AREA</span>
+                              <span className="text-white font-medium">{property.buildingArea || "On request"}</span>
                             </div>
                           </div>
                         )}

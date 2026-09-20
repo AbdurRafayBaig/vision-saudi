@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useScroll } from "framer-motion";
 
 const stages = [
   {
@@ -42,10 +42,14 @@ const stages = [
 ];
 
 export default function JourneyNarrative() {
+  const timelineRef = useRef<HTMLDivElement>(null);
+  // 0 when the timeline top reaches 70% down the viewport, 1 when its end passes 55%.
+  const { scrollYProgress } = useScroll({ target: timelineRef, offset: ["start 70%", "end 55%"] });
+
   return (
-    <section className="bg-slate-50 dark:bg-[#0A0D0C] text-slate-900 dark:text-white transition-colors duration-300 py-[var(--space-section-lg)] border-b border-slate-200 dark:border-white/10 relative overflow-hidden">
+    <section className="bg-[#0A0D0C] text-white transition-colors duration-300 py-[var(--space-section-lg)] border-b border-white/10 relative overflow-hidden">
       {/* Background Ambient Glow */}
-      <div className="absolute top-1/3 right-10 w-[450px] h-[450px] rounded-full bg-[#10E784]/10 blur-[130px] pointer-events-none" />
+      <div className="absolute top-1/3 right-10 w-[450px] h-[450px] rounded-full bg-[#10E784]/5 blur-[130px] pointer-events-none" />
 
       <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
         {/* Section Header */}
@@ -60,16 +64,21 @@ export default function JourneyNarrative() {
             <span className="heading-gradient-light-to-dark block">Most firms help you start.</span>
             <span className="green-gradient-text block font-sans">We stay for what comes next.</span>
           </h2>
-          <p className="text-slate-600 dark:text-[#B9B3A8] text-lg leading-relaxed">
+          <p className="text-[#B9B3A8] text-lg leading-relaxed">
             A Saudi company on paper is only the beginning. The real work
             starts when the business needs to operate, connect, and grow.
           </p>
         </motion.div>
 
         {/* Journey Stages */}
-        <div className="relative">
-          {/* Vertical connecting line */}
-          <div className="absolute left-[19px] lg:left-[23px] top-0 bottom-0 w-0.5 bg-slate-200 dark:bg-white/15" />
+        <div ref={timelineRef} className="relative">
+          {/* Vertical connecting line, with a green fill that tracks scroll progress */}
+          <div className="absolute left-[19px] lg:left-[23px] top-0 bottom-0 w-0.5 bg-white/15" />
+          <motion.div
+            aria-hidden="true"
+            style={{ scaleY: scrollYProgress }}
+            className="absolute left-[19px] lg:left-[23px] top-0 bottom-0 w-0.5 origin-top bg-gradient-to-b from-[#10E784] to-[#059669] shadow-[0_0_12px_rgba(16,231,132,0.3)]"
+          />
 
           <div className="flex flex-col gap-0">
             {stages.map((stage, idx) => (
@@ -87,22 +96,35 @@ export default function JourneyNarrative() {
               >
                 {/* Stage number dot */}
                 <div className="absolute left-0 top-8 flex items-center justify-center">
-                  <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border border-slate-300 dark:border-white/20 bg-white dark:bg-[#1A3C2E] flex items-center justify-center group-hover:border-[#10E784] group-hover:shadow-[0_0_15px_rgba(16,231,132,0.4)] transition-all duration-300">
-                    <span className="text-xs lg:text-sm font-bold text-slate-500 dark:text-[#B9B3A8] group-hover:text-[#10E784] transition-colors">
+                  {/* Lights up once the progress line reaches it (dot crosses the middle of the viewport) */}
+                  <motion.div
+                    initial={{ borderColor: "rgba(255,255,255,0.2)", boxShadow: "0 0 0px rgba(16,231,132,0)" }}
+                    whileInView={{ borderColor: "#10E784", boxShadow: "0 0 18px rgba(16,231,132,0.45)" }}
+                    viewport={{ once: true, margin: "0px 0px -45% 0px" }}
+                    transition={{ duration: 0.5 }}
+                    className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border bg-[#1A3C2E] flex items-center justify-center"
+                  >
+                    <motion.span
+                      initial={{ color: "#B9B3A8" }}
+                      whileInView={{ color: "#10E784" }}
+                      viewport={{ once: true, margin: "0px 0px -45% 0px" }}
+                      transition={{ duration: 0.5 }}
+                      className="text-xs lg:text-sm font-bold"
+                    >
                       {stage.number}
-                    </span>
-                  </div>
+                    </motion.span>
+                  </motion.div>
                 </div>
 
                 {/* Content */}
-                <div className="max-w-xl bg-white/60 dark:bg-white/[0.02] p-6 rounded-2xl border border-slate-200/80 dark:border-white/10 hover:border-[#10E784]/50 transition-all duration-300 shadow-sm hover:shadow-md">
-                  <h3 className="font-display text-xl lg:text-2xl font-bold text-slate-900 dark:text-white mb-1 group-hover:text-[#10E784] transition-colors duration-300">
+                <div className="max-w-xl bg-white/[0.02] p-6 rounded-2xl border border-white/10 hover:border-[#10E784]/50 transition-all duration-300 shadow-sm hover:shadow-md">
+                  <h3 className="font-display text-xl lg:text-2xl font-bold text-white mb-1 group-hover:text-[#10E784] transition-colors duration-300">
                     {stage.name}
                   </h3>
-                  <p className="text-[#10E784] text-xs font-mono font-bold tracking-wide mb-3 uppercase">
+                  <p className="text-[#10E784] text-xs font-bold tracking-wide mb-3 uppercase">
                     {stage.headline}
                   </p>
-                  <p className="text-slate-600 dark:text-[#B9B3A8] text-sm leading-relaxed">
+                  <p className="text-[#B9B3A8] text-sm leading-relaxed">
                     {stage.description}
                   </p>
                 </div>

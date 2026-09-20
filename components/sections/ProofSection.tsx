@@ -40,7 +40,7 @@ export default function ProofSection() {
                 <h3 className="font-display text-xl font-bold text-white mb-3 leading-snug">{c.title}</h3>
                 <p className="text-sm text-[#B9B3A8] leading-relaxed mb-6 flex-1">{c.summary}</p>
                 <p className="font-display text-lg font-bold text-[#10E784] mb-4">{c.impactMetrics[0]}</p>
-                <p className="text-xs text-[#64748B] border-t border-white/10 pt-4">{c.deliveryPartner}</p>
+                <p className="text-xs text-[#76839A] border-t border-white/10 pt-4">{c.deliveryPartner}</p>
               </article>
             </TiltCard>
           ))}

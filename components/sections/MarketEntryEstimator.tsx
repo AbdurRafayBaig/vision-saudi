@@ -156,7 +156,7 @@ export default function MarketEntryEstimator() {
               </ul>
             )}
 
-            <p className="text-xs text-[#64748B] mb-6">
+            <p className="text-xs text-[#76839A] mb-6">
               Indicative estimate for a well-prepared applicant. Actual timelines depend on documentation and
               authority processing. Government fees are included in your full plan.
             </p>

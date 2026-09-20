@@ -178,8 +178,16 @@ export default function SaudiMap() {
     if (!touring) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const timer = setInterval(() => {
-      indexRef.current = (indexRef.current + 1) % HUBS.length;
-      setActiveId(HUBS[indexRef.current].id);
+      const next = indexRef.current + 1;
+      // One lap only. Cycling forever rewrites the detail panel under someone
+      // who is still reading it; a single pass is enough to show the map is
+      // interactive, and then it holds still.
+      if (next >= HUBS.length) {
+        setTouring(false);
+        return;
+      }
+      indexRef.current = next;
+      setActiveId(HUBS[next].id);
     }, TOUR_MS);
     return () => clearInterval(timer);
   }, [touring]);

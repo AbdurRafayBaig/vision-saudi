@@ -1,10 +1,11 @@
-@import "tailwindcss";
+/* source(none) turns OFF Tailwind's automatic source detection. Without it the
+   @source lines below are only ADDED to the automatic scan, which still walked
+   build output (.next, .next-e2e) and Playwright artefacts, read binary files
+   as text, and produced class candidates like py-[var(--space-~Y-lg)] — not
+   valid CSS, so the whole stylesheet failed to compile and every page returned
+   500. With source(none) the four directories below are the only sources. */
+@import "tailwindcss" source(none);
 
-/* Scan only our own source. Tailwind's automatic detection walked build output
-   (.next, .next-e2e) and Playwright artefacts, read binary files as text, and
-   produced class candidates like py-[var(--space-~Y-lg)] — which is not valid
-   CSS, so the whole stylesheet failed to compile and every page returned 500.
-   Naming the sources makes that impossible. */
 @source "../app";
 @source "../components";
 @source "../lib";
@@ -195,6 +196,37 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   width: max-content;
   animation: marquee-reverse 35s linear infinite;
+}
+
+/* The answer the estimator exists to give. Without this it snapped between
+   values while the steps below it restaged, so the cause and the effect did
+   not read as connected. */
+@keyframes value-roll {
+  from {
+    opacity: 0;
+    transform: translateY(0.35em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.anim-value-roll {
+  display: inline-block;
+  animation: value-roll 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-value-roll {
+    animation: none;
+  }
+}
+
+/* Set by <PauseOffscreen>. A loop nobody can see should not be running. */
+[data-offscreen="true"] .animate-marquee,
+[data-offscreen="true"] .animate-marquee-reverse {
+  animation-play-state: paused;
 }
 
 @media (hover: hover) {

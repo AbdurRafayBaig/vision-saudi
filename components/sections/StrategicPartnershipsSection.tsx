@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { PauseOffscreen } from "@/components/ui/PauseOffscreen";
 
 // Official logos, sourced from each organisation's own website. Official marks are
 // drawn for light backgrounds and must not be recoloured, so they sit on white tiles.
@@ -58,7 +59,7 @@ export default function StrategicPartnershipsSection() {
         </div>
 
         {/* Partners — the one moving element in this section */}
-        <div className="relative overflow-hidden py-4 mb-20">
+        <PauseOffscreen className="relative overflow-hidden py-4 mb-20">
           <div className="absolute inset-y-0 start-0 w-24 bg-gradient-to-r from-slate-900 to-transparent z-20 pointer-events-none" />
           <div className="absolute inset-y-0 end-0 w-24 bg-gradient-to-l from-slate-900 to-transparent z-20 pointer-events-none" />
           <ul className="animate-marquee items-center gap-6">
@@ -71,7 +72,7 @@ export default function StrategicPartnershipsSection() {
               ))
             )}
           </ul>
-        </div>
+        </PauseOffscreen>
 
         {/* Authorities — static on purpose: one marquee per section is enough motion */}
         <div className="text-center mb-8">

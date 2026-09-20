@@ -150,7 +150,11 @@ export default function MarketEntryEstimator() {
               <p className="text-sm text-[#B9B3A8]">Indicative timeline</p>
             </div>
             <p className="font-display text-4xl sm:text-5xl font-bold text-white mb-8">
-              {result.totalWeeks[0]}–{result.totalWeeks[1]} <span className="text-2xl text-[#94A3B8] font-semibold">weeks</span>
+              {/* key remounts the span so the CSS replays whenever the answer changes */}
+              <span key={`${result.totalWeeks[0]}-${result.totalWeeks[1]}`} className="anim-value-roll">
+                {result.totalWeeks[0]}–{result.totalWeeks[1]}
+              </span>{" "}
+              <span className="text-2xl text-[#94A3B8] font-semibold">weeks</span>
             </p>
 
             {/* Steps build in one by one; the key restarts the sequence whenever an answer changes */}

@@ -16,8 +16,15 @@ export default function Hero() {
   const [cityIndex, setCityIndex] = useState(0);
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let step = 0;
     const timer = setInterval(() => {
-      setCityIndex((prev) => (prev + 1) % CITIES.length);
+      step += 1;
+      setCityIndex(step % CITIES.length);
+      // One pass through the hubs, then it rests on "Saudi Arabia". This is the
+      // page's LCP element: a headline that never stops moving never feels
+      // loaded, and a screen reader re-announces it on every change.
+      if (step >= CITIES.length) clearInterval(timer);
     }, 2200);
     return () => clearInterval(timer);
   }, []);
@@ -61,7 +68,10 @@ export default function Hero() {
             {/* Editorial Headline: "Vision" static + dynamic city */}
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-6 text-white flex flex-wrap items-baseline gap-x-3 sm:gap-x-4">
               <span className="shrink-0">Vision</span>
-              <span className="inline-flex items-baseline relative overflow-hidden h-[1.25em] min-w-max pb-1">
+              {/* The rotating word is decoration. Screen readers get the settled
+                  headline once, instead of "Vision Riyadh… Vision Jeddah…". */}
+              <span className="sr-only">Saudi Arabia</span>
+              <span aria-hidden="true" className="inline-flex items-baseline relative overflow-hidden h-[1.25em] min-w-max pb-1">
                 {/* key remounts the span, which replays the CSS slide-up — no animation library needed */}
                 <span key={CITIES[cityIndex]} className="green-gradient-text inline-block whitespace-nowrap anim-slide-up-in">
                   {CITIES[cityIndex]}

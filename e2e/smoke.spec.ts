@@ -237,3 +237,62 @@ test("inquiry without a phone number is rejected", async ({ request }) => {
   expect(res.status()).toBe(400);
   expect((await res.json()).error).toMatch(/phone/i);
 });
+
+test.describe("wayfinding", () => {
+  test("a service page places itself in a trail and links the other pillars", async ({ page }) => {
+    await page.goto("/services/business-setup");
+
+    const crumbs = page.getByRole("navigation", { name: "Breadcrumb" });
+    await expect(crumbs.getByRole("link", { name: "Home" })).toBeVisible();
+    await expect(crumbs.getByRole("link", { name: "Services" })).toHaveAttribute("href", "/services");
+    await expect(crumbs.getByText("Business Setup & Market Entry")).toHaveAttribute("aria-current", "page");
+
+    // BreadcrumbList is what turns the URL line in a search result into a path.
+    const ld = await page.locator('script[type="application/ld+json"]').allTextContents();
+    expect(ld.some((s) => s.includes("BreadcrumbList"))).toBe(true);
+
+    const related = page.locator("section", { hasText: "What usually comes with this" });
+    await expect(related.getByRole("link", { name: /Real Estate Investment/ })).toBeVisible();
+    // The current pillar should not offer itself.
+    await expect(related.getByRole("link", { name: /Business Setup/ })).toHaveCount(0);
+  });
+
+  test("an article ends with a way forward, not a dead stop", async ({ page }) => {
+    await page.goto("/insights/saudi-market-entry-guide-2026");
+    await expect(page.getByRole("link", { name: /Speak to a strategist/ })).toBeVisible();
+    await expect(
+      page.getByRole("navigation", { name: "More insights" }).getByRole("link").first()
+    ).toBeVisible();
+  });
+
+  test("the homepage navigator lists every service pillar exactly once", async ({ page }) => {
+    await page.goto("/");
+    const nav = page.locator("#services");
+    // Five pillars, rendered twice (desktop list + mobile stack); only one set is visible.
+    for (const title of [
+      "Business Setup & Market Entry",
+      "Corporate & Business Services",
+      "Technology & Digital Infrastructure",
+      "Real Estate Investment & Advisory",
+      "Saudi Premium Residency Pathways",
+    ]) {
+      await expect(nav.getByRole("heading", { name: title, level: 3 }).filter({ visible: true })).toHaveCount(1);
+    }
+  });
+});
+
+test.describe("contact", () => {
+  test("asks for four things up front and keeps the rest optional", async ({ page }) => {
+    await page.goto("/contact");
+    const form = page.locator("form");
+
+    await expect(form.getByLabel("Full Name *")).toBeVisible();
+    await expect(form.getByLabel("Corporate Email *")).toBeVisible();
+    await expect(form.getByLabel("Phone / WhatsApp *")).toBeVisible();
+
+    const company = form.getByLabel("Company / Entity Name");
+    await expect(company).toBeHidden();
+    await form.getByText(/Add detail so we can answer properly/).click();
+    await expect(company).toBeVisible();
+  });
+});

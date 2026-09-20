@@ -97,7 +97,7 @@ export const MASTER_ECOSYSTEM_VECTORS: EcosystemVector[] = [
       "Project-Specific Subcontracting Structures",
       "Cross-Ecosystem Commercial Referral Alignment"
     ],
-    partnerHighlight: "AATIQ Ecosystem Network",
+    partnerHighlight: "Vision Saudi Ecosystem Network",
     iconName: "Users"
   }
 ];

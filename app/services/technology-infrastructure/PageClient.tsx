@@ -5,6 +5,8 @@ import Link from "next/link";
 import { Reveal } from "@/components/ui/Reveal";
 import { PageHero } from "@/components/ui/PageHero";
 import { NextStepCTA } from "@/components/ui/NextStepCTA";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { RelatedServices } from "@/components/ui/RelatedServices";
 import { MASTER_SERVICES } from "@/data/services";
 import { AccordionItem } from "@/components/ui/Accordion";
 import { ContactFormModal } from "@/components/forms/ContactFormModal";
@@ -62,6 +64,8 @@ export default function TechnologyPage() {
         secondaryCtaLabel="Explore Enterprise Systems"
         secondaryCtaHref="#systems"
         />
+
+      <Breadcrumbs trail={[{ label: "Services", href: "/services" }, { label: "Technology & Digital Infrastructure" }]} />
 
       {/* Strategic Technology Partner Attribution Banner */}
       <section className="bg-[#0A0D0C] text-white py-12 border-b border-white/10 relative overflow-hidden transition-colors">
@@ -214,6 +218,8 @@ export default function TechnologyPage() {
       </section>
 
       {/* Next Step CTA */}
+      <RelatedServices currentSlug="technology-infrastructure" />
+
       <NextStepCTA
         eyebrow="Digital Infrastructure"
         headline="Build the technology behind your Saudi growth."

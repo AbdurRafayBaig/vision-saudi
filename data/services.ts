@@ -7,6 +7,8 @@ export interface ServicePillar {
   summary: string;
   heroHeadline: string;
   heroSubheadline: string;
+  /** Card image on the homepage navigator; matches the pillar page's own hero. */
+  image: string;
   journeyStage: 'ESTABLISH' | 'ACTIVATE' | 'OPERATE' | 'CONNECT' | 'GROW';
   capabilities: {
     title: string;
@@ -29,6 +31,7 @@ export const MASTER_SERVICES: ServicePillar[] = [
   {
     id: "business-setup",
     slug: "business-setup",
+    image: "/images/businessSetup.webp",
     number: "01",
     title: "Business Setup & Market Entry",
     tagline: "Build your Saudi presence properly.",
@@ -104,7 +107,7 @@ export const MASTER_SERVICES: ServicePillar[] = [
       {
         step: "05",
         name: "Ecosystem Onboarding",
-        description: "Transitioning entity into AATIQ's ongoing corporate, technology, and real estate ecosystem."
+        description: "Transitioning entity into Vision Saudi's ongoing corporate, technology, and real estate ecosystem."
       }
     ],
     postEstablishmentEcosystem: [
@@ -123,7 +126,7 @@ export const MASTER_SERVICES: ServicePillar[] = [
         answer: "Initial MISA licence approval and CR issuance typically take between 5 to 15 business days depending on documentation readiness and sector activity licensing."
       },
       {
-        question: "Does AATIQ provide post-formation operational support?",
+        question: "Does Vision Saudi provide post-formation operational support?",
         answer: "Yes. Establishment is only stage one. We provide ongoing GRO services, accounting, technology infrastructure, corporate communications, and access to our commercial network."
       }
     ]
@@ -131,6 +134,7 @@ export const MASTER_SERVICES: ServicePillar[] = [
   {
     id: "corporate-services",
     slug: "corporate-services",
+    image: "/images/corporateBusinessServices.webp",
     number: "02",
     title: "Corporate & Business Services",
     tagline: "Everything around the business after establishment.",
@@ -213,6 +217,7 @@ export const MASTER_SERVICES: ServicePillar[] = [
   {
     id: "technology-infrastructure",
     slug: "technology-infrastructure",
+    image: "/images/servicePartnersPic.webp",
     number: "03",
     title: "Technology & Digital Infrastructure",
     tagline: "Infrastructure built for the Kingdom.",
@@ -283,8 +288,8 @@ export const MASTER_SERVICES: ServicePillar[] = [
     ],
     faqs: [
       {
-        question: "What is SLNEE's role in AATIQ's technology offering?",
-        answer: "SLNEE is AATIQ's strategic technology and delivery partner, bringing 16+ years of enterprise software engineering, government implementations, and digital platform delivery."
+        question: "What is SLNEE's role in Vision Saudi's technology offering?",
+        answer: "SLNEE is Vision Saudi's strategic technology and delivery partner, bringing 16+ years of enterprise software engineering, government implementations, and digital platform delivery."
       },
       {
         question: "Are your ERP and invoicing systems ZATCA phase 2 compliant?",
@@ -295,6 +300,7 @@ export const MASTER_SERVICES: ServicePillar[] = [
   {
     id: "real-estate",
     slug: "real-estate",
+    image: "/images/businessServices.webp",
     number: "04",
     title: "Real Estate Investment & Advisory",
     tagline: "Own a piece of what's being built.",
@@ -377,6 +383,7 @@ export const MASTER_SERVICES: ServicePillar[] = [
   {
     id: "premium-residency",
     slug: "premium-residency",
+    image: "/images/aboutHeritagePage.webp",
     number: "05",
     title: "Saudi Premium Residency Pathways",
     tagline: "Make the Kingdom more than a market.",

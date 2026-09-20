@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
+import { MobileActionBar } from "@/components/layout/MobileActionBar";
 import { ConsentAndAnalytics } from "@/components/analytics/ConsentAndAnalytics";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SITE, absoluteUrl } from "@/lib/site-config";
@@ -117,7 +118,7 @@ export default function RootLayout({
           <style>{`.reveal,[style*="opacity:0"],[style*="opacity: 0"]{opacity:1!important;transform:none!important}.svg-draw{animation:none!important;stroke-dashoffset:0!important}.svg-fill-in{animation:none!important;fill-opacity:1!important}`}</style>
         </noscript>
       </head>
-      <body className="min-h-full flex flex-col bg-[#0A0D0C] text-white">
+      <body className="min-h-full flex flex-col bg-[#0A0D0C] text-white pb-16 sm:pb-0">
         <JsonLd data={ORGANIZATION_LD} />
         <Navbar />
         {/* Route changes are React transitions, so this crossfades page content on navigation. */}
@@ -126,6 +127,7 @@ export default function RootLayout({
         </ViewTransition>
         <Footer />
         <WhatsAppButton />
+        <MobileActionBar />
         <ConsentAndAnalytics />
       </body>
     </html>

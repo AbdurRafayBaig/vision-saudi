@@ -77,6 +77,11 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
                 sizes="(max-width: 1024px) 100vw, 60vw"
               />
 
+              {/* The listings are real; these photographs stand in for them. */}
+              <span className="absolute bottom-3 right-3 z-10 rounded bg-[#0A0D0C]/80 px-2.5 py-1 text-xs text-[#D8CCB8] backdrop-blur-md">
+                Indicative image
+              </span>
+
               {/* Status Badge */}
               <div className="absolute top-4 left-4 flex flex-wrap gap-2">
                 {property.featured && (

@@ -9,7 +9,8 @@ import { ConsentFields } from "@/components/forms/ConsentFields";
 import { AnimatedCheck } from "@/components/ui/AnimatedCheck";
 import { BookCall } from "@/components/sections/BookCall";
 import { Button } from "@/components/ui/Button";
-import { MapPin, Mail, Phone, ShieldCheck } from "lucide-react";
+import { OfficeHours } from "@/components/ui/OfficeHours";
+import { MapPin, Mail, Phone, ShieldCheck, ChevronDown } from "lucide-react";
 import { SITE, mailtoUrl, whatsappUrl } from "@/lib/site-config";
 
 export default function ContactPage() {
@@ -76,7 +77,7 @@ export default function ContactPage() {
                     Confidential Inquiry Received
                   </h3>
                   <p className="text-[#D8CCB8] text-base max-w-md mb-8 leading-relaxed font-light">
-                    Thank you. A Vision Saudi senior strategist will review your submitted requirements and respond within 24 hours.
+                    Thank you. A Vision Saudi senior strategist will review your requirements and reply during Riyadh working hours, Sunday to Thursday.
                   </p>
                   <Button variant="primary" onClick={reset}>
                     Submit Another Inquiry
@@ -125,49 +126,62 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <Input
-                      label="Phone / WhatsApp *"
-                      required
-                      placeholder="+966 50 000 0000"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    />
-                    <Input
-                      label="Company / Entity Name"
-                      placeholder="e.g. Global Tech Enterprise"
-                      value={formData.company}
-                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    <Input
-                      label="Country of Origin"
-                      placeholder="e.g. United Kingdom / UAE / USA"
-                      value={formData.country}
-                      onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                    />
-                    <Select
-                      label="Target Timeline"
-                      value={formData.timeline}
-                      onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
-                      options={[
-                        { value: "Immediate (1-3 months)", label: "Immediate (1-3 months)" },
-                        { value: "Planning (3-6 months)", label: "Planning (3-6 months)" },
-                        { value: "Long-term (6-12 months)", label: "Long-term (6-12 months)" },
-                      ]}
-                    />
-                  </div>
-
-                  <Textarea
-                    label="Overview of Strategic Objectives"
-                    placeholder="Provide relevant details regarding planned activities, capital allocation, or specific advisory required."
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  <Input
+                    label="Phone / WhatsApp *"
+                    required
+                    placeholder="+966 50 000 0000"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   />
 
+                  {/* Four fields get someone to send. The rest speed up our reply,
+                      so they are here for whoever wants to give them, not demanded
+                      of everyone. <details> keeps it working without JavaScript. */}
+                  <details className="group rounded-2xl border border-white/10 bg-white/[0.02]">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 text-sm font-semibold text-[#D8CCB8] transition-colors hover:text-white">
+                      <span>Add detail so we can answer properly (optional)</span>
+                      <ChevronDown className="h-4 w-4 shrink-0 text-[#10E784] transition-transform group-open:rotate-180" aria-hidden="true" />
+                    </summary>
+
+                    <div className="space-y-5 border-t border-white/10 px-5 py-5">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                        <Input
+                          label="Company / Entity Name"
+                          placeholder="e.g. Global Tech Enterprise"
+                          value={formData.company}
+                          onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                        />
+                        <Input
+                          label="Country of Origin"
+                          placeholder="e.g. United Kingdom / UAE / USA"
+                          value={formData.country}
+                          onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                        />
+                      </div>
+
+                      <Select
+                        label="Target Timeline"
+                        value={formData.timeline}
+                        onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
+                        options={[
+                          { value: "Immediate (1-3 months)", label: "Immediate (1-3 months)" },
+                          { value: "Planning (3-6 months)", label: "Planning (3-6 months)" },
+                          { value: "Long-term (6-12 months)", label: "Long-term (6-12 months)" },
+                        ]}
+                      />
+
+                      <Textarea
+                        label="Overview of Strategic Objectives"
+                        placeholder="Provide relevant details regarding planned activities, capital allocation, or specific advisory required."
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      />
+                    </div>
+                  </details>
+
                   <ConsentFields consent={consent} onConsentChange={setConsent} website={website} onWebsiteChange={setWebsite} />
+
+                  <OfficeHours />
 
                   {submitError && (
                     <p className="text-red-500 text-xs">{submitError}</p>

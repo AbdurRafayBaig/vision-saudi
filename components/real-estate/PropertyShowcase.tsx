@@ -277,6 +277,11 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
 
+                      {/* The listings are real; these photographs stand in for them. */}
+                      <span className="absolute bottom-2 right-2 z-10 rounded bg-[#0A0D0C]/80 px-2 py-1 text-xs text-[#D8CCB8] backdrop-blur-md">
+                        Indicative image
+                      </span>
+
                       {/* Badges */}
                       <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
                         {property.featured && (

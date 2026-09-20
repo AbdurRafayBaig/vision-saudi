@@ -5,6 +5,8 @@ import Image from "next/image";
 import { Reveal } from "@/components/ui/Reveal";
 import { PageHero } from "@/components/ui/PageHero";
 import { NextStepCTA } from "@/components/ui/NextStepCTA";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { RelatedServices } from "@/components/ui/RelatedServices";
 import { MASTER_SERVICES } from "@/data/services";
 import { AccordionItem } from "@/components/ui/Accordion";
 import { ContactFormModal } from "@/components/forms/ContactFormModal";
@@ -67,6 +69,8 @@ export default function PremiumResidencyPage() {
         secondaryCtaLabel="Explore Pathways"
         secondaryCtaHref="#pathways"
       />
+
+      <Breadcrumbs trail={[{ label: "Services", href: "/services" }, { label: "Saudi Premium Residency" }]} />
 
       {/* Narrative Section — Lifestyle + Advisory */}
       <section className="py-[var(--space-section)] bg-[#0A0D0C] transition-colors duration-400">
@@ -201,6 +205,8 @@ export default function PremiumResidencyPage() {
       </section>
 
       {/* Next Step CTA */}
+      <RelatedServices currentSlug="premium-residency" />
+
       <NextStepCTA
         eyebrow="Residency Evaluation"
         headline="Explore your pathway to Saudi Premium Residency."

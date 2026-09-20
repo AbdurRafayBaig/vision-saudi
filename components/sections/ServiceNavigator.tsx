@@ -4,49 +4,11 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-
-const services = [
-  {
-    number: "01",
-    title: "Business Setup",
-    subtitle: "Market entry, formation & activation",
-    description:
-      "From MISA licensing and Commercial Registration to corporate bank accounts and Qiwa activation — we handle the full establishment process so your Saudi entity is operational, not just registered.",
-    image: "/images/businessSetup.webp",
-    href: "/services/business-setup",
-  },
-  {
-    number: "02",
-    title: "Corporate Services",
-    subtitle: "Ongoing operations & compliance",
-    description:
-      "Government relations, Saudization compliance, ZATCA e-invoicing, payroll administration, and regulatory renewals. The infrastructure that keeps your Saudi entity in good standing.",
-    image: "/images/corporateBusinessServices.webp",
-    href: "/services/corporate-services",
-  },
-  {
-    number: "03",
-    title: "Real Estate",
-    subtitle: "Investment & property opportunities",
-    description:
-      "Strategic real estate advisory across Riyadh, Jeddah, Makkah and Madinah — from Grade-A commercial headquarters to high-yield residential investment portfolios.",
-    image: "/images/businessServices.webp",
-    href: "/services/real-estate",
-  },
-  {
-    number: "04",
-    title: "Premium Residency",
-    subtitle: "Residency pathways for investors & talent",
-    description:
-      "Navigate Saudi Premium Residency through Investor, Entrepreneur, Special Talent, and Real Estate Owner pathways. Strategic evaluation and application support.",
-    image: "/images/aboutHeritagePage.webp",
-    href: "/services/premium-residency",
-  },
-];
+import { MASTER_SERVICES } from "@/data/services";
 
 export default function ServiceNavigator() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const activeService = services[activeIndex];
+  const activeService = MASTER_SERVICES[activeIndex];
 
   return (
     <section id="services" className="bg-[#0A0D0C] text-white relative overflow-hidden py-[var(--space-section-lg)] border-b border-white/10">
@@ -57,7 +19,7 @@ export default function ServiceNavigator() {
         {/* Section Header */}
         <div className="mb-16">
           <h2 className="font-display text-2xl sm:text-3xl lg:text-5xl font-bold leading-[1.12] tracking-tight">
-            <span className="heading-gradient-light-to-dark block">Four directions into</span>
+            <span className="heading-gradient-light-to-dark block">Five directions into</span>
             <span className="green-gradient-text block font-sans">the Saudi market.</span>
           </h2>
         </div>
@@ -66,7 +28,7 @@ export default function ServiceNavigator() {
         <div className="hidden lg:grid grid-cols-12 gap-12 items-center">
           {/* Left: Service List */}
           <div className="col-span-5 flex flex-col gap-2">
-            {services.map((service, idx) => {
+            {MASTER_SERVICES.map((service, idx) => {
               const isActive = idx === activeIndex;
               return (
                 <button
@@ -94,7 +56,7 @@ export default function ServiceNavigator() {
                       <p className={`text-xs transition-all duration-300 font-light ${
                         isActive ? "text-[#D8CCB8]" : "text-[#7A7A72]"
                       }`}>
-                        {service.subtitle}
+                        {service.tagline}
                       </p>
                     </div>
                   </div>
@@ -123,14 +85,14 @@ export default function ServiceNavigator() {
 
                 {/* Description */}
                 <p className="text-[#D8CCB8] text-base leading-relaxed mb-6 font-light">
-                  {activeService.description}
+                  {activeService.summary}
                 </p>
 
                 <Link
-                  href={activeService.href}
+                  href={`/services/${activeService.slug}`}
                   className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#10E784] hover:gap-3 transition-all duration-300"
                 >
-                  <span>Explore {activeService.title} Specification</span>
+                  <span>Explore {activeService.title}</span>
                   <ArrowRight className="h-4 w-4" />
                 </Link>
             </div>
@@ -139,7 +101,7 @@ export default function ServiceNavigator() {
 
         {/* Service Navigator — Mobile (Stacked) */}
         <div className="lg:hidden flex flex-col gap-6">
-          {services.map((service) => (
+          {MASTER_SERVICES.map((service) => (
             <div key={service.number} className="bg-white/[0.03] p-6 rounded-3xl border border-white/10 shadow-md hover:border-[#10E784]/50 transition-all duration-300">
               <div className="relative aspect-[16/10] overflow-hidden rounded-2xl mb-5">
                 <Image
@@ -157,10 +119,10 @@ export default function ServiceNavigator() {
                     {service.title}
                   </h3>
                   <p className="text-xs text-[#B9B3A8] leading-relaxed mb-4 font-light">
-                    {service.description}
+                    {service.summary}
                   </p>
                   <Link
-                    href={service.href}
+                    href={`/services/${service.slug}`}
                     className="inline-flex items-center gap-2 py-3 -my-3 text-[#10E784] text-xs font-bold uppercase"
                   >
                     <span>Explore {service.title}</span>

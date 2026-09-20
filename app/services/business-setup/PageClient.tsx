@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { Reveal } from "@/components/ui/Reveal";
 import { PageHero } from "@/components/ui/PageHero";
 import { NextStepCTA } from "@/components/ui/NextStepCTA";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { RelatedServices } from "@/components/ui/RelatedServices";
 import { MASTER_SERVICES } from "@/data/services";
 import { AccordionItem } from "@/components/ui/Accordion";
 import { ContactFormModal } from "@/components/forms/ContactFormModal";
@@ -61,6 +63,8 @@ export default function BusinessSetupPage() {
         secondaryCtaLabel="Explore Roadmap"
         secondaryCtaHref="#roadmap"
         />
+
+      <Breadcrumbs trail={[{ label: "Services", href: "/services" }, { label: "Business Setup & Market Entry" }]} />
 
       {/* Visual Journey: DISCOVER → STRUCTURE → ESTABLISH → ACTIVATE → OPERATE */}
       <section id="roadmap" className="py-[var(--space-section-lg)] bg-[#0A0D0C] border-b border-white/10 relative overflow-hidden transition-colors duration-400">
@@ -160,6 +164,8 @@ export default function BusinessSetupPage() {
       </section>
 
       {/* Next Step CTA */}
+      <RelatedServices currentSlug="business-setup" />
+
       <NextStepCTA
         eyebrow="Establishment Decision"
         headline="Ready to establish your position in Saudi Arabia?"

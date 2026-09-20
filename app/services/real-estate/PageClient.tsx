@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { PageHero } from "@/components/ui/PageHero";
 import { NextStepCTA } from "@/components/ui/NextStepCTA";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { RelatedServices } from "@/components/ui/RelatedServices";
 import { MASTER_SERVICES } from "@/data/services";
 import { AccordionItem } from "@/components/ui/Accordion";
 import { ContactFormModal } from "@/components/forms/ContactFormModal";
@@ -77,6 +79,8 @@ export default function RealEstatePage() {
         secondaryCtaLabel="Explore Properties"
         secondaryCtaHref="#properties-showcase"
       />
+
+      <Breadcrumbs trail={[{ label: "Services", href: "/services" }, { label: "Real Estate Investment & Advisory" }]} />
 
       {/* Interactive Properties Listing Showcase with Filter Sidebar */}
       <PropertyShowcase
@@ -247,6 +251,8 @@ export default function RealEstatePage() {
       </section>
 
       {/* Next Step CTA */}
+      <RelatedServices currentSlug="real-estate" />
+
       <NextStepCTA
         eyebrow="Real Estate Advisory"
         headline="Explore property & land opportunities in the Kingdom."

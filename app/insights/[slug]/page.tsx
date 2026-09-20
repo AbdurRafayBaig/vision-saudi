@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import type { Components } from "react-markdown";
 import Markdown from "react-markdown";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 import { MASTER_INSIGHTS } from "@/data/insights";
 import { Button } from "@/components/ui/Button";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { SITE, absoluteUrl } from "@/lib/site-config";
 
 type Params = { params: Promise<{ slug: string }> };
@@ -66,6 +68,7 @@ const markdownComponents: Components = {
 export default async function ArticlePage({ params }: Params) {
   const article = findArticle((await params).slug);
   if (!article) notFound();
+  const others = MASTER_INSIGHTS.filter((a) => a.slug !== article.slug).slice(0, 3);
 
   const url = absoluteUrl(`/insights/${article.slug}`);
 
@@ -94,12 +97,7 @@ export default async function ArticlePage({ params }: Params) {
       </div>
 
       <article className="max-w-4xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="mb-8">
-          <Button variant="outline" size="sm" href="/insights" className="text-xs font-bold uppercase tracking-wider">
-            <ArrowLeft className="h-4 w-4 shrink-0 mr-1" />
-            <span>Back to Insights</span>
-          </Button>
-        </div>
+        <Breadcrumbs trail={[{ label: "Insights", href: "/insights" }, { label: article.title }]} bare />
 
         <div className="flex items-center gap-3 mb-6">
           <span className="text-xs font-bold text-[#10E784] uppercase tracking-widest px-4 py-1.5 bg-[#10E784]/15 border border-[#10E784]/30 rounded-full shadow-[0_0_15px_rgba(16,231,132,0.07)]">
@@ -121,6 +119,44 @@ export default async function ArticlePage({ params }: Params) {
         <div className="space-y-6 text-[#D8CCB8] text-lg font-light leading-relaxed">
           <Markdown components={markdownComponents}>{article.contentMarkdown}</Markdown>
         </div>
+
+        {/* An article that ends in nothing wastes the attention it just earned. */}
+        <aside className="mt-16 rounded-3xl border border-white/10 bg-white/[0.03] p-8">
+          <h2 className="font-display text-xl sm:text-2xl font-bold text-white mb-2">
+            Planning this for your own company?
+          </h2>
+          <p className="text-sm text-[#94A3B8] mb-6 max-w-xl leading-relaxed">
+            Tell us where you are and a senior strategist will come back with the
+            specifics for your activity, ownership structure and timeline.
+          </p>
+          <Button variant="primary" size="lg" showArrow href="/contact">
+            Speak to a strategist
+          </Button>
+        </aside>
+
+        {others.length > 0 && (
+          <nav aria-label="More insights" className="mt-12">
+            <h2 className="font-display text-base font-bold text-white mb-4">Keep reading</h2>
+            <ul className="space-y-3">
+              {others.map((other) => (
+                <li key={other.slug}>
+                  <Link
+                    href={`/insights/${other.slug}`}
+                    className="group flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.02] p-4 transition-colors hover:border-[#10E784]/60"
+                  >
+                    <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-[#10E784] transition-transform group-hover:translate-x-0.5" />
+                    <span>
+                      <span className="block text-sm font-semibold text-white">{other.title}</span>
+                      <span className="block text-xs text-[#94A3B8] mt-0.5">
+                        {other.category} · {other.readTime}
+                      </span>
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
       </article>
     </div>
   );

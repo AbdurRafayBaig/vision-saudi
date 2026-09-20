@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { PageHero } from "@/components/ui/PageHero";
 import { NextStepCTA } from "@/components/ui/NextStepCTA";
+import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
+import { RelatedServices } from "@/components/ui/RelatedServices";
 import { MASTER_SERVICES } from "@/data/services";
 import { AccordionItem } from "@/components/ui/Accordion";
 import { ContactFormModal } from "@/components/forms/ContactFormModal";
@@ -84,6 +86,8 @@ export default function CorporateServicesPage() {
         secondaryCtaLabel="Explore Capabilities"
         secondaryCtaHref="#capabilities"
         />
+
+      <Breadcrumbs trail={[{ label: "Services", href: "/services" }, { label: "Corporate & Business Services" }]} />
 
       {/* Continuity Journey: ESTABLISH → ACTIVATE → OPERATE */}
       <section className="py-16 bg-[#0A0D0C] border-b border-white/10 relative overflow-hidden transition-colors duration-400">
@@ -224,6 +228,8 @@ export default function CorporateServicesPage() {
       </section>
 
       {/* Next Step CTA */}
+      <RelatedServices currentSlug="corporate-services" />
+
       <NextStepCTA
         eyebrow="Corporate Continuity"
         headline="Keep your Saudi entity fully compliant and operational."

@@ -3,11 +3,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown, MapPin, Home as HomeIcon } from "lucide-react";
+import { Menu, X, ChevronDown, Home as HomeIcon } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { ContactFormModal } from "@/components/forms/ContactFormModal";
 import { VisionSaudiLogo } from "@/components/ui/VisionSaudiLogo";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -24,6 +23,7 @@ const navLinks = [
   },
   { name: "Real Estate", href: "/services/real-estate" },
   { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -59,14 +59,14 @@ export default function Navbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
           isScrolled
-            ? "bg-white/90 dark:bg-[#0A0D0C]/90 backdrop-blur-xl border-b border-slate-200 dark:border-white/10 py-3 shadow-lg dark:shadow-2xl text-slate-900 dark:text-white"
-            : "bg-white/40 dark:bg-[#0A0D0C]/35 backdrop-blur-md border-b border-slate-900/5 dark:border-white/10 py-4 text-slate-900 dark:text-white"
+            ? "bg-[#0A0D0C]/90 backdrop-blur-xl border-b border-white/10 py-3 shadow-2xl text-white"
+            : "bg-[#0A0D0C]/35 backdrop-blur-md border-b border-white/10 py-4 text-white"
         }`}
       >
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
           {/* Vision Saudi Official Logo */}
           <div className="shrink-0">
-            <VisionSaudiLogo variant="auto" size="md" />
+            <VisionSaudiLogo size="md" />
           </div>
 
           {/* Desktop Navigation */}
@@ -86,23 +86,23 @@ export default function Navbar() {
                       href={link.href}
                       className={`whitespace-nowrap inline-flex items-center gap-1 text-[13px] xl:text-[14px] font-medium py-1.5 transition-colors duration-300 ${
                         isActive
-                          ? "text-[#059669] dark:text-[#10E784] font-semibold"
-                          : "text-slate-700 dark:text-white/85 hover:text-[#059669] dark:hover:text-[#10E784]"
+                          ? "text-[#10E784] font-semibold"
+                          : "text-white/85 hover:text-[#10E784]"
                       }`}
                     >
                       {link.name}
-                      <ChevronDown className={`h-3.5 w-3.5 text-[#059669] dark:text-[#10E784] transition-transform duration-200 ${servicesDropdownOpen ? "rotate-180" : ""}`} />
+                      <ChevronDown className={`h-3.5 w-3.5 text-[#10E784] transition-transform duration-200 ${servicesDropdownOpen ? "rotate-180" : ""}`} />
                     </Link>
 
                     <div className={`absolute top-full left-0 w-72 pt-3 transition-all duration-300 ${
                       servicesDropdownOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"
                     }`}>
-                      <div className="bg-white dark:bg-[#101312]/95 border border-slate-200 dark:border-white/15 rounded-2xl shadow-xl dark:shadow-2xl overflow-hidden backdrop-blur-2xl p-2">
+                      <div className="bg-[#101312]/95 border border-white/15 rounded-2xl shadow-2xl overflow-hidden backdrop-blur-2xl p-2">
                         {link.dropdown.map((sub) => (
                           <Link
                             key={sub.name}
                             href={sub.href}
-                            className="block px-4 py-3 text-xs text-slate-600 dark:text-[#94A3B8] hover:text-[#059669] dark:hover:text-[#10E784] hover:bg-slate-100 dark:hover:bg-white/[0.05] transition-colors rounded-xl font-medium"
+                            className="block px-4 py-3 text-xs text-[#94A3B8] hover:text-[#10E784] hover:bg-white/[0.05] transition-colors rounded-xl font-medium"
                           >
                             {sub.name}
                           </Link>
@@ -119,11 +119,11 @@ export default function Navbar() {
                   href={link.href}
                   className={`whitespace-nowrap inline-flex items-center gap-1.5 text-[13px] xl:text-[14px] font-medium py-1.5 transition-colors duration-300 ${
                     isActive
-                      ? "text-[#059669] dark:text-[#10E784] font-semibold"
-                      : "text-slate-700 dark:text-white/85 hover:text-[#059669] dark:hover:text-[#10E784]"
+                      ? "text-[#10E784] font-semibold"
+                      : "text-white/85 hover:text-[#10E784]"
                   }`}
                 >
-                  {link.name === "Home" && <HomeIcon className="h-3.5 w-3.5 text-[#059669] dark:text-[#10E784]" />}
+                  {link.name === "Home" && <HomeIcon className="h-3.5 w-3.5 text-[#10E784]" />}
                   <span>{link.name}</span>
                 </Link>
               );
@@ -132,7 +132,6 @@ export default function Navbar() {
 
           {/* Professional Executive CTA & Theme Toggle */}
           <div className="hidden lg:flex items-center gap-3 shrink-0">
-            <ThemeToggle />
             <Button
               variant="emerald"
               size="sm"
@@ -145,7 +144,7 @@ export default function Navbar() {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-slate-800 dark:text-white hover:text-[#10E784] transition-colors"
+            className="lg:hidden p-2 text-white hover:text-[#10E784] transition-colors"
             aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -177,7 +176,7 @@ export default function Navbar() {
               <Link
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="block py-3.5 text-2xl font-display font-medium text-slate-900 dark:text-white hover:text-[#059669] dark:hover:text-[#10E784] transition-colors"
+                className="block py-3.5 text-2xl font-display font-medium text-white hover:text-[#10E784] transition-colors"
               >
                 {link.name}
               </Link>

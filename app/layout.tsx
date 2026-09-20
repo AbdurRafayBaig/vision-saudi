@@ -1,8 +1,35 @@
 import type { Metadata } from "next";
+import { ViewTransition } from "react";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
+import { ConsentAndAnalytics } from "@/components/analytics/ConsentAndAnalytics";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { MotionProvider } from "@/components/providers/MotionProvider";
+import { SITE, absoluteUrl } from "@/lib/site-config";
+
+const ORGANIZATION_LD = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": `${SITE.url}/#organization`,
+  name: SITE.name,
+  url: SITE.url,
+  logo: absoluteUrl("/images/logo_hdr_dark.png"),
+  image: absoluteUrl("/images/og-default.jpg"),
+  email: SITE.email,
+  telephone: SITE.phoneE164,
+  description:
+    "Saudi market-entry advisory: MISA licensing, company formation, corporate services, commercial real estate and Premium Residency.",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: SITE.address.street,
+    addressLocality: SITE.address.city,
+    addressCountry: SITE.address.countryCode,
+  },
+  areaServed: { "@type": "Country", name: "Saudi Arabia" },
+};
 
 const fontSans = Inter({
   variable: "--font-sans",
@@ -37,29 +64,37 @@ export const metadata: Metadata = {
     "Commercial Registration KSA",
   ],
   authors: [{ name: "Vision Saudi Strategy & Advisory" }],
-  metadataBase: new URL("https://visionsaudi.com"),
+  metadataBase: new URL(SITE.url),
+  alternates: { canonical: "/" },
   openGraph: {
     title: "Vision Saudi — One Kingdom. One Vision. One Ecosystem.",
     description:
       "Most firms get you established. We built what comes next. Establish, Activate, Operate, Connect, and Grow in Saudi Arabia.",
-    url: "https://visionsaudi.com",
+    url: SITE.url,
     siteName: "Vision Saudi",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/images/og-default.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Vision Saudi — Saudi business, investment and market-entry platform",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Vision Saudi | Saudi Business & Investment Platform",
     description:
       "Your CR opens the door. We take you further into the Saudi ecosystem.",
+    images: ["/images/og-default.jpg"],
   },
   robots: {
     index: true,
     follow: true,
   },
 };
-
-import { ThemeProvider } from "@/components/providers/ThemeProvider";
 
 export default function RootLayout({
   children,
@@ -71,14 +106,30 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
       data-scroll-behavior="smooth"
-      className={`${fontSans.variable} ${fontDisplay.variable} dark h-full antialiased`}
+      className={`${fontSans.variable} ${fontDisplay.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-slate-50 dark:bg-[#0A0D0C] text-slate-900 dark:text-white transition-colors duration-400">
-        <ThemeProvider>
+      <head>
+        {/* The site is already dark. This tells the Dark Reader extension to leave it alone;
+            otherwise it rewrites colours before React loads and causes hydration mismatches. */}
+        <meta name="darkreader-lock" />
+        {/* Scroll-reveal animations render their `initial` opacity server-side, so without
+            JS those sections would stay invisible. Reveal them when JS is unavailable. */}
+        <noscript>
+          <style>{`[style*="opacity:0"],[style*="opacity: 0"]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
+      </head>
+      <body className="min-h-full flex flex-col bg-[#0A0D0C] text-white">
+        <JsonLd data={ORGANIZATION_LD} />
+        <MotionProvider>
           <Navbar />
-          <main className="flex-1">{children}</main>
+          {/* Route changes are React transitions, so this crossfades page content on navigation. */}
+          <ViewTransition default="page-fade">
+            <main className="flex-1">{children}</main>
+          </ViewTransition>
           <Footer />
-        </ThemeProvider>
+          <WhatsAppButton />
+          <ConsentAndAnalytics />
+        </MotionProvider>
       </body>
     </html>
   );

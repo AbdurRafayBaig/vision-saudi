@@ -1,15 +1,11 @@
 @import "tailwindcss";
 
-@variant dark (&:where(.dark, .dark *));
-
 @layer base {
   :root {
     /* ═══════════════════════════════════════════
        VISION SAUDI — Executive Modern Design System
-       Dark & Light Mode (Inspired by Morningside & SAMM.sa)
        ═══════════════════════════════════════════ */
 
-    /* Dark Mode Defaults */
     --bg-main: #0A0D0C;
     --bg-card: #101413;
     --bg-glass: rgba(16, 20, 19, 0.75);
@@ -30,25 +26,9 @@
     --border-hover: #10E784;
 
     /* Spacing & Motion */
-    --space-section: clamp(5rem, 10vw, 8rem);
-    --space-section-lg: clamp(6rem, 12vw, 10rem);
+    --space-section: clamp(3.5rem, 6vw, 5.5rem);
+    --space-section-lg: clamp(4.5rem, 7.5vw, 7rem);
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  /* ═══════════════════════════════════════════
-     LIGHT MODE OVERRIDES (SAMM.SA Inspired)
-     ═══════════════════════════════════════════ */
-  html.light {
-    --bg-main: #F8FAFC;
-    --bg-card: #FFFFFF;
-    --bg-glass: rgba(255, 255, 255, 0.85);
-
-    --text-primary: #0F172A;
-    --text-secondary: #334155;
-    --text-muted: #64748B;
-
-    --border-main: rgba(15, 23, 42, 0.12);
-    --border-hover: #059669;
   }
 
   body {
@@ -106,17 +86,9 @@ h1, h2, h3, h4, h5, h6 {
    (Left is bright/light, fading darker to right)
    ═══════════════════════════════════════════ */
 
-/* Headline Gradient: Bright Left → Slate Right (Dark Mode) */
-.dark .heading-gradient-light-to-dark,
+/* Headline Gradient: Bright Left → Slate Right */
 .heading-gradient-light-to-dark {
   background: linear-gradient(90deg, #FFFFFF 0%, #E2E8F0 50%, #94A3B8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Headline Gradient for Light Mode (Deep Slate Left → Smooth Muted Right) */
-.light .heading-gradient-light-to-dark {
-  background: linear-gradient(90deg, #0F172A 0%, #334155 50%, #64748B 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -127,20 +99,10 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.light .green-gradient-text {
-  background: linear-gradient(90deg, #0F172A 0%, #10B981 50%, #047857 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 
 /* Gold Gradient Replaced with High-Impact Emerald Neon */
 .gold-gradient-text {
   background: linear-gradient(90deg, #FFFFFF 0%, #10E784 60%, #10B981 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.light .gold-gradient-text {
-  background: linear-gradient(90deg, #0F172A 0%, #10B981 60%, #047857 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -154,12 +116,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .hover-green-box:hover {
   border-color: #10E784 !important;
-  box-shadow: 0 0 25px rgba(16, 231, 132, 0.25) !important;
-}
-
-.light .hover-green-box:hover {
-  border-color: #10B981 !important;
-  box-shadow: 0 0 25px rgba(16, 185, 129, 0.25) !important;
+  box-shadow: 0 0 20px rgba(16, 231, 132, 0.12) !important;
 }
 
 /* ═══════════════════════════════════════════
@@ -189,17 +146,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .glass-card-dark:hover {
   border-color: rgba(16, 231, 132, 0.6);
-  box-shadow: 0 0 30px rgba(16, 231, 132, 0.2);
-}
-
-.light .glass-card-dark {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(15, 23, 42, 0.12);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-}
-.light .glass-card-dark:hover {
-  border-color: #10B981;
-  box-shadow: 0 10px 35px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 0 24px rgba(16, 231, 132, 0.1);
 }
 
 /* ═══════════════════════════════════════════
@@ -236,3 +183,93 @@ h1, h2, h3, h4, h5, h6 {
   animation-play-state: paused;
 }
 
+
+/* ═══════════════════════════════════════════
+   HERO PHOTO — slow cinematic push-in
+   Animates `scale` (not `transform`) so it matches Tailwind's scale-* utilities
+   instead of compounding with them.
+   ═══════════════════════════════════════════ */
+
+@keyframes hero-zoom {
+  from { scale: 1.05; }
+  to { scale: 1.12; }
+}
+
+.animate-hero-zoom {
+  scale: 1.05;
+  animation: hero-zoom 24s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-zoom { animation: none; }
+}
+
+/* ═══════════════════════════════════════════
+   SUCCESS CHECKMARK — draws itself on form success
+   ═══════════════════════════════════════════ */
+
+.animated-check__circle {
+  stroke-dasharray: 151;
+  stroke-dashoffset: 151;
+  animation: check-draw 0.6s ease-out forwards;
+}
+.animated-check__tick {
+  stroke-dasharray: 36;
+  stroke-dashoffset: 36;
+  animation: check-draw 0.35s 0.5s ease-out forwards;
+}
+@keyframes check-draw {
+  to { stroke-dashoffset: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .animated-check__circle,
+  .animated-check__tick { animation: none; stroke-dashoffset: 0; }
+}
+
+/* ═══════════════════════════════════════════
+   MAP PINS — gentle pulse
+   ═══════════════════════════════════════════ */
+
+.map-pin-pulse {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: map-pin-pulse 2.4s ease-out infinite;
+}
+@keyframes map-pin-pulse {
+  0% { transform: scale(0.6); opacity: 0.45; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .map-pin-pulse { animation: none; }
+}
+
+/* ═══════════════════════════════════════════
+   PAGE TRANSITIONS — short crossfade between routes (see ViewTransition in layout.tsx)
+   ═══════════════════════════════════════════ */
+
+::view-transition-old(.page-fade) {
+  animation: vt-fade-out 160ms ease-out both;
+}
+::view-transition-new(.page-fade) {
+  animation: vt-fade-in 280ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes vt-fade-out {
+  to { opacity: 0; }
+}
+@keyframes vt-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+}
+
+/* Clicks during the brief transition should reach the live page, not the overlay. */
+::view-transition {
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}

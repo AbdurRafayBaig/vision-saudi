@@ -13,7 +13,7 @@ export default function ExperiencePage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [filterSector, setFilterSector] = useState<string>("All");
 
-  const sectors = ["All", "Government", "Semi-Government", "Enterprise", "Private Sector"];
+  const sectors = ["All", ...new Set(MASTER_EXPERIENCE_TRACK_RECORD.map((i) => i.clientSector))];
 
   const filteredItems = filterSector === "All"
     ? MASTER_EXPERIENCE_TRACK_RECORD

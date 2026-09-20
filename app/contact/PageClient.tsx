@@ -5,6 +5,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { PageHero } from "@/components/ui/PageHero";
 import { Select } from "@/components/ui/FormInput";
 import { LeadFields } from "@/components/forms/LeadFields";
+import { INTENT_OPTIONS } from "@/lib/contact-fields";
 import { useContactSubmit } from "@/lib/useContactSubmit";
 import { ConsentFields } from "@/components/forms/ConsentFields";
 import { AnimatedCheck } from "@/components/ui/AnimatedCheck";
@@ -34,16 +35,6 @@ export default function ContactPage() {
     e.preventDefault();
     submit({ ...formData, consent, website });
   };
-
-  const intentOptions = [
-    { value: "business-setup", label: "Business Setup & Market Entry" },
-    { value: "corporate-services", label: "Corporate Services & GRO" },
-    { value: "real-estate", label: "Real Estate Investment Advisory" },
-    { value: "premium-residency", label: "Saudi Premium Residency" },
-    { value: "technology", label: "Technology & Digital Infrastructure" },
-    { value: "partnership", label: "Strategic Partnership (Service / Success)" },
-    { value: "other", label: "Other Commercial Inquiry" },
-  ];
 
   return (
     <div className="bg-[#0A0D0C] text-white overflow-x-hidden min-h-screen">
@@ -92,7 +83,7 @@ export default function ContactPage() {
                       Select Primary Objective *
                     </label>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-2">
-                      {intentOptions.map((opt) => (
+                      {INTENT_OPTIONS.map((opt) => (
                         <button
                           key={opt.value}
                           type="button"

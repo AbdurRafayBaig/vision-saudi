@@ -22,6 +22,23 @@ export const LEAD_TYPES = ["inquiry", "estimate", "guide"] as const;
 export const TARGET_REGIONS = ["Riyadh (Olaya / KAFD)", "Jeddah / Western", "Eastern Province", "All Kingdom"] as const;
 
 export type ServiceIntent = (typeof SERVICE_INTENTS)[number];
+
+/** What the forms show for each intent. Keyed by the enum, so adding a value
+ *  without a label is a type error rather than a blank button. */
+export const SERVICE_INTENT_LABELS: Record<ServiceIntent, string> = {
+  "business-setup": "Business Setup & Market Entry",
+  "corporate-services": "Corporate Services & GRO",
+  "real-estate": "Real Estate Investment Advisory",
+  "premium-residency": "Saudi Premium Residency",
+  technology: "Technology & Digital Infrastructure",
+  partnership: "Strategic Partnership (Service / Success)",
+  other: "Other Commercial Inquiry",
+};
+
+export const INTENT_OPTIONS = SERVICE_INTENTS.map((value) => ({
+  value,
+  label: SERVICE_INTENT_LABELS[value],
+}));
 export type LeadType = (typeof LEAD_TYPES)[number];
 
 /** Accepts international formats (+966 50 000 0000, 0044-20…): 7–15 digits. */

@@ -11,43 +11,20 @@ import { MASTER_SERVICES } from "@/data/services";
 import { AccordionItem } from "@/components/ui/Accordion";
 import { ContactFormModal } from "@/components/forms/ContactFormModal";
 import { ShieldCheck, Cpu, Database, Cloud, Smartphone, Zap, Server } from "lucide-react";
+import { TECH_MODULES } from "@/data/technology";
+
+// Named in data/technology.ts, resolved to components here.
+const ICONS = { database: Database, cpu: Cpu, cloud: Cloud, smartphone: Smartphone, zap: Zap, server: Server } as const;
+
+function Icon({ name, className }: { name: keyof typeof ICONS; className?: string }) {
+  const Glyph = ICONS[name];
+  return <Glyph className={className} aria-hidden="true" />;
+}
 
 export default function TechnologyPage() {
   const service = MASTER_SERVICES.find((s) => s.slug === "technology-infrastructure")!;
   const [modalOpen, setModalOpen] = useState(false);
 
-  const techModules = [
-    {
-      icon: Database,
-      title: "Enterprise ERP & Finance",
-      desc: "Local KSA localized SAP, Oracle, and Odoo implementations integrated with ZATCA Phase 2 e-invoicing.",
-    },
-    {
-      icon: Cpu,
-      title: "Automated AI Workflows",
-      desc: "Custom document processing, automated customer support pipelines, and intelligent operational workflow tools.",
-    },
-    {
-      icon: Cloud,
-      title: "Cloud & Data Hosting",
-      desc: "KSA local cloud infrastructure compliance (Saudi Telecom Cloud, CST certified hosting) for data residency laws.",
-    },
-    {
-      icon: Smartphone,
-      title: "Custom Digital Platforms",
-      desc: "B2B client portals, mobile applications, and enterprise web platforms engineered for the Saudi market.",
-    },
-    {
-      icon: Zap,
-      title: "HR & Payroll Systems",
-      desc: "Localized payroll software integrated with Wages Protection System (WPS) and GOSI government databases.",
-    },
-    {
-      icon: Server,
-      title: "Corporate Email & Security",
-      desc: "Enterprise Microsoft 365, Google Workspace, cybersecurity audits, and local domain infrastructure.",
-    },
-  ];
 
   return (
     <div className="bg-[#0A0D0C] text-white overflow-x-hidden min-h-screen transition-colors duration-300">
@@ -109,10 +86,10 @@ export default function TechnologyPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {techModules.map((mod, idx) => (
+            {TECH_MODULES.map((mod, idx) => (
               <Reveal key={idx} y={20} className="bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl p-8 hover:border-[#10E784] hover:shadow-[0_0_25px_rgba(16,231,132,0.1)] hover:-translate-y-1 transition-all duration-300 shadow-xl group">
                 <div className="w-12 h-12 rounded-2xl bg-[#10E784]/15 border border-[#10E784]/30 flex items-center justify-center text-[#10E784] mb-6 group-hover:bg-[#10E784] group-hover:text-[#0A0D0C] transition-all duration-300">
-                  <mod.icon className="h-6 w-6" />
+                  <Icon name={mod.icon} className="h-6 w-6" />
                 </div>
                 <h3 className="font-display text-2xl text-white font-bold mb-3 group-hover:text-[#10E784] transition-colors">
                   {mod.title}

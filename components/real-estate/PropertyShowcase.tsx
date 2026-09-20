@@ -299,7 +299,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                             ? `Remove ${property.title} from your shortlist`
                             : `Save ${property.title} to your shortlist`
                         }
-                        className={`absolute top-3 right-3 z-10 flex h-10 w-10 items-center justify-center rounded-full border backdrop-blur-md transition-colors ${
+                        className={`absolute top-3 right-3 z-20 flex h-10 w-10 items-center justify-center rounded-full border backdrop-blur-md transition-colors ${
                           shortlist.has(property.id)
                             ? "border-[#10E784] bg-[#10E784]/20 text-[#10E784]"
                             : "border-white/20 bg-[#0A0D0C]/70 text-white hover:border-[#10E784] hover:text-[#10E784]"
@@ -313,7 +313,10 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                       </button>
 
                       {/* Badges */}
-                      <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
+                      {/* right-16 keeps the badges clear of the save button: a long
+                          status ("AVAILABLE FOR SALE") otherwise runs under it and
+                          takes the click. */}
+                      <div className="absolute top-3 left-3 right-16 flex flex-wrap gap-1.5 z-10">
                         {property.featured && (
                           <span className="px-2.5 py-1 bg-[#0A0D0C]/85 border border-[#10E784]/60 text-[#10E784] text-xs font-bold uppercase tracking-wider rounded backdrop-blur-md">
                             FEATURED

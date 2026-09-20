@@ -8,32 +8,19 @@ import { KEY_CREDIBILITY_METRICS } from "@/data/experience";
 import { CountUp } from "@/components/ui/CountUp";
 import { ContactFormModal } from "@/components/forms/ContactFormModal";
 import { Compass, Shield, Award, TrendingUp, ShieldCheck } from "lucide-react";
+import { PRINCIPLES } from "@/data/about";
+
+// Named in data/about.ts, resolved to components here.
+const ICONS = { compass: Compass, shield: Shield, award: Award, "trending-up": TrendingUp } as const;
+
+function Icon({ name, className }: { name: keyof typeof ICONS; className?: string }) {
+  const Glyph = ICONS[name];
+  return <Glyph className={className} aria-hidden="true" />;
+}
 
 export default function AboutPage() {
   const [modalOpen, setModalOpen] = useState(false);
 
-  const principles = [
-    {
-      icon: Compass,
-      title: "Perspective",
-      desc: "Years operating inside the Kingdom shape how we see the market — and where Vision 2030 is taking it next.",
-    },
-    {
-      icon: Shield,
-      title: "Precision",
-      desc: "We approach every engagement with legal clarity, structured compliance, and uncompromising execution detail.",
-    },
-    {
-      icon: Award,
-      title: "Partnership",
-      desc: "We build relationships for the long term, continuing through operations, growth, and ecosystem integration.",
-    },
-    {
-      icon: TrendingUp,
-      title: "Progress",
-      desc: "The Kingdom moves at extraordinary speed. We ensure our strategy, technology, and capabilities move with it.",
-    },
-  ];
 
   return (
     <div className="bg-[#0A0D0C] text-white overflow-x-hidden min-h-screen transition-colors duration-300">
@@ -99,14 +86,14 @@ export default function AboutPage() {
               BRAND PHILOSOPHY
             </p>
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.12] tracking-tight">
-              Our four operating principles.
+              Our four operating PRINCIPLES.
             </h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {principles.map((item, idx) => (
+            {PRINCIPLES.map((item, idx) => (
               <Reveal key={idx} y={20} className="p-8 bg-white/[0.03] border-l-4 border-[#10E784] rounded-3xl hover:border-[#10E784] hover:shadow-[0_0_25px_rgba(16,231,132,0.1)] transition-all duration-300 shadow-md group backdrop-blur-md">
-                <item.icon className="h-8 w-8 text-[#10E784] mb-6 group-hover:scale-110 transition-transform duration-300" />
+                <Icon name={item.icon} className="h-8 w-8 text-[#10E784] mb-6 group-hover:scale-110 transition-transform duration-300" />
                 <h3 className="font-display text-2xl text-white font-bold mb-3">
                   {item.title}
                 </h3>

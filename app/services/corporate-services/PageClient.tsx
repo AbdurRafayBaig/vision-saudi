@@ -10,66 +10,13 @@ import { MASTER_SERVICES } from "@/data/services";
 import { AccordionItem } from "@/components/ui/Accordion";
 import { ContactFormModal } from "@/components/forms/ContactFormModal";
 import { CheckCircle2, ArrowRight, ShieldCheck } from "lucide-react";
+import { CAPABILITIES } from "@/data/corporate-services";
 
 export default function CorporateServicesPage() {
   const service = MASTER_SERVICES.find((s) => s.slug === "corporate-services")!;
   const [modalOpen, setModalOpen] = useState(false);
   const [activeCapability, setActiveCapability] = useState(0);
 
-  const capabilities = [
-    {
-      title: "Government Relations & GRO Operations",
-      tagline: "Qiwa, Muqeem, and Ministry of Labor Representation",
-      description:
-        "Direct liaison with Saudi ministries to manage work visas, Iqama issuance and renewals, Saudization (Nitaqat) ratio optimization, and Qiwa portal administration.",
-      details: [
-        "Work Visa & Block Visa Allocation",
-        "Iqama Issuance & Renewal Management",
-        "Muqeem Exit/Re-Entry Visa Authorizations",
-        "Commercial Registration (CR) Annual Renewals",
-      ],
-      image: "/images/businessServices.webp",
-    },
-    {
-      title: "Tax, ZATCA & Financial Compliance",
-      tagline: "E-Invoicing Phase 2 & Tax Filings",
-      description:
-        "Ensure complete compliance with ZATCA Phase 2 FATOORA integration, annual corporate tax returns, VAT filing, and withholding tax coordination.",
-      details: [
-        "ZATCA E-Invoicing Integration (Phase 2)",
-        "VAT Registration & Quarterly Returns",
-        "Zakat & Corporate Income Tax Coordination",
-        "Audited Financial Statement Submissions",
-      ],
-      image: "/images/servicePartnersPic.webp",
-    },
-    {
-      title: "Saudization & HR Infrastructure",
-      tagline: "Nitaqat Green Zone Maintenance",
-      description:
-        "Structure local workforce quotas, GOSI monthly registrations, compliant employment contracts, and ongoing HR administrative support.",
-      details: [
-        "Nitaqat Target Calculation & Monitoring",
-        "GOSI Social Insurance Monthly Filings",
-        "Standardized Labor Law Employment Contracts",
-        "Payroll Wages Protection System (WPS)",
-      ],
-      image: "/images/successPartnersPiic.webp",
-    },
-    {
-      title: "Corporate Governance & Office Sourcing",
-      tagline: "Municipal Licenses & Entity Standing",
-      description:
-        "Secure Balady municipal licenses, registered commercial office addresses, corporate bank account maintenance, and legal entity modifications.",
-      details: [
-        "Balady Commercial Office Licenses",
-        "Grade-A Commercial Space Sourcing",
-        "Corporate Secretarial & MoA Amendments",
-        "Annual MISA License Renewals & Audits",
-      ],
-      image: "/images/aboutHeritagePage.webp",
-    },
-  ];
 
   return (
     <div className="bg-[#0A0D0C] text-white transition-colors duration-400 overflow-x-hidden min-h-screen">
@@ -84,7 +31,7 @@ export default function CorporateServicesPage() {
         primaryCtaLabel="Retain Corporate Support"
         onPrimaryCtaClick={() => setModalOpen(true)}
         secondaryCtaLabel="Explore Capabilities"
-        secondaryCtaHref="#capabilities"
+        secondaryCtaHref="#CAPABILITIES"
         />
 
       <Breadcrumbs trail={[{ label: "Services", href: "/services" }, { label: "Corporate & Business Services" }]} />
@@ -121,7 +68,7 @@ export default function CorporateServicesPage() {
       </section>
 
       {/* Editorial Capability System — Large Vertical List + Changing Media */}
-      <section id="capabilities" className="py-[var(--space-section-lg)] bg-[#0A0D0C] transition-colors duration-400">
+      <section id="CAPABILITIES" className="py-[var(--space-section-lg)] bg-[#0A0D0C] transition-colors duration-400">
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
           <div className="mb-16">
             <p className="text-[#10E784] text-xs uppercase tracking-widest mb-4 font-bold">
@@ -135,7 +82,7 @@ export default function CorporateServicesPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left: Capability Selector List */}
             <div className="lg:col-span-6 flex flex-col space-y-4">
-              {capabilities.map((cap, idx) => {
+              {CAPABILITIES.map((cap, idx) => {
                 const isActive = idx === activeCapability;
                 return (
                   <button
@@ -176,8 +123,8 @@ export default function CorporateServicesPage() {
               >
                   <div className="relative aspect-[16/10] overflow-hidden rounded-2xl mb-8 border border-white/10">
                     <Image
-                      src={capabilities[activeCapability].image}
-                      alt={capabilities[activeCapability].title}
+                      src={CAPABILITIES[activeCapability].image}
+                      alt={CAPABILITIES[activeCapability].title}
                       fill
                       className="object-cover"
                       sizes="40vw"
@@ -189,7 +136,7 @@ export default function CorporateServicesPage() {
                   </h4>
 
                   <ul className="space-y-3">
-                    {capabilities[activeCapability].details.map((d, i) => (
+                    {CAPABILITIES[activeCapability].details.map((d, i) => (
                       <li key={i} className="flex items-center gap-3 text-sm text-[#E2D9C8]">
                         <CheckCircle2 className="h-4 w-4 text-[#10E784] shrink-0" />
                         <span className="font-light">{d}</span>

@@ -14,14 +14,16 @@ export default function InsightsPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
-  const categories = ["All", "Market Entry", "Real Estate", "Residency", "Technology"];
+  // Derived, so a new article's category appears as a filter and a filter can
+  // never offer a category that no article has.
+  const categories = ["All", ...new Set(MASTER_INSIGHTS.map((a) => a.category))];
 
   const featuredArticle = MASTER_INSIGHTS[0];
   const remainingArticles = MASTER_INSIGHTS.slice(1);
 
   const filteredArticles = selectedCategory === "All"
     ? remainingArticles
-    : remainingArticles.filter(a => a.category.toLowerCase().includes(selectedCategory.toLowerCase()));
+    : remainingArticles.filter((a) => a.category === selectedCategory);
 
   return (
     <div className="bg-[#0A0D0C] text-white overflow-x-hidden min-h-screen transition-colors duration-300">

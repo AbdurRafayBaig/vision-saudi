@@ -10,43 +10,12 @@ import { MASTER_SERVICES } from "@/data/services";
 import { AccordionItem } from "@/components/ui/Accordion";
 import { ContactFormModal } from "@/components/forms/ContactFormModal";
 import { CheckCircle2, ArrowRight } from "lucide-react";
+import { ROADMAP_STEPS } from "@/data/business-setup";
 
 export default function BusinessSetupPage() {
   const service = MASTER_SERVICES.find((s) => s.slug === "business-setup")!;
   const [modalOpen, setModalOpen] = useState(false);
 
-  const roadmapSteps = [
-    {
-      step: "01",
-      title: "DISCOVER",
-      subtitle: "Strategic Alignment & Activity Definition",
-      desc: "Evaluate ISIC 4 activity classification, MISA license requirements, local shareholder criteria, and capital allocation structure.",
-    },
-    {
-      step: "02",
-      title: "STRUCTURE",
-      subtitle: "Legal Architecture & Corporate Documentation",
-      desc: "Draft Memorandum of Association (MoA), prepare board resolutions, obtain power of attorney (PoA), and structure foreign ownership percentage.",
-    },
-    {
-      step: "03",
-      title: "ESTABLISH",
-      subtitle: "MISA Licensing & Commercial Registration",
-      desc: "Secure MISA Investment License, obtain Ministry of Commerce Commercial Registration (CR), and issue official tax identification number.",
-    },
-    {
-      step: "04",
-      title: "ACTIVATE",
-      subtitle: "Government Portals & Corporate Banking",
-      desc: "Activate Qiwa, Muqeem, GOSI, and ZATCA portals, open corporate banking accounts, and complete general manager visa issuing.",
-    },
-    {
-      step: "05",
-      title: "OPERATE",
-      subtitle: "Saudization Compliance & Ecosystem Scaling",
-      desc: "Transition into ongoing GRO operations, Saudization ratio management, commercial contract execution, and ecosystem integration.",
-    },
-  ];
 
   return (
     <div className="bg-[#0A0D0C] text-white transition-colors duration-400 overflow-x-hidden min-h-screen">
@@ -85,7 +54,7 @@ export default function BusinessSetupPage() {
 
           {/* Step Cards Stack */}
           <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
-            {roadmapSteps.map((s, idx) => (
+            {ROADMAP_STEPS.map((s, idx) => (
               <Reveal delay={idx * 0.1} key={s.step} y={20} className="bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl p-6 flex flex-col justify-between hover:border-[#10E784] hover:-translate-y-1 transition-all duration-300 shadow-2xl group">
                 <div>
                   <div className="text-xs font-bold text-[#10E784] mb-3 tracking-wider uppercase">

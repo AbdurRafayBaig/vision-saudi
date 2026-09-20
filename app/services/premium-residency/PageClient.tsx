@@ -11,48 +11,20 @@ import { MASTER_SERVICES } from "@/data/services";
 import { AccordionItem } from "@/components/ui/Accordion";
 import { ContactFormModal } from "@/components/forms/ContactFormModal";
 import { CheckCircle2, UserCheck, Briefcase, Award, Home, Calendar } from "lucide-react";
+import { PATHWAYS } from "@/data/premium-residency";
+
+// Named in data/premium-residency.ts, resolved to components here.
+const ICONS = { briefcase: Briefcase, "user-check": UserCheck, award: Award, home: Home, calendar: Calendar } as const;
+
+function Icon({ name, className }: { name: keyof typeof ICONS; className?: string }) {
+  const Glyph = ICONS[name];
+  return <Glyph className={className} aria-hidden="true" />;
+}
 
 export default function PremiumResidencyPage() {
   const service = MASTER_SERVICES.find((s) => s.slug === "premium-residency")!;
   const [modalOpen, setModalOpen] = useState(false);
 
-  const pathways = [
-    {
-      icon: Briefcase,
-      title: "Investor Residency",
-      target: "Capital Investors & Asset Allocation",
-      criteria: "Direct capital investment in Saudi commercial entities in accordance with Premium Residency Center thresholds.",
-      privilege: "Self-sponsored residency, property ownership rights, freedom to conduct commercial business.",
-    },
-    {
-      icon: UserCheck,
-      title: "Entrepreneur Residency",
-      target: "Startup Founders & Tech Innovators",
-      criteria: "Obtain MISA Entrepreneurship license, secure venture capital backing, or meet incubator milestones.",
-      privilege: "5-year convertible residency, capability to hire employees, business expansion support.",
-    },
-    {
-      icon: Award,
-      title: "Special Talent Residency",
-      target: "Executives, Healthcare & Researchers",
-      criteria: "Executive leadership role, scientific research publications, or specialized healthcare/tech expertise.",
-      privilege: "Exemption from Saudization quotas for self, long-term stability, direct family sponsorship.",
-    },
-    {
-      icon: Home,
-      title: "Real Estate Owner Residency",
-      target: "Property Investors",
-      criteria: "Own unencumbered Saudi real estate assets valued at SAR 4,000,000 or above.",
-      privilege: "Residency linked to property title, family coverage, freedom to enter and exit KSA.",
-    },
-    {
-      icon: Calendar,
-      title: "Limited Duration Residency",
-      target: "1-Year Renewable Residency",
-      criteria: "One-off financial payment of SAR 100,000 for 1-year renewable status.",
-      privilege: "Ideal for short-term executive advisory, property search, and preliminary market evaluation.",
-    },
-  ];
 
   return (
     <div className="bg-[#0A0D0C] text-white transition-colors duration-400 overflow-x-hidden min-h-screen">
@@ -61,13 +33,13 @@ export default function PremiumResidencyPage() {
         type="type-a"
         category="RESIDENCY & ADVISORY"
         title="A life in the Kingdom, by design."
-        subtitle="Navigate Saudi Premium Residency through official Investor, Entrepreneur, Special Talent, Real Estate Owner, and Limited Duration pathways. Strategic evaluation and end-to-end application support."
+        subtitle="Navigate Saudi Premium Residency through official Investor, Entrepreneur, Special Talent, Real Estate Owner, and Limited Duration PATHWAYS. Strategic evaluation and end-to-end application support."
         imageSrc="/images/businessSetup.webp"
         imageAlt="Saudi Arabia Modern City & Lifestyle"
         primaryCtaLabel="Check Residency Eligibility"
         onPrimaryCtaClick={() => setModalOpen(true)}
         secondaryCtaLabel="Explore Pathways"
-        secondaryCtaHref="#pathways"
+        secondaryCtaHref="#PATHWAYS"
       />
 
       <Breadcrumbs trail={[{ label: "Services", href: "/services" }, { label: "Saudi Premium Residency" }]} />
@@ -107,7 +79,7 @@ export default function PremiumResidencyPage() {
       </section>
 
       {/* 5 Official Pathways Spectrum */}
-      <section id="pathways" className="py-[var(--space-section-lg)] bg-[#0A0D0C] border-y border-white/10 relative overflow-hidden transition-colors duration-400">
+      <section id="PATHWAYS" className="py-[var(--space-section-lg)] bg-[#0A0D0C] border-y border-white/10 relative overflow-hidden transition-colors duration-400">
         <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[500px] h-[500px] bg-[#10E784]/10 rounded-full blur-[140px] pointer-events-none" />
 
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative z-10">
@@ -116,16 +88,16 @@ export default function PremiumResidencyPage() {
               Official Pathways
             </p>
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-[1.12] tracking-tight">
-              Five distinct pathways to Saudi residency.
+              Five distinct PATHWAYS to Saudi residency.
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {pathways.map((p, idx) => (
+            {PATHWAYS.map((p, idx) => (
               <Reveal key={idx} y={20} className="bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl p-8 flex flex-col justify-between hover:border-[#10E784] hover:-translate-y-1 transition-all duration-300 shadow-2xl group text-white">
                 <div>
                   <div className="w-12 h-12 rounded-2xl bg-[#10E784]/15 border border-[#10E784]/30 flex items-center justify-center text-[#10E784] mb-6 group-hover:bg-[#10E784] group-hover:text-[#0A0D0C] transition-all duration-300">
-                    <p.icon className="h-6 w-6" />
+                    <Icon name={p.icon} className="h-6 w-6" />
                   </div>
                   <span className="text-xs font-bold text-[#10E784] uppercase tracking-wider block mb-1">
                     {p.target}
@@ -210,7 +182,7 @@ export default function PremiumResidencyPage() {
       <NextStepCTA
         eyebrow="Residency Evaluation"
         headline="Explore your pathway to Saudi Premium Residency."
-        subtext="Our advisors evaluate your profile against the 5 official pathways to determine optimal qualification strategy and capital requirements."
+        subtext="Our advisors evaluate your profile against the 5 official PATHWAYS to determine optimal qualification strategy and capital requirements."
         primaryCtaText="Check Residency Eligibility"
         onPrimaryCtaClick={() => setModalOpen(true)}
         secondaryCtaText="Explore Real Estate Investment"

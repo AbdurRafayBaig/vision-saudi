@@ -19,6 +19,18 @@ import {
   MessageSquare,
   ArrowLeft,
 } from "lucide-react";
+import { LEAD_INTENTS, type IntentIcon } from "@/data/lead-intents";
+import { CAPITAL_SCALES, TARGET_REGIONS, TIMELINES } from "@/lib/contact-fields";
+
+// Named in the data file, resolved to components here.
+const INTENT_ICONS: Record<IntentIcon, typeof Building2> = {
+  building: Building2,
+  shield: ShieldCheck,
+  landmark: Landmark,
+  crown: Crown,
+  cpu: Cpu,
+  handshake: Handshake,
+};
 
 interface ContactFormModalProps {
   isOpen: boolean;
@@ -53,48 +65,11 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
   const [consent, setConsent] = useState(false);
   const [website, setWebsite] = useState("");
 
-  const directions = [
-    {
-      id: "business-setup",
-      icon: Building2,
-      title: "Business Setup & Entity Formation",
-      desc: "MISA investment licensing, CR, Articles of Association & corporate bank account.",
-    },
-    {
-      id: "corporate-services",
-      icon: ShieldCheck,
-      title: "Corporate Services & GRO",
-      desc: "Saudization (Nitaqat), Qiwa, ZATCA e-invoicing, visa transfers & government relations.",
-    },
-    {
-      id: "real-estate",
-      icon: Landmark,
-      title: "Real Estate Investment Advisory",
-      desc: "Grade-A commercial HQ sourcing, residential portfolios & land acquisition.",
-    },
-    {
-      id: "premium-residency",
-      icon: Crown,
-      title: "Saudi Premium Residency",
-      desc: "Investor, Talent, Entrepreneur & Real Estate Owner pathway evaluation.",
-    },
-    {
-      id: "technology",
-      icon: Cpu,
-      title: "Technology & Digital Infrastructure",
-      desc: "Enterprise ERP, SamMail corporate suite, cloud hosting & AI document automation.",
-    },
-    {
-      id: "partnership",
-      icon: Handshake,
-      title: "Strategic Ecosystem Partnership",
-      desc: "Service Partner and Success Partner collaboration network across the Kingdom.",
-    },
-  ];
-
-  const capitalOptions = ["Under $500K", "$500K - $2M", "$2M - $10M", "$10M+ Enterprise"];
-  const timelineOptions = ["Immediate (1-3 months)", "Planning (3-6 months)", "Long-term (6-12 months)"];
-  const regionOptions = ["Riyadh (Olaya / KAFD)", "Jeddah / Western", "Eastern Province", "All Kingdom"];
+  // The same lists the API validates against — a button the server would
+  // reject is not a button worth rendering.
+  const capitalOptions = CAPITAL_SCALES;
+  const timelineOptions = TIMELINES;
+  const regionOptions = TARGET_REGIONS;
 
   const handleSelectDirection = (directionId: string) => {
     setFormData((prev) => ({ ...prev, serviceIntent: directionId }));
@@ -206,8 +181,8 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-6">
-                  {directions.map((dir) => {
-                    const Icon = dir.icon;
+                  {LEAD_INTENTS.map((dir) => {
+                    const Icon = INTENT_ICONS[dir.icon];
                     const isSelected = formData.serviceIntent === dir.id;
                     return (
                       <button

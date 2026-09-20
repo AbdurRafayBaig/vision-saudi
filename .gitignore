@@ -54,3 +54,6 @@ tsconfig.tsbuildinfo
 
 # ...but the example file documents required vars and belongs in the repo
 !.env.example
+
+# Local scratch space for throwaway scripts and screenshots
+/scratch/

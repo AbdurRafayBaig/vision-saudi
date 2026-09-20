@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+/* Scan only our own source. Tailwind's automatic detection walked build output
+   (.next, .next-e2e) and Playwright artefacts, read binary files as text, and
+   produced class candidates like py-[var(--space-~Y-lg)] — which is not valid
+   CSS, so the whole stylesheet failed to compile and every page returned 500.
+   Naming the sources makes that impossible. */
+@source "../app";
+@source "../components";
+@source "../lib";
+@source "../data";
+
 @layer base {
   :root {
     /* ═══════════════════════════════════════════
@@ -114,9 +124,11 @@ h1, h2, h3, h4, h5, h6 {
 .hover-green-box {
   transition: all 0.3s ease;
 }
-.hover-green-box:hover {
-  border-color: #10E784 !important;
-  box-shadow: 0 0 20px rgba(16, 231, 132, 0.12) !important;
+@media (hover: hover) {
+  .hover-green-box:hover {
+    border-color: #10E784 !important;
+    box-shadow: 0 0 20px rgba(16, 231, 132, 0.12) !important;
+  }
 }
 
 /* ═══════════════════════════════════════════
@@ -131,10 +143,12 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 4px 16px rgba(16, 231, 132, 0.25);
   transition: all 0.25s ease;
 }
-.btn-neon-green:hover {
-  background: linear-gradient(90deg, #6EE7B7 0%, #34D399 40%, #10E784 100%);
-  box-shadow: 0 6px 20px rgba(16, 231, 132, 0.35);
-  transform: translateY(-1px);
+@media (hover: hover) {
+  .btn-neon-green:hover {
+    background: linear-gradient(90deg, #6EE7B7 0%, #34D399 40%, #10E784 100%);
+    box-shadow: 0 6px 20px rgba(16, 231, 132, 0.35);
+    transform: translateY(-1px);
+  }
 }
 
 .glass-card-dark {
@@ -144,9 +158,11 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid var(--border-main);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-.glass-card-dark:hover {
-  border-color: rgba(16, 231, 132, 0.6);
-  box-shadow: 0 0 24px rgba(16, 231, 132, 0.1);
+@media (hover: hover) {
+  .glass-card-dark:hover {
+    border-color: rgba(16, 231, 132, 0.6);
+    box-shadow: 0 0 24px rgba(16, 231, 132, 0.1);
+  }
 }
 
 /* ═══════════════════════════════════════════
@@ -169,8 +185,10 @@ h1, h2, h3, h4, h5, h6 {
   animation: marquee 35s linear infinite;
 }
 
-.animate-marquee:hover {
-  animation-play-state: paused;
+@media (hover: hover) {
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
 }
 
 .animate-marquee-reverse {
@@ -179,8 +197,10 @@ h1, h2, h3, h4, h5, h6 {
   animation: marquee-reverse 35s linear infinite;
 }
 
-.animate-marquee-reverse:hover {
-  animation-play-state: paused;
+@media (hover: hover) {
+  .animate-marquee-reverse:hover {
+    animation-play-state: paused;
+  }
 }
 
 

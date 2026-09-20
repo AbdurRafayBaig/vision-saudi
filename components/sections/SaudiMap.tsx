@@ -147,6 +147,26 @@ const HIT_RADII = HUBS.map((hub) => {
 const HQ = HUBS[0];
 const TOUR_MS = 3800;
 
+// Great-circle distance from the Riyadh HQ. "Eastern Province" means little to
+// someone in London; "390 km from Riyadh, about an hour's flight" means a lot.
+const EARTH_KM = 6371;
+const rad = (deg: number) => (deg * Math.PI) / 180;
+
+function distanceKm([lon1, lat1]: [number, number], [lon2, lat2]: [number, number]): number {
+  const dLat = rad(lat2 - lat1);
+  const dLon = rad(lon2 - lon1);
+  const a =
+    Math.sin(dLat / 2) ** 2 + Math.cos(rad(lat1)) * Math.cos(rad(lat2)) * Math.sin(dLon / 2) ** 2;
+  return 2 * EARTH_KM * Math.asin(Math.sqrt(a));
+}
+
+/** Rough door-to-door read on the distance, in the terms people plan around. */
+function travelNote(km: number): string {
+  if (km < 60) return "in the capital";
+  if (km < 420) return `${Math.round(km / 10) * 10} km from Riyadh · a few hours by road`;
+  return `${Math.round(km / 10) * 10} km from Riyadh · about ${Math.max(1, Math.round(km / 700))}h by air`;
+}
+
 export default function SaudiMap() {
   const [activeId, setActiveId] = useState(HUBS[0].id);
   // The map cycles on its own until the visitor interacts, then it stays put.
@@ -170,6 +190,7 @@ export default function SaudiMap() {
     setActiveId(id);
   };
 
+  const km = distanceKm(HQ.coord, active.coord);
   const [hqX, hqY] = project(HQ.coord);
   const [ax, ay] = project(active.coord);
 
@@ -218,6 +239,19 @@ export default function SaudiMap() {
                   opacity={0.65}
                   className="svg-draw svg-draw--fast"
                 />
+              )}
+
+              {/* The same number, on the line it measures. */}
+              {active.id !== HQ.id && (
+                <text
+                  key={`label-${active.id}`}
+                  x={(hqX + ax) / 2}
+                  y={(hqY + ay) / 2 - 6}
+                  textAnchor="middle"
+                  className="anim-fade-in map-label pointer-events-none fill-[#10E784] font-semibold"
+                >
+                  {Math.round(km / 10) * 10} km
+                </text>
               )}
 
               {HUBS.map((hub, i) => {
@@ -277,7 +311,8 @@ export default function SaudiMap() {
                     <MapPin className="h-4 w-4" aria-hidden="true" />
                     <span className="text-xs font-bold uppercase tracking-wider">{active.tagline}</span>
                   </div>
-                  <h3 className="font-display text-3xl font-bold text-white mb-5">{active.name}</h3>
+                  <h3 className="font-display text-3xl font-bold text-white mb-2">{active.name}</h3>
+                  <p className="mb-5 text-xs text-[#94A3B8]">{travelNote(km)}</p>
                   <ul className="anim-stagger flex flex-wrap gap-2 mb-6">
                     {active.sectors.map((s) => (
                       <li

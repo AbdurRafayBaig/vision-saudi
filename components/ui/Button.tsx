@@ -30,7 +30,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const baseStyles =
-      "inline-flex items-center justify-center font-medium tracking-wide transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none cursor-pointer group active:scale-[0.99] select-none text-center";
+      "inline-flex items-center justify-center font-medium tracking-wide transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none cursor-pointer group active:scale-[0.99] select-none text-center";
 
     const shapeStyles = {
       default: "rounded-xl",
@@ -41,17 +41,17 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     const variantStyles = {
       primary:
-        "bg-gradient-to-r from-[#34D399] via-[#10E784] to-[#059669] text-[#0A0D0C] font-bold hover:from-[#6EE7B7] hover:via-[#34D399] hover:to-[#10E784] focus:ring-[#10E784] focus:ring-offset-[#0A0D0C] shadow-md shadow-[#10E784]/20 border border-[#10E784]/40 tracking-wide",
+        "bg-gradient-to-r from-[#34D399] via-[#10E784] to-[#059669] text-[#0A0D0C] font-bold hover:from-[#6EE7B7] hover:via-[#34D399] hover:to-[#10E784] focus-visible:ring-[#10E784] focus-visible:ring-offset-[#0A0D0C] shadow-md shadow-[#10E784]/20 border border-[#10E784]/40 tracking-wide",
       emerald:
-        "bg-gradient-to-r from-[#34D399] via-[#10E784] to-[#059669] text-[#0A0D0C] font-bold hover:from-[#6EE7B7] hover:via-[#34D399] hover:to-[#10E784] focus:ring-[#10E784] focus:ring-offset-[#0A0D0C] shadow-md shadow-[#10E784]/20 border border-[#10E784]/40 tracking-wide",
+        "bg-gradient-to-r from-[#34D399] via-[#10E784] to-[#059669] text-[#0A0D0C] font-bold hover:from-[#6EE7B7] hover:via-[#34D399] hover:to-[#10E784] focus-visible:ring-[#10E784] focus-visible:ring-offset-[#0A0D0C] shadow-md shadow-[#10E784]/20 border border-[#10E784]/40 tracking-wide",
       outline:
-        "bg-transparent border border-[#10E784]/40 text-[#10E784] hover:border-[#10E784] hover:text-white hover:bg-[#10E784]/10 focus:ring-[#10E784] backdrop-blur-md font-semibold",
+        "bg-transparent border border-[#10E784]/40 text-[#10E784] hover:border-[#10E784] hover:text-white hover:bg-[#10E784]/10 focus-visible:ring-[#10E784] backdrop-blur-md font-semibold",
       ghost:
-        "bg-transparent text-[#94A3B8] hover:text-[#10E784] hover:bg-white/10 focus:ring-white/20 font-medium",
+        "bg-transparent text-[#94A3B8] hover:text-[#10E784] hover:bg-white/10 focus-visible:ring-white/20 font-medium",
       ivory:
-        "bg-white/10 text-white hover:bg-white/20 focus:ring-white/20 backdrop-blur-md border border-white/20 font-semibold shadow-sm",
+        "bg-white/10 text-white hover:bg-white/20 focus-visible:ring-white/20 backdrop-blur-md border border-white/20 font-semibold shadow-sm",
       gold:
-        "bg-gradient-to-r from-[#34D399] via-[#10E784] to-[#059669] text-[#0A0D0C] font-bold hover:brightness-105 focus:ring-[#10E784] shadow-md border border-[#10E784]/40",
+        "bg-gradient-to-r from-[#34D399] via-[#10E784] to-[#059669] text-[#0A0D0C] font-bold hover:brightness-105 focus-visible:ring-[#10E784] shadow-md border border-[#10E784]/40",
     };
 
     const sizeStyles = {

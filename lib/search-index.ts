@@ -145,13 +145,28 @@ const normalise = (s: string) =>
 /** Most results of any one kind, so fourteen properties can't bury a service. */
 const PER_KIND = 4;
 
-export function search(query: string, limit = 8): SearchEntry[] {
+export const KIND_ORDER: ResultKind[] = ["service", "guide", "property", "page"];
+
+/** Split a string on the query words, so the UI can mark what matched. */
+export function highlight(text: string, query: string): { text: string; hit: boolean }[] {
+  const words = [...new Set(normalise(query).split(" ").filter(Boolean))];
+  if (words.length === 0) return [{ text, hit: false }];
+
+  const escaped = words.map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  const parts = text.split(new RegExp(`(${escaped.join("|")})`, "gi"));
+  return parts
+    .filter(Boolean)
+    .map((part) => ({ text: part, hit: words.includes(normalise(part)) }));
+}
+
+export function search(query: string, limit = 8, kind?: ResultKind): SearchEntry[] {
   const words = normalise(query).split(" ").filter(Boolean);
   if (words.length === 0) return [];
 
   const scored: { entry: SearchEntry; score: number }[] = [];
 
   for (const entry of SEARCH_INDEX) {
+    if (kind && entry.kind !== kind) continue;
     const title = normalise(entry.title);
     const detail = normalise(entry.detail);
     const keywords = normalise(entry.keywords);
@@ -180,6 +195,7 @@ export function search(query: string, limit = 8): SearchEntry[] {
   return scored
     .sort((a, b) => b.score - a.score)
     .filter(({ entry }) => {
+      if (kind) return true;
       const used = perKind.get(entry.kind) ?? 0;
       if (used >= PER_KIND) return false;
       perKind.set(entry.kind, used + 1);

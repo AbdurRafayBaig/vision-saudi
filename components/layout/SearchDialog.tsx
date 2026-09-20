@@ -3,8 +3,32 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search, X, CornerDownLeft } from "lucide-react";
-import { KIND_LABEL, search, type ResultKind, type SearchEntry } from "@/lib/search-index";
+import {
+  KIND_LABEL,
+  KIND_ORDER,
+  highlight,
+  search,
+  type ResultKind,
+  type SearchEntry,
+} from "@/lib/search-index";
 import { translator } from "@/lib/messages";
+
+/** Marks the words that matched, so a hit in a long title is obvious. */
+function Marked({ text, query }: { text: string; query: string }) {
+  return (
+    <>
+      {highlight(text, query).map((part, i) =>
+        part.hit ? (
+          <mark key={i} className="bg-transparent font-bold text-[#10E784]">
+            {part.text}
+          </mark>
+        ) : (
+          <span key={i}>{part.text}</span>
+        )
+      )}
+    </>
+  );
+}
 
 /**
  * Site search. Opens on Ctrl/Cmd-K or from the header, matches in the browser
@@ -20,10 +44,18 @@ export function SearchDialog({ onClose }: { onClose: () => void }) {
   const router = useRouter();
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
+  const [kind, setKind] = useState<ResultKind | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLUListElement>(null);
 
-  const results = useMemo(() => search(query), [query]);
+  const results = useMemo(() => search(query, kind ? 12 : 8, kind ?? undefined), [query, kind]);
+
+  // Which filters would actually return something for this query — a chip that
+  // leads to an empty list is worse than no chip.
+  const availableKinds = useMemo(() => {
+    if (!query.trim()) return [];
+    return KIND_ORDER.filter((k) => search(query, 1, k).length > 0);
+  }, [query]);
 
   // Grouped for display, but kept in one flat order for the keyboard.
   const groups = useMemo(() => {
@@ -100,6 +132,7 @@ export function SearchDialog({ onClose }: { onClose: () => void }) {
             onChange={(e) => {
               setQuery(e.target.value);
               setActive(0);
+              setKind(null);
             }}
             placeholder={t("search.placeholder")}
             aria-label={t("search.label")}
@@ -118,6 +151,34 @@ export function SearchDialog({ onClose }: { onClose: () => void }) {
             <X className="h-4 w-4" />
           </button>
         </div>
+
+        {availableKinds.length > 1 && (
+          <div className="flex items-center gap-2 overflow-x-auto border-b border-white/10 px-4 py-2">
+            {[null, ...availableKinds].map((k) => {
+              const selected = kind === k;
+              return (
+                <button
+                  key={k ?? "all"}
+                  onClick={() => {
+                    setKind(k);
+                    setActive(0);
+                  }}
+                  aria-pressed={selected}
+                  className={`min-h-[36px] shrink-0 rounded-full px-3 text-xs font-semibold transition-colors ${
+                    selected
+                      ? "bg-[#10E784] text-[#0A0D0C]"
+                      : "border border-white/10 text-[#94A3B8] hover:border-[#10E784]/50 hover:text-white"
+                  }`}
+                >
+                  {k ? KIND_LABEL[k] : "Everything"}
+                </button>
+              );
+            })}
+            <span className="ms-auto shrink-0 ps-2 text-xs text-[#76839A]" aria-live="polite">
+              {flat.length} result{flat.length === 1 ? "" : "s"}
+            </span>
+          </div>
+        )}
 
         <ul
           ref={listRef}
@@ -163,8 +224,12 @@ export function SearchDialog({ onClose }: { onClose: () => void }) {
                           }`}
                         >
                           <span className="min-w-0 flex-1">
-                            <span className="block truncate text-sm font-semibold text-white">{entry.title}</span>
-                            <span className="block truncate text-xs text-[#94A3B8]">{entry.detail}</span>
+                            <span className="block truncate text-sm font-semibold text-white">
+                              <Marked text={entry.title} query={query} />
+                            </span>
+                            <span className="block truncate text-xs text-[#94A3B8]">
+                              <Marked text={entry.detail} query={query} />
+                            </span>
                           </span>
                           {isActive && (
                             <CornerDownLeft className="h-3.5 w-3.5 shrink-0 text-[#10E784]" aria-hidden="true" />

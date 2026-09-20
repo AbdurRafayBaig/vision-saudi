@@ -42,7 +42,8 @@ const fontSans = Inter({
 const fontDisplay = Plus_Jakarta_Sans({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  // Headings use bold and extrabold only; 400/500 were fetched and never drawn.
+  weight: ["600", "700", "800"],
   display: "swap",
 });
 
@@ -52,7 +53,7 @@ const fontDisplay = Plus_Jakarta_Sans({
 const fontArabic = IBM_Plex_Sans_Arabic({
   variable: "--font-arabic",
   subsets: ["arabic"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "600"],
   display: "swap",
   preload: false,
 });

@@ -104,7 +104,7 @@ export default function Navbar() {
                   >
                     <Link
                       href={link.href}
-                      className={`whitespace-nowrap inline-flex items-center gap-1 text-[13px] xl:text-[14px] font-medium py-1.5 transition-colors duration-300 ${
+                      className={`whitespace-nowrap inline-flex min-h-[44px] items-center gap-1 text-[13px] xl:text-[14px] font-medium transition-colors duration-300 ${
                         isActive
                           ? "text-[#10E784] font-semibold"
                           : "text-white/85 hover:text-[#10E784]"
@@ -137,7 +137,7 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`whitespace-nowrap inline-flex items-center gap-1.5 text-[13px] xl:text-[14px] font-medium py-1.5 transition-colors duration-300 ${
+                  className={`whitespace-nowrap inline-flex min-h-[44px] items-center gap-1.5 text-[13px] xl:text-[14px] font-medium transition-colors duration-300 ${
                     isActive
                       ? "text-[#10E784] font-semibold"
                       : "text-white/85 hover:text-[#10E784]"
@@ -164,6 +164,7 @@ export default function Navbar() {
             <Button
               variant="emerald"
               size="sm"
+              className="min-h-[44px]"
               onClick={() => setContactModalOpen(true)}
             >
               Make the First Move
@@ -174,14 +175,14 @@ export default function Navbar() {
           <button
             onClick={() => setSearchOpen(true)}
             aria-label={t("search.label")}
-            className="lg:hidden p-2 text-white transition-colors hover:text-[#10E784]"
+            className="lg:hidden flex min-h-[44px] min-w-[44px] items-center justify-center text-white transition-colors hover:text-[#10E784]"
           >
             <Search className="h-5 w-5" />
           </button>
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-white hover:text-[#10E784] transition-colors"
+            className="lg:hidden flex min-h-[44px] min-w-[44px] items-center justify-center text-white hover:text-[#10E784] transition-colors"
             aria-label="Toggle Navigation Menu"
           >
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}

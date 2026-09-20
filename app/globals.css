@@ -368,6 +368,48 @@ body:has([data-consent-banner]) .shortlist-bar { display: none; }
   transform: scaleX(-1);
 }
 
+/* Range inputs: a thin track reads better, but a thumb needs somewhere to
+   land, so the control keeps a 44px hit area around it. */
+.range-touch {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 44px;
+  background: transparent;
+}
+.range-touch::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.12);
+}
+.range-touch::-moz-range-track {
+  height: 6px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.12);
+}
+.range-touch::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 22px;
+  width: 22px;
+  margin-top: -8px;
+  border-radius: 9999px;
+  background: #10e784;
+  border: 2px solid #0a0d0c;
+  cursor: pointer;
+}
+.range-touch::-moz-range-thumb {
+  height: 22px;
+  width: 22px;
+  border: 2px solid #0a0d0c;
+  border-radius: 9999px;
+  background: #10e784;
+  cursor: pointer;
+}
+.range-touch:focus-visible::-webkit-slider-thumb {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
 /* Height-auto accordion: grid rows animate where height:auto cannot. */
 .accordion-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
 .accordion-panel > * { overflow: hidden; visibility: hidden; transition: visibility 0s linear 0.35s; }

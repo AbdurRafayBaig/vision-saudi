@@ -237,7 +237,7 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
                     step="250000"
                     value={investmentAmount}
                     onChange={(e) => setInvestmentAmount(Number(e.target.value))}
-                    className="w-full accent-[#10E784] bg-white/10 rounded-lg cursor-pointer h-2"
+                    className="range-touch w-full accent-[#10E784] cursor-pointer"
                   />
                   <div className="flex justify-between text-xs font-mono text-white mt-1">
                     <span>SAR {investmentAmount.toLocaleString()}</span>

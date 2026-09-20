@@ -141,7 +141,7 @@ const HIT_RADII = HUBS.map((hub) => {
       return Math.hypot(x - ox, y - oy);
     })
   );
-  return Math.max(9, Math.min(22, nearest / 2));
+  return Math.max(14, Math.min(22, nearest / 2));
 });
 
 const HQ = HUBS[0];

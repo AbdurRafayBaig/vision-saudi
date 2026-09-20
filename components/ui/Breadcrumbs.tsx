@@ -43,7 +43,10 @@ export function Breadcrumbs({ trail, bare = false }: { trail: Crumb[]; bare?: bo
             <li key={c.label} className="flex items-center gap-1">
               {i > 0 && <ChevronRight className="h-3.5 w-3.5 shrink-0 text-[#4B5563]" aria-hidden="true" />}
               {c.href && !isLast ? (
-                <Link href={c.href} className="rounded px-1 py-2 -my-2 hover:text-[#10E784] transition-colors">
+                <Link
+                  href={c.href}
+                  className="inline-flex min-h-[44px] items-center rounded px-1 hover:text-[#10E784] transition-colors"
+                >
                   {c.label}
                 </Link>
               ) : (

@@ -43,7 +43,7 @@ export default function PartnersPage() {
           <div className="flex border-b border-white/10 mb-12 overflow-x-auto">
             <button
               onClick={() => setActiveTab("service")}
-              className={`pb-4 px-6 text-sm font-bold uppercase tracking-wider transition-all duration-300 border-b-2 shrink-0 ${
+              className={`min-h-[44px] pb-4 px-6 text-sm font-bold uppercase tracking-wider transition-all duration-300 border-b-2 shrink-0 ${
                 activeTab === "service"
                   ? "border-[#10E784] text-[#10E784]"
                   : "border-transparent text-[#A39B8B] hover:text-white"
@@ -53,7 +53,7 @@ export default function PartnersPage() {
             </button>
             <button
               onClick={() => setActiveTab("success")}
-              className={`pb-4 px-6 text-sm font-bold uppercase tracking-wider transition-all duration-300 border-b-2 shrink-0 ${
+              className={`min-h-[44px] pb-4 px-6 text-sm font-bold uppercase tracking-wider transition-all duration-300 border-b-2 shrink-0 ${
                 activeTab === "success"
                   ? "border-[#10E784] text-[#10E784]"
                   : "border-transparent text-[#A39B8B] hover:text-white"

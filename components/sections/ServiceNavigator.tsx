@@ -90,7 +90,7 @@ export default function ServiceNavigator() {
 
                 <Link
                   href={`/services/${activeService.slug}`}
-                  className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#10E784] hover:gap-3 transition-all duration-300"
+                  className="inline-flex min-h-[44px] items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#10E784] hover:gap-3 transition-all duration-300"
                 >
                   <span>Explore {activeService.title}</span>
                   <ArrowRight className="h-4 w-4" />

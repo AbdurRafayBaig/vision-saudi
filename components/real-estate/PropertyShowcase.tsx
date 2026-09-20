@@ -190,7 +190,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                 step="500000"
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(Number(e.target.value))}
-                className="w-full accent-[#10E784] bg-white/10 rounded-lg cursor-pointer h-2"
+                className="range-touch w-full accent-[#10E784] cursor-pointer"
               />
               <div className="flex justify-between text-xs font-mono text-[#94A3B8]">
                 <span>SAR 0</span>
@@ -211,7 +211,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                 step="1"
                 value={minYield}
                 onChange={(e) => setMinYield(Number(e.target.value))}
-                className="w-full accent-[#10E784] bg-white/10 rounded-lg cursor-pointer h-2"
+                className="range-touch w-full accent-[#10E784] cursor-pointer"
               />
               <div className="flex justify-between text-xs font-mono text-[#94A3B8]">
                 <span>0%</span>

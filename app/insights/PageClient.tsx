@@ -186,7 +186,7 @@ export default function InsightsPage() {
 
                 <Link
                   href={`/insights/${article.slug}`}
-                  className="inline-flex items-center justify-between w-full pt-4 border-t border-white/10 text-xs font-bold uppercase tracking-wider text-[#10E784] group-hover:text-white transition-colors"
+                  className="inline-flex min-h-[44px] w-full items-center justify-between border-t border-white/10 pt-4 text-xs font-bold uppercase tracking-wider text-[#10E784] transition-colors group-hover:text-white"
                 >
                   <span>Read Full Article</span>
                   <ArrowRight className="h-4 w-4" />

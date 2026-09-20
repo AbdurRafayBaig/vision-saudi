@@ -64,7 +64,7 @@ export default function TechnologyPage() {
             </div>
             <Link
               href="/experience"
-              className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#10E784] hover:text-white transition-colors shrink-0"
+              className="inline-flex min-h-[44px] items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#10E784] hover:text-white transition-colors shrink-0"
             >
               <span>View SLNEE Track Record</span>
               <span className="text-lg">→</span>

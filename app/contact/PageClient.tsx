@@ -52,8 +52,8 @@ export default function ContactPage() {
       <section className="py-[var(--space-section-lg)] bg-[#0A0D0C] text-white relative transition-colors duration-300">
         {/* Ambient Glows */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/3 left-0 w-[500px] h-[500px] rounded-full bg-[#10E784]/5 blur-[160px]" />
-          <div className="absolute bottom-10 right-0 w-[500px] h-[500px] rounded-full bg-[#059669]/5 blur-[160px]" />
+          <div className="absolute top-1/3 start-0 w-[500px] h-[500px] rounded-full bg-[#10E784]/5 blur-[160px]" />
+          <div className="absolute bottom-10 end-0 w-[500px] h-[500px] rounded-full bg-[#059669]/5 blur-[160px]" />
         </div>
 
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative z-10">
@@ -88,7 +88,7 @@ export default function ContactPage() {
                           key={opt.value}
                           type="button"
                           onClick={() => setFormData({ ...formData, serviceIntent: opt.value })}
-                          className={`p-3.5 text-left text-xs font-semibold rounded-2xl border transition-all duration-300 ${
+                          className={`p-3.5 text-start text-xs font-semibold rounded-2xl border transition-all duration-300 ${
                             formData.serviceIntent === opt.value
                               ? "bg-[#10E784]/20 text-[#10E784] border-[#10E784] shadow-[0_0_15px_rgba(16,231,132,0.1)]"
                               : "bg-white/[0.03] text-[#D8CCB8] border-white/10 hover:border-[#10E784]/40 hover:text-white"

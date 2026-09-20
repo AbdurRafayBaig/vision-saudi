@@ -26,8 +26,8 @@ export interface PageHeroProps {
 function BackgroundHDImage({ imageSrc, imageAlt }: { imageSrc?: string; imageAlt: string }) {
   return (
     <div className="absolute inset-0 pointer-events-none z-0">
-      <div className="absolute -top-[20%] -left-[10%] w-[50vw] h-[50vw] rounded-full bg-[#10E784]/10 blur-[140px]" />
-      <div className="absolute -bottom-[20%] -right-[10%] w-[50vw] h-[50vw] rounded-full bg-[#00C86F]/8 blur-[150px]" />
+      <div className="absolute -top-[20%] -start-[10%] w-[50vw] h-[50vw] rounded-full bg-[#10E784]/10 blur-[140px]" />
+      <div className="absolute -bottom-[20%] -end-[10%] w-[50vw] h-[50vw] rounded-full bg-[#00C86F]/8 blur-[150px]" />
       {imageSrc && (
         <Image
           src={imageSrc}

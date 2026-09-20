@@ -83,7 +83,7 @@ export default function RealEstatePage() {
 
       {/* Category Navigation System */}
       <section id="PROPERTY_CATEGORIES" className="py-[var(--space-section-lg)] bg-[#0A0D0C] border-y border-white/10 relative overflow-hidden transition-colors duration-300">
-        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-[#10E784]/10 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute top-1/2 start-0 -translate-y-1/2 w-[500px] h-[500px] bg-[#10E784]/10 rounded-full blur-[140px] pointer-events-none" />
 
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative z-10">
           <div className="mb-16">

@@ -57,7 +57,7 @@ export default function GuideDownload() {
               <p className="mt-4 font-semibold text-white">Your guide is ready.</p>
               <p className="text-sm text-[#B9B3A8] mt-1 mb-6">We&apos;ve also emailed you a copy.</p>
               <Button variant="primary" size="lg" href={GUIDE_PATH}>
-                <Download className="h-4 w-4 mr-2" aria-hidden="true" />
+                <Download className="h-4 w-4 me-2" aria-hidden="true" />
                 Download the guide
               </Button>
             </div>

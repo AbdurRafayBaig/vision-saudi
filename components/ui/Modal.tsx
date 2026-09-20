@@ -82,7 +82,7 @@ export const Modal: React.FC<ModalProps> = ({
         className="anim-scale-in relative w-full max-w-2xl bg-[#0E1210] border border-white/10 p-6 sm:p-10 rounded-3xl shadow-2xl z-10 my-8 overflow-hidden text-white transition-colors duration-300 focus:outline-none"
       >
         {/* Subtle Ambient Glows */}
-        <div className="absolute top-0 right-0 w-[250px] h-[250px] rounded-full bg-[#10E784]/5 blur-[90px] pointer-events-none" />
+        <div className="absolute top-0 end-0 w-[250px] h-[250px] rounded-full bg-[#10E784]/5 blur-[90px] pointer-events-none" />
 
         <div className="relative z-10 flex items-center justify-between pb-4 mb-6 border-b border-white/10">
           {title && (
@@ -98,7 +98,7 @@ export const Modal: React.FC<ModalProps> = ({
           )}
           <button
             onClick={onClose}
-            className="text-[#B9B3A8] hover:text-[#10E784] p-2.5 rounded-full hover:bg-white/10 transition-colors focus:outline-none ml-auto border border-white/10"
+            className="text-[#B9B3A8] hover:text-[#10E784] p-2.5 rounded-full hover:bg-white/10 transition-colors focus:outline-none ms-auto border border-white/10"
             aria-label="Close dialog"
           >
             <X className="h-5 w-5" />

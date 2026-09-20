@@ -93,7 +93,7 @@ export default async function ArticlePage({ params }: Params) {
       {/* Ambient background glows */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-[#10E784]/5 blur-[180px]" />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-[#059669]/5 blur-[160px]" />
+        <div className="absolute bottom-0 end-0 w-[400px] h-[400px] rounded-full bg-[#059669]/5 blur-[160px]" />
       </div>
 
       <article className="max-w-4xl mx-auto px-6 lg:px-8 relative z-10">
@@ -112,7 +112,7 @@ export default async function ArticlePage({ params }: Params) {
           {article.title}
         </h1>
 
-        <div className="p-8 rounded-3xl bg-white/[0.03] backdrop-blur-xl border border-white/10 border-l-4 border-l-[#10E784] text-[#D8CCB8] text-xl font-display italic mb-12 shadow-2xl">
+        <div className="p-8 rounded-3xl bg-white/[0.03] backdrop-blur-xl border border-white/10 border-s-4 border-s-[#10E784] text-[#D8CCB8] text-xl font-display italic mb-12 shadow-2xl">
           &ldquo;{article.excerpt}&rdquo;
         </div>
 

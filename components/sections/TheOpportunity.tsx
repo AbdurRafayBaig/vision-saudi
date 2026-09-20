@@ -11,8 +11,8 @@ export default function TheOpportunity() {
     <section id="opportunity" className="bg-[#0A0D0C] text-white py-[var(--space-section-lg)] relative overflow-hidden border-b border-white/10 transition-colors duration-400">
       {/* Ambient background glows */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-0 w-[500px] h-[500px] rounded-full bg-[#2D7A5F]/8 blur-[140px] -translate-y-1/2" />
-        <div className="absolute top-1/2 right-0 w-[500px] h-[500px] rounded-full bg-[#10E784]/5 blur-[150px] -translate-y-1/2" />
+        <div className="absolute top-1/2 start-0 w-[500px] h-[500px] rounded-full bg-[#2D7A5F]/8 blur-[140px] -translate-y-1/2" />
+        <div className="absolute top-1/2 end-0 w-[500px] h-[500px] rounded-full bg-[#10E784]/5 blur-[150px] -translate-y-1/2" />
       </div>
 
       <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative z-10">
@@ -35,7 +35,7 @@ export default function TheOpportunity() {
 
             {/* Quick Metrics Grid */}
             <div className="grid grid-cols-2 gap-4">
-              <div className="p-6 bg-white/[0.03] border border-transparent border-l-4 border-l-[#10E784] rounded-2xl hover-green-box">
+              <div className="p-6 bg-white/[0.03] border border-transparent border-s-4 border-s-[#10E784] rounded-2xl hover-green-box">
                 <div className="flex items-center gap-2 text-[#10E784] font-mono text-xs font-bold mb-1">
                   <TrendingUp className="h-4 w-4" />
                   <span>VISION 2030 PIPELINE</span>
@@ -44,7 +44,7 @@ export default function TheOpportunity() {
                 <div className="text-xs text-[#94A3B8] mt-1 font-light">Giga-Projects & Development</div>
               </div>
 
-              <div className="p-6 bg-white/[0.03] border border-transparent border-l-4 border-l-[#10E784] rounded-2xl hover-green-box">
+              <div className="p-6 bg-white/[0.03] border border-transparent border-s-4 border-s-[#10E784] rounded-2xl hover-green-box">
                 <div className="flex items-center gap-2 text-[#10E784] font-mono text-xs font-bold mb-1">
                   <Landmark className="h-4 w-4" />
                   <span>REGULATORY MANDATE</span>
@@ -68,7 +68,7 @@ export default function TheOpportunity() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#0A0D0C] via-[#0A0D0C]/30 to-transparent" />
 
               {/* Floating Bottom Card */}
-              <div className="absolute bottom-6 left-6 right-6 p-6 bg-[#0A0D0C]/85 border border-white/10 backdrop-blur-xl rounded-2xl shadow-lg">
+              <div className="absolute bottom-6 start-6 end-6 p-6 bg-[#0A0D0C]/85 border border-white/10 backdrop-blur-xl rounded-2xl shadow-lg">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <ShieldCheck className="h-6 w-6 text-[#10E784]" />

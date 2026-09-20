@@ -370,3 +370,16 @@ test.describe("property shortlist", () => {
     expect(body.planSummary).toContain("Shortlisted 2 properties");
   });
 });
+
+test("the document declares its language and direction", async ({ page }) => {
+  await page.goto("/");
+  const html = page.locator("html");
+  await expect(html).toHaveAttribute("lang", "en");
+  await expect(html).toHaveAttribute("dir", "ltr");
+
+  // hreflang must only name locales that are actually served.
+  const alternates = await page.locator('link[rel="alternate"][hreflang]').evaluateAll((ls) =>
+    ls.map((l) => l.getAttribute("hreflang"))
+  );
+  expect(alternates).not.toContain("ar");
+});

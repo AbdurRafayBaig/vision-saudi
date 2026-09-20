@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { absoluteUrl } from "@/lib/site-config";
+import { translator } from "@/lib/messages";
 
 export interface Crumb {
   label: string;
@@ -14,10 +15,11 @@ export interface Crumb {
  * turns a result's green URL line into a readable path.
  */
 export function Breadcrumbs({ trail, bare = false }: { trail: Crumb[]; bare?: boolean }) {
-  const items = [{ label: "Home", href: "/" }, ...trail];
+  const t = translator();
+  const items = [{ label: t("breadcrumb.home"), href: "/" }, ...trail];
 
   return (
-    <nav aria-label="Breadcrumb" className={bare ? "" : "border-b border-white/10 bg-[#0A0D0C]"}>
+    <nav aria-label={t("breadcrumb.label")} className={bare ? "" : "border-b border-white/10 bg-[#0A0D0C]"}>
       <JsonLd
         data={{
           "@context": "https://schema.org",

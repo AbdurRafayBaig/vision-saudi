@@ -98,7 +98,7 @@ export function ConsentAndAnalytics() {
           aria-live="polite"
           aria-label="Cookie consent"
           data-consent-banner=""
-          className="fixed inset-x-4 bottom-20 sm:left-auto sm:right-6 sm:bottom-6 sm:max-w-md z-[60] p-5 rounded-2xl bg-[#101312]/95 border border-white/15 backdrop-blur-xl shadow-2xl text-sm text-[#B9B3A8]"
+          className="fixed inset-x-4 bottom-20 sm:start-auto sm:end-6 sm:bottom-6 sm:max-w-md z-[60] p-5 rounded-2xl bg-[#101312]/95 border border-white/15 backdrop-blur-xl shadow-2xl text-sm text-[#B9B3A8]"
         >
           <p className="mb-4 leading-relaxed">
             We use cookies to understand how visitors use this site and improve it. Nothing is tracked unless

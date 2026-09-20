@@ -37,7 +37,7 @@ export default function BusinessSetupPage() {
 
       {/* Visual Journey: DISCOVER → STRUCTURE → ESTABLISH → ACTIVATE → OPERATE */}
       <section id="roadmap" className="py-[var(--space-section-lg)] bg-[#0A0D0C] border-b border-white/10 relative overflow-hidden transition-colors duration-400">
-        <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[500px] h-[500px] bg-[#10E784]/10 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute top-1/2 end-0 -translate-y-1/2 w-[500px] h-[500px] bg-[#10E784]/10 rounded-full blur-[140px] pointer-events-none" />
 
         <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative z-10">
           <Reveal y={20} className="mb-16">

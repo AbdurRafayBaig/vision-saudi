@@ -195,7 +195,7 @@ export default function MarketEntryEstimator() {
             {result.notes.length > 0 && (
               <ul className="space-y-2 mb-6">
                 {result.notes.map((n) => (
-                  <li key={n} className="text-sm text-[#D8CCB8] pl-4 border-l-2 border-[#10E784]/60">
+                  <li key={n} className="text-sm text-[#D8CCB8] ps-4 border-s-2 border-[#10E784]/60">
                     {n}
                   </li>
                 ))}
@@ -208,7 +208,7 @@ export default function MarketEntryEstimator() {
               <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 text-sm font-semibold text-[#D8CCB8] transition-colors hover:text-white">
                 <span>
                   Documents you&apos;ll need to provide
-                  <span className="ml-2 font-normal text-[#94A3B8]">
+                  <span className="ms-2 font-normal text-[#94A3B8]">
                     ({gatheredCount}/{documents.length} ready)
                   </span>
                 </span>
@@ -229,7 +229,7 @@ export default function MarketEntryEstimator() {
                         <span className="block text-sm font-semibold text-white">
                           {doc.title}
                           {doc.attested && (
-                            <span className="ml-2 rounded bg-[#E7B710]/15 px-1.5 py-0.5 text-xs font-bold uppercase tracking-wide text-[#E7B710]">
+                            <span className="ms-2 rounded bg-[#E7B710]/15 px-1.5 py-0.5 text-xs font-bold uppercase tracking-wide text-[#E7B710]">
                               Needs attestation
                             </span>
                           )}
@@ -278,7 +278,7 @@ export default function MarketEntryEstimator() {
             ) : (
               <Reveal immediate>
                 <Button variant="primary" size="lg" showArrow className="w-full" onClick={() => setShowForm(true)}>
-                  <Mail className="h-4 w-4 mr-2" aria-hidden="true" />
+                  <Mail className="h-4 w-4 me-2" aria-hidden="true" />
                   Email me the full plan
                 </Button>
               </Reveal>

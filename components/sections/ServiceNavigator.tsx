@@ -13,7 +13,7 @@ export default function ServiceNavigator() {
   return (
     <section id="services" className="bg-[#0A0D0C] text-white relative overflow-hidden py-[var(--space-section-lg)] border-b border-white/10">
       {/* Background Ambient Radial Glow */}
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[#10E784]/5 blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 start-1/4 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[#10E784]/5 blur-[140px] pointer-events-none" />
 
       <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -35,10 +35,10 @@ export default function ServiceNavigator() {
                   key={service.number}
                   onClick={() => setActiveIndex(idx)}
                   onMouseEnter={() => setActiveIndex(idx)}
-                  className={`text-left p-6 rounded-2xl transition-all duration-300 group ${
+                  className={`text-start p-6 rounded-2xl transition-all duration-300 group ${
                     isActive
-                      ? "bg-white/[0.05] border-l-4 border-[#10E784] shadow-xl backdrop-blur-md"
-                      : "bg-transparent border-l-4 border-transparent hover:bg-white/[0.02]"
+                      ? "bg-white/[0.05] border-s-4 border-[#10E784] shadow-xl backdrop-blur-md"
+                      : "bg-transparent border-s-4 border-transparent hover:bg-white/[0.02]"
                   }`}
                 >
                   <div className="flex items-start gap-4">

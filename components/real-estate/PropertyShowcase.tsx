@@ -91,7 +91,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
               </div>
               <button
                 onClick={resetFilters}
-                className="py-3 -my-3 pl-3 -ml-3 text-xs font-mono text-[#94A3B8] hover:text-white transition-colors flex items-center gap-1 cursor-pointer"
+                className="py-3 -my-3 ps-3 -ms-3 text-xs font-mono text-[#94A3B8] hover:text-white transition-colors flex items-center gap-1 cursor-pointer"
               >
                 <RotateCcw className="h-3 w-3" />
                 <span>RESET</span>
@@ -103,7 +103,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
               <span className="text-xs font-bold text-[#94A3B8] uppercase tracking-wider block">
                 LOCATION
               </span>
-              <div className="space-y-1.5 max-h-48 overflow-y-auto pr-1">
+              <div className="space-y-1.5 max-h-48 overflow-y-auto pe-1">
                 {locations.map((loc) => {
                   const locKey = loc === "ALL LOCATIONS" ? "ALL" : loc;
                   const isSelected = selectedLocation === locKey || (selectedLocation === "ALL" && loc === "ALL LOCATIONS");
@@ -111,7 +111,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                     <button
                       key={loc}
                       onClick={() => setSelectedLocation(locKey)}
-                      className={`w-full text-left px-3.5 min-h-[44px] flex items-center rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${
+                      className={`w-full text-start px-3.5 min-h-[44px] flex items-center rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${
                         isSelected
                           ? "bg-[#10E784]/20 text-[#10E784] border border-[#10E784] font-semibold shadow-sm"
                           : "bg-white/[0.03] text-[#94A3B8] hover:bg-white/[0.08] hover:text-white border border-white/5"
@@ -137,7 +137,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                     <button
                       key={type}
                       onClick={() => setSelectedType(typeKey)}
-                      className={`w-full text-left px-3.5 min-h-[44px] flex items-center rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${
+                      className={`w-full text-start px-3.5 min-h-[44px] flex items-center rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${
                         isSelected
                           ? "bg-[#10E784]/20 text-[#10E784] border border-[#10E784] font-semibold shadow-sm"
                           : "bg-white/[0.03] text-[#94A3B8] hover:bg-white/[0.08] hover:text-white border border-white/5"
@@ -162,7 +162,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                     <button
                       key={st}
                       onClick={() => setSelectedStatus(st)}
-                      className={`w-full text-left px-3.5 min-h-[44px] flex items-center rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${
+                      className={`w-full text-start px-3.5 min-h-[44px] flex items-center rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${
                         isSelected
                           ? "bg-[#10E784]/20 text-[#10E784] border border-[#10E784] font-semibold shadow-sm"
                           : "bg-white/[0.03] text-[#94A3B8] hover:bg-white/[0.08] hover:text-white border border-white/5"
@@ -281,7 +281,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                       />
 
                       {/* The listings are real; these photographs stand in for them. */}
-                      <span className="absolute bottom-2 right-2 z-10 rounded bg-[#0A0D0C]/80 px-2 py-1 text-xs text-[#D8CCB8] backdrop-blur-md">
+                      <span className="absolute bottom-2 end-2 z-10 rounded bg-[#0A0D0C]/80 px-2 py-1 text-xs text-[#D8CCB8] backdrop-blur-md">
                         Indicative image
                       </span>
 
@@ -299,7 +299,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                             ? `Remove ${property.title} from your shortlist`
                             : `Save ${property.title} to your shortlist`
                         }
-                        className={`absolute top-3 right-3 z-20 flex h-10 w-10 items-center justify-center rounded-full border backdrop-blur-md transition-colors ${
+                        className={`absolute top-3 end-3 z-20 flex h-10 w-10 items-center justify-center rounded-full border backdrop-blur-md transition-colors ${
                           shortlist.has(property.id)
                             ? "border-[#10E784] bg-[#10E784]/20 text-[#10E784]"
                             : "border-white/20 bg-[#0A0D0C]/70 text-white hover:border-[#10E784] hover:text-[#10E784]"
@@ -316,7 +316,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                       {/* right-16 keeps the badges clear of the save button: a long
                           status ("AVAILABLE FOR SALE") otherwise runs under it and
                           takes the click. */}
-                      <div className="absolute top-3 left-3 right-16 flex flex-wrap gap-1.5 z-10">
+                      <div className="absolute top-3 start-3 end-16 flex flex-wrap gap-1.5 z-10">
                         {property.featured && (
                           <span className="px-2.5 py-1 bg-[#0A0D0C]/85 border border-[#10E784]/60 text-[#10E784] text-xs font-bold uppercase tracking-wider rounded backdrop-blur-md">
                             FEATURED

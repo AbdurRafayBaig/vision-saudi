@@ -45,7 +45,7 @@ export const VisionSaudiLogo: React.FC<VisionSaudiLogoProps> = ({
         />
       </div>
       {showSubtext && (
-        <span className="text-xs font-mono text-[#10E784] tracking-[0.2em] mt-1 opacity-90 pl-0.5 font-bold">
+        <span className="text-xs font-mono text-[#10E784] tracking-[0.2em] mt-1 opacity-90 ps-0.5 font-bold">
           KINGDOM OF SAUDI ARABIA
         </span>
       )}

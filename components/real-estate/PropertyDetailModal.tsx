@@ -78,12 +78,12 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
               />
 
               {/* The listings are real; these photographs stand in for them. */}
-              <span className="absolute bottom-3 right-3 z-10 rounded bg-[#0A0D0C]/80 px-2.5 py-1 text-xs text-[#D8CCB8] backdrop-blur-md">
+              <span className="absolute bottom-3 end-3 z-10 rounded bg-[#0A0D0C]/80 px-2.5 py-1 text-xs text-[#D8CCB8] backdrop-blur-md">
                 Indicative image
               </span>
 
               {/* Status Badge */}
-              <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+              <div className="absolute top-4 start-4 flex flex-wrap gap-2">
                 {property.featured && (
                   <span className="px-3 py-1 bg-slate-950/80 border border-[#10E784]/50 text-[#10E784] text-xs font-bold uppercase tracking-wider rounded-md backdrop-blur-md">
                     FEATURED
@@ -164,7 +164,7 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
                   <span className="text-xl font-bold text-[#10E784] font-mono">{property.price}</span>
                 </div>
                 {property.yieldNumeric > 0 && (
-                  <div className="text-right">
+                  <div className="text-end">
                     <span className="text-xs text-[#A39B8B] uppercase block mb-1">Est. Rental Yield</span>
                     <span className="text-base font-bold text-[#10E784] font-mono">~{property.yieldNumeric}% p.a.</span>
                   </div>

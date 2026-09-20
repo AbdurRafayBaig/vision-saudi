@@ -21,11 +21,11 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
     <div className="border-b border-white/10 py-4 transition-colors hover:border-[#10E784]/60">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between text-left py-2 focus:outline-none group text-white font-display font-bold hover:text-[#10E784] transition-colors"
+        className="w-full flex items-center justify-between text-start py-2 focus:outline-none group text-white font-display font-bold hover:text-[#10E784] transition-colors"
         aria-expanded={isOpen}
         aria-controls={panelId}
       >
-        <span className="text-base sm:text-lg pr-4">{question}</span>
+        <span className="text-base sm:text-lg pe-4">{question}</span>
         <ChevronDown
           className={`h-5 w-5 text-[#10E784] shrink-0 transition-transform duration-300 ${
             isOpen ? "rotate-180" : ""

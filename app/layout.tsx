@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ViewTransition } from "react";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Inter, IBM_Plex_Sans_Arabic, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -9,6 +9,7 @@ import { MobileActionBar } from "@/components/layout/MobileActionBar";
 import { ConsentAndAnalytics } from "@/components/analytics/ConsentAndAnalytics";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SITE, absoluteUrl } from "@/lib/site-config";
+import { DEFAULT_LOCALE, ENABLED_LOCALES, dirOf, localePath } from "@/lib/i18n";
 
 const ORGANIZATION_LD = {
   "@context": "https://schema.org",
@@ -45,6 +46,17 @@ const fontDisplay = Plus_Jakarta_Sans({
   display: "swap",
 });
 
+// Declared now so Arabic has a typeface the day its copy lands. preload is off
+// and the variable is only attached for RTL locales, so English pages don't
+// fetch it.
+const fontArabic = IBM_Plex_Sans_Arabic({
+  variable: "--font-arabic",
+  subsets: ["arabic"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  preload: false,
+});
+
 export const metadata: Metadata = {
   title: {
     default: "Vision Saudi | Premium Saudi Business, Investment & Market-Entry Platform",
@@ -65,7 +77,12 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Vision Saudi Strategy & Advisory" }],
   metadataBase: new URL(SITE.url),
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    // Only locales actually served are advertised; pointing hreflang at a page
+    // that does not exist yet is worse than not declaring it.
+    languages: Object.fromEntries(ENABLED_LOCALES.map((l) => [l, localePath("/", l)])),
+  },
   openGraph: {
     title: "Vision Saudi — One Kingdom. One Vision. One Ecosystem.",
     description:
@@ -101,12 +118,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const locale = DEFAULT_LOCALE;
+  const dir = dirOf(locale);
+
   return (
     <html
-      lang="en"
+      lang={locale}
+      dir={dir}
       suppressHydrationWarning
       data-scroll-behavior="smooth"
-      className={`${fontSans.variable} ${fontDisplay.variable} h-full antialiased`}
+      className={`${fontSans.variable} ${fontDisplay.variable} ${dir === "rtl" ? fontArabic.variable : ""} h-full antialiased`}
     >
       <head>
         {/* The site is already dark. This tells the Dark Reader extension to leave it alone;

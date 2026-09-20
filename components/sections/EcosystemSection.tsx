@@ -47,7 +47,7 @@ export default function EcosystemSection() {
     <section className="bg-[#0A0D0C] text-white py-[var(--space-section-lg)] border-b border-white/10 relative overflow-hidden transition-colors duration-300">
       {/* Ambient background glows */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/3 left-0 w-[500px] h-[500px] rounded-full bg-[#10E784]/5 blur-[150px]" />
+        <div className="absolute top-1/3 start-0 w-[500px] h-[500px] rounded-full bg-[#10E784]/5 blur-[150px]" />
       </div>
 
       <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative z-10">
@@ -72,7 +72,7 @@ export default function EcosystemSection() {
                   onClick={() => setActiveIndex(isActive ? null : idx)}
                   aria-expanded={isActive}
                   aria-controls={`ecosystem-panel-${idx}`}
-                  className="w-full py-6 px-4 flex items-center justify-between text-left group transition-all duration-300 rounded-2xl hover:bg-white/[0.03]"
+                  className="w-full py-6 px-4 flex items-center justify-between text-start group transition-all duration-300 rounded-2xl hover:bg-white/[0.03]"
                 >
                   <div className="flex items-center gap-5">
                     <span className="text-sm font-mono text-[#10E784] font-bold w-6">
@@ -94,7 +94,7 @@ export default function EcosystemSection() {
 
                 <div id={`ecosystem-panel-${idx}`} className="accordion-panel" data-open={isActive}>
                   <div>
-                    <div className="pl-6 sm:pl-12 pr-4 sm:pr-6 pb-6 pt-2">
+                    <div className="ps-6 sm:ps-12 pe-4 sm:pe-6 pb-6 pt-2">
                         <div className="p-6 bg-white/[0.04] border border-white/10 rounded-2xl shadow-inner flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
                           <p className="text-[#D8CCB8] text-base leading-relaxed font-light max-w-2xl">
                             {category.description}

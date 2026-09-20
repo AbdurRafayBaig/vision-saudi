@@ -356,6 +356,18 @@ h1, h2, h3, h4, h5, h6 {
 /* The cookie banner owns the bottom of the screen until it is answered. */
 body:has([data-consent-banner]) .shortlist-bar { display: none; }
 
+/* Arabic typography, applied by direction so the same components serve both. */
+[dir="rtl"] body {
+  font-family: var(--font-arabic), var(--font-sans), system-ui, sans-serif;
+}
+[dir="rtl"] .font-display {
+  font-family: var(--font-arabic), var(--font-display), system-ui, sans-serif;
+}
+/* Glyph-level mirroring for the few marks that should not flip with the layout. */
+[dir="rtl"] .no-flip {
+  transform: scaleX(-1);
+}
+
 /* Height-auto accordion: grid rows animate where height:auto cannot. */
 .accordion-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1); }
 .accordion-panel > * { overflow: hidden; visibility: hidden; transition: visibility 0s linear 0.35s; }

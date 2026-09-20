@@ -113,7 +113,7 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
           </p>
 
           {/* Submitted Summary Badge */}
-          <div className="w-full p-4 bg-white/[0.04] border border-[#10E784]/30 rounded-2xl mb-8 text-left space-y-2 font-mono text-xs text-[#D8CCB8]">
+          <div className="w-full p-4 bg-white/[0.04] border border-[#10E784]/30 rounded-2xl mb-8 text-start space-y-2 font-mono text-xs text-[#D8CCB8]">
             <div className="flex justify-between border-b border-white/10 pb-2">
               <span className="text-[#B9B3A8]">OBJECTIVE:</span>
               <span className="text-[#10E784] font-bold uppercase">{formData.serviceIntent.replaceAll("-", " ")}</span>
@@ -188,7 +188,7 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
                       <button
                         key={dir.id}
                         onClick={() => handleSelectDirection(dir.id)}
-                        className={`p-4 text-left border rounded-2xl transition-all duration-300 group relative ${
+                        className={`p-4 text-start border rounded-2xl transition-all duration-300 group relative ${
                           isSelected
                             ? "bg-[#10E784]/15 border-[#10E784] shadow-[0_0_25px_rgba(16,231,132,0.07)]"
                             : "bg-white/[0.03] border-white/10 hover:border-[#10E784]/60 hover:bg-white/[0.06]"

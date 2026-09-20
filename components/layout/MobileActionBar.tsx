@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { MessageCircle, Phone, Send } from "lucide-react";
 import { SITE, whatsappUrl } from "@/lib/site-config";
+import { translator } from "@/lib/messages";
 
 /**
  * Phone-only bar pinned to the bottom of the screen. On mobile the three things
@@ -9,11 +10,12 @@ import { SITE, whatsappUrl } from "@/lib/site-config";
  * WhatsApp button and the header CTA already cover it.
  */
 export function MobileActionBar() {
+  const t = translator();
   const item = "flex flex-1 flex-col items-center justify-center gap-1 py-2.5 text-xs font-semibold transition-colors";
 
   return (
     <nav
-      aria-label="Quick contact"
+      aria-label={t("quickContact.label")}
       className="fixed inset-x-0 bottom-0 z-40 flex border-t border-white/10 bg-[#0A0D0C]/95 backdrop-blur-xl pb-[env(safe-area-inset-bottom)] sm:hidden"
     >
       <a
@@ -23,15 +25,15 @@ export function MobileActionBar() {
         className={`${item} text-[#25D366] hover:bg-white/5`}
       >
         <MessageCircle className="h-5 w-5" aria-hidden="true" />
-        WhatsApp
+        {t("cta.whatsapp")}
       </a>
       <a href={`tel:${SITE.phoneE164}`} className={`${item} text-[#D8CCB8] hover:bg-white/5`}>
         <Phone className="h-5 w-5" aria-hidden="true" />
-        Call
+        {t("cta.call")}
       </a>
       <Link href="/contact" className={`${item} text-[#10E784] hover:bg-white/5`}>
         <Send className="h-5 w-5" aria-hidden="true" />
-        Enquire
+        {t("cta.enquire")}
       </Link>
     </nav>
   );

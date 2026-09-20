@@ -50,7 +50,7 @@ export default function JourneyNarrative() {
   return (
     <section className="bg-[#0A0D0C] text-white transition-colors duration-300 py-[var(--space-section-lg)] border-b border-white/10 relative overflow-hidden">
       {/* Background Ambient Glow */}
-      <div className="absolute top-1/3 right-10 w-[450px] h-[450px] rounded-full bg-[#10E784]/5 blur-[130px] pointer-events-none" />
+      <div className="absolute top-1/3 end-10 w-[450px] h-[450px] rounded-full bg-[#10E784]/5 blur-[130px] pointer-events-none" />
 
       <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
         {/* Section Header */}
@@ -68,18 +68,18 @@ export default function JourneyNarrative() {
         {/* Journey Stages */}
         <div ref={timelineRef} className="relative">
           {/* Vertical connecting line, with a green fill that tracks scroll progress */}
-          <div className="absolute left-[19px] lg:left-[23px] top-0 bottom-0 w-0.5 bg-white/15" />
+          <div className="absolute start-[19px] lg:start-[23px] top-0 bottom-0 w-0.5 bg-white/15" />
           <div
             aria-hidden="true"
             style={{ transform: `scaleY(${progress})` }}
-            className="absolute left-[19px] lg:left-[23px] top-0 bottom-0 w-0.5 origin-top bg-gradient-to-b from-[#10E784] to-[#059669] shadow-[0_0_12px_rgba(16,231,132,0.3)]"
+            className="absolute start-[19px] lg:start-[23px] top-0 bottom-0 w-0.5 origin-top bg-gradient-to-b from-[#10E784] to-[#059669] shadow-[0_0_12px_rgba(16,231,132,0.3)]"
           />
 
           <div className="flex flex-col gap-0">
             {stages.map((stage) => (
-              <Reveal key={stage.number} x={-10} className="relative pl-14 lg:pl-16 py-8 group">
+              <Reveal key={stage.number} x={-10} className="relative ps-14 lg:ps-16 py-8 group">
                 {/* Stage number dot */}
-                <div className="absolute left-0 top-8 flex items-center justify-center">
+                <div className="absolute start-0 top-8 flex items-center justify-center">
                   {/* Lights up once its stage scrolls into view — see .journey-dot in globals.css */}
                   <div className="journey-dot w-10 h-10 lg:w-12 lg:h-12 rounded-full border bg-[#1A3C2E] flex items-center justify-center">
                     <span className="journey-dot__num text-xs lg:text-sm font-bold">

@@ -68,7 +68,7 @@ export default function AboutPage() {
                 <p className="text-[#B9B3A8] text-sm leading-relaxed font-light mb-8">
                   Vision Saudi brings established Saudi execution experience into a modern platform. Through our leadership team and strategic technology partner SLNEE, our wider experience includes multi-million-riyal government projects, digital infrastructure, and enterprise consulting across the Kingdom.
                 </p>
-                <div className="p-4 bg-white/[0.04] border-l-4 border-[#10E784] rounded-2xl flex items-center gap-3 text-xs text-[#D8CCB8]">
+                <div className="p-4 bg-white/[0.04] border-s-4 border-[#10E784] rounded-2xl flex items-center gap-3 text-xs text-[#D8CCB8]">
                   <ShieldCheck className="h-5 w-5 text-[#10E784] shrink-0" />
                   <span>Selected historical enterprise implementations attributed directly to SLNEE.</span>
                 </div>
@@ -92,7 +92,7 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {PRINCIPLES.map((item, idx) => (
-              <Reveal key={idx} y={20} className="p-8 bg-white/[0.03] border-l-4 border-[#10E784] rounded-3xl hover:border-[#10E784] hover:shadow-[0_0_25px_rgba(16,231,132,0.1)] transition-all duration-300 shadow-md group backdrop-blur-md">
+              <Reveal key={idx} y={20} className="p-8 bg-white/[0.03] border-s-4 border-[#10E784] rounded-3xl hover:border-[#10E784] hover:shadow-[0_0_25px_rgba(16,231,132,0.1)] transition-all duration-300 shadow-md group backdrop-blur-md">
                 <Icon name={item.icon} className="h-8 w-8 text-[#10E784] mb-6 group-hover:scale-110 transition-transform duration-300" />
                 <h3 className="font-display text-2xl text-white font-bold mb-3">
                   {item.title}

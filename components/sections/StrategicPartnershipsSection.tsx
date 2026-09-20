@@ -59,8 +59,8 @@ export default function StrategicPartnershipsSection() {
 
         {/* Partners — the one moving element in this section */}
         <div className="relative overflow-hidden py-4 mb-20">
-          <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-slate-900 to-transparent z-20 pointer-events-none" />
-          <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-slate-900 to-transparent z-20 pointer-events-none" />
+          <div className="absolute inset-y-0 start-0 w-24 bg-gradient-to-r from-slate-900 to-transparent z-20 pointer-events-none" />
+          <div className="absolute inset-y-0 end-0 w-24 bg-gradient-to-l from-slate-900 to-transparent z-20 pointer-events-none" />
           <ul className="animate-marquee items-center gap-6">
             {[0, 1, 2].map((copy) =>
               PARTNERS.map((partner) => (

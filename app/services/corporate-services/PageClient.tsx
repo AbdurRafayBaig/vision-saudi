@@ -89,7 +89,7 @@ export default function CorporateServicesPage() {
                     key={idx}
                     onClick={() => setActiveCapability(idx)}
                     onMouseEnter={() => setActiveCapability(idx)}
-                    className={`text-left p-6 sm:p-8 rounded-2xl transition-all duration-300 border backdrop-blur-xl ${
+                    className={`text-start p-6 sm:p-8 rounded-2xl transition-all duration-300 border backdrop-blur-xl ${
                       isActive
                         ? "bg-[#10E784]/15 border-[#10E784] shadow-xl text-white scale-[1.02]"
                         : "bg-white/[0.03] border-white/10 hover:border-white/20 text-[#A39B8B]"

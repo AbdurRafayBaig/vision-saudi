@@ -7,23 +7,26 @@ import { Menu, X, ChevronDown, Home as HomeIcon } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { ContactFormModal } from "@/components/forms/ContactFormModal";
 import { VisionSaudiLogo } from "@/components/ui/VisionSaudiLogo";
+import { translator } from "@/lib/messages";
+
+const t = translator();
 
 const navLinks = [
-  { name: "Home", href: "/" },
+  { name: t("nav.home"), href: "/" },
   {
-    name: "Services",
+    name: t("nav.services"),
     href: "/services",
     dropdown: [
-      { name: "Business Setup & Market Entry", href: "/services/business-setup" },
-      { name: "Corporate Services & GRO", href: "/services/corporate-services" },
-      { name: "Technology & Digital", href: "/services/technology-infrastructure" },
-      { name: "Commercial Real Estate", href: "/services/real-estate" },
-      { name: "Premium Residency & Visas", href: "/services/premium-residency" },
+      { name: t("nav.businessSetup"), href: "/services/business-setup" },
+      { name: t("nav.corporateServices"), href: "/services/corporate-services" },
+      { name: t("nav.technology"), href: "/services/technology-infrastructure" },
+      { name: t("nav.commercialRealEstate"), href: "/services/real-estate" },
+      { name: t("nav.premiumResidency"), href: "/services/premium-residency" },
     ],
   },
-  { name: "Real Estate", href: "/services/real-estate" },
-  { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
+  { name: t("nav.realEstate"), href: "/services/real-estate" },
+  { name: t("nav.about"), href: "/about" },
+  { name: t("nav.contact"), href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -57,7 +60,7 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
+        className={`fixed top-0 start-0 end-0 z-40 transition-all duration-500 ${
           isScrolled
             ? "bg-[#0A0D0C]/90 backdrop-blur-xl border-b border-white/10 py-3 shadow-2xl text-white"
             : "bg-[#0A0D0C]/35 backdrop-blur-md border-b border-white/10 py-4 text-white"
@@ -94,7 +97,7 @@ export default function Navbar() {
                       <ChevronDown className={`h-3.5 w-3.5 text-[#10E784] transition-transform duration-200 ${servicesDropdownOpen ? "rotate-180" : ""}`} />
                     </Link>
 
-                    <div className={`absolute top-full left-0 w-72 pt-3 transition-all duration-300 ${
+                    <div className={`absolute top-full start-0 w-72 pt-3 transition-all duration-300 ${
                       servicesDropdownOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"
                     }`}>
                       <div className="bg-[#101312]/95 border border-white/15 rounded-2xl shadow-2xl overflow-hidden backdrop-blur-2xl p-2">
@@ -181,7 +184,7 @@ export default function Navbar() {
                 {link.name}
               </Link>
               {link.dropdown && (
-                <div className="pl-4 pb-2 flex flex-col gap-1 border-l-2 border-[#10E784]/40 ml-1">
+                <div className="ps-4 pb-2 flex flex-col gap-1 border-s-2 border-[#10E784]/40 ms-1">
                   {link.dropdown.map((sub) => (
                     <Link
                       key={sub.name}

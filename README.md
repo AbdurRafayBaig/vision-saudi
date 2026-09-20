@@ -92,6 +92,45 @@
 
 ---
 
+## 🌍 Arabic and RTL
+
+The site serves English today. Arabic is wired end to end and switched off, so
+turning it on is configuration plus copy, not a rewrite.
+
+**What already exists**
+
+| Piece | Where |
+|---|---|
+| Locale list, direction, path helper | `lib/i18n.ts` |
+| Message catalogues | `messages/en.json`, `messages/ar.json` |
+| Translator with per-key English fallback | `lib/messages.ts` |
+| `lang` / `dir` on `<html>`, hreflang for served locales | `app/layout.tsx` |
+| Arabic typeface (IBM Plex Sans Arabic), loaded only for RTL | `app/layout.tsx`, `app/globals.css` |
+| Direction-agnostic layout | every component uses logical utilities (`ms-`, `pe-`, `start-`, `text-start`) rather than `ml-`, `pr-`, `left-`, `text-left` |
+
+**Checking coverage**
+
+```bash
+npm run i18n:status
+```
+
+Prints how much of each locale is translated and which keys are missing.
+Untranslated keys fall back to English at runtime, per key — so Arabic can go
+live half-finished and read correctly, rather than showing raw keys.
+
+**Turning Arabic on**
+
+1. Fill `messages/ar.json`. Keys left empty stay English.
+2. Add an `app/[locale]` segment (or `app/ar`) that passes the locale to
+   `translator()` and to `dirOf()` in the layout.
+3. Set `NEXT_PUBLIC_LOCALES="en,ar"`. That is what adds `ar` to hreflang and
+   lets `localePath()` produce `/ar/...` links.
+
+Page copy lives in `data/` as plain strings, with icons named rather than
+imported, so those files can be translated without touching a component.
+
+---
+
 ## 📄 License
 
 Internal Enterprise & Advisory Platform — All Rights Reserved © Vision Saudi.

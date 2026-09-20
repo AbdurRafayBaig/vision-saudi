@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#0A0D0C] text-[#B9B3A8] border-t border-white/10 pt-20 pb-12 relative overflow-hidden transition-colors duration-300">
       {/* Background Neon Ambient Glow */}
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-[#10E784]/5 blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-0 end-0 w-[400px] h-[400px] rounded-full bg-[#10E784]/5 blur-[150px] pointer-events-none" />
 
       <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-16 border-b border-white/10">

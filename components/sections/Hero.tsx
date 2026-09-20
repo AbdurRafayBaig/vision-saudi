@@ -27,10 +27,10 @@ export default function Hero() {
       {/* ── Ambient Radial Glows & Luxury Backdrop Layers ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Deep Emerald Glow Top Left */}
-        <div className="absolute -top-[20%] -left-[10%] w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] rounded-full bg-[#2D7A5F]/10 blur-[130px]" />
+        <div className="absolute -top-[20%] -start-[10%] w-[60vw] h-[60vw] max-w-[800px] max-h-[800px] rounded-full bg-[#2D7A5F]/10 blur-[130px]" />
 
         {/* Soft Sand Glow Bottom Right */}
-        <div className="absolute -bottom-[20%] -right-[10%] w-[55vw] h-[55vw] max-w-[700px] max-h-[700px] rounded-full bg-[#10E784]/5 blur-[140px]" />
+        <div className="absolute -bottom-[20%] -end-[10%] w-[55vw] h-[55vw] max-w-[700px] max-h-[700px] rounded-full bg-[#10E784]/5 blur-[140px]" />
 
         {/* High-Resolution Background Photography with Gradient Blending */}
         <div className="absolute inset-0 opacity-95 z-0">

@@ -14,7 +14,7 @@ export function ConsentFields({ consent, onConsentChange, website, onWebsiteChan
   return (
     <>
       {/* Honeypot — hidden from people and assistive tech; bots auto-fill it. */}
-      <div aria-hidden="true" className="absolute -left-[9999px] w-px h-px overflow-hidden">
+      <div aria-hidden="true" className="absolute -start-[9999px] w-px h-px overflow-hidden">
         <label>
           Website
           <input

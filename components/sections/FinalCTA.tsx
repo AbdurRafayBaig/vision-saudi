@@ -19,7 +19,7 @@ export default function FinalCTA() {
       <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative z-10">
         <Reveal y={20} className="max-w-4xl mx-auto p-10 sm:p-16 bg-[#101312] border border-white/15 rounded-3xl shadow-2xl backdrop-blur-2xl relative group hover:border-[#10E784] transition-all duration-500 text-center overflow-hidden">
           {/* Subtle inner neon green shimmer line */}
-          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#10E784] to-transparent opacity-80" />
+          <div className="absolute top-0 start-0 end-0 h-[2px] bg-gradient-to-r from-transparent via-[#10E784] to-transparent opacity-80" />
 
           <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight mb-8 leading-[1.12]">
             <span className="heading-gradient-light-to-dark block">Ready to build your position</span>

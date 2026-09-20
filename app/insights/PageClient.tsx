@@ -39,19 +39,19 @@ export default function InsightsPage() {
         onPrimaryCtaClick={() => setModalOpen(true)}
         customVisual={
           <div className="bg-white/[0.03] text-white p-8 sm:p-10 rounded-3xl border border-white/10 shadow-2xl space-y-6 backdrop-blur-2xl relative group hover-green-box transition-all duration-500">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#10E784] to-transparent opacity-80" />
+            <div className="absolute top-0 start-0 end-0 h-[2px] bg-gradient-to-r from-transparent via-[#10E784] to-transparent opacity-80" />
             <div className="flex items-center justify-between border-b border-white/10 pb-4">
               <span className="text-xs text-[#D8CCB8] uppercase tracking-wider">EDITORIAL PUBLICATION</span>
               <span className="text-xs font-bold text-[#10E784] px-3.5 py-1 bg-[#10E784]/15 border border-[#10E784]/30 rounded-full font-mono">STRATEGIC RESEARCH</span>
             </div>
 
             <div className="space-y-3">
-              <div className="p-4 bg-white/[0.03] border-l-4 border-[#10E784] rounded-2xl">
+              <div className="p-4 bg-white/[0.03] border-s-4 border-[#10E784] rounded-2xl">
                 <span className="text-xs text-[#10E784] uppercase font-bold block mb-1">LEAD ANALYSIS</span>
                 <div className="text-xs font-bold text-white leading-snug">ISIC 4 Foreign Ownership & MISA License Regulations</div>
               </div>
 
-              <div className="p-4 bg-white/[0.03] border-l-4 border-[#10E784] rounded-2xl">
+              <div className="p-4 bg-white/[0.03] border-s-4 border-[#10E784] rounded-2xl">
                 <span className="text-xs text-[#10E784] uppercase font-bold block mb-1">REAL ESTATE BRIEF</span>
                 <div className="text-xs font-bold text-white leading-snug">Riyadh Commercial Office Yields & REGA Rules</div>
               </div>

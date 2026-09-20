@@ -50,7 +50,7 @@ export function ShortlistBar() {
             </div>
             <button
               onClick={clear}
-              className="ml-auto rounded-full p-2 text-[#94A3B8] transition-colors hover:text-white"
+              className="ms-auto rounded-full p-2 text-[#94A3B8] transition-colors hover:text-white"
               aria-label="Clear shortlist"
             >
               <X className="h-4 w-4" />
@@ -93,8 +93,8 @@ export function ShortlistBar() {
             >
               Clear
             </button>
-            <Button variant="primary" size="sm" className="ml-auto" onClick={() => setOpen(true)}>
-              <Send className="mr-2 h-3.5 w-3.5" aria-hidden="true" />
+            <Button variant="primary" size="sm" className="ms-auto" onClick={() => setOpen(true)}>
+              <Send className="me-2 h-3.5 w-3.5" aria-hidden="true" />
               Email me these {chosen.length}
             </Button>
           </div>

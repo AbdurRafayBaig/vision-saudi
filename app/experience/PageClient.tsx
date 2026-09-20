@@ -34,7 +34,7 @@ export default function ExperiencePage() {
         proofText="Selected project experience explicitly attributed to SLNEE"
         customVisual={
           <div className="bg-white/[0.03] text-white p-8 sm:p-10 rounded-3xl border border-white/10 shadow-2xl space-y-6 backdrop-blur-2xl relative group hover-green-box transition-all duration-500">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#10E784] to-transparent opacity-80" />
+            <div className="absolute top-0 start-0 end-0 h-[2px] bg-gradient-to-r from-transparent via-[#10E784] to-transparent opacity-80" />
 
             <div className="flex items-center justify-between border-b border-white/10 pb-4">
               <span className="text-xs text-[#D8CCB8] uppercase tracking-wider">TRACK RECORD DASHBOARD</span>
@@ -42,11 +42,11 @@ export default function ExperiencePage() {
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-              <div className="p-4 bg-white/[0.03] border-l-4 border-[#10E784] rounded-2xl">
+              <div className="p-4 bg-white/[0.03] border-s-4 border-[#10E784] rounded-2xl">
                 <CountUp value="50+" className="text-3xl font-display font-bold text-[#10E784]" />
                 <span className="text-xs text-[#B9B3A8] block mt-1">Enterprise Projects</span>
               </div>
-              <div className="p-4 bg-white/[0.03] border-l-4 border-[#10E784] rounded-2xl">
+              <div className="p-4 bg-white/[0.03] border-s-4 border-[#10E784] rounded-2xl">
                 <CountUp value="SAR 100M+" className="text-3xl font-display font-bold text-[#10E784]" />
                 <span className="text-xs text-[#B9B3A8] block mt-1">Delivered Value</span>
               </div>
@@ -159,7 +159,7 @@ export default function ExperiencePage() {
                     {item.summary}
                   </p>
 
-                  <div className="space-y-3 mb-6 bg-white/[0.03] p-5 rounded-2xl border-l-4 border-[#10E784] shadow-sm">
+                  <div className="space-y-3 mb-6 bg-white/[0.03] p-5 rounded-2xl border-s-4 border-[#10E784] shadow-sm">
                     <div className="text-xs font-bold uppercase tracking-wider text-[#D8CCB8] mb-2">
                       Verified Deliverables & Impact:
                     </div>

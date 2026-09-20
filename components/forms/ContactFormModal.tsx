@@ -18,6 +18,7 @@ import {
   Handshake,
   MessageSquare,
   ArrowLeft,
+  Check,
 } from "lucide-react";
 import { LEAD_INTENTS, type IntentIcon } from "@/data/lead-intents";
 import { CAPITAL_SCALES, TARGET_REGIONS, TIMELINES } from "@/lib/contact-fields";
@@ -42,10 +43,14 @@ interface ContactFormModalProps {
 export const ContactFormModal: React.FC<ContactFormModalProps> = ({
   isOpen,
   onClose,
-  defaultService = "business-setup",
+  defaultService,
   defaultIntent,
 }) => {
-  const initialIntent = defaultIntent || defaultService;
+  // Empty by default. This used to be "business-setup", so opening the modal
+  // from the navbar showed that card already lit — which read as a stuck hover,
+  // and quietly filed every context-free enquiry under the wrong objective. A
+  // service page still passes its own intent, where the pre-selection is true.
+  const initialIntent = defaultIntent || defaultService || "";
   const [step, setStep] = useState(1);
 
   const [formData, setFormData] = useState({
@@ -188,12 +193,18 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
                       <button
                         key={dir.id}
                         onClick={() => handleSelectDirection(dir.id)}
+                        aria-pressed={isSelected}
                         className={`p-4 text-start border rounded-2xl transition-all duration-300 group relative ${
                           isSelected
                             ? "bg-[#10E784]/15 border-[#10E784] shadow-[0_0_25px_rgba(16,231,132,0.07)]"
                             : "bg-white/[0.03] border-white/10 hover:border-[#10E784]/60 hover:bg-white/[0.06]"
                         }`}
                       >
+                        {/* A tick, so "chosen" is legible as a decision rather than
+                            as a card the pointer happens to be resting on. */}
+                        {isSelected && (
+                          <Check className="absolute end-3 top-3 h-4 w-4 text-[#10E784]" aria-hidden="true" />
+                        )}
                         <div className="flex items-start gap-3.5">
                           <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-colors ${isSelected ? "bg-[#10E784] text-slate-950" : "bg-white/10 text-[#10E784] group-hover:bg-[#10E784] group-hover:text-slate-950"}`}>
                             <Icon className="h-5 w-5" />
@@ -213,7 +224,13 @@ export const ContactFormModal: React.FC<ContactFormModalProps> = ({
                 </div>
 
                 <div className="flex justify-end pt-2">
-                  <Button variant="emerald" size="md" showArrow onClick={() => setStep(2)}>
+                  <Button
+                    variant="emerald"
+                    size="md"
+                    showArrow
+                    disabled={!formData.serviceIntent}
+                    onClick={() => setStep(2)}
+                  >
                     Proceed to Profiler
                   </Button>
                 </div>

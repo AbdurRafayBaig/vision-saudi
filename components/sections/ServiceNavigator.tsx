@@ -34,7 +34,9 @@ export default function ServiceNavigator() {
                 <button
                   key={service.number}
                   onClick={() => setActiveIndex(idx)}
-                  onMouseEnter={() => setActiveIndex(idx)}
+                  aria-pressed={isActive}
+                  // Hover used to select, which changed the panel by accident and
+                  // had no equivalent on touch. A click selects.
                   className={`text-start p-6 rounded-2xl transition-all duration-300 group ${
                     isActive
                       ? "bg-white/[0.05] border-s-4 border-[#10E784] shadow-xl backdrop-blur-md"

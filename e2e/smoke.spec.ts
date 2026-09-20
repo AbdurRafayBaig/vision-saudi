@@ -428,3 +428,68 @@ test("the guide library does not pretend to be a busy journal", async ({ page })
   await expect(page.getByText(/subscribe/i)).toHaveCount(0);
   await expect(page.getByText(/quarterly/i)).toHaveCount(0);
 });
+
+test.describe("nothing looks pre-hovered", () => {
+  test("a selected card is selected because it was chosen, not because the pointer passed over it", async ({ page }) => {
+    await page.goto("/services/corporate-services");
+    await page.getByRole("button", { name: "Decline" }).click();
+
+    const cap = (n: string) => page.getByRole("button", { name: new RegExp(`Capability 0${n}`) });
+
+    // Hover must not select. It used to, so the panel changed by accident as the
+    // pointer travelled down the list — and touch, which has no hover, behaved
+    // differently from a mouse.
+    await cap("2").hover();
+    await expect(cap("1")).toHaveAttribute("aria-pressed", "true");
+    await expect(cap("2")).toHaveAttribute("aria-pressed", "false");
+
+    await cap("2").click();
+    await expect(cap("2")).toHaveAttribute("aria-pressed", "true");
+
+    // The three journey cards are not interactive, so none may wear an active look.
+    const borders = await page.evaluate(() =>
+      ["ESTABLISH", "ACTIVATE", "OPERATE"].map((name) => {
+        const heading = [...document.querySelectorAll("h3")].find((h) => h.textContent?.trim() === name);
+        return getComputedStyle(heading!.closest("div")!).borderTopColor;
+      })
+    );
+    expect(new Set(borders).size).toBe(1);
+  });
+
+  test("the enquiry modal asks for an objective instead of assuming one", async ({ page }) => {
+    await page.goto("/");
+    await page.getByRole("button", { name: "Decline" }).click();
+    // On a phone the navbar CTA lives inside the menu takeover, and the desktop
+    // copy of it is still in the DOM, just hidden — so ask for the visible one.
+    const menuToggle = page.getByRole("button", { name: "Toggle Navigation Menu" });
+    if (await menuToggle.isVisible()) await menuToggle.click();
+    await page
+      .getByRole("button", { name: "Make the First Move" })
+      .filter({ visible: true })
+      .first()
+      .click();
+
+    const dialog = page.getByRole("dialog");
+    // Opened without context, nothing is chosen — a lit card here read as a stuck
+    // hover and filed every such enquiry under "business setup".
+    await expect(dialog.locator('button[aria-pressed="true"]')).toHaveCount(0);
+    await expect(page.getByRole("button", { name: /Proceed to Profiler/ })).toBeDisabled();
+
+    await dialog.locator("button[aria-pressed]").filter({ hasText: "Real Estate" }).first().click();
+    // Step two echoes the objective back, so the choice is visibly carried forward.
+    await expect(dialog.getByText(/real estate/i).first()).toBeVisible();
+  });
+
+  test("a service page still arrives with its own objective chosen", async ({ page }) => {
+    await page.goto("/services/real-estate");
+    await page.getByRole("button", { name: "Decline" }).click();
+    // The page's own CTA, not the navbar's — the navbar is global chrome and
+    // carries no page context, so it rightly opens with the question unanswered.
+    await page.getByRole("button", { name: "Inquire for Real Estate Advisory" }).first().click();
+
+    // Context the visitor gave us by being on this page is a real answer, not a guess.
+    const chosen = page.getByRole("dialog").locator('button[aria-pressed="true"]');
+    await expect(chosen).toHaveCount(1);
+    await expect(chosen).toContainText(/Real Estate/i);
+  });
+});

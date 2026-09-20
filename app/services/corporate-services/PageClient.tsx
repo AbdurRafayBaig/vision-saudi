@@ -56,7 +56,10 @@ export default function CorporateServicesPage() {
               </p>
             </div>
 
-            <div className="p-8 bg-[#101312] text-white rounded-3xl border border-[#10E784] shadow-2xl">
+            {/* Same surface as its siblings. A green border and a drop shadow on a card
+                nothing can click reads as a stuck hover; the green "(Ongoing)"
+                label already says which stage this page is about. */}
+            <div className="p-8 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl">
               <span className="text-xs font-bold text-[#10E784] uppercase tracking-wider block mb-2">Stage 03 (Ongoing)</span>
               <h3 className="font-display text-2xl font-bold text-white mb-2">OPERATE</h3>
               <p className="text-xs text-[#A39B8B] font-light leading-relaxed">
@@ -88,11 +91,18 @@ export default function CorporateServicesPage() {
                   <button
                     key={idx}
                     onClick={() => setActiveCapability(idx)}
-                    onMouseEnter={() => setActiveCapability(idx)}
-                    className={`text-start p-6 sm:p-8 rounded-2xl transition-all duration-300 border backdrop-blur-xl ${
+                    aria-pressed={isActive}
+                    // No onMouseEnter. Selecting on hover fired by accident just
+                    // moving the pointer down the list, and touch has no hover at
+                    // all, so the two behaved differently. A click selects.
+                    //
+                    // Selected is a green edge on the inline start, not a green
+                    // fill and a scale-up — that vocabulary belongs to hover, which
+                    // is why the first card looked permanently hovered on load.
+                    className={`text-start p-6 sm:p-8 rounded-2xl transition-all duration-300 border border-s-4 backdrop-blur-xl ${
                       isActive
-                        ? "bg-[#10E784]/15 border-[#10E784] shadow-xl text-white scale-[1.02]"
-                        : "bg-white/[0.03] border-white/10 hover:border-white/20 text-[#A39B8B]"
+                        ? "bg-white/[0.05] border-white/10 border-s-[#10E784] text-white"
+                        : "bg-white/[0.03] border-white/10 border-s-transparent text-[#A39B8B] hover:bg-white/[0.05] hover:border-s-white/25"
                     }`}
                   >
                     <div className="flex items-center justify-between mb-2">

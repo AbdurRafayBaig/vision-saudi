@@ -16,15 +16,11 @@ export default function Hero() {
   const [cityIndex, setCityIndex] = useState(0);
 
   useEffect(() => {
+    // Anyone who has asked their system for less motion still gets a still
+    // headline; for everyone else it keeps cycling.
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    let step = 0;
     const timer = setInterval(() => {
-      step += 1;
-      setCityIndex(step % CITIES.length);
-      // One pass through the hubs, then it rests on "Saudi Arabia". This is the
-      // page's LCP element: a headline that never stops moving never feels
-      // loaded, and a screen reader re-announces it on every change.
-      if (step >= CITIES.length) clearInterval(timer);
+      setCityIndex((prev) => (prev + 1) % CITIES.length);
     }, 2200);
     return () => clearInterval(timer);
   }, []);

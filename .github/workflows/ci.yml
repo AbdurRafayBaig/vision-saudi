@@ -19,7 +19,13 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          # Must match the Node used for development, because the npm that
+          # ships with it is what wrote package-lock.json. Node 20 ships npm 10,
+          # which cannot resolve an optional transitive an npm 11 lockfile
+          # records differently, and every run died on "Missing: @emnapi/core
+          # from lock file" before it reached a single check. GitHub is also
+          # retiring Node 20 on Actions runners.
+          node-version: 24
           cache: npm
 
       - name: Install dependencies
@@ -47,7 +53,13 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          # Must match the Node used for development, because the npm that
+          # ships with it is what wrote package-lock.json. Node 20 ships npm 10,
+          # which cannot resolve an optional transitive an npm 11 lockfile
+          # records differently, and every run died on "Missing: @emnapi/core
+          # from lock file" before it reached a single check. GitHub is also
+          # retiring Node 20 on Actions runners.
+          node-version: 24
           cache: npm
 
       - name: Install dependencies

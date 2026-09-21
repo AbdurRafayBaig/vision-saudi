@@ -19,17 +19,20 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          # Must match the Node used for development, because the npm that
-          # ships with it is what wrote package-lock.json. Node 20 ships npm 10,
-          # which cannot resolve an optional transitive an npm 11 lockfile
-          # records differently, and every run died on "Missing: @emnapi/core
-          # from lock file" before it reached a single check. GitHub is also
-          # retiring Node 20 on Actions runners.
+          # Matches the Node used for development. GitHub is also retiring
+          # Node 20 on Actions runners.
           node-version: 24
           cache: npm
 
+      # npm install, not npm ci. package-lock.json is generated on Windows, and
+      # npm does not record a tree there that resolves on Linux: the top-level
+      # @napi-rs/wasm-runtime is listed without its own @emnapi/core, so npm ci
+      # refuses with "can only install packages when your package.json and
+      # package-lock.json are in sync" and no check ever runs. Regenerating the
+      # lock on Linux or macOS would fix it properly and this can go back to
+      # npm ci; it cannot be regenerated correctly from a Windows machine.
       - name: Install dependencies
-        run: npm ci
+        run: npm install --no-audit --no-fund
 
       - name: Lint
         run: npm run lint
@@ -53,17 +56,20 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          # Must match the Node used for development, because the npm that
-          # ships with it is what wrote package-lock.json. Node 20 ships npm 10,
-          # which cannot resolve an optional transitive an npm 11 lockfile
-          # records differently, and every run died on "Missing: @emnapi/core
-          # from lock file" before it reached a single check. GitHub is also
-          # retiring Node 20 on Actions runners.
+          # Matches the Node used for development. GitHub is also retiring
+          # Node 20 on Actions runners.
           node-version: 24
           cache: npm
 
+      # npm install, not npm ci. package-lock.json is generated on Windows, and
+      # npm does not record a tree there that resolves on Linux: the top-level
+      # @napi-rs/wasm-runtime is listed without its own @emnapi/core, so npm ci
+      # refuses with "can only install packages when your package.json and
+      # package-lock.json are in sync" and no check ever runs. Regenerating the
+      # lock on Linux or macOS would fix it properly and this can go back to
+      # npm ci; it cannot be regenerated correctly from a Windows machine.
       - name: Install dependencies
-        run: npm ci
+        run: npm install --no-audit --no-fund
 
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium

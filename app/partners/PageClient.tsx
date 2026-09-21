@@ -46,7 +46,7 @@ export default function PartnersPage() {
               className={`min-h-[44px] pb-4 px-6 text-sm font-bold uppercase tracking-wider transition-all duration-300 border-b-2 shrink-0 ${
                 activeTab === "service"
                   ? "border-[#10E784] text-[#10E784]"
-                  : "border-transparent text-[#A39B8B] hover:text-white"
+                  : "border-transparent text-[#A39B8B] hover:border-white/40 hover:text-white"
               }`}
             >
               Service Partners (International Specialists)
@@ -56,7 +56,7 @@ export default function PartnersPage() {
               className={`min-h-[44px] pb-4 px-6 text-sm font-bold uppercase tracking-wider transition-all duration-300 border-b-2 shrink-0 ${
                 activeTab === "success"
                   ? "border-[#10E784] text-[#10E784]"
-                  : "border-transparent text-[#A39B8B] hover:text-white"
+                  : "border-transparent text-[#A39B8B] hover:border-white/40 hover:text-white"
               }`}
             >
               Success Partners (Ecosystem Members)

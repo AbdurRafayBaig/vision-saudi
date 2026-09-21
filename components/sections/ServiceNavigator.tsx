@@ -42,7 +42,7 @@ export default function ServiceNavigator() {
                   className={`text-start p-6 rounded-2xl transition-all duration-300 group ${
                     isActive
                       ? "bg-white/[0.05] border-s-4 border-[#10E784] shadow-xl backdrop-blur-md"
-                      : "bg-transparent border-s-4 border-transparent hover:bg-white/[0.02]"
+                      : "bg-transparent border-s-4 border-transparent hover:bg-white/[0.08] hover:border-white/50"
                   }`}
                 >
                   <div className="flex items-start gap-4">

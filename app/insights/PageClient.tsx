@@ -99,10 +99,10 @@ export default function InsightsPage() {
 
                   <Link
                     href={`/insights/${featuredArticle.slug}`}
-                    className="inline-flex items-center gap-2 py-3 -my-3 text-xs font-bold uppercase tracking-wider text-[#10E784] hover:gap-3 transition-all duration-300"
+                    className="group/read inline-flex items-center gap-2 py-3 -my-3 text-xs font-bold uppercase tracking-wider text-[#10E784] transition-colors duration-300 hover:text-white"
                   >
                     <span>Read Strategic Analysis</span>
-                    <ArrowRight className="h-4 w-4" />
+                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/read:translate-x-1" />
                   </Link>
                 </div>
 

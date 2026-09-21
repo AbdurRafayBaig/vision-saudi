@@ -92,10 +92,10 @@ export default function ServicesPage() {
 
                   <Link
                     href={`/services/${service.slug}`}
-                    className="inline-flex items-center justify-between w-full pt-4 pb-2 -mb-2 min-h-[44px] border-t border-white/10 text-xs font-bold uppercase tracking-wider text-[#10E784] hover:gap-3 transition-all duration-300"
+                    className="group/spec inline-flex items-center justify-between w-full pt-4 pb-2 -mb-2 min-h-[44px] border-t border-white/10 text-xs font-bold uppercase tracking-wider text-[#10E784] transition-colors duration-300 hover:text-white hover:border-[#10E784]/60"
                   >
-                    <span>Read Full Specification</span>
-                    <ArrowRight className="h-4 w-4" />
+                    <span className="underline-offset-4 group-hover/spec:underline">Read Full Specification</span>
+                    <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover/spec:translate-x-1" />
                   </Link>
                 </div>
               </div>

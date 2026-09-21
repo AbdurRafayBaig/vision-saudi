@@ -72,7 +72,7 @@ export default function EcosystemSection() {
                   onClick={() => setActiveIndex(isActive ? null : idx)}
                   aria-expanded={isActive}
                   aria-controls={`ecosystem-panel-${idx}`}
-                  className="w-full py-6 px-4 flex items-center justify-between text-start group transition-all duration-300 rounded-2xl hover:bg-white/[0.03]"
+                  className="w-full py-6 px-4 flex items-center justify-between text-start group transition-colors duration-300 rounded-2xl hover:bg-white/[0.08]"
                 >
                   <div className="flex items-center gap-5">
                     <span className="text-sm font-mono text-[#10E784] font-bold w-6">

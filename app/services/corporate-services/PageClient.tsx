@@ -120,7 +120,12 @@ export default function CorporateServicesPage() {
                         // muted version of it made the card that happens to be
                         // selected on arrival look like the pointer was sitting on
                         // it. Hover is a neutral lift; green is a state.
-                        : "bg-white/[0.03] border-white/10 border-s-transparent text-[#A39B8B] hover:bg-white/[0.08] hover:border-white/25 hover:border-s-white/40 hover:text-[#E2D9C8]"
+                        // Two channels, so it is unmistakable without borrowing
+                        // green: a white edge where the selected card has a green
+                        // one, and a small shift toward the reader. A 5% lift in
+                        // surface brightness alone measured 11/255 and simply was
+                        // not visible on a dark screen.
+                        : "bg-white/[0.03] border-white/10 border-s-transparent text-[#A39B8B] hover:bg-white/[0.13] hover:border-white/35 hover:border-s-white/70 hover:text-white hover:translate-x-1 rtl:hover:-translate-x-1"
                     }`}
                   >
                     <div className="flex items-center justify-between mb-2">

@@ -43,7 +43,7 @@ export default function CorporateServicesPage() {
               without it the three cards jumped straight from h1 to h3. */}
           <h2 className="sr-only">How corporate services fit the establishment journey</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-8 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl">
+            <div className="p-8 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl transition-colors duration-300 hover:border-white/25 hover:bg-white/[0.05]">
               <span className="text-xs font-bold text-[#A39B8B] uppercase tracking-wider block mb-2">Stage 01</span>
               <h3 className="font-display text-2xl font-bold text-white mb-2">ESTABLISH</h3>
               <p className="text-xs text-[#A39B8B] font-light leading-relaxed">
@@ -51,7 +51,7 @@ export default function CorporateServicesPage() {
               </p>
             </div>
 
-            <div className="p-8 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl">
+            <div className="p-8 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl transition-colors duration-300 hover:border-white/25 hover:bg-white/[0.05]">
               <span className="text-xs font-bold text-[#A39B8B] uppercase tracking-wider block mb-2">Stage 02</span>
               <h3 className="font-display text-2xl font-bold text-white mb-2">ACTIVATE</h3>
               <p className="text-xs text-[#A39B8B] font-light leading-relaxed">
@@ -62,7 +62,7 @@ export default function CorporateServicesPage() {
             {/* Same surface as its siblings. A green border and a drop shadow on a card
                 nothing can click reads as a stuck hover; the green "(Ongoing)"
                 label already says which stage this page is about. */}
-            <div className="p-8 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl">
+            <div className="p-8 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl transition-colors duration-300 hover:border-white/25 hover:bg-white/[0.05]">
               <span className="text-xs font-bold text-[#10E784] uppercase tracking-wider block mb-2">Stage 03 (Ongoing)</span>
               <h3 className="font-display text-2xl font-bold text-white mb-2">OPERATE</h3>
               <p className="text-xs text-[#A39B8B] font-light leading-relaxed">
@@ -105,7 +105,10 @@ export default function CorporateServicesPage() {
                     className={`text-start p-6 sm:p-8 rounded-2xl transition-all duration-300 border border-s-4 backdrop-blur-xl ${
                       isActive
                         ? "bg-white/[0.05] border-white/10 border-s-[#10E784] text-white"
-                        : "bg-white/[0.03] border-white/10 border-s-transparent text-[#A39B8B] hover:bg-white/[0.05] hover:border-s-white/25"
+                        // Hover is a half-strength version of the selected edge:
+                        // enough to say "you could pick this", never enough to be
+                        // mistaken for "this is picked".
+                        : "bg-white/[0.03] border-white/10 border-s-transparent text-[#A39B8B] hover:bg-white/[0.07] hover:border-white/20 hover:border-s-[#10E784]/50 hover:text-[#E2D9C8]"
                     }`}
                   >
                     <div className="flex items-center justify-between mb-2">

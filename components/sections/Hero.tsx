@@ -54,6 +54,18 @@ export default function Hero() {
         {/* Subtle Bottom Vignette Gradient for Legibility */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0A0D0C]/40 via-transparent to-[#0A0D0C] z-0" />
 
+        {/* The vertical gradient is via-transparent exactly in the middle band,
+            which is where the copy column sits — so on desktop the paragraph was
+            reading straight off the brightest, sunlit part of the photo. This
+            anchors the text side. Kept deliberately light: at 92% it blacked
+            out the fort behind the copy, which is the photograph people are
+            meant to see. The heavy lifting is done by a shadow on the glyphs
+            below, which buys contrast per letter instead of dimming the image.
+
+            Desktop only: the phone crop already has its own flat scrim below,
+            and stacking both buried the fort entirely. */}
+        <div className="absolute inset-0 z-0 sm:bg-gradient-to-r sm:rtl:bg-gradient-to-l from-[#0A0D0C]/70 via-[#0A0D0C]/20 to-transparent" />
+
         {/* The portrait crop puts body copy over the brightest part of the photo, so
             small screens get an extra flat scrim that desktop doesn't need. */}
         <div className="absolute inset-0 bg-[#0A0D0C]/45 sm:bg-transparent z-0" />
@@ -68,7 +80,7 @@ export default function Hero() {
             {/* What we are. The headline says the name and the supporting line
                 says what we do, but nothing said what kind of firm this is —
                 a visitor could not tell an advisory from a broker or a portal. */}
-            <p className="anim-fade-in text-xs font-bold uppercase tracking-wider text-[#10E784] mb-4">
+            <p className="anim-fade-in text-xs font-bold uppercase tracking-wider text-[#10E784] mb-4 [text-shadow:0_1px_12px_rgba(10,13,12,0.95),0_1px_3px_rgba(10,13,12,0.8)]">
               Market-Entry Advisory · Riyadh
             </p>
 
@@ -87,7 +99,7 @@ export default function Hero() {
             </h1>
 
             {/* Supporting Statement */}
-            <p className="text-[#94A3B8] text-base sm:text-lg leading-relaxed max-w-xl mb-10 font-light">
+            <p className="text-[#D8CCB8] text-base sm:text-lg leading-relaxed max-w-xl mb-10 [text-shadow:0_1px_12px_rgba(10,13,12,0.95),0_1px_3px_rgba(10,13,12,0.8)]">
               From MISA licensing and corporate establishment to digital platforms and commercial real estate — Vision Saudi connects global enterprise to the Saudi Arabia ecosystem.
             </p>
 

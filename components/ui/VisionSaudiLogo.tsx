@@ -33,13 +33,22 @@ export const VisionSaudiLogo: React.FC<VisionSaudiLogoProps> = ({
   const content = (
     <div className={`group inline-flex flex-col ${className}`}>
       <div className="relative flex items-center">
+        {/* The file is 793x181. Declaring 240x64 made Next serve a 256px-wide
+            candidate for a mark that renders up to 420px, so the logo was being
+            upscaled and looked soft. Intrinsic size plus a sizes hint lets the
+            browser pick a candidate that matches the slot and the screen. */}
         <Image
           src={logoSrc}
           alt="Vision Saudi"
-          width={240}
-          height={64}
+          width={793}
+          height={181}
+          sizes="(max-width: 640px) 180px, (max-width: 1024px) 300px, 420px"
+          quality={95}
           priority
-          className={`${sizeClass} w-auto object-contain transition-all duration-300 group-hover:scale-[1.03] filter drop-shadow-[0_2px_15px_rgba(0,0,0,0.8)]`}
+          // A 15px black glow behind a logo on a dark bar does not separate it,
+          // it smudges it — the thin "ONE KINGDOM. ONE VISION." line lost most
+          // of its contrast to the blur. A tight shadow separates without haze.
+          className={`${sizeClass} w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03] drop-shadow-[0_1px_4px_rgba(0,0,0,0.75)]`}
         />
       </div>
       {showSubtext && (

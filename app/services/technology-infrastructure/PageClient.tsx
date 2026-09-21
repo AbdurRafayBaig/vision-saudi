@@ -54,9 +54,9 @@ export default function TechnologyPage() {
                 <span className="text-xs font-bold text-[#10E784] tracking-widest uppercase block mb-1">
                   STRATEGIC TECHNOLOGY PARTNER
                 </span>
-                <h3 className="font-display text-xl text-white font-bold mb-1">
+                <h2 className="font-display text-xl text-white font-bold mb-1">
                   Implemented in partnership with SLNEE
-                </h3>
+                </h2>
                 <p className="text-xs text-[#A39B8B] font-light max-w-2xl leading-relaxed">
                   Vision Saudi&apos;s enterprise technology capabilities draw upon deep Saudi execution experience. Historical multi-million-riyal government and enterprise systems delivered through strategic partner SLNEE.
                 </p>
@@ -127,7 +127,7 @@ export default function TechnologyPage() {
                     01
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-white">Data Residency & Cloud Compliance</h4>
+                    <h3 className="text-sm font-bold text-white">Data Residency & Cloud Compliance</h3>
                     <p className="text-xs text-[#A39B8B] font-light">All corporate databases hosted on CST-compliant Saudi cloud servers.</p>
                   </div>
                 </div>
@@ -137,7 +137,7 @@ export default function TechnologyPage() {
                     02
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-white">Government API Integration</h4>
+                    <h3 className="text-sm font-bold text-white">Government API Integration</h3>
                     <p className="text-xs text-[#A39B8B] font-light">Direct integration with ZATCA e-invoicing and Qiwa HR portals.</p>
                   </div>
                 </div>

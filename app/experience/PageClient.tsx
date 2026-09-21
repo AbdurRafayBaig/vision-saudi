@@ -73,9 +73,9 @@ export default function ExperiencePage() {
                 <span className="text-xs font-bold text-[#10E784] tracking-widest uppercase block mb-1">
                   ATTRIBUTION GUARANTEE
                 </span>
-                <h3 className="font-display text-xl text-white font-bold mb-1">
+                <h2 className="font-display text-xl text-white font-bold mb-1">
                   Historical Enterprise Delivery Partner: SLNEE
-                </h3>
+                </h2>
                 <p className="text-xs text-[#B9B3A8] font-light max-w-2xl leading-relaxed">
                   All enterprise case studies highlighted below represent verified project implementations delivered through strategic technology partner SLNEE across Saudi ministries, semi-government entities, and major commercial groups.
                 </p>

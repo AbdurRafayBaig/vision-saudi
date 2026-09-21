@@ -3,9 +3,25 @@
 
 const WHATSAPP_NUMBER = "966540457397"; // E.164 without "+", as wa.me expects
 
+/**
+ * The public origin, in order of preference:
+ *
+ *  1. NEXT_PUBLIC_SITE_URL — set this once a real domain is connected.
+ *  2. Vercel's own production URL, which it provides automatically. Without
+ *     this step the default below was used on a deployment whose domain was
+ *     not connected yet, so every canonical link named a parked page and every
+ *     og:image 404'd — each LinkedIn and WhatsApp share rendered an empty card.
+ *  3. The intended domain, for local builds where neither is present.
+ */
+const vercelHost =
+  process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL ?? process.env.VERCEL_PROJECT_PRODUCTION_URL;
+
+const origin =
+  process.env.NEXT_PUBLIC_SITE_URL ?? (vercelHost ? `https://${vercelHost}` : "https://visionsaudi.com");
+
 export const SITE = {
   name: "Vision Saudi",
-  url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://visionsaudi.com").replace(/\/$/, ""),
+  url: origin.replace(/\/$/, ""),
 
   email: "advisory@visionsaudi.com",
   phoneDisplay: "+966 54 045 7397",

@@ -31,8 +31,14 @@ export async function register() {
     );
   }
 
-  if (!process.env.NEXT_PUBLIC_SITE_URL) {
-    problems.push("NEXT_PUBLIC_SITE_URL is unset — canonical URLs and share cards will point at the default domain.");
+  // Vercel supplies its own production URL, so this is only a problem when
+  // neither is present and the hardcoded default is in use.
+  const hasOrigin =
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL ||
+    process.env.VERCEL_PROJECT_PRODUCTION_URL;
+  if (!hasOrigin) {
+    problems.push("No site origin — canonical URLs and share cards fall back to the hardcoded domain.");
   }
 
   if (!process.env.NEXT_PUBLIC_GA_ID) {

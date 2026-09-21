@@ -22,6 +22,9 @@ const BORDER_PATH = BORDER.map((p, i) => `${i ? "L" : "M"}${project(p).join(",")
 interface Hub {
   id: string;
   name: string;
+  /** Drawn on the map, where a long name runs off the edge. The full name is
+      still used for the chips, the detail panel and the accessible label. */
+  short?: string;
   coord: [number, number];
   /** Label nudge in px, so neighbouring cities don't overlap. */
   label?: [number, number];
@@ -92,6 +95,7 @@ const HUBS: Hub[] = [
   {
     id: "redsea",
     name: "Red Sea Coast",
+    short: "Red Sea",
     coord: [37.27, 25.02],
     label: [-14, 4],
     anchor: "end",
@@ -102,6 +106,7 @@ const HUBS: Hub[] = [
   {
     id: "kaec",
     name: "KAEC / Rabigh",
+    short: "KAEC",
     coord: [39.1, 22.39],
     label: [-14, -6],
     anchor: "end",
@@ -112,6 +117,7 @@ const HUBS: Hub[] = [
   {
     id: "eastern",
     name: "Eastern Province",
+    short: "Eastern",
     coord: [50.1, 26.43],
     label: [14, 4],
     anchor: "start",
@@ -122,6 +128,7 @@ const HUBS: Hub[] = [
   {
     id: "asir",
     name: "Abha / Asir",
+    short: "Abha",
     coord: [42.51, 18.22],
     label: [14, 4],
     anchor: "start",
@@ -216,7 +223,10 @@ export default function SaudiMap() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          <Reveal className="lg:col-span-7">
+          {/* Full-bleed on a phone. Inside the page gutter the map drew at 342px
+              of a 390px screen; letting it reach the edges is a free 14% and the
+              map is the one element here that earns the whole width. */}
+          <Reveal className="-mx-6 sm:mx-0 lg:col-span-7">
             <svg
               viewBox="-20 -20 700 550"
               className="w-full h-auto"
@@ -289,7 +299,7 @@ export default function SaudiMap() {
                         isActive ? "fill-white" : "fill-[#8595a5]"
                       }`}
                     >
-                      {hub.name}
+                      {hub.short ?? hub.name}
                     </text>
                     {/* Generous invisible hit area so pins are easy to tap */}
                     <circle

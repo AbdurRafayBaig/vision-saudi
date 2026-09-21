@@ -328,8 +328,12 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Map city labels: the SVG scales down on phones, so the type must scale up to stay readable. */
 .map-label { font-size: 12px; }
+/* SVG text is drawn in viewBox units, so what you read is font-size x the
+   scale factor. The map is 700 units wide; on a 390px phone it draws at ~0.56
+   after going full-bleed, so 26 units lands at about 14.5px on screen. 21 used
+   to land at 10px. */
 @media (max-width: 640px) {
-  .map-label { font-size: 21px; }
+  .map-label { font-size: 26px; }
 }
 
 /* ═══════════════════════════════════════════

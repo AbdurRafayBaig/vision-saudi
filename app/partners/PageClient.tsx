@@ -40,26 +40,26 @@ export default function PartnersPage() {
           </div>
 
           {/* Tab Selection */}
-          <div className="flex border-b border-white/10 mb-12 overflow-x-auto">
+          <div className="flex border-b border-white/10 mb-12">
             <button
               onClick={() => setActiveTab("service")}
-              className={`min-h-[44px] pb-4 px-6 text-sm font-bold uppercase tracking-wider transition-all duration-300 border-b-2 shrink-0 ${
+              className={`min-h-[44px] flex-1 pb-4 px-3 sm:px-6 text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-300 border-b-2 ${
                 activeTab === "service"
                   ? "border-[#10E784] text-[#10E784]"
                   : "border-transparent text-[#A39B8B] hover:border-white/40 hover:text-white"
               }`}
             >
-              Service Partners (International Specialists)
+              Service Partners <span className="hidden sm:inline">(International Specialists)</span>
             </button>
             <button
               onClick={() => setActiveTab("success")}
-              className={`min-h-[44px] pb-4 px-6 text-sm font-bold uppercase tracking-wider transition-all duration-300 border-b-2 shrink-0 ${
+              className={`min-h-[44px] flex-1 pb-4 px-3 sm:px-6 text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-300 border-b-2 ${
                 activeTab === "success"
                   ? "border-[#10E784] text-[#10E784]"
                   : "border-transparent text-[#A39B8B] hover:border-white/40 hover:text-white"
               }`}
             >
-              Success Partners (Ecosystem Members)
+              Success Partners <span className="hidden sm:inline">(Ecosystem Members)</span>
             </button>
           </div>
 

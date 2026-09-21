@@ -36,7 +36,13 @@ const CONTINUITY_STAGES = [
 export default function CorporateServicesPage() {
   const service = MASTER_SERVICES.find((s) => s.slug === "corporate-services")!;
   const [modalOpen, setModalOpen] = useState(false);
+  // The panel needs something to show on arrival, but nothing in the list has
+  // been chosen yet. Marking the first card anyway is what made it look stuck
+  // under the pointer — it wore a selected state the visitor never asked for.
+  // So the panel defaults to the first capability while the list stays unmarked
+  // until someone actually picks one.
   const [activeCapability, setActiveCapability] = useState(0);
+  const [hasChosen, setHasChosen] = useState(false);
 
 
   return (
@@ -99,11 +105,14 @@ export default function CorporateServicesPage() {
             {/* Left: Capability Selector List */}
             <div className="lg:col-span-6 flex flex-col space-y-4">
               {CAPABILITIES.map((cap, idx) => {
-                const isActive = idx === activeCapability;
+                const isActive = hasChosen && idx === activeCapability;
                 return (
                   <button
                     key={idx}
-                    onClick={() => setActiveCapability(idx)}
+                    onClick={() => {
+                      setActiveCapability(idx);
+                      setHasChosen(true);
+                    }}
                     aria-pressed={isActive}
                     // No onMouseEnter. Selecting on hover fired by accident just
                     // moving the pointer down the list, and touch has no hover at

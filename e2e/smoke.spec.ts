@@ -436,24 +436,31 @@ test.describe("nothing looks pre-hovered", () => {
 
     const cap = (n: string) => page.getByRole("button", { name: new RegExp(`Capability 0${n}`) });
 
-    // Hover must not select. It used to, so the panel changed by accident as the
-    // pointer travelled down the list — and touch, which has no hover, behaved
-    // differently from a mouse.
+    // Nothing is marked on arrival. The panel still has to show something, and
+    // marking the first card to match it is exactly what made that card look
+    // stuck under the pointer — it wore a selected state nobody had chosen.
+    await expect(page.locator('button[aria-pressed="true"]')).toHaveCount(0);
+
+    // Hover must not select either. It used to, so the panel changed by accident
+    // as the pointer travelled down the list, and touch — which has no hover —
+    // behaved differently from a mouse.
     await cap("2").hover();
-    await expect(cap("1")).toHaveAttribute("aria-pressed", "true");
     await expect(cap("2")).toHaveAttribute("aria-pressed", "false");
 
+    // A click is the only thing that marks a card, and only that one.
     await cap("2").click();
     await expect(cap("2")).toHaveAttribute("aria-pressed", "true");
+    await expect(page.locator('button[aria-pressed="true"]')).toHaveCount(1);
 
-    // The three journey cards are not interactive, so none may wear an active look.
-    const borders = await page.evaluate(() =>
+    // The three journey cards are peers: same label colour, same resting border.
+    const look = await page.evaluate(() =>
       ["ESTABLISH", "ACTIVATE", "OPERATE"].map((name) => {
         const heading = [...document.querySelectorAll("h3")].find((h) => h.textContent?.trim() === name);
-        return getComputedStyle(heading!.closest("div")!).borderTopColor;
+        const card = heading!.closest("div")!;
+        return `${getComputedStyle(card).borderTopColor}|${getComputedStyle(card.querySelector("span")!).color}`;
       })
     );
-    expect(new Set(borders).size).toBe(1);
+    expect(new Set(look).size).toBe(1);
   });
 
   test("the enquiry modal asks for an objective instead of assuming one", async ({ page }) => {

@@ -26,12 +26,26 @@ function clientIp(request: NextRequest): string {
 }
 
 /** Appends the lead to a Google Sheet via an Apps Script web-app URL. */
-// Appending a row through Apps Script measured 11-25s, and the default function
-// budget on most hosts is 10s — which would kill the request mid-write and lose
-// the very lead the sheet exists to save.
+// Appending a row through Apps Script measured anywhere from 3s to 45s, and the
+// default function budget on most hosts is 10s — which would kill the request
+// mid-write and lose the very lead the sheet exists to save.
 export const maxDuration = 60;
 
+/**
+ * Apps Script runs one execution of a script at a time, so two submissions that
+ * land together queue behind each other and the second can take far longer than
+ * the first. Measured back-to-back: 3s, 8s, 10s, 13s, 45s. A single attempt
+ * against any fixed deadline therefore fails occasionally for no reason worth
+ * telling a visitor about, so a timeout is retried once — the queue has usually
+ * drained by then.
+ */
 async function storeLead(lead: ContactInput, ip: string): Promise<boolean> {
+  if (await attemptStore(lead, ip, 15000)) return true;
+  await new Promise((r) => setTimeout(r, 1500));
+  return attemptStore(lead, ip, 25000);
+}
+
+async function attemptStore(lead: ContactInput, ip: string, timeoutMs: number): Promise<boolean> {
   const url = process.env.LEADS_WEBHOOK_URL;
   if (!url) return false;
   try {
@@ -46,11 +60,7 @@ async function storeLead(lead: ContactInput, ip: string): Promise<boolean> {
         ip,
         secret: process.env.LEADS_WEBHOOK_SECRET,
       }),
-      // Apps Script answers in 2-8s from here, and a cold start is slower still:
-      // measured runs of 2.4s, 3.2s, 4.3s and 7.2s, with an 8s budget aborting one
-      // submission outright and losing the lead. This is the durable record, so it
-      // gets room. The form shows a pending state throughout.
-      signal: AbortSignal.timeout(25000),
+      signal: AbortSignal.timeout(timeoutMs),
     });
     // Apps Script replies 200 even when it rejects the request, so trust the body, not the status.
     const result = await res.json().catch(() => null);

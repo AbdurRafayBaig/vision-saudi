@@ -16,8 +16,10 @@
 
 const SECRET = "CHANGE_ME_TO_A_LONG_RANDOM_STRING";
 
+// leadType says which form it came from — "inquiry", "estimate" or "guide" —
+// which is the first thing you want when triaging a row.
 const COLUMNS = [
-  "receivedAt", "name", "email", "phone", "company", "country",
+  "receivedAt", "leadType", "name", "email", "phone", "company", "country",
   "serviceIntent", "capitalScale", "timeline", "targetRegion", "message", "ip",
 ];
 

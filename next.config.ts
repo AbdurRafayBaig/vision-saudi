@@ -29,7 +29,24 @@ const securityHeaders = [
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
 ];
 
+// Next only hands a variable to the browser when its name starts with the exact
+// prefix NEXT_PUBLIC_ — that check is Next's own and cannot be relaxed from here.
+// These two are configured in the host without the underscores, so they are read
+// at build time and inlined under the names the components expect. Either
+// spelling works; whichever is set wins.
+const publicEnv: Record<string, string> = {};
+for (const [expected, alias] of [
+  ["NEXT_PUBLIC_GA_ID", "NEXT_PUBLICGAID"],
+  ["NEXT_PUBLIC_BOOKING_URL", "NEXT_PUBLICBOOKINGURL"],
+  ["NEXT_PUBLIC_SITE_URL", "NEXT_PUBLICSITEURL"],
+] as const) {
+  const value = process.env[expected] ?? process.env[alias];
+  if (value) publicEnv[expected] = value;
+}
+
 const nextConfig: NextConfig = {
+  env: publicEnv,
+
   // Lets the E2E suite build into its own directory. Running `next build` against
   // the default `.next` while `next dev` is serving from it corrupts the running
   // dev server, so the test harness sets NEXT_DIST_DIR to isolate itself.

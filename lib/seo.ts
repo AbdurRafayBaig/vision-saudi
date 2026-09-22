@@ -43,13 +43,23 @@ export function pageMetadata({
 }: PageSeo): Metadata {
   const images = image ? [{ ...OG_DEFAULT, url: image }] : [OG_DEFAULT];
 
+  // Google shows roughly 60 characters. The root layout appends " | Vision
+  // Saudi" to every page, which is worth having on a short title and worth
+  // nothing on a long one — it is simply cut off, and it pushes out words the
+  // reader would otherwise see. Two article headlines ran to 78 and 72
+  // characters that way, so a title long enough to lose the suffix keeps the
+  // headline instead.
+  const SUFFIX = " | Vision Saudi";
+  const fits = title.length + SUFFIX.length <= 62;
+  const withSuffix = fits ? `${title}${SUFFIX}` : title;
+
   return {
-    title,
+    title: fits ? title : { absolute: title },
     description,
     alternates: { canonical: path },
     openGraph: {
       type,
-      title: `${title} | Vision Saudi`,
+      title: withSuffix,
       description,
       url: absoluteUrl(path),
       siteName: "Vision Saudi",
@@ -60,7 +70,7 @@ export function pageMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} | Vision Saudi`,
+      title: withSuffix,
       description,
       images: images.map((i) => i.url),
     },

@@ -57,3 +57,7 @@ tsconfig.tsbuildinfo
 
 # Local scratch space for throwaway scripts and screenshots
 /scratch/
+
+# A filled-in copy of the lead script, with the real secret in it. The version
+# in docs/ must keep its placeholder so no secret is ever committed.
+docs/google-sheet-leads.local.gs

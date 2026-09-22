@@ -14,7 +14,7 @@
  * Each submission becomes one row. The header row is created automatically.
  */
 
-const SECRET = "CHANGE_ME_TO_A_LONG_RANDOM_STRING";
+const SECRET = "vs_7fK9xQ2mP4nL8wR3tY6bZ";
 
 // leadType says which form it came from — "inquiry", "estimate" or "guide" —
 // which is the first thing you want when triaging a row.

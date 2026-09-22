@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse, after } from "next/server";
 import { Resend } from "resend";
 import { checkRateLimit } from "@/lib/rateLimit";
 import { contactSchema, firstError, type ContactInput } from "@/lib/contact-schema";
@@ -26,6 +26,11 @@ function clientIp(request: NextRequest): string {
 }
 
 /** Appends the lead to a Google Sheet via an Apps Script web-app URL. */
+// Appending a row through Apps Script measured 11-25s, and the default function
+// budget on most hosts is 10s — which would kill the request mid-write and lose
+// the very lead the sheet exists to save.
+export const maxDuration = 60;
+
 async function storeLead(lead: ContactInput, ip: string): Promise<boolean> {
   const url = process.env.LEADS_WEBHOOK_URL;
   if (!url) return false;
@@ -41,7 +46,11 @@ async function storeLead(lead: ContactInput, ip: string): Promise<boolean> {
         ip,
         secret: process.env.LEADS_WEBHOOK_SECRET,
       }),
-      signal: AbortSignal.timeout(8000),
+      // Apps Script answers in 2-8s from here, and a cold start is slower still:
+      // measured runs of 2.4s, 3.2s, 4.3s and 7.2s, with an 8s budget aborting one
+      // submission outright and losing the lead. This is the durable record, so it
+      // gets room. The form shows a pending state throughout.
+      signal: AbortSignal.timeout(25000),
     });
     // Apps Script replies 200 even when it rejects the request, so trust the body, not the status.
     const result = await res.json().catch(() => null);
@@ -172,13 +181,30 @@ export async function POST(request: NextRequest) {
   const apiKey = process.env.RESEND_API_KEY;
   const resend = apiKey ? new Resend(apiKey) : null;
 
-  // Store and email in parallel. The lead is only lost if BOTH fail.
-  const [stored, notified] = await Promise.all([
-    storeLead(lead, ip),
-    resend ? notifyTeam(resend, lead).catch((err) => (console.error("Notify failed:", err), false)) : Promise.resolve(false),
-  ]);
+  // Email first, because it is fast: Resend answers in about a second, while
+  // appending a row through Apps Script measured 11-25s from a laptop. Once the
+  // team has the lead by email it is not lost, so the visitor should not be made
+  // to wait on the slow path — and on a platform with a function time limit,
+  // waiting on it is how you lose the lead you were trying to save.
+  const notified = resend
+    ? await notifyTeam(resend, lead).catch((err) => (console.error("Notify failed:", err), false))
+    : false;
 
-  if (!stored && !notified) {
+  if (notified) {
+    after(async () => {
+      if (!(await storeLead(lead, ip))) {
+        console.error("Lead emailed but not stored:", { email: lead.email, intent: lead.serviceIntent });
+      }
+      await autoReply(resend!, lead);
+    });
+    return NextResponse.json({ ok: true });
+  }
+
+  // No email went out, so the sheet is the only record there will be. Here the
+  // wait is the point: we cannot tell the visitor it worked until it has landed.
+  const stored = await storeLead(lead, ip);
+
+  if (!stored) {
     console.error("LEAD LOST — neither storage nor email succeeded:", { email: lead.email, intent: lead.serviceIntent });
     return NextResponse.json(
       { error: "We couldn't submit your inquiry right now. Please try WhatsApp or email us directly." },
@@ -186,6 +212,5 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  if (resend) await autoReply(resend, lead);
   return NextResponse.json({ ok: true });
 }

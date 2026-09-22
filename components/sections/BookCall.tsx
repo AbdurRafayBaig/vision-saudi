@@ -13,7 +13,10 @@ export function BookCall() {
     <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 sm:p-8">
       <div className="flex items-center gap-3 mb-2">
         <CalendarClock className="h-5 w-5 text-[#10E784]" aria-hidden="true" />
-        <h3 className="font-display text-xl font-bold text-white">Prefer to talk? Book a call</h3>
+        {/* h2: this is a top-level section of the contact page, sitting directly
+            under its h1. It was invisible until a booking URL was configured,
+            which is why the level only started skipping once one was. */}
+        <h2 className="font-display text-xl font-bold text-white">Prefer to talk? Book a call</h2>
       </div>
       <p className="text-sm text-[#B9B3A8] mb-5">Pick a 30-minute slot with a senior market-entry strategist.</p>
       <iframe

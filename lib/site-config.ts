@@ -23,7 +23,10 @@ export const SITE = {
   name: "Vision Saudi",
   url: origin.replace(/\/$/, ""),
 
-  email: "advisory@visionsaudi.com",
+  // A mailbox that actually receives. advisory@visionsaudi.com was never set up
+  // — that domain has no MX record at all, so everything sent to it bounced,
+  // and the contact page was publishing it to visitors and to search engines.
+  email: "akadir.ksa1@gmail.com",
   phoneDisplay: "+966 54 045 7397",
   phoneE164: `+${WHATSAPP_NUMBER}`,
 

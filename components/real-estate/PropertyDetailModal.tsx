@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { X, MapPin, Building, ArrowRight, CheckCircle2, ShieldCheck, Calculator } from "lucide-react";
 import { PropertyItem } from "@/data/properties";
@@ -22,6 +22,23 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
   const [showYieldCalculator, setShowYieldCalculator] = useState(false);
   const [investmentAmount, setInvestmentAmount] = useState(2500000);
 
+  // Escape closes, and the page behind stops scrolling while this is open.
+  // Both are what every other overlay on the site already does; this one was
+  // built by hand and never got them.
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = previous;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen || !property) return null;
 
   const activeImage = property.gallery[selectedImageIndex] || property.image;
@@ -30,7 +47,14 @@ export const PropertyDetailModal: React.FC<PropertyDetailModalProps> = ({
   });
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4 sm:p-6 lg:p-10">
+    // role/aria-modal: assistive tech had no way to know this was a dialog, so
+    // it was announced as more page content and nothing was trapped inside it.
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${property.title} — property details`}
+      className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4 sm:p-6 lg:p-10"
+    >
     {/* Backdrop */}
     <div
       onClick={onClose}

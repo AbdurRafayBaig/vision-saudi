@@ -26,14 +26,29 @@ const navLinks = [
     ],
   },
   { name: t("nav.realEstate"), href: "/services/real-estate" },
-  { name: t("nav.about"), href: "/about" },
+  { name: t("nav.guides"), href: "/insights" },
+  {
+    // Track Record, Guides and Ecosystem Partners reached the footer and nowhere
+    // else, so on a phone you had to scroll the whole page to learn they exist.
+    // Grouping the three "about us" pages keeps the top level short enough to
+    // still fit beside the search field and the CTA.
+    name: t("nav.company"),
+    href: "/about",
+    dropdown: [
+      { name: t("nav.about"), href: "/about" },
+      { name: t("nav.trackRecord"), href: "/experience" },
+      { name: t("nav.partners"), href: "/partners" },
+    ],
+  },
   { name: t("nav.contact"), href: "/contact" },
 ];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  // Which dropdown is open, by name. It used to be one boolean, which was fine
+  // with a single menu and would have opened both once a second was added.
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [contactModalOpen, setContactModalOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -65,13 +80,13 @@ export default function Navbar() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
-  const handleDropdownEnter = () => {
+  const handleDropdownEnter = (name: string) => {
     if (dropdownTimeout.current) clearTimeout(dropdownTimeout.current);
-    setServicesDropdownOpen(true);
+    setOpenDropdown(name);
   };
 
   const handleDropdownLeave = () => {
-    dropdownTimeout.current = setTimeout(() => setServicesDropdownOpen(false), 150);
+    dropdownTimeout.current = setTimeout(() => setOpenDropdown(null), 150);
   };
 
   return (
@@ -99,7 +114,7 @@ export default function Navbar() {
                   <div
                     key={link.name}
                     className="relative"
-                    onMouseEnter={handleDropdownEnter}
+                    onMouseEnter={() => handleDropdownEnter(link.name)}
                     onMouseLeave={handleDropdownLeave}
                   >
                     <Link
@@ -111,11 +126,11 @@ export default function Navbar() {
                       }`}
                     >
                       {link.name}
-                      <ChevronDown className={`h-3.5 w-3.5 text-[#10E784] transition-transform duration-200 ${servicesDropdownOpen ? "rotate-180" : ""}`} />
+                      <ChevronDown className={`h-3.5 w-3.5 text-[#10E784] transition-transform duration-200 ${openDropdown === link.name ? "rotate-180" : ""}`} />
                     </Link>
 
                     <div className={`absolute top-full start-0 w-72 pt-3 transition-all duration-300 ${
-                      servicesDropdownOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"
+                      openDropdown === link.name ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"
                     }`}>
                       <div className="bg-[#101312]/95 border border-white/15 rounded-2xl shadow-2xl overflow-hidden backdrop-blur-2xl p-2">
                         {link.dropdown.map((sub) => (
@@ -191,7 +206,12 @@ export default function Navbar() {
       </header>
 
       {/* Mobile Menu — Dark Luxury Takeover */}
+      {/* inert while closed. The panel stays mounted so it can fade, and
+          pointer-events already stopped the mouse — but every link inside it
+          remained in the tab order and in the accessibility tree, so a keyboard
+          user tabbing down the page fell into a menu they could not see. */}
       <div
+        inert={!mobileMenuOpen}
         className={`fixed inset-0 z-50 bg-[#0A0D0C] text-white flex flex-col transition-all duration-500 lg:hidden ${
           mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
@@ -202,9 +222,10 @@ export default function Navbar() {
           </div>
           <button
             onClick={() => setMobileMenuOpen(false)}
-            className="p-2 text-[#B9B3A8] hover:text-white"
+            aria-label={t("nav.closeMenu")}
+            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[#B9B3A8] transition-colors hover:text-white"
           >
-            <X className="h-6 w-6" />
+            <X className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
 

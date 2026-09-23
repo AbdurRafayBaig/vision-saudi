@@ -71,6 +71,10 @@ export function SearchDialog({ onClose }: { onClose: () => void }) {
   const flat = useMemo(() => groups.flatMap(([, entries]) => entries), [groups]);
 
   useEffect(() => {
+    // Focus immediately and again next frame. The first covers the normal case;
+    // the second covers a slow mount, where a keystroke typed before the field
+    // is ready would otherwise go nowhere.
+    inputRef.current?.focus();
     const raf = requestAnimationFrame(() => inputRef.current?.focus());
     const previous = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -127,6 +131,7 @@ export function SearchDialog({ onClose }: { onClose: () => void }) {
           <Search className="h-4 w-4 shrink-0 text-[#10E784]" aria-hidden="true" />
           <input
             ref={inputRef}
+            autoFocus
             type="text"
             value={query}
             onChange={(e) => {

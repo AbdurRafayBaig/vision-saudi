@@ -36,11 +36,18 @@ export function CountUp({ value, className }: { value: string; className?: strin
       ([entry]) => {
         if (firstReport) {
           firstReport = false;
-          if (entry.isIntersecting) {
-            observer.disconnect(); // already on screen at load: leave the real value alone
+          // isIntersecting is measured against the 0.6 threshold, so a stat
+          // sitting half over the fold reports false while being perfectly
+          // readable — and resetting it there is how someone catches a visible
+          // "$0.0 Trillion". Trust the geometry instead: reset only when the
+          // element is genuinely off screen.
+          const r = el.getBoundingClientRect();
+          const onScreen = r.bottom > 0 && r.top < window.innerHeight;
+          if (entry.isIntersecting || onScreen) {
+            observer.disconnect(); // visible at load: leave the real value alone
             return;
           }
-          el.textContent = format(0); // off-screen, so this reset is never seen
+          el.textContent = format(0); // off screen, so this reset is never seen
           return;
         }
         if (!entry.isIntersecting) return;

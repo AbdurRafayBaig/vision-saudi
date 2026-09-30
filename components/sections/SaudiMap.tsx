@@ -346,14 +346,14 @@ export default function SaudiMap() {
             </div>
 
             {/* Always available: easier than hitting a pin, and keyboard friendly */}
-            <ul className="flex flex-wrap gap-2 mt-4">
+            <ul className="flex flex-nowrap sm:flex-wrap gap-2 mt-4 overflow-x-auto pb-2 sm:pb-0 -mx-6 px-6 sm:mx-0 sm:px-0 scrollbar-none">
               {HUBS.map((hub) => (
-                <li key={hub.id}>
+                <li key={hub.id} className="shrink-0 sm:shrink">
                   <button
                     type="button"
                     onClick={() => pick(hub.id)}
                     aria-pressed={hub.id === activeId}
-                    className={`min-h-[40px] rounded-full px-3.5 text-xs font-semibold border transition-colors ${
+                    className={`min-h-[36px] sm:min-h-[40px] rounded-full px-3 sm:px-3.5 text-xs font-semibold border transition-colors whitespace-nowrap ${
                       hub.id === activeId
                         ? "border-[#10E784] bg-[#10E784]/15 text-white"
                         : "border-white/15 text-[#B9B3A8] hover:border-white/35 hover:text-white"

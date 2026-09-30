@@ -13,7 +13,7 @@ export default function FinalCTA() {
       </div>
 
       <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative z-10">
-        <Reveal y={20} className="max-w-4xl mx-auto p-10 sm:p-16 bg-[#101312] border border-white/15 rounded-3xl shadow-2xl backdrop-blur-2xl relative group hover:border-[#10E784] transition-all duration-500 text-center overflow-hidden">
+        <Reveal y={20} className="max-w-4xl mx-auto p-6 sm:p-10 md:p-16 bg-[#101312] border border-white/15 rounded-2xl sm:rounded-3xl shadow-2xl backdrop-blur-2xl relative group hover:border-[#10E784] transition-all duration-500 text-center overflow-hidden">
           {/* Subtle inner neon green shimmer line */}
           <div className="absolute top-0 start-0 end-0 h-[2px] bg-gradient-to-r from-transparent via-[#10E784] to-transparent opacity-80" />
 

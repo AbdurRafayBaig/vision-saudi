@@ -30,10 +30,10 @@ export default function ProofSection() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
           {FEATURED.map((c) => (
             <TiltCard key={c.id} className="h-full">
-              <article className="h-full flex flex-col rounded-3xl border border-white/10 bg-white/[0.03] p-7 hover:border-[#10E784]/50 transition-colors">
+              <article className="h-full flex flex-col rounded-2xl sm:rounded-3xl border border-white/10 bg-white/[0.03] p-5 sm:p-7 hover:border-[#10E784]/50 transition-colors">
                 <span className="self-start rounded-full border border-white/15 px-3 py-1 text-xs font-semibold text-[#B9B3A8] mb-5">
                   {c.clientSector}
                 </span>

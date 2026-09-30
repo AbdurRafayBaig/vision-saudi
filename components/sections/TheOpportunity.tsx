@@ -32,22 +32,22 @@ export default function TheOpportunity() {
             </p>
 
             {/* Quick Metrics Grid */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="p-6 bg-white/[0.03] border border-transparent border-s-4 border-s-[#10E784] rounded-2xl hover-green-box">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-4 sm:p-6 bg-white/[0.03] border border-transparent border-s-4 border-s-[#10E784] rounded-2xl hover-green-box">
                 <div className="flex items-center gap-2 text-[#10E784] font-mono text-xs font-bold mb-1">
-                  <TrendingUp className="h-4 w-4" />
+                  <TrendingUp className="h-4 w-4 shrink-0" />
                   <span>VISION 2030 PIPELINE</span>
                 </div>
-                <CountUp value="$1.3 Trillion" className="block text-3xl font-display font-bold text-white" />
+                <CountUp value="$1.3 Trillion" className="block text-2xl sm:text-3xl font-display font-bold text-white" />
                 <div className="text-xs text-[#94A3B8] mt-1 font-light">Giga-Projects & Development</div>
               </div>
 
-              <div className="p-6 bg-white/[0.03] border border-transparent border-s-4 border-s-[#10E784] rounded-2xl hover-green-box">
+              <div className="p-4 sm:p-6 bg-white/[0.03] border border-transparent border-s-4 border-s-[#10E784] rounded-2xl hover-green-box">
                 <div className="flex items-center gap-2 text-[#10E784] font-mono text-xs font-bold mb-1">
-                  <Landmark className="h-4 w-4" />
+                  <Landmark className="h-4 w-4 shrink-0" />
                   <span>REGULATORY MANDATE</span>
                 </div>
-                <div className="text-3xl font-display font-bold text-white">RHQ Directive</div>
+                <div className="text-2xl sm:text-3xl font-display font-bold text-white">RHQ Directive</div>
                 <div className="text-xs text-[#94A3B8] mt-1 font-light">Regional HQ Program Compliance</div>
               </div>
             </div>
@@ -66,13 +66,13 @@ export default function TheOpportunity() {
               <div className="absolute inset-0 bg-gradient-to-t from-[#0A0D0C] via-[#0A0D0C]/30 to-transparent" />
 
               {/* Floating Bottom Card */}
-              <div className="absolute bottom-6 start-6 end-6 p-6 bg-[#0A0D0C]/85 border border-white/10 backdrop-blur-xl rounded-2xl shadow-lg">
-                <div className="flex items-center justify-between">
+              <div className="absolute bottom-4 start-4 end-4 sm:bottom-6 sm:start-6 sm:end-6 p-4 sm:p-6 bg-[#0A0D0C]/85 border border-white/10 backdrop-blur-xl rounded-2xl shadow-lg">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                   <div className="flex items-center gap-3">
-                    <ShieldCheck className="h-6 w-6 text-[#10E784]" />
+                    <ShieldCheck className="h-5 w-5 sm:h-6 sm:w-6 text-[#10E784] shrink-0" />
                     <div>
                       <div className="text-xs font-bold text-white">Kingdom-Wide Ecosystem Access</div>
-                      <div className="text-xs text-[#94A3B8]">Riyadh Olaya Headquarters · MISA Licensed</div>
+                      <div className="text-xs text-[#94A3B8]">Riyadh Olaya HQ · MISA Licensed</div>
                     </div>
                   </div>
                   <span className="text-xs font-mono text-[#10E784] font-bold">KSA 2030</span>

@@ -63,7 +63,7 @@ export default function EcosystemSection() {
         </Reveal>
 
         {/* Ecosystem Categories — Typography & Glass-led Accordion */}
-        <div className="border border-white/10 rounded-3xl overflow-hidden bg-white/[0.02] backdrop-blur-xl p-4 sm:p-6 shadow-xl">
+        <div className="border border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden bg-white/[0.02] backdrop-blur-xl p-3 sm:p-6 shadow-xl">
           {ecosystemCategories.map((category, idx) => {
             const isActive = activeIndex === idx;
             return (
@@ -72,14 +72,14 @@ export default function EcosystemSection() {
                   onClick={() => setActiveIndex(isActive ? null : idx)}
                   aria-expanded={isActive}
                   aria-controls={`ecosystem-panel-${idx}`}
-                  className="w-full py-6 px-4 flex items-center justify-between text-start group transition-colors duration-300 rounded-2xl hover:bg-white/[0.08]"
+                  className="w-full py-4 sm:py-6 px-3 sm:px-4 flex items-center justify-between text-start group transition-colors duration-300 rounded-2xl hover:bg-white/[0.08] gap-3"
                 >
-                  <div className="flex items-center gap-5">
-                    <span className="text-sm font-mono text-[#10E784] font-bold w-6">
+                  <div className="flex items-center gap-3 sm:gap-5 min-w-0">
+                    <span className="text-sm font-mono text-[#10E784] font-bold w-6 shrink-0">
                       {String(idx + 1).padStart(2, "0")}
                     </span>
                     <h3
-                      className={`font-display text-xl lg:text-2xl font-bold transition-colors duration-300 ${
+                      className={`font-display text-lg sm:text-xl lg:text-2xl font-bold transition-colors duration-300 ${
                         isActive ? "text-[#10E784]" : "text-white group-hover:text-[#10E784]"
                       }`}
                     >
@@ -87,15 +87,15 @@ export default function EcosystemSection() {
                     </h3>
                   </div>
 
-                  <div className={`w-9 h-9 rounded-full border flex items-center justify-center transition-all duration-300 ${isActive ? "rotate-180 bg-[#10E784]/20 border-[#10E784] text-[#10E784]" : "border-white/10 text-[#B9B3A8] group-hover:border-[#10E784] group-hover:text-[#10E784]"}`}>
+                  <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full border flex items-center justify-center transition-all duration-300 shrink-0 ${isActive ? "rotate-180 bg-[#10E784]/20 border-[#10E784] text-[#10E784]" : "border-white/10 text-[#B9B3A8] group-hover:border-[#10E784] group-hover:text-[#10E784]"}`}>
                     <ChevronDown className="h-4 w-4" />
                   </div>
                 </button>
 
                 <div id={`ecosystem-panel-${idx}`} className="accordion-panel" data-open={isActive}>
                   <div>
-                    <div className="ps-6 sm:ps-12 pe-4 sm:pe-6 pb-6 pt-2">
-                        <div className="p-6 bg-white/[0.04] border border-white/10 rounded-2xl shadow-inner flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+                    <div className="ps-4 sm:ps-12 pe-3 sm:pe-6 pb-4 sm:pb-6 pt-2">
+                        <div className="p-4 sm:p-6 bg-white/[0.04] border border-white/10 rounded-2xl shadow-inner flex flex-col gap-4 sm:gap-6 sm:flex-row items-start sm:items-center justify-between">
                           <p className="text-[#D8CCB8] text-base leading-relaxed font-light max-w-2xl">
                             {category.description}
                           </p>

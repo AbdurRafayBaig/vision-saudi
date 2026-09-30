@@ -5,14 +5,14 @@ import { VisionSaudiLogo } from "@/components/ui/VisionSaudiLogo";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0A0D0C] text-[#B9B3A8] border-t border-white/10 pt-20 pb-12 relative overflow-hidden transition-colors duration-300">
+    <footer className="bg-[#0A0D0C] text-[#B9B3A8] border-t border-white/10 pt-16 sm:pt-20 pb-20 sm:pb-12 relative overflow-hidden transition-colors duration-300">
       {/* Background Neon Ambient Glow */}
       <div className="absolute bottom-0 end-0 w-[400px] h-[400px] rounded-full bg-[#10E784]/5 blur-[150px] pointer-events-none" />
 
       <div className="max-w-[1280px] mx-auto px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-16 border-b border-white/10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-12 pb-12 sm:pb-16 border-b border-white/10">
           {/* Brand Column */}
-          <div className="lg:col-span-2 flex flex-col justify-between">
+          <div className="sm:col-span-2 lg:col-span-1 flex flex-col justify-between">
             <div>
               <div className="mb-6">
                 <VisionSaudiLogo variant="white" size="lg" />
@@ -24,7 +24,7 @@ export default function Footer() {
 
               {/* SLNEE Attribution Card */}
               <div className="p-5 bg-[#101312] border border-white/10 rounded-2xl max-w-md backdrop-blur-xl shadow-sm">
-                <div className="flex items-center justify-between text-white font-medium text-xs mb-2">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between text-white font-medium text-xs mb-2 gap-2">
                   <div className="flex items-center gap-2">
                     <ShieldCheck className="h-4 w-4 text-[#10E784]" />
                     <span className="font-mono text-white font-bold">ATTRIBUTED TRACK RECORD</span>
@@ -80,29 +80,9 @@ export default function Footer() {
           {/* Column 2: Platform */}
           <div>
             <h2 className="text-xs font-bold uppercase tracking-wider text-white mb-6">
-              Platform & Track Record
+              Platform
             </h2>
             <ul className="space-y-3 text-sm">
-              <li>
-                <Link href="/about" className="inline-block py-3 -my-3 hover:text-[#10E784] transition-colors">
-                  About Vision Saudi
-                </Link>
-              </li>
-              <li>
-                <Link href="/experience" className="inline-block py-3 -my-3 hover:text-[#10E784] transition-colors">
-                  Track Record & Case Studies
-                </Link>
-              </li>
-              <li>
-                <Link href="/insights" className="inline-block py-3 -my-3 hover:text-[#10E784] transition-colors">
-                  Guides & Briefings
-                </Link>
-              </li>
-              <li>
-                <Link href="/partners" className="inline-block py-3 -my-3 hover:text-[#10E784] transition-colors">
-                  Ecosystem Partners
-                </Link>
-              </li>
               <li>
                 <Link href="/contact" className="inline-block py-3 -my-3 hover:text-[#10E784] transition-colors">
                   Contact Strategists

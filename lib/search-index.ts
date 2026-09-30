@@ -1,5 +1,4 @@
 import { MASTER_SERVICES } from "@/data/services";
-import { MASTER_INSIGHTS } from "@/data/insights";
 import { MASTER_PROPERTIES } from "@/data/properties";
 
 // Everything the site can take you to, in one list.
@@ -29,30 +28,7 @@ const PAGES: Omit<SearchEntry, "kind" | "id">[] = [
     href: "/",
     keywords: "vision saudi start overview",
   },
-  {
-    title: "About",
-    detail: "Who we are and how we work",
-    href: "/about",
-    keywords: "team company story principles values",
-  },
-  {
-    title: "Experience",
-    detail: "Delivered projects and track record",
-    href: "/experience",
-    keywords: "track record case studies projects clients slnee government",
-  },
-  {
-    title: "Partners",
-    detail: "Strategic partnerships and the authorities we work with",
-    href: "/partners",
-    keywords: "partnerships ministries slnee ecosystem authorities",
-  },
-  {
-    title: "Guides & Briefings",
-    detail: "Working notes on entry, ownership, property and residency",
-    href: "/insights",
-    keywords: "insights articles research library reading",
-  },
+
   {
     title: "Contact",
     detail: "Talk to a strategist in Riyadh",
@@ -99,15 +75,6 @@ export const SEARCH_INDEX: SearchEntry[] = [
       ...s.postEstablishmentEcosystem,
       ...s.faqs.flatMap((q) => [q.question, q.answer]),
     ].join(" "),
-  })),
-
-  ...MASTER_INSIGHTS.map((a) => ({
-    id: `guide-${a.slug}`,
-    kind: "guide" as const,
-    title: a.title,
-    detail: `${a.category} · ${a.readTime}`,
-    href: `/insights/${a.slug}`,
-    keywords: a.excerpt,
   })),
 
   ...MASTER_PROPERTIES.map((p) => ({

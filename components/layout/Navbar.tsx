@@ -26,20 +26,6 @@ const navLinks = [
     ],
   },
   { name: t("nav.realEstate"), href: "/services/real-estate" },
-  { name: t("nav.guides"), href: "/insights" },
-  {
-    // Track Record, Guides and Ecosystem Partners reached the footer and nowhere
-    // else, so on a phone you had to scroll the whole page to learn they exist.
-    // Grouping the three "about us" pages keeps the top level short enough to
-    // still fit beside the search field and the CTA.
-    name: t("nav.company"),
-    href: "/about",
-    dropdown: [
-      { name: t("nav.about"), href: "/about" },
-      { name: t("nav.trackRecord"), href: "/experience" },
-      { name: t("nav.partners"), href: "/partners" },
-    ],
-  },
   { name: t("nav.contact"), href: "/contact" },
 ];
 

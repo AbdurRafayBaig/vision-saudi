@@ -1,5 +1,4 @@
 import type { MetadataRoute } from "next";
-import { MASTER_INSIGHTS } from "@/data/insights";
 import { absoluteUrl } from "@/lib/site-config";
 import { lastModified } from "@/lib/last-modified";
 
@@ -20,10 +19,6 @@ const ROUTES: {
   { path: "/services/technology-infrastructure", priority: 0.8, changeFrequency: "monthly", sources: ["data/services.ts"] },
   { path: "/services/real-estate", priority: 0.8, changeFrequency: "weekly", sources: ["data/services.ts", "data/properties.ts"] },
   { path: "/services/premium-residency", priority: 0.8, changeFrequency: "monthly", sources: ["data/services.ts"] },
-  { path: "/about", priority: 0.7, changeFrequency: "monthly" },
-  { path: "/experience", priority: 0.6, changeFrequency: "monthly" },
-  { path: "/partners", priority: 0.6, changeFrequency: "monthly" },
-  { path: "/insights", priority: 0.7, changeFrequency: "weekly", sources: ["data/insights.ts"] },
   { path: "/contact", priority: 0.8, changeFrequency: "monthly" },
 ];
 
@@ -34,12 +29,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: lastModified(path, sources),
       changeFrequency,
       priority,
-    })),
-    ...MASTER_INSIGHTS.map((article) => ({
-      url: absoluteUrl(`/insights/${article.slug}`),
-      lastModified: new Date(article.publishedISO),
-      changeFrequency: "monthly" as const,
-      priority: 0.6,
     })),
   ];
 }

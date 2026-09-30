@@ -31,7 +31,7 @@ export default function GuideDownload() {
   return (
     <section id="guide" className="bg-[#0A0D0C] text-white py-[var(--space-section)] border-b border-white/10">
       <div className="max-w-[1280px] mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center rounded-3xl border border-white/10 bg-white/[0.03] p-8 sm:p-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 items-center rounded-2xl sm:rounded-3xl border border-white/10 bg-white/[0.03] p-6 sm:p-8 md:p-12">
           <div>
             <div className="flex items-center gap-2 text-[#10E784] mb-4">
               <FileText className="h-4 w-4" aria-hidden="true" />

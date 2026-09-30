@@ -149,7 +149,7 @@ export default function MarketEntryEstimator() {
               <Clock className="h-5 w-5 text-[#10E784]" aria-hidden="true" />
               <p className="text-sm text-[#B9B3A8]">Indicative timeline</p>
             </div>
-            <p className="font-display text-4xl sm:text-5xl font-bold text-white mb-8">
+            <p className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-8">
               {/* key remounts the span so the CSS replays whenever the answer changes */}
               <span key={`${result.totalWeeks[0]}-${result.totalWeeks[1]}`} className="anim-value-roll">
                 {result.totalWeeks[0]}–{result.totalWeeks[1]}
@@ -165,7 +165,7 @@ export default function MarketEntryEstimator() {
               {result.steps.map((step, i) => (
                 <li
                   key={step.title}
-                  className="flex items-start gap-4 rounded-2xl border border-white/10 bg-[#0A0D0C]/60 px-4 py-3"
+                  className="flex items-start gap-3 sm:gap-4 rounded-2xl border border-white/10 bg-[#0A0D0C]/60 px-3 sm:px-4 py-3"
                 >
                   <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#10E784]/15 text-xs font-bold text-[#10E784]">
                     {i + 1}
@@ -174,7 +174,7 @@ export default function MarketEntryEstimator() {
                     <span className="block text-sm font-semibold text-white">{step.title}</span>
                     <span className="block text-xs text-[#94A3B8] mt-0.5">{step.detail}</span>
                   </span>
-                  <span className="shrink-0 text-xs font-mono text-[#B9B3A8]">
+                  <span className="shrink-0 text-xs font-mono text-[#B9B3A8] whitespace-nowrap">
                     {step.weeks[0] === step.weeks[1] ? step.weeks[0] : `${step.weeks[0]}–${step.weeks[1]}`} wk
                   </span>
                 </li>

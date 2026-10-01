@@ -78,6 +78,22 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     );
 
     if (href) {
+      // A file or an external address is not a route. next/link prefetches what
+      // it is given, so pointing it at /guides/....pdf made the browser ask for
+      // that file as a route payload and log a 404 in the console on every
+      // homepage visit. Those go out as a plain anchor.
+      const isRoute = href.startsWith("/") && !href.startsWith("//") && !/\.[a-z0-9]{2,4}($|[?#])/i.test(href);
+      if (!isRoute) {
+        return (
+          <a
+            href={href}
+            className={classes}
+            {...(href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          >
+            {content}
+          </a>
+        );
+      }
       return (
         <Link href={href} className={classes}>
           {content}

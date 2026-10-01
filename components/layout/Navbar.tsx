@@ -23,6 +23,10 @@ const navLinks = [
       { name: t("nav.technology"), href: "/services/technology-infrastructure" },
       { name: t("nav.commercialRealEstate"), href: "/services/real-estate" },
       { name: t("nav.premiumResidency"), href: "/services/premium-residency" },
+      // Track Record sits with the services rather than on its own: it is the
+      // evidence for them, and someone reading what you do is exactly who wants
+      // to see what you have delivered.
+      { name: t("nav.trackRecord"), href: "/experience" },
     ],
   },
   { name: t("nav.realEstate"), href: "/services/real-estate" },

@@ -19,6 +19,7 @@ const ROUTES: {
   { path: "/services/technology-infrastructure", priority: 0.8, changeFrequency: "monthly", sources: ["data/services.ts"] },
   { path: "/services/real-estate", priority: 0.8, changeFrequency: "weekly", sources: ["data/services.ts", "data/properties.ts"] },
   { path: "/services/premium-residency", priority: 0.8, changeFrequency: "monthly", sources: ["data/services.ts"] },
+  { path: "/experience", priority: 0.7, changeFrequency: "monthly", sources: ["data/experience.ts"] },
   { path: "/contact", priority: 0.8, changeFrequency: "monthly" },
 ];
 

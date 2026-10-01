@@ -12,10 +12,7 @@ const ROUTES = [
   "/services/technology-infrastructure",
   "/services/real-estate",
   "/services/premium-residency",
-  "/about",
   "/contact",
-  "/partners",
-  "/insights",
   "/experience",
   "/privacy",
   "/terms",
@@ -44,7 +41,7 @@ test.describe("every route renders", () => {
 test.describe("SEO metadata", () => {
   test("each page has a unique title and canonical", async ({ page }) => {
     const seen = new Map<string, string>();
-    for (const route of ["/", "/services", "/about", "/contact"]) {
+    for (const route of ["/", "/services", "/experience", "/contact"]) {
       await page.goto(route);
       const title = await page.title();
       expect(title.length, `${route} needs a title`).toBeGreaterThan(10);
@@ -109,23 +106,6 @@ test.describe("contact form", () => {
   test("rejects a submission missing required fields", async ({ request }) => {
     const res = await postContact(request, { name: "Test" });
     expect(res.status()).toBe(400);
-  });
-});
-
-test.describe("insights articles", () => {
-  test("each article renders its own body, not a shared one", async ({ page }) => {
-    await page.goto("/insights/saudi-market-entry-guide-2026");
-    await expect(page.getByRole("heading", { name: "The 5-Stage Client Journey Framework" })).toBeVisible();
-
-    await page.goto("/insights/saudi-premium-residency-pathways-explained");
-    await expect(page.getByRole("heading", { name: "Key Residency Pathways Overview" })).toBeVisible();
-    await expect(page.getByText("The 5-Stage Client Journey Framework")).toHaveCount(0);
-  });
-
-  test("unknown article slug returns the branded 404", async ({ page }) => {
-    const res = await page.goto("/insights/does-not-exist");
-    expect(res?.status()).toBe(404);
-    await expect(page.getByRole("heading", { name: /doesn.t exist/ })).toBeVisible();
   });
 });
 
@@ -255,14 +235,6 @@ test.describe("wayfinding", () => {
     await expect(related.getByRole("link", { name: /Real Estate Investment/ })).toBeVisible();
     // The current pillar should not offer itself.
     await expect(related.getByRole("link", { name: /Business Setup/ })).toHaveCount(0);
-  });
-
-  test("an article ends with a way forward, not a dead stop", async ({ page }) => {
-    await page.goto("/insights/saudi-market-entry-guide-2026");
-    await expect(page.getByRole("link", { name: /Speak to a strategist/ })).toBeVisible();
-    await expect(
-      page.getByRole("navigation", { name: "More guides" }).getByRole("link").first()
-    ).toBeVisible();
   });
 
   test("the homepage navigator lists every service pillar exactly once", async ({ page }) => {
@@ -419,15 +391,6 @@ test.describe("site search", () => {
   });
 });
 
-test("the guide library does not pretend to be a busy journal", async ({ page }) => {
-  await page.goto("/insights");
-
-  // A category filter over a handful of articles is furniture, not navigation.
-  await expect(page.getByRole("button", { name: "All", exact: true })).toHaveCount(0);
-  // And nothing promises a cadence nobody committed to.
-  await expect(page.getByText(/subscribe/i)).toHaveCount(0);
-  await expect(page.getByText(/quarterly/i)).toHaveCount(0);
-});
 
 test.describe("nothing looks pre-hovered", () => {
   test("a selected card is selected because it was chosen, not because the pointer passed over it", async ({ page }) => {

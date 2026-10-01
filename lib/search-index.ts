@@ -30,6 +30,12 @@ const PAGES: Omit<SearchEntry, "kind" | "id">[] = [
   },
 
   {
+    title: "Track Record",
+    detail: "Delivered projects and the work behind them",
+    href: "/experience",
+    keywords: "experience case studies projects clients delivered slnee government proof",
+  },
+  {
     title: "Contact",
     detail: "Talk to a strategist in Riyadh",
     href: "/contact",

@@ -185,15 +185,17 @@ export default function ExperiencePage() {
         </div>
       </section>
 
-      {/* Next Step CTA */}
+      {/* Next Step CTA. The secondary link used to go to the partners page;
+          that page was removed, so it points at the services this record is
+          evidence for — which is where the reader is heading anyway. */}
       <NextStepCTA
         eyebrow="Proven Execution"
         headline="See what we can build together in the Kingdom."
         subtext="Consult with our strategists to discuss how Vision Saudi and strategic partner SLNEE can support your enterprise setup, digital platforms, or investment roadmap."
         primaryCtaText="Discuss Your Engagement"
         onPrimaryCtaClick={() => setModalOpen(true)}
-        secondaryCtaText="Explore Ecosystem Partnerships"
-        secondaryCtaHref="/partners"
+        secondaryCtaText="Explore Our Services"
+        secondaryCtaHref="/services"
       />
 
       <ContactFormModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />

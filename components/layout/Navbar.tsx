@@ -39,6 +39,10 @@ export default function Navbar() {
   // Which dropdown is open, by name. It used to be one boolean, which was fine
   // with a single menu and would have opened both once a second was added.
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  // Which group is expanded in the phone menu. Its children used to be printed
+  // open all the time, so tapping "Services" revealed nothing — they were
+  // already there, and the menu was a wall of links before you touched it.
+  const [openGroup, setOpenGroup] = useState<string | null>(null);
   const [contactModalOpen, setContactModalOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const dropdownTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -195,73 +199,99 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Menu — Dark Luxury Takeover */}
-      {/* inert while closed. The panel stays mounted so it can fade, and
-          pointer-events already stopped the mouse — but every link inside it
-          remained in the tab order and in the accessibility tree, so a keyboard
-          user tabbing down the page fell into a menu they could not see. */}
+      {/* A panel under the header, not a full-screen takeover. Covering the
+          whole display for six links reads as an app someone is trapped in;
+          this keeps the page visible behind it and closes by tapping away. */}
       <div
-        inert={!mobileMenuOpen}
-        className={`fixed inset-0 z-50 bg-[#0A0D0C] text-white flex flex-col transition-all duration-500 lg:hidden ${
+        onClick={() => setMobileMenuOpen(false)}
+        aria-hidden="true"
+        className={`fixed inset-0 z-30 bg-[#0A0D0C]/70 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
           mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
+      />
+
+      {/* inert while closed: the panel stays mounted so it can animate, and
+          pointer-events stops the mouse, but every link inside it would
+          otherwise stay in the tab order and in the accessibility tree. */}
+      <div
+        inert={!mobileMenuOpen}
+        className={`fixed start-0 end-0 z-40 lg:hidden transition-all duration-300 ${
+          mobileMenuOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "pointer-events-none -translate-y-3 opacity-0"
+        }`}
+        style={{ top: `calc(${isScrolled ? "4.25rem" : "5rem"} + env(safe-area-inset-top, 0px))` }}
       >
-        <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
-          <div onClick={() => setMobileMenuOpen(false)}>
-            <VisionSaudiLogo variant="white" size="md" />
-          </div>
-          <button
-            onClick={() => setMobileMenuOpen(false)}
-            aria-label={t("nav.closeMenu")}
-            className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg text-[#B9B3A8] transition-colors hover:text-white"
-          >
-            <X className="h-6 w-6" aria-hidden="true" />
-          </button>
-        </div>
-
-        <nav className="flex-1 px-6 py-10 flex flex-col gap-2 overflow-y-auto">
-          {navLinks.map((link) => (
-            <div key={link.name}>
-              <Link
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="block py-3.5 text-2xl font-display font-medium text-white hover:text-[#10E784] transition-colors"
-              >
-                {link.name}
-              </Link>
-              {link.dropdown && (
-                <div className="ps-4 pb-2 flex flex-col gap-1 border-s-2 border-[#10E784]/40 ms-1">
-                  {link.dropdown.map((sub) => (
+        <div className="mx-3 overflow-hidden rounded-2xl border border-white/12 bg-[#0E1211] shadow-2xl">
+          <nav className="max-h-[calc(100dvh-10rem)] overflow-y-auto overscroll-contain p-2">
+            {navLinks.map((link) => {
+              const expanded = openGroup === link.name;
+              return (
+                <div key={link.name} className="border-b border-white/[0.06] last:border-b-0">
+                  <div className="flex items-stretch">
                     <Link
-                      key={sub.name}
-                      href={sub.href}
+                      href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="flex min-h-[44px] items-center text-sm text-[#B9B3A8] hover:text-white transition-colors"
+                      className="flex min-h-[52px] flex-1 items-center rounded-xl px-3 text-base font-semibold text-white transition-colors hover:bg-white/[0.06]"
                     >
-                      {sub.name}
+                      {link.name}
                     </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))}
-        </nav>
 
-        <div className="px-6 py-6 border-t border-white/10 bg-[#101312]">
-          <Button
-            variant="emerald"
-            size="md"
-            onClick={() => {
-              setMobileMenuOpen(false);
-              setContactModalOpen(true);
-            }}
-            className="w-full"
-          >
-            Make the First Move
-          </Button>
-          <p className="text-center text-xs text-[#B9B3A8] mt-4 font-mono">
-            Riyadh · Jeddah · Kingdom of Saudi Arabia
-          </p>
+                    {link.dropdown && (
+                      // A separate control, so the row can both navigate and
+                      // expand without one stealing the other's taps.
+                      <button
+                        type="button"
+                        onClick={() => setOpenGroup(expanded ? null : link.name)}
+                        aria-expanded={expanded}
+                        aria-label={`${expanded ? "Hide" : "Show"} ${link.name}`}
+                        className="flex min-h-[52px] min-w-[52px] items-center justify-center rounded-xl text-[#94A3B8] transition-colors hover:bg-white/[0.06] hover:text-white"
+                      >
+                        <ChevronDown
+                          className={`h-4.5 w-4.5 transition-transform duration-300 ${expanded ? "rotate-180 text-[#10E784]" : ""}`}
+                          aria-hidden="true"
+                        />
+                      </button>
+                    )}
+                  </div>
+
+                  {link.dropdown && (
+                    <div
+                      className={`grid transition-all duration-300 ${expanded ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+                    >
+                      <div className="overflow-hidden">
+                        <div className="ms-3 mb-2 flex flex-col border-s border-[#10E784]/30 ps-3">
+                          {link.dropdown.map((sub) => (
+                            <Link
+                              key={sub.name}
+                              href={sub.href}
+                              onClick={() => setMobileMenuOpen(false)}
+                              tabIndex={expanded ? undefined : -1}
+                              className="flex min-h-[44px] items-center rounded-lg px-2 text-sm text-[#B9B3A8] transition-colors hover:bg-white/[0.06] hover:text-white"
+                            >
+                              {sub.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </nav>
+
+          <div className="border-t border-white/10 bg-[#121716] p-3">
+            <Button
+              variant="emerald"
+              size="md"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setContactModalOpen(true);
+              }}
+              className="w-full min-h-[48px]"
+            >
+              Make the First Move
+            </Button>
+          </div>
         </div>
       </div>
 

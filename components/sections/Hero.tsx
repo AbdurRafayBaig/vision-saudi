@@ -9,7 +9,12 @@ import { ContactFormModal } from "@/components/forms/ContactFormModal";
 
 // Business hubs only. Makkah and Madinah are deliberately excluded: non-Muslims cannot
 // enter Makkah, so they undermine credibility with the foreign investors this site targets.
-const CITIES = ["Saudi Arabia", "Riyadh", "Jeddah", "NEOM", "Eastern Province"];
+//
+// Short words only. "Vision" plus the word must fit on one line of a 320px
+// phone at the headline size: "Saudi Arabia" and "Eastern Province" did not, so
+// every time one of them came round the headline wrapped onto a second line and
+// pushed the whole page down, then pulled it back up 2.2 seconds later.
+const CITIES = ["Saudi", "Riyadh", "Jeddah", "NEOM"];
 
 export default function Hero() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -26,7 +31,11 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-[92vh] lg:min-h-screen flex flex-col justify-between bg-[#0A0D0C] overflow-hidden pt-28 pb-12 md:pb-16 text-white">
+    // svh where the browser has it. On a phone `vh` is measured with the address
+    // bar hidden, so 92vh is taller than the screen someone is actually looking
+    // at and the bottom of the hero sat under the browser's toolbar — and the
+    // section resized as the bar slid away on the first scroll.
+    <section className="relative min-h-[92vh] supports-[height:100svh]:min-h-[92svh] lg:min-h-screen flex flex-col justify-between bg-[#0A0D0C] overflow-hidden pt-28 pb-12 md:pb-16 text-white">
       {/* ── Ambient Radial Glows & Luxury Backdrop Layers ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Deep Emerald Glow Top Left */}
@@ -84,11 +93,13 @@ export default function Hero() {
             </p>
 
             {/* Editorial Headline: "Vision" static + dynamic city */}
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-6 text-white flex flex-wrap items-baseline gap-x-3 sm:gap-x-4">
+            {/* nowrap, not wrap: the line is one fixed height whatever word is
+                showing, so the rotation can never move anything below it. */}
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-6 text-white flex flex-nowrap whitespace-nowrap items-baseline gap-x-3 sm:gap-x-4">
               <span className="shrink-0">Vision</span>
               {/* The rotating word is decoration. Screen readers get the settled
                   headline once, instead of "Vision Riyadh… Vision Jeddah…". */}
-              <span className="sr-only">Saudi Arabia</span>
+              <span className="sr-only">Saudi</span>
               <span aria-hidden="true" className="inline-flex items-baseline relative overflow-hidden h-[1.25em] min-w-max pb-1">
                 {/* key remounts the span, which replays the CSS slide-up — no animation library needed */}
                 <span key={CITIES[cityIndex]} className="green-gradient-text inline-block whitespace-nowrap anim-slide-up-in">

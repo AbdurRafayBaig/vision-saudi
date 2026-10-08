@@ -75,6 +75,46 @@
 
   html {
     scroll-behavior: smooth;
+    /* In-page links (#estimator, #opportunity, #properties-showcase) scrolled
+       their target to the very top of the window, which is underneath the fixed
+       header — so the heading you jumped to was the one thing you could not see. */
+    scroll-padding-top: 5.5rem;
+    /* iOS inflates text on its own when a phone is turned sideways. */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* Android and iOS flash a grey or blue box over anything tapped. Every
+       control here has its own pressed state, so the box is only noise. */
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  /* Taps act at once. Without this a browser waits to see whether a tap is the
+     first half of a double-tap-to-zoom, and a quick second tap on a button
+     zooms the page instead of pressing it again. */
+  a,
+  button,
+  [role="button"],
+  input,
+  select,
+  textarea,
+  label,
+  summary {
+    touch-action: manipulation;
+  }
+
+  /* The pressed state that replaces the tap box, on screens with no hover. */
+  @media (hover: none) {
+    a:active,
+    button:active,
+    [role="button"]:active,
+    summary:active {
+      opacity: 0.72;
+    }
   }
 
   /* Hide scrollbar for horizontal scroll areas on mobile */

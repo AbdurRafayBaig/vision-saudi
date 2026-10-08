@@ -47,9 +47,18 @@ export function LeadFields({
   return (
     <>
       <div className={`grid grid-cols-1 sm:grid-cols-2 ${gap}`}>
+        {/* name / autoComplete / inputMode are what a phone acts on: they let
+            iOS and Android offer the visitor's own details in one tap, and they
+            choose the keyboard — an @ key for the email, a dial pad for the
+            number. Without them every field got a plain letter keyboard and
+            nothing was offered. */}
         <Input
           label="Full Name *"
           required
+          name="name"
+          autoComplete="name"
+          autoCapitalize="words"
+          enterKeyHint="next"
           placeholder="e.g. Alexander Vance"
           value={value.name}
           onChange={(e) => onChange({ name: e.target.value })}
@@ -58,6 +67,13 @@ export function LeadFields({
           label="Work Email *"
           type="email"
           required
+          name="email"
+          autoComplete="email"
+          inputMode="email"
+          autoCapitalize="none"
+          autoCorrect="off"
+          spellCheck={false}
+          enterKeyHint="next"
           placeholder="name@company.com"
           value={value.email}
           onChange={(e) => onChange({ email: e.target.value })}
@@ -66,7 +82,12 @@ export function LeadFields({
 
       <Input
         label="Phone / WhatsApp *"
+        type="tel"
         required
+        name="tel"
+        autoComplete="tel"
+        inputMode="tel"
+        enterKeyHint="done"
         placeholder="+966 50 000 0000"
         value={value.phone}
         onChange={(e) => onChange({ phone: e.target.value })}
@@ -87,12 +108,16 @@ export function LeadFields({
           <div className={`grid grid-cols-1 sm:grid-cols-2 ${gap}`}>
             <Input
               label="Company / Entity Name"
+              name="organization"
+              autoComplete="organization"
               placeholder="e.g. Global Tech Enterprise"
               value={value.company}
               onChange={(e) => onChange({ company: e.target.value })}
             />
             <Input
               label="Country of Origin"
+              name="country"
+              autoComplete="country-name"
               placeholder="e.g. United Kingdom / UAE / USA"
               value={value.country}
               onChange={(e) => onChange({ country: e.target.value })}

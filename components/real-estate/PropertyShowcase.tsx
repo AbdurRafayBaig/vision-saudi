@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from "react";
 import Image from "next/image";
-import { MapPin, Building, RotateCcw, SlidersHorizontal, Bookmark, BookmarkCheck } from "lucide-react";
+import { MapPin, Building, RotateCcw, SlidersHorizontal, Bookmark, BookmarkCheck, ChevronDown } from "lucide-react";
 import { MASTER_PROPERTIES, PropertyItem } from "@/data/properties";
 import { PropertyDetailModal } from "./PropertyDetailModal";
 import { ShortlistBar } from "./ShortlistBar";
@@ -19,6 +19,8 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
   const [maxPrice, setMaxPrice] = useState<number>(10000000);
   const [minYield, setMinYield] = useState<number>(0);
   const [selectedProperty, setSelectedProperty] = useState<PropertyItem | null>(null);
+  // Phone only; the sidebar ignores it from lg up.
+  const [filtersOpen, setFiltersOpen] = useState(false);
   const shortlist = useShortlist();
 
   const locations = ["ALL LOCATIONS", "DHAHRAN", "MAKKAH", "MEDINA", "RIYADH"];
@@ -56,6 +58,14 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
     });
   }, [selectedLocation, selectedType, selectedStatus, maxPrice, minYield]);
 
+  // Shown on the closed panel, so a narrowed list never looks unexplained.
+  const activeFilterCount =
+    Number(selectedLocation !== "ALL") +
+    Number(selectedType !== "ALL") +
+    Number(selectedStatus !== "ALL") +
+    Number(maxPrice < 10000000) +
+    Number(minYield > 0);
+
   const resetFilters = () => {
     setSelectedLocation("ALL");
     setSelectedType("ALL");
@@ -83,27 +93,52 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
         {/* Layout Grid: Left Sidebar Filters + Right Property Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Left Sidebar: Filter Panel */}
-          <div className="lg:col-span-3 bg-[#101312] border border-white/15 rounded-3xl p-6 shadow-2xl space-y-6 sticky top-28 text-white">
-            <div className="flex items-center justify-between pb-4 border-b border-white/10">
-              <div className="flex items-center gap-2 text-xs font-bold text-[#10E784] uppercase tracking-wider">
-                <SlidersHorizontal className="h-4 w-4 text-[#10E784]" />
-                <span>FILTER PROPERTIES</span>
-              </div>
+          <div className="lg:col-span-3 bg-[#101312] border border-white/15 rounded-3xl p-4 sm:p-6 shadow-2xl lg:sticky lg:top-28 text-white">
+            {/* On a phone the filters are closed until asked for. Open, they ran
+                to more than a full screen of buttons and sliders stacked above
+                the first listing — on a page whose whole point is the listings.
+                From lg up this is the sidebar it was designed as, always open. */}
+            <div className="flex items-center justify-between gap-2">
               <button
-                onClick={resetFilters}
-                className="py-3 -my-3 ps-3 -ms-3 text-xs font-mono text-[#94A3B8] hover:text-white transition-colors flex items-center gap-1 cursor-pointer"
+                type="button"
+                onClick={() => setFiltersOpen((open) => !open)}
+                aria-expanded={filtersOpen}
+                aria-controls="property-filters"
+                className="flex min-h-[44px] flex-1 items-center gap-2 text-start text-xs font-bold text-[#10E784] uppercase tracking-wider lg:pointer-events-none lg:cursor-default"
               >
-                <RotateCcw className="h-3 w-3" />
+                <SlidersHorizontal className="h-4 w-4 shrink-0 text-[#10E784]" aria-hidden="true" />
+                <span>FILTER PROPERTIES</span>
+                {activeFilterCount > 0 && (
+                  <span className="rounded-full bg-[#10E784] px-2 py-0.5 text-xs font-bold text-[#0A0D0C]">
+                    {activeFilterCount}
+                  </span>
+                )}
+                <ChevronDown
+                  className={`ms-auto h-4 w-4 shrink-0 transition-transform duration-300 lg:hidden ${filtersOpen ? "rotate-180" : ""}`}
+                  aria-hidden="true"
+                />
+              </button>
+              <button
+                type="button"
+                onClick={resetFilters}
+                className="flex min-h-[44px] items-center gap-1 ps-3 text-xs font-mono text-[#94A3B8] hover:text-white transition-colors cursor-pointer"
+              >
+                <RotateCcw className="h-3 w-3" aria-hidden="true" />
                 <span>RESET</span>
               </button>
             </div>
+
+            <div
+              id="property-filters"
+              className={`${filtersOpen ? "block" : "hidden"} lg:block mt-4 pt-6 border-t border-white/10 space-y-6`}
+            >
 
             {/* LOCATION FILTER */}
             <div className="space-y-2.5">
               <span className="text-xs font-bold text-[#94A3B8] uppercase tracking-wider block">
                 LOCATION
               </span>
-              <div className="space-y-1.5 max-h-48 overflow-y-auto pe-1">
+              <div className="flex flex-wrap gap-1.5 lg:block lg:space-y-1.5 lg:max-h-48 lg:overflow-y-auto lg:pe-1">
                 {locations.map((loc) => {
                   const locKey = loc === "ALL LOCATIONS" ? "ALL" : loc;
                   const isSelected = selectedLocation === locKey || (selectedLocation === "ALL" && loc === "ALL LOCATIONS");
@@ -111,7 +146,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                     <button
                       key={loc}
                       onClick={() => setSelectedLocation(locKey)}
-                      className={`w-full text-start px-3.5 min-h-[44px] flex items-center rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${
+                      className={`text-start px-3.5 min-h-[44px] inline-flex lg:flex lg:w-full items-center rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${
                         isSelected
                           ? "bg-[#10E784]/20 text-[#10E784] border border-[#10E784] font-semibold shadow-sm"
                           : "bg-white/[0.03] text-[#94A3B8] hover:bg-white/[0.08] hover:text-white border border-white/5"
@@ -129,7 +164,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
               <span className="text-xs font-bold text-[#94A3B8] uppercase tracking-wider block">
                 PROPERTY TYPE
               </span>
-              <div className="space-y-1.5">
+              <div className="flex flex-wrap gap-1.5 lg:block lg:space-y-1.5">
                 {types.map((type) => {
                   const typeKey = type === "ALL TYPES" ? "ALL" : type;
                   const isSelected = selectedType === typeKey || (selectedType === "ALL" && type === "ALL TYPES");
@@ -137,7 +172,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
                     <button
                       key={type}
                       onClick={() => setSelectedType(typeKey)}
-                      className={`w-full text-start px-3.5 min-h-[44px] flex items-center rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${
+                      className={`text-start px-3.5 min-h-[44px] inline-flex lg:flex lg:w-full items-center rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${
                         isSelected
                           ? "bg-[#10E784]/20 text-[#10E784] border border-[#10E784] font-semibold shadow-sm"
                           : "bg-white/[0.03] text-[#94A3B8] hover:bg-white/[0.08] hover:text-white border border-white/5"
@@ -155,14 +190,14 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
               <span className="text-xs font-bold text-[#94A3B8] uppercase tracking-wider block">
                 STATUS
               </span>
-              <div className="space-y-1.5">
+              <div className="flex flex-wrap gap-1.5 lg:block lg:space-y-1.5">
                 {statuses.map((st) => {
                   const isSelected = selectedStatus === st;
                   return (
                     <button
                       key={st}
                       onClick={() => setSelectedStatus(st)}
-                      className={`w-full text-start px-3.5 min-h-[44px] flex items-center rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${
+                      className={`text-start px-3.5 min-h-[44px] inline-flex lg:flex lg:w-full items-center rounded-xl text-xs font-mono transition-all duration-200 cursor-pointer ${
                         isSelected
                           ? "bg-[#10E784]/20 text-[#10E784] border border-[#10E784] font-semibold shadow-sm"
                           : "bg-white/[0.03] text-[#94A3B8] hover:bg-white/[0.08] hover:text-white border border-white/5"
@@ -226,6 +261,7 @@ export const PropertyShowcase: React.FC<PropertyShowcaseProps> = ({ onBookConsul
               <p className="text-xs text-[#94A3B8] leading-normal font-light">
                 Price and yield narrow the list where a figure has been confirmed.
               </p>
+            </div>
             </div>
           </div>
 

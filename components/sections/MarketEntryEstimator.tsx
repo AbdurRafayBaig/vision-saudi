@@ -137,7 +137,7 @@ export default function MarketEntryEstimator() {
                 type="date"
                 value={targetDate}
                 onChange={(e) => setTargetDate(e.target.value)}
-                className="w-full rounded-2xl border border-white/10 bg-white/[0.02] px-4 py-3 text-sm text-white transition-colors focus:border-[#10E784] focus:outline-none"
+                className="w-full rounded-2xl border border-white/10 bg-white/[0.02] px-4 py-3 text-base sm:text-sm text-white transition-colors focus:border-[#10E784] focus:outline-none"
               />
               <p className="mt-2 text-xs text-[#94A3B8]">Optional. We&apos;ll tell you whether it holds up.</p>
             </div>

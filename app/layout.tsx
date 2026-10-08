@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { ViewTransition } from "react";
 import { Inter, IBM_Plex_Sans_Arabic, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
@@ -115,6 +115,21 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  // iOS Safari rewrites anything that looks like a phone number into its own
+  // blue link, which recolours figures the design set deliberately. Every real
+  // number on the site is already an explicit tel: link.
+  formatDetection: { telephone: false, date: false, address: false, email: false },
+};
+
+// The browser's own chrome. Without a theme colour, Chrome and Samsung Internet
+// on Android draw their toolbar in white above a near-black site, and iOS does
+// the same with the status area — a bright band that makes the page look like
+// it is sitting inside someone else's frame. colorScheme tells the browser the
+// page is dark, so native pieces it draws itself — the date picker, select
+// lists, scrollbars, the keyboard accessory bar — arrive dark too.
+export const viewport: Viewport = {
+  themeColor: "#0A0D0C",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({
